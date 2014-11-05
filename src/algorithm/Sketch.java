@@ -14,7 +14,7 @@ public class Sketch
 		
         
 	    //转换成灰度图
-	    BufferedImage grayImage = ImgUtil.rgb2gray(image);
+	    BufferedImage grayImage = Gray.getImage(image);
 	    
 	    
 	    //反响

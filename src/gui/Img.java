@@ -23,7 +23,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import algorithm.Laser;
+import algorithm.MotionBlur;
+import algorithm.OilPaint;
 import algorithm.Pencil;
+import algorithm.RetroStyle;
 import algorithm.Sculpture;
 import algorithm.Sketch;
 
@@ -397,7 +401,7 @@ public class Img
 		BufferedImage img = getImg(fnm);
 
 		//img = Sculpture.getImage(img);
-		img = Sketch.getImage(img);
+		img = Pencil.getImage(img,10);
 		//img = Pencil.getImage(img, 10);
 		// ×ª»»ÎªrgbÕó
 		int[][][] rgbMat = getRGBMat(img);
@@ -425,7 +429,7 @@ public class Img
 
 	static public void main(String args[])
 	{
-		String fnm = "res/test.png";
+		String fnm = "res/flower.png";
 		Img img = new Img();
 		img.imgFrame0(fnm);
 		/*

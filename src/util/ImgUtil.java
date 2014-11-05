@@ -4,12 +4,13 @@ import java.awt.image.BufferedImage;
 
 public class ImgUtil
 {
-	public static int[] getSplitRGB(int pixel)
+	
+	public static int[] getSplitRGB(int rgb)
 	{
 		int[] rgbs = new int[3];
-		rgbs[0] = (pixel & 0xff0000) >> 16;
-		rgbs[1] = (pixel & 0xff00) >> 8;
-		rgbs[2] = (pixel & 0xff);
+		rgbs[0] = (rgb & 0xff0000) >> 16;
+		rgbs[1] = (rgb & 0xff00) >> 8;
+		rgbs[2] = (rgb & 0xff);
 		return rgbs;
 	}
 
@@ -21,22 +22,75 @@ public class ImgUtil
 		return (r | g | b);
 	}
 	
-	public static BufferedImage rgb2gray(BufferedImage rgbImage)
+	public static int clamp(int c)
 	{
-		int width = rgbImage.getWidth();
-		int height = rgbImage.getHeight();
-		BufferedImage grayImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+		if (c < 0)
+			return 0;
+		if (c > 255)
+			return 255;
+		return c;
+	}
+	
+	public static void getRGB(BufferedImage image,int[] inPixels)
+	{
+		// TODO Auto-generated method stub
 		
-		for (int i = 0; i < height; i++)
+		int count = 0;
+		for (int y = 0; y < image.getHeight(); y++)
 		{
-			for (int j = 0; j < width; j++)
+			for (int x = 0; x < image.getWidth(); x++)
 			{
-				int []rgb = getSplitRGB(rgbImage.getRGB(j, i));
-				int averageRgb = (rgb[0] + rgb[1] + rgb[2])/3;
-				grayImage.setRGB(j, i, getRGB(averageRgb,averageRgb,averageRgb));
+				inPixels[count++] = image.getRGB(x, y);
 			}
 		}
+
+	}  
+	
+	public static void getRGB(BufferedImage image,int[] inPixels,int startX,int startY,int width,int height)
+	{
+		// TODO Auto-generated method stub
 		
-		return grayImage;
-	}
+		int count = 0;
+		for (int y = startY; y < startY + height; y++)
+		{
+			for (int x = startX; x < startX + width; x++)
+			{
+				inPixels[count++] = image.getRGB(x, y);
+			}
+		}
+
+	}  
+	
+	
+	public static void setRGB(BufferedImage image,int[] outPixels)
+	{
+		// TODO Auto-generated method stub
+		
+		int count = 0;
+		for (int y = 0; y < image.getHeight(); y++)
+		{
+			for (int x = 0; x < image.getWidth(); x++)
+			{
+				image.setRGB(x, y, outPixels[count++]);
+			}
+		}
+
+	}  
+	
+	
+	public static void setRGB(BufferedImage image,int[] outPixels,int startX,int startY,int width,int height)
+	{
+		// TODO Auto-generated method stub
+		
+		int count = 0;
+		for (int y = startY; y < startY + height; y++)
+		{
+			for (int x = startX; x < startX + width; x++)
+			{
+				image.setRGB(x, y, outPixels[count++]);
+			}
+		}
+
+	}  
+	
 }

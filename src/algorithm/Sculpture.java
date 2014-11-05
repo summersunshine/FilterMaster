@@ -1,9 +1,6 @@
 package algorithm;
 
-import java.awt.Image;
 import java.awt.image.*;
-
-import org.w3c.dom.css.RGBColor;
 
 import util.ImgUtil;
 
