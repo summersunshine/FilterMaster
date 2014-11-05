@@ -1,10 +1,12 @@
 package util;
 
+import java.awt.Color;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 
 public class ImgUtil
 {
-	
+
 	public static int[] getSplitRGB(int rgb)
 	{
 		int[] rgbs = new int[3];
@@ -21,7 +23,7 @@ public class ImgUtil
 
 		return (r | g | b);
 	}
-	
+
 	public static int clamp(int c)
 	{
 		if (c < 0)
@@ -30,11 +32,23 @@ public class ImgUtil
 			return 255;
 		return c;
 	}
-	
-	public static void getRGB(BufferedImage image,int[] inPixels)
+
+	/**
+	 * 颜色之间的欧几里得距离
+	 * */
+	public static int getColorDiff(int[] rgb1, int[] rgb2)
+	{
+		int r = rgb1[0] - rgb2[0];
+		int g = rgb1[1] - rgb2[1];
+		int b = rgb1[2] - rgb2[2];
+
+		return (int) Math.sqrt(r * r + g * g + b * b);
+	}
+
+	public static void getRGB(BufferedImage image, int[] inPixels)
 	{
 		// TODO Auto-generated method stub
-		
+
 		int count = 0;
 		for (int y = 0; y < image.getHeight(); y++)
 		{
@@ -44,12 +58,12 @@ public class ImgUtil
 			}
 		}
 
-	}  
-	
-	public static void getRGB(BufferedImage image,int[] inPixels,int startX,int startY,int width,int height)
+	}
+
+	public static void getRGB(BufferedImage image, int[] inPixels, int startX, int startY, int width, int height)
 	{
 		// TODO Auto-generated method stub
-		
+
 		int count = 0;
 		for (int y = startY; y < startY + height; y++)
 		{
@@ -59,13 +73,12 @@ public class ImgUtil
 			}
 		}
 
-	}  
-	
-	
-	public static void setRGB(BufferedImage image,int[] outPixels)
+	}
+
+	public static void setRGB(BufferedImage image, int[] outPixels)
 	{
 		// TODO Auto-generated method stub
-		
+
 		int count = 0;
 		for (int y = 0; y < image.getHeight(); y++)
 		{
@@ -75,13 +88,12 @@ public class ImgUtil
 			}
 		}
 
-	}  
-	
-	
-	public static void setRGB(BufferedImage image,int[] outPixels,int startX,int startY,int width,int height)
+	}
+
+	public static void setRGB(BufferedImage image, int[] outPixels, int startX, int startY, int width, int height)
 	{
 		// TODO Auto-generated method stub
-		
+
 		int count = 0;
 		for (int y = startY; y < startY + height; y++)
 		{
@@ -91,6 +103,53 @@ public class ImgUtil
 			}
 		}
 
-	}  
-	
+	}
+
+	/**
+	 * 将两张图加起来 以两张图中，最小的长和宽作为输出图像的长宽
+	 * */
+	public static BufferedImage addImage(BufferedImage image1, BufferedImage image2)
+	{
+		int width = image1.getWidth() < image2.getWidth() ? image1.getWidth() : image2.getWidth();
+		int height = image1.getHeight() < image2.getHeight() ? image1.getHeight() : image2.getHeight();
+
+		BufferedImage outputImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+
+		for (int i = 0; i < height; i++)
+		{
+			for (int j = 0; j < width; j++)
+			{
+				int[] rgb1 = ImgUtil.getSplitRGB(image1.getRGB(j, i));
+				int[] rgb2 = ImgUtil.getSplitRGB(image2.getRGB(j, i));
+				outputImage.setRGB(j, i, ImgUtil.getRGB(rgb1[0] + rgb2[0], rgb1[1] + rgb2[1], rgb1[2] + rgb2[2]));
+
+			}
+		}
+
+		return outputImage;
+	}
+
+	/**
+	 * 将两张图加起来 以两张图中，最小的长和宽作为输出图像的长宽
+	 * */
+	public static BufferedImage subImage(BufferedImage image1, BufferedImage image2)
+	{
+		int width = image1.getWidth() < image2.getWidth() ? image1.getWidth() : image2.getWidth();
+		int height = image1.getHeight() < image2.getHeight() ? image1.getHeight() : image2.getHeight();
+
+		BufferedImage outputImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+
+		for (int i = 0; i < height; i++)
+		{
+			for (int j = 0; j < width; j++)
+			{
+				int[] rgb1 = ImgUtil.getSplitRGB(image1.getRGB(j, i));
+				int[] rgb2 = ImgUtil.getSplitRGB(image2.getRGB(j, i));
+				outputImage.setRGB(j, i, ImgUtil.getRGB(rgb1[0] - rgb2[0], rgb1[1] - rgb2[1], rgb1[2] - rgb2[2]));
+
+			}
+		}
+
+		return outputImage;
+	}
 }

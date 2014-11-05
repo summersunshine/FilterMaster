@@ -4,6 +4,9 @@ import java.awt.image.BufferedImage;
 
 import util.ImgUtil;
 
+/**
+ * ”Õª≠
+ * */
 public class OilPaint
 {
 	private static int radius = 5;

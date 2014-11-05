@@ -4,6 +4,9 @@ import java.awt.image.*;
 
 import util.ImgUtil;
 
+/**
+ * 浮雕
+ * */
 public class Sculpture
 {
 
@@ -14,32 +17,34 @@ public class Sculpture
 
 		BufferedImage outputImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 
-		int i, j;
+		int y, x;
 		// rgb为输入图像的3个通道，output r g b为输出图像的通道
-		for (i = 0; i < height; i++)
+		for (y = 0; y < height; y++)
 		{
-			for (j = 0; j < width; j++)
+			for (x = 0; x < width; x++)
 			{
-				outputImage.setRGB(j, i, ImgUtil.getRGB(128, 128, 128));
+				outputImage.setRGB(x, y, ImgUtil.getRGB(128, 128, 128));
 			}
 		}
 
-		for (i = 1; i < height - 1; i++)
+		for (y = 1; y < height - 1; y++)
 		{
-			for (j = 1; j < width - 1; j++)
+			for (x = 1; x < width - 1; x++)
 			{
-				int[] rgbColor1 = ImgUtil.getSplitRGB(image.getRGB(j - 1, i - 1));
-				int[] rgbColor2 = ImgUtil.getSplitRGB(image.getRGB(j + 1, i + 1));
+				int[] rgbColor1 = ImgUtil.getSplitRGB(image.getRGB(x - 1, y - 1));
+				int[] rgbColor2 = ImgUtil.getSplitRGB(image.getRGB(x + 1, y + 1));
 				int r = rgbColor1[0] - rgbColor2[0] + 128;
 				int g = rgbColor1[1] - rgbColor2[1] + 128;
 				int b = rgbColor1[2] - rgbColor2[2] + 128;
-				int rgb = ImgUtil.getRGB(r, g, b);
-				outputImage.setRGB(j, i, rgb);
+				r = ImgUtil.clamp(r);
+				g = ImgUtil.clamp(g);
+				b = ImgUtil.clamp(b);
+
+				outputImage.setRGB(x, y, ImgUtil.getRGB(r, g, b));
 			}
 		}
 
 		return outputImage;
 	}
-
 
 }

@@ -23,13 +23,18 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import algorithm.AlphaMerge;
 import algorithm.Laser;
+import algorithm.Lomo;
+import algorithm.Mosaic;
 import algorithm.MotionBlur;
 import algorithm.OilPaint;
 import algorithm.Pencil;
 import algorithm.RetroStyle;
 import algorithm.Sculpture;
 import algorithm.Sketch;
+import algorithm.StrokeArea;
+import algorithm.Sharpen;
 
 public class Img
 {
@@ -395,14 +400,26 @@ public class Img
 		return frame;
 	}
 
+	private JFrame imgFrame(Image img)
+	{
+		JPanel p = showImg(img);
+		JFrame frame = new JFrame("Image JFrame");
+		frame.add(p);
+		frame.setSize(600, 600);
+		// frame.setStartPosition(JXFrame.StartPosition.CenterInScreen);
+		frame.setVisible(true);
+		return frame;
+	}
+
 	private JFrame imgFrame0(String fnm)
 	{
 		// 读取图片
-		BufferedImage img = getImg(fnm);
 
-		//img = Sculpture.getImage(img);
-		img = Pencil.getImage(img,10);
-		//img = Pencil.getImage(img, 10);
+		BufferedImage img = getImg(fnm);
+		BufferedImage img2 = getImg("res/test1.jpg");
+		// img = Sculpture.getImage(img);
+		img = AlphaMerge.getImage(img, img2, AlphaMerge.TYPE_DOWN_2_UP);
+		// img = Pencil.getImage(img, 10);
 		// 转换为rgb阵
 		int[][][] rgbMat = getRGBMat(img);
 		// 再转换为图片
@@ -416,20 +433,9 @@ public class Img
 		return frame;
 	}
 
-	private JFrame imgFrame(Image img)
-	{
-		JPanel p = showImg(img);
-		JFrame frame = new JFrame("Image JFrame");
-		frame.add(p);
-		frame.setSize(600, 600);
-		// frame.setStartPosition(JXFrame.StartPosition.CenterInScreen);
-		frame.setVisible(true);
-		return frame;
-	}
-
 	static public void main(String args[])
 	{
-		String fnm = "res/flower.png";
+		String fnm = "res/test.png";
 		Img img = new Img();
 		img.imgFrame0(fnm);
 		/*
