@@ -4,6 +4,9 @@ import java.awt.image.BufferedImage;
 
 import util.ImgUtil;
 
+/**
+ * 素描
+ * */
 public class Sketch
 {
 
@@ -11,34 +14,30 @@ public class Sketch
 	{
 		int height = image.getHeight();
 		int width = image.getWidth();
-		
-        
-	    //转换成灰度图
-	    BufferedImage grayImage = Gray.getImage(image);
-	    
-	    
-	    //反响
-	    BufferedImage reverseImage = Inverse.getImage(grayImage);
-	    
-	    //高斯模糊
-	    BufferedImage guassBlurImage = GuassBlur.getImage(reverseImage);
-	        
-      
-	    
-        for(int i=0;i<height;i++)  
-        {
-	        for(int j=0;j<width;j++)  
-	        {  
-	           int b = ImgUtil.getSplitRGB(guassBlurImage.getRGB(j, i))[0] ;
-	           int a = ImgUtil.getSplitRGB(grayImage.getRGB(j, i))[0] ;
-	           
-	           int temp=a+a*b/(256-b);    
-	           a= Math.min(temp,255);  
-	
-	           reverseImage.setRGB(j, i, ImgUtil.getRGB(a, a, a));
-	        
-	        }
+
+		// 转换成灰度图
+		BufferedImage grayImage = Gray.getImage(image);
+
+		// 反向
+		BufferedImage reverseImage = Inverse.getImage(grayImage);
+
+		// 高斯模糊
+		BufferedImage guassBlurImage = GuassBlur.getImage(reverseImage);
+
+		for (int y = 0; y < height; y++)
+		{
+			for (int x = 0; x < width; x++)
+			{
+				int b = ImgUtil.getSplitRGB(guassBlurImage.getRGB(x, y))[0];
+				int a = ImgUtil.getSplitRGB(grayImage.getRGB(x, y))[0];
+
+				int temp = (int) (a + a * b / (256 - b) / 1.5);
+				a = Math.min(temp, 255);
+
+				reverseImage.setRGB(x, y, ImgUtil.getRGB(a, a, a));
+
+			}
 		}
-       return reverseImage;
+		return reverseImage;
 	}
 }

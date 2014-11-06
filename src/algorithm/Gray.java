@@ -4,24 +4,29 @@ import java.awt.image.BufferedImage;
 
 import util.ImgUtil;
 
+/**
+ * ª“∂»Õº
+ * */
 public class Gray
 {
-	public static BufferedImage getImage(BufferedImage rgbImage)
+	public static BufferedImage getImage(BufferedImage image)
 	{
-		int width = rgbImage.getWidth();
-		int height = rgbImage.getHeight();
-		BufferedImage grayImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-		
-		for (int i = 0; i < height; i++)
+		int width = image.getWidth();
+		int height = image.getHeight();
+
+		BufferedImage outputImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+
+		for (int y = 0; y < height; y++)
 		{
-			for (int j = 0; j < width; j++)
+			for (int x = 0; x < width; x++)
 			{
-				int []rgb = ImgUtil.getSplitRGB(rgbImage.getRGB(j, i));
-				int averageRgb = (rgb[0] + rgb[1] + rgb[2])/3;
-				grayImage.setRGB(j, i, ImgUtil.getRGB(averageRgb,averageRgb,averageRgb));
+				int[] rgb = ImgUtil.getSplitRGB(image.getRGB(x, y));
+				int averageRgb = (rgb[0] + rgb[1] + rgb[2]) / 3;
+
+				outputImage.setRGB(x, y, ImgUtil.getRGB(averageRgb, averageRgb, averageRgb));
 			}
 		}
-		
-		return grayImage;
+
+		return outputImage;
 	}
 }

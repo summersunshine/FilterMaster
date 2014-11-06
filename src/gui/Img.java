@@ -23,13 +23,18 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import algorithm.AlphaMerge;
 import algorithm.Laser;
+import algorithm.Lomo;
+import algorithm.Mosaic;
 import algorithm.MotionBlur;
 import algorithm.OilPaint;
 import algorithm.Pencil;
 import algorithm.RetroStyle;
 import algorithm.Sculpture;
 import algorithm.Sketch;
+import algorithm.StrokeArea;
+import algorithm.Sharpen;
 
 public class Img
 {
@@ -378,65 +383,30 @@ public class Img
 		frame.setVisible(true);
 	}
 
-	/**
-	 * 图片显示窗口
-	 * 
-	 * @return 窗口
-	 */
-	private JFrame imgFrame(String fnm)
+
+	public JPanel imgPanel(String fileName)
 	{
-		BufferedImage img = getImg(fnm);
-		JPanel p = showImg(img);
-		JFrame frame = new JFrame("Image JFrame");
-		frame.add(p);
-		frame.setSize(img.getWidth(), img.getHeight());
-		// frame.setStartPosition(JXFrame.StartPosition.CenterInScreen);
-		frame.setVisible(true);
-		return frame;
+		BufferedImage img = getImg(fileName);
+		return showImg(img);
 	}
 
-	private JFrame imgFrame0(String fnm)
-	{
-		// 读取图片
-		BufferedImage img = getImg(fnm);
 
-		//img = Sculpture.getImage(img);
-		img = Pencil.getImage(img,10);
-		//img = Pencil.getImage(img, 10);
-		// 转换为rgb阵
-		int[][][] rgbMat = getRGBMat(img);
-		// 再转换为图片
-		img = getImg(rgbMat);
-		JPanel p = showImg(img);
-		JFrame frame = new JFrame("Image JFrame");
-		frame.add(p);
-		frame.setSize(img.getWidth(), img.getHeight());
-		// frame.setStartPosition(JXFrame.StartPosition.CenterInScreen);
-		frame.setVisible(true);
-		return frame;
-	}
-
-	private JFrame imgFrame(Image img)
-	{
-		JPanel p = showImg(img);
-		JFrame frame = new JFrame("Image JFrame");
-		frame.add(p);
-		frame.setSize(600, 600);
-		// frame.setStartPosition(JXFrame.StartPosition.CenterInScreen);
-		frame.setVisible(true);
-		return frame;
-	}
-
-	static public void main(String args[])
-	{
-		String fnm = "res/flower.png";
-		Img img = new Img();
-		img.imgFrame0(fnm);
-		/*
-		 * BufferedImage im = img.getImg(fnm); img.imgFrame(im, Color.green);
-		 */
-		/*
-		 * Image im = img.getImg(); img.imgFrame(im);
-		 */
-	}
+//	private JFrame imgFrame(String fnm)
+//	{
+//		// 读取图片
+//		BufferedImage img = getImg(fnm);
+//		JPanel p = showImg(img);
+//		JFrame frame = new JFrame("Image JFrame");
+//		frame.add(p);
+//		frame.setSize(img.getWidth(), img.getHeight());
+//		frame.setVisible(true);
+//		return frame;
+//	}
+//
+//	static public void main(String args[])
+//	{
+//		String fnm = "res/test.png";
+//		Img img = new Img();
+//		img.imgFrame(fnm);
+//	}
 }

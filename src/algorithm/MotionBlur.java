@@ -4,6 +4,9 @@ import java.awt.image.BufferedImage;
 
 import util.ImgUtil;
 
+/**
+ * ¶¯Ì¬Ä£ºý
+ * */
 public class MotionBlur
 {
 
@@ -21,9 +24,9 @@ public class MotionBlur
 
 		int[] inPixels = new int[width * height];
 		int[] outPixels = new int[width * height];
-		
+
 		ImgUtil.getRGB(image, inPixels);
-		
+
 		int index = 0;
 		int cx = width / 2;
 		int cy = height / 2;
@@ -103,6 +106,5 @@ public class MotionBlur
 		ImgUtil.setRGB(outputImage, outPixels);
 		return outputImage;
 	}
-
 
 }
