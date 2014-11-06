@@ -23,18 +23,19 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import algorithm.AlphaMerge;
-import algorithm.Laser;
-import algorithm.Lomo;
-import algorithm.Mosaic;
-import algorithm.MotionBlur;
-import algorithm.OilPaint;
-import algorithm.Pencil;
-import algorithm.RetroStyle;
-import algorithm.Sculpture;
-import algorithm.Sketch;
-import algorithm.StrokeArea;
-import algorithm.Sharpen;
+import algorithm.art.OilPaint;
+import algorithm.art.Pencil;
+import algorithm.art.Sculpture;
+import algorithm.art.Sketch;
+import algorithm.art.StrokeArea;
+import algorithm.basic.Sharpen;
+import algorithm.blur.Laser;
+import algorithm.blur.MotionBlur;
+import algorithm.fun.AlphaMerge;
+import algorithm.fun.MagicMirror;
+import algorithm.fun.Mosaic;
+import algorithm.lomo.Lomo;
+import algorithm.style.RetroStyle;
 
 public class Img
 {
@@ -45,7 +46,7 @@ public class Img
 	 * @param fnm
 	 * @return BufferedImage
 	 */
-	public BufferedImage getImg(String fnm)
+	public static BufferedImage getImg(String fnm)
 	{
 		BufferedImage bi = null;
 		try
@@ -387,8 +388,12 @@ public class Img
 	public JPanel imgPanel(String fileName)
 	{
 		BufferedImage img = getImg(fileName);
+		img = MagicMirror.getImage(img,MagicMirror.TYPE_CONVEX);
 		return showImg(img);
 	}
+	
+	
+
 
 
 //	private JFrame imgFrame(String fnm)

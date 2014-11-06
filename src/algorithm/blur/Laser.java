@@ -1,11 +1,11 @@
-package algorithm;
+package algorithm.blur;
 
 import java.awt.image.BufferedImage;
 
 import util.ImgUtil;
 
 /**
- * 光照
+ * 光线模糊
  * */
 public class Laser
 {

@@ -1,4 +1,4 @@
-package algorithm;
+package algorithm.blur;
 
 import java.awt.image.BufferedImage;
 

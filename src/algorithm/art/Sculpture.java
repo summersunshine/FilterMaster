@@ -1,4 +1,4 @@
-package algorithm;
+package algorithm.art;
 
 import java.awt.image.*;
 

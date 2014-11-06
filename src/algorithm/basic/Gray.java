@@ -1,18 +1,18 @@
-package algorithm;
+package algorithm.basic;
 
 import java.awt.image.BufferedImage;
 
-import util.RGB;
+import util.ImgUtil;
 
 /**
- * ∏∫∆¨
+ * ª“∂»Õº
  * */
-public class Inverse
+public class Gray
 {
 	public static BufferedImage getImage(BufferedImage image)
 	{
-		int height = image.getHeight();
 		int width = image.getWidth();
+		int height = image.getHeight();
 
 		BufferedImage outputImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 
@@ -20,12 +20,13 @@ public class Inverse
 		{
 			for (int x = 0; x < width; x++)
 			{
-				RGB rgb = new RGB(image.getRGB(x, y));
-				RGB reverseRgb = new RGB(255 - rgb.r, 255 - rgb.g, 255 - rgb.b);
-				outputImage.setRGB(x, y, reverseRgb.getRGB());
+				int[] rgb = ImgUtil.getSplitRGB(image.getRGB(x, y));
+				int averageRgb = (rgb[0] + rgb[1] + rgb[2]) / 3;
+
+				outputImage.setRGB(x, y, ImgUtil.getRGB(averageRgb, averageRgb, averageRgb));
 			}
 		}
-		return outputImage;
 
+		return outputImage;
 	}
 }

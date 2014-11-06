@@ -1,4 +1,4 @@
-package algorithm;
+package algorithm.fun;
 
 import java.awt.image.BufferedImage;
 

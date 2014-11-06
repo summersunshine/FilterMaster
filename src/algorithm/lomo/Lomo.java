@@ -1,4 +1,4 @@
-package algorithm;
+package algorithm.lomo;
 
 import java.awt.image.BufferedImage;
 

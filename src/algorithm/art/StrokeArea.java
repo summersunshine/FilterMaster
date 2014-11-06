@@ -1,4 +1,4 @@
-package algorithm;
+package algorithm.art;
 
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -65,7 +65,7 @@ public class StrokeArea
 	                    rgb2[0] = (inPixels[index2] >> 16) & 0xff; // red  
 	                    rgb2[1] = (inPixels[index2] >> 8) & 0xff; // green  
 	                    rgb2[2] = inPixels[index2] & 0xff; // blue  
-	                    moment += colorDiff(rgb, rgb2);  
+	                    moment += ImgUtil.getColorDiff(rgb, rgb2);  
 	                }  
 	            }  
 	            // calculate the output pixel value.  

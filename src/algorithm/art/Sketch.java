@@ -1,7 +1,10 @@
-package algorithm;
+package algorithm.art;
 
 import java.awt.image.BufferedImage;
 
+import algorithm.basic.Gray;
+import algorithm.basic.Inverse;
+import algorithm.blur.GuassBlur;
 import util.ImgUtil;
 
 /**

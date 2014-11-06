@@ -1,4 +1,4 @@
-package algorithm;
+package algorithm.style;
 
 import java.awt.image.BufferedImage;
 
