@@ -7,7 +7,8 @@ import util.ImgUtil;
 
 public class StrokeArea
 {
-	public static BufferedImage getImage(BufferedImage image) {  
+	public static BufferedImage getImage(BufferedImage image,int size) 
+	{  
 	    int width = image.getWidth();  
 	    int height = image.getHeight();  
 	  
