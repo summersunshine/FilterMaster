@@ -4,7 +4,6 @@ import java.awt.image.BufferedImage;
 
 import util.Geometry;
 import util.ImgUtil;
-import util.RGB;
 
 /**
  * LOMOÌØÐ§
@@ -17,7 +16,6 @@ public class Lomo
 		int width = image.getWidth();
 		int height = image.getHeight();
 
-		BufferedImage outputImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 
 		for (int y = 0; y < height; y++)
 		{
