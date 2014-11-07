@@ -4,6 +4,10 @@ import java.awt.Color;
 
 public class RGB
 {
+	public static final int R = 1;
+	public static final int G = 2;
+	public static final int B = 3;
+	
 	public int r;
 	public int g;
 	public int b;
@@ -14,7 +18,13 @@ public class RGB
 		this.g = g;
 		this.b = b;
 	}
-
+	public RGB(float r, float g, float b)
+	{
+		this.r = (int) r;
+		this.g = (int) g;
+		this.b = (int) b;
+	}
+	
 	public RGB(int[] rgb)
 	{
 		this.r = rgb[0];

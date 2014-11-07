@@ -2,6 +2,7 @@ package algorithm.blur;
 
 import java.awt.image.BufferedImage;
 
+import util.Geometry;
 import util.ImgUtil;
 import util.RGB;
 
@@ -10,6 +11,15 @@ import util.RGB;
  * */
 public class GuassBlur
 {
+
+	public static final int[][] MASK =
+	{
+	{ 1, 2, 1 },
+	{ 2, 4, 2 },
+	{ 1, 2, 1 } };
+	
+	public static final int MASK_SIZE = 3;
+
 	public static BufferedImage getImage(BufferedImage image)
 	{
 
@@ -60,5 +70,81 @@ public class GuassBlur
 
 		return outputImage;
 
+	}
+
+	public static BufferedImage getImage(BufferedImage image, int centerX, int centerY, int radius)
+	{
+		int startX = centerX - radius;
+		int startY = centerY - radius;
+		int endX = centerX + radius;
+		int endY = centerY + radius;
+
+		RGB[][] imageMatrix = new RGB[2 * radius+2][2 * radius+2];
+		for (int y = startY; y < endY; y++)
+		{
+			for (int x = startX; x < endX; x++)
+			{
+				RGB rgb = new RGB(image.getRGB(x, y));
+				imageMatrix[x-startX][y-startY] = rgb;
+			}
+		}
+
+		// 只在可能的范围内进行扫描
+		// 减小计算量
+		for (int y = startY+1; y < endY-1; y++)
+		{
+			for (int x = startX+1; x < endX-1; x++)
+			{
+				// 如果是在圆内就进行模糊，否则不处理
+				if (Geometry.getDistance(x, y, centerX, centerY) < radius)
+				{
+					int r = getValue(imageMatrix, x-startX, y-startY, RGB.R);
+					int g = getValue(imageMatrix, x-startX, y-startY, RGB.G);
+					int b = getValue(imageMatrix, x-startX, y-startY, RGB.B);
+
+					image.setRGB(x, y, ImgUtil.getRGB(r, g, b));
+				}
+			}
+		}
+
+		return image;
+
+	}
+
+	/**
+	 * 获取值
+	 * 
+	 * @param imageMatrxi
+	 * @param x
+	 * @param y
+	 * @param type
+	 *            通过类型以及坐标来获取新的值
+	 * */
+	static int getValue(RGB[][] imageMatrix, int x, int y, int type)
+	{
+		System.out.println("" + x + " " + y);
+		int sum = 0;
+		for (int i = -1; i <= 1; i++)
+		{
+			for (int j = -1; j <= 1; j++)
+			{
+				if (type == RGB.R)
+				{
+					sum += imageMatrix[x + i][y + i].r*MASK[i+1][j+1];
+				} else if (type == RGB.G)
+				{
+					sum += imageMatrix[x + i][y + i].g*MASK[i+1][j+1];
+				} else
+				{
+					sum += imageMatrix[x + i][y + i].b*MASK[i+1][j+1];
+				}
+
+			}
+		}
+		sum /= 16;
+
+		sum = ImgUtil.clamp(sum);
+
+		return sum;
 	}
 }

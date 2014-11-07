@@ -33,8 +33,8 @@ public class MainImagePanel extends JPanel
 	private float ratio;
 	private int x;
 	private int y;
-	private int width;
-	private int height;
+	protected int width;
+	protected int height;
 
 	public MainImagePanel(BufferedImage image)
 	{

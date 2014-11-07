@@ -1,5 +1,6 @@
 package gui;
 
+import gui.backgroundblur.BackgroundBlurFrame;
 import gui.preview.PreviewListPanel;
 import gui.preview.PreviewPanel;
 import gui.preview.PreviewTabbedPanel;
@@ -49,6 +50,9 @@ public class MainFrame extends JFrame
 	//源图像路径
 	public String sourceImagePath;
 	
+	//
+	public BackgroundBlurFrame backgroundBlurFrame;
+	
 	
 	private static MainFrame instance;
 	
@@ -76,6 +80,7 @@ public class MainFrame extends JFrame
 		
 
 		initOpenButton();
+		initBackgroundBlurButton();
 		initBasicAdjustPanel();
 
 	}
@@ -113,6 +118,29 @@ public class MainFrame extends JFrame
 		getContentPane().add(openButton);
 	}
 
+	
+	/**
+	 * 初始化背景虚幻按钮
+	 * */
+	private void initBackgroundBlurButton()
+	{
+		JButton backgroundButton = new JButton();
+		backgroundButton.setSize(100, 30);
+		backgroundButton.setLocation(150, 0);
+		backgroundButton.setText("背景虚幻");
+		backgroundButton.addActionListener(new ActionListener()
+		{
+
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				// TODO Auto-generated method stub
+				backgroundBlurFrame = new BackgroundBlurFrame(sourceImage);
+			}
+		});
+		getContentPane().add(backgroundButton);
+	}
+	
 	
 	/**
 	 * 初始化文件选择器

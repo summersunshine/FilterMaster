@@ -19,6 +19,10 @@ import javax.swing.JScrollBar;
 import algorithm.Constants;
 import algorithm.basic.IntensityAndContrast;
 
+/**
+ * 基础调节面板
+ * 包括亮度，对比度，饱和度，色相的调节
+ * */
 public class BasicAdjustPanel extends JPanel implements AdjustmentListener,MouseListener
 {
 

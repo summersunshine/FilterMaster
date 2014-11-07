@@ -29,6 +29,7 @@ public class Constants
 	public static final int TYPE_SHARPEN = 205;
 	
 	// blur
+	public static final int TYPE_DOUBLE_GUASS_BLUR = 300;
 	public static final int TYPE_GUASS_BLUR = 301;
 	public static final int TYPE_LASER = 302;
 	public static final int TYPE_MOTION_BLUR = 303;
@@ -59,7 +60,7 @@ public class Constants
 	
 	public static int [] TYPE_BASIC_LIST = {TYPE_GRAY,TYPE_INVERSE,TYPE_SHARPEN};
 	
-	public static int [] TYPE_BLUR_LIST = {TYPE_GUASS_BLUR,TYPE_LASER,TYPE_MOTION_BLUR};
+	public static int [] TYPE_BLUR_LIST = {TYPE_DOUBLE_GUASS_BLUR,TYPE_GUASS_BLUR,TYPE_LASER,TYPE_MOTION_BLUR};
 	
 	public static int [] TYPE_FUN_LIST = {TYPE_ALPHA_MERGE,TYPE_ALPHA_MERGE_1,TYPE_ALPHA_MERGE_2,TYPE_ALPHA_MERGE_3,
 		TYPE_ALPHA_MERGE_4,TYPE_MAGIC_MIRROIR_1,TYPE_MAGIC_MIRROIR_2,TYPE_MOSIC};
@@ -71,7 +72,7 @@ public class Constants
 	
 	public static String [] DESCRIBE_ALPA_LIST = {"油画","铅笔","浮雕","素描","素描"};
 	public static String [] DESCRIBE_BASIC_LIST = {"灰度图","负片","锐化"};
-	public static String [] DESCRIBE_BLUR_LIST = {"高斯模糊","光线模糊","动态模糊"};
+	public static String [] DESCRIBE_BLUR_LIST = {"高倍高斯模糊","高斯模糊","光线模糊","动态模糊"};
 	public static String [] DESCRIBE_LOMO_LIST = {"经典"};
 	public static String [] DESCRIBE_STYLE_LIST = {"复古"};
 	

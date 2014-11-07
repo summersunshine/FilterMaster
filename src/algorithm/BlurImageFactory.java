@@ -2,6 +2,7 @@ package algorithm;
 
 import java.awt.image.BufferedImage;
 
+import algorithm.blur.DoubleGuassBlur;
 import algorithm.blur.GuassBlur;
 import algorithm.blur.Laser;
 import algorithm.blur.MotionBlur;
@@ -15,6 +16,8 @@ public class BlurImageFactory
 	{
 		switch (type)
 		{
+		case (Constants.TYPE_DOUBLE_GUASS_BLUR):
+			return DoubleGuassBlur.getImage(image);
 		case (Constants.TYPE_GUASS_BLUR):
 			return GuassBlur.getImage(image);
 		case (Constants.TYPE_LASER):
