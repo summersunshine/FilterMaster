@@ -27,7 +27,7 @@ public class ArtImageFactory
 		case (Constants.TYPE_OIL_PAINT):
 			return OilPaint.getImage(image);
 		case (Constants.TYPE_PENCIL):
-			return Pencil.getImage(image, (int) (parameter[0]));
+			return Pencil.getImage(image, 180);
 		case (Constants.TYPE_SCULPTUE):
 			return Sculpture.getImage(image);
 		case (Constants.TYPE_SKETCH):

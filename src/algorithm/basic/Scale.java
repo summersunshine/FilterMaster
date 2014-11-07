@@ -14,8 +14,8 @@ public class Scale
 	{
 		int sourceWidth = image.getWidth();
 		int sourceHeight = image.getHeight();
-		float ratioWidth = sourceWidth*1.0f/image.getWidth();
-		float ratioHeight = sourceHeight*1.0f/image.getHeight();
+		float ratioWidth = sourceWidth*1.0f/width;
+		float ratioHeight = sourceHeight*1.0f/height;
 		
 		BufferedImage outputImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 

@@ -12,6 +12,8 @@ public class Constants
 	public static final int TYPE_LOMO=5;
 	public static final int TYPE_STYLE=6;
 	
+
+	
 	// art
 	public static final int TYPE_OIL_PAINT = 101;
 	public static final int TYPE_PENCIL = 102;
@@ -49,4 +51,28 @@ public class Constants
 	
 	// style
 	public static final int TYPE_RETRO_STYLE = 601;
+	
+	
+	public static int [] TYPE_ALPA_LIST = {TYPE_OIL_PAINT,TYPE_PENCIL,TYPE_SCULPTUE,TYPE_SKETCH,TYPE_STOKEAREA};
+	
+	
+	
+	public static int [] TYPE_BASIC_LIST = {TYPE_GRAY,TYPE_INVERSE,TYPE_SHARPEN};
+	
+	public static int [] TYPE_BLUR_LIST = {TYPE_GUASS_BLUR,TYPE_LASER,TYPE_MOTION_BLUR};
+	
+	public static int [] TYPE_FUN_LIST = {TYPE_ALPHA_MERGE,TYPE_ALPHA_MERGE_1,TYPE_ALPHA_MERGE_2,TYPE_ALPHA_MERGE_3,
+		TYPE_ALPHA_MERGE_4,TYPE_MAGIC_MIRROIR_1,TYPE_MAGIC_MIRROIR_2,TYPE_MOSIC};
+	
+	public static int [] TYPE_LOMO_LIST = {TYPE_LOMO_CLASSIC};
+	
+	public static int [] TYPE_STYLE_LIST = {TYPE_RETRO_STYLE};
+	
+	
+	public static String [] DESCRIBE_ALPA_LIST = {"油画","铅笔","浮雕","素描","素描"};
+	public static String [] DESCRIBE_BASIC_LIST = {"灰度图","负片","锐化"};
+	public static String [] DESCRIBE_BLUR_LIST = {"高斯模糊","光线模糊","动态模糊"};
+	public static String [] DESCRIBE_LOMO_LIST = {"经典"};
+	public static String [] DESCRIBE_STYLE_LIST = {"复古"};
+	
 }

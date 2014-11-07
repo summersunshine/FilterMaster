@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 
+import algorithm.Constants;
 import algorithm.basic.IntensityAndContrast;
 
 public class BasicAdjustPanel extends JPanel implements AdjustmentListener,MouseListener
@@ -129,8 +130,10 @@ public class BasicAdjustPanel extends JPanel implements AdjustmentListener,Mouse
 	public void mouseReleased(MouseEvent e)
 	{
 		// TODO Auto-generated method stub
-		MainFrame.displayImage = IntensityAndContrast.getImage(MainFrame.sourceImage, intensityValue, contrastValue, 50);
-		MainFrame.paintImage();
+//		MainFrame.displayImage = IntensityAndContrast.getImage(MainFrame.sourceImage, intensityValue, contrastValue, 50);
+//		MainFrame.paintImage();
+		
+		MainFrame.getInstance().setMainImagePanel(Constants.TYPE_INTENSITY_CONTRAST, intensityValue,contrastValue,50);
 	}
 	
 	

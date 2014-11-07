@@ -1,5 +1,10 @@
 package gui;
 
+import gui.preview.PreviewListPanel;
+import gui.preview.PreviewPanel;
+import gui.preview.PreviewTabbedPanel;
+
+import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Frame;
 import java.awt.Graphics;
@@ -13,51 +18,83 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import util.ImgUtil;
+import algorithm.Constants;
+import algorithm.ImageFactory;
+import algorithm.basic.Scale;
 import algorithm.fun.MagicMirror;
 
-public class MainFrame extends Frame
+public class MainFrame extends JFrame
 {
-	public static final int MAX_IMAGE_WIDTH = 450;
-	public static final int MAX_IMAGE_HEIGHT = 800;
 
-	public static final int IMAGE_CENTER_X = 640;
-	public static final int IMAGE_CENTER_Y = 360;
 	
+	//显示的图像
+	public  BufferedImage displayImage;
 	
-	public static BufferedImage displayImage;
-	public static BufferedImage sourceImage;
-	public static JFrame mainFrame;
+	//源图像
+	public  BufferedImage sourceImage;
 	
+	//缩小的预览图
+	public  BufferedImage previewImage;
+	
+	//主界面
+	//public static JFrame mainFrame;
+	
+	//主图像显示面板
+	public MainImagePanel mainImagePanel;
+	
+	//源图像路径
 	public String sourceImagePath;
+	
+	
+	private static MainFrame instance;
+	
+	public static MainFrame getInstance()
+	{
+		if (instance == null)
+		{
+			instance = new MainFrame();
+		}
+		return instance;
+	}
+	
 	
 	public static void main(String args[])
 	{
-		MainFrame mainFrame = new MainFrame();
-
+		MainFrame.getInstance();
 	}
 	
 	public MainFrame()
 	{
-		super();
-		mainFrame = new JFrame("Image JFrame");
+		this.setSize(1280, 720);
+		this.setVisible(true);
+		this.setLayout(null);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 
-		mainFrame.setSize(1280, 720);
-		mainFrame.setVisible(true);
-		mainFrame.setLayout(null);
-		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		initOpenButton();
-
-		mainFrame.add(BasicAdjustPanel.getInstance());
+		initBasicAdjustPanel();
 
 	}
 	
 
 
+	/**
+	 * 初始化基础调整面板
+	 * */
+	private void initBasicAdjustPanel()
+	{
+		getContentPane().add(BasicAdjustPanel.getInstance());
+		
+	}
 
-
+	
+	/**
+	 * 初始化打开按钮
+	 * */
 	private void initOpenButton()
 	{
 		JButton openButton = new JButton();
@@ -73,9 +110,13 @@ public class MainFrame extends Frame
 				initFileChooser();
 			}
 		});
-		mainFrame.add(openButton);
+		getContentPane().add(openButton);
 	}
 
+	
+	/**
+	 * 初始化文件选择器
+	 * */
 	private void initFileChooser()
 	{
 		File desktop = new File(System.getProperty("user.home") + System.getProperty("file.separator") + "桌面");
@@ -85,42 +126,85 @@ public class MainFrame extends Frame
 		int option = fileChooser.showOpenDialog(null);
 		if (JFileChooser.APPROVE_OPTION == option)
 		{
-			File currFile = fileChooser.getSelectedFile();
-			sourceImagePath = currFile.getAbsolutePath();
-			sourceImage = ImgUtil.getImg(sourceImagePath);
-			
-			if (sourceImage!=null)
-			{
-				displayImage = MagicMirror.getImage(sourceImage, MagicMirror.TYPE_CONVEX);
-				paintImage();
-				
-			}
+			loadImage(fileChooser.getSelectedFile());
 		}
 
 	}
 	
-	public static void paintImage()
+	
+	/**
+	 * 载入图像
+	 * @param currFile
+	 * */
+	private void loadImage(File currFile)
 	{
-		float ratioX=1,ratioY=1,ratio;
-		if (displayImage.getWidth()>MAX_IMAGE_WIDTH)
+		sourceImagePath = currFile.getAbsolutePath();
+		sourceImage = ImgUtil.getImg(sourceImagePath);
+		
+		if (sourceImage!=null)
 		{
-			ratioX = MAX_IMAGE_HEIGHT*1.0f/displayImage.getWidth();
+
+			displayImage = sourceImage;
+			previewImage = Scale.getImage(sourceImage, 80, 100);
+			
+			setPreviewImages();
+			setMainImagePanel();
+			
 		}
 		
-		if (displayImage.getHeight()>MAX_IMAGE_HEIGHT)
-		{
-			ratioY = MAX_IMAGE_HEIGHT*1.0f/displayImage.getHeight();
-		}
-		
-		ratio = ratioX < ratioY?ratioX:ratioY;
-		
-		int width = (int) (displayImage.getWidth()*ratio);
-		int height = (int) (displayImage.getHeight()*ratio);
-		int x = IMAGE_CENTER_X - width/2;
-		int y = IMAGE_CENTER_Y - height/2;
-		
-		mainFrame.getGraphics().drawImage((Image)displayImage,x,y,width,height,null);
 	}
 	
+	/**
+	 * 设置主图像面板
+	 * @param type
+	 * @param parameter
+	 * */
+	public void setMainImagePanel(int type,Object... parameter)
+	{
+
+		BufferedImage image = ImageFactory.getImage(type, sourceImage,parameter);
+		mainImagePanel.setImage(image);
+		mainImagePanel.repaint();
+		System.out.println("change to type" + type);
+	}
+	
+	/**
+	 * 设置住图像面板
+	 * */
+	private void setMainImagePanel()
+	{
+	
+		mainImagePanel = new MainImagePanel(sourceImage);
+		getContentPane().add(mainImagePanel);
+		mainImagePanel.repaint();
+	}
+	
+	/**
+	 * 设置预览面板
+	 * */
+	public void setPreviewImages()
+	{
+		
+//		for (int i = 0; i < Constants.TYPE_ALPA_LIST.length; i++)
+//		{
+//			PreviewPanel previewPanel = new PreviewPanel(Constants.TYPE_ALPA_LIST[i],previewImage);
+//			previewPanel.setLocation(900 + (i%2)*100, (i/2)*100);
+//			getContentPane().add(previewPanel);
+//			previewPanel.repaint();
+//		}
+		
+		//PreviewListPanel artPanel = new PreviewListPanel(previewImage, Constants.TYPE_ART);
+		
+		PreviewTabbedPanel previewTabbedPanel =  new PreviewTabbedPanel(previewImage);
+		previewTabbedPanel.setLocation(1080,0);
+		getContentPane().add(previewTabbedPanel);
+		setVisible(true);
+		//previewTabbedPanel.repaint();
+		
+	}
+	
+	
+	
+
 
 }

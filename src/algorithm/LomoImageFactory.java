@@ -14,7 +14,7 @@ public class LomoImageFactory
 		switch (type)
 		{
 		case (Constants.TYPE_LOMO_CLASSIC):
-			return Lomo.getImage(image, (int) parameter[0]);
+			return Lomo.getImage(image);
 		default:
 			return null;
 		}
