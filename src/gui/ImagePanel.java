@@ -28,6 +28,9 @@ public class ImagePanel extends JPanel
 	// 显示的图像
 	protected BufferedImage displayImage;
 
+	// 显示的图像
+	protected BufferedImage sourceImage;
+	
 	protected float ratioX;
 	protected float ratioY;
 	protected float ratio;
@@ -39,16 +42,26 @@ public class ImagePanel extends JPanel
 	public ImagePanel(BufferedImage image)
 	{
 
-		setImage(image);
+		initImage(image);
 		calRatio();
 		calSizeAndPos();
 		setVisible(true);
 	}
 
-	public void setImage(BufferedImage image)
+	public void updateImage(BufferedImage image)
 	{
 		// TODO Auto-generated method stub
 		displayImage = image;
+		
+		repaint();
+	}
+	
+	public void updateImage(int type,Object... parameter)
+	{
+		// TODO Auto-generated method stub
+		displayImage = ImageFactory.getImage(type, sourceImage, parameter);
+
+		repaint();
 	}
 
 	@Override
@@ -66,6 +79,13 @@ public class ImagePanel extends JPanel
 		}
 	}
 
+	
+	private void initImage(BufferedImage image)
+	{
+		sourceImage = image;
+		displayImage = image;
+	}
+	
 	/**
 	 * 计算ratio
 	 * */

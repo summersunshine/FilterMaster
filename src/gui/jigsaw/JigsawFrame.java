@@ -27,14 +27,8 @@ public class JigsawFrame extends BaseFrame implements ActionListener
 	// µ⁄“ª’≈Õº∆¨
 	private BufferedImage firstSourceImage;
 
-	// ‘§¿¿Õº∆¨
-	private BufferedImage previewImage;
-
 	// œ‘ æÕº∆¨√Ê∞Â
 	private JigsawImagePanel imagePanel;
-
-	// ‘§¿¿√Ê∞Â
-	private PreviewListPanel previewListPanel;
 
 	// ∞¥≈•◊È
 	private JigsawButtonGroup buttonGroup;
@@ -50,8 +44,6 @@ public class JigsawFrame extends BaseFrame implements ActionListener
 	private void initImagePanel()
 	{
 		// TODO Auto-generated method stub
-		// displayImage = AlphaMerge.getImage(firstSourceImage, sourceImage);
-
 		imagePanel = new JigsawImagePanel(firstSourceImage, sourceImage);
 
 		getContentPane().add(imagePanel);
@@ -63,7 +55,9 @@ public class JigsawFrame extends BaseFrame implements ActionListener
 	private void initButtonGroup()
 	{
 		buttonGroup = new JigsawButtonGroup(this);
+		
 		getContentPane().add(buttonGroup);
+		
 		buttonGroup.repaint();
 	}
 
@@ -82,7 +76,7 @@ public class JigsawFrame extends BaseFrame implements ActionListener
 	public void setImagePanel(int type)
 	{
 		// TODO Auto-generated method stub
-		imagePanel.setImage(type);
+		imagePanel.updateImage(type);
 	}
 
 	@Override

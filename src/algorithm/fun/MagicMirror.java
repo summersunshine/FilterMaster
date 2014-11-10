@@ -15,6 +15,19 @@ public class MagicMirror
 
 	public static float change = 1;
 
+	
+	public static BufferedImage getImage(BufferedImage image, int type,float radius)
+	{
+		if (type == TYPE_CONVEX)
+		{
+			return getConvexImage(image,radius);
+		} else
+		{
+			return getConcaveImage(image,radius);
+		}
+	}
+	
+
 	public static BufferedImage getImage(BufferedImage image, int type)
 	{
 		if (type == TYPE_CONVEX)
@@ -25,15 +38,32 @@ public class MagicMirror
 			return getConcaveImage(image);
 		}
 	}
+	
+	
+
+	private static BufferedImage getConcaveImage(BufferedImage image)
+	{
+		// TODO Auto-generated method stub
+		return getConcaveImage(image,100000);
+	}
+
+	private static BufferedImage getConvexImage(BufferedImage image)
+	{
+		// TODO Auto-generated method stub
+		return getConvexImage(image,100000);
+	}
+	
+
 
 	// Í¹Í¸¾µ
-	public static BufferedImage getConvexImage(BufferedImage image)
+	public static BufferedImage getConvexImage(BufferedImage image,float radius)
 	{
 		int width = image.getWidth();
 		int height = image.getHeight();
 		int centerX = width / 2;
 		int centerY = height / 2;
-		float radius = width > height ? width / 2 : height / 2;
+		float max = width > height ? width / 2 : height / 2;
+		radius = radius>max?max:radius;
 
 		BufferedImage outputImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 
@@ -74,14 +104,15 @@ public class MagicMirror
 	}
 
 	// °¼Í¸¾µ
-	public static BufferedImage getConcaveImage(BufferedImage image)
+	public static BufferedImage getConcaveImage(BufferedImage image,float radius)
 	{
 		int width = image.getWidth();
 		int height = image.getHeight();
 		int centerX = width / 2;
 		int centerY = height / 2;
 
-		float radius = Geometry.getDistance(0, 0, centerX, centerY);
+		float max = Geometry.getDistance(0, 0, centerX, centerY);
+		radius = radius>max?max:radius;
 
 		BufferedImage outputImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 

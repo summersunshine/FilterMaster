@@ -6,6 +6,16 @@ import algorithm.style.RetroStyle;
 
 public class ImageFactory
 {
+	/**
+	 * 依据类型，图像，参数获取新的图像
+	 * 
+	 * @param type
+	 *            类型
+	 * @param image
+	 *            图像
+	 * @param paramter
+	 *            不定参数
+	 * */
 	public static BufferedImage getImage(int type, BufferedImage image, Object... parameter)
 	{
 		int classify = type / 100;

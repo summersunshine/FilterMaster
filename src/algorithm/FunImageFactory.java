@@ -9,6 +9,16 @@ import algorithm.fun.Mosaic;
 public class FunImageFactory
 {
 
+	/**
+	 * 依据类型，图像，参数获取新的趣味图像
+	 * 
+	 * @param type
+	 *            类型
+	 * @param image
+	 *            图像
+	 * @param paramter
+	 *            不定参数
+	 * */
 	public static BufferedImage getImage(int type, BufferedImage image, Object... parameter)
 	{
 		switch (type)
@@ -25,11 +35,11 @@ public class FunImageFactory
 		case (Constants.TYPE_ALPHA_MERGE_4):
 			return AlphaMerge.getImage(image, (BufferedImage) (parameter[0]), AlphaMerge.TYPE_DOWN_2_UP);
 		case (Constants.TYPE_MAGIC_MIRROIR_1):
-			return MagicMirror.getImage(image, MagicMirror.TYPE_CONCAVE);
+			return MagicMirror.getImage(image, MagicMirror.TYPE_CONCAVE,(float) (parameter[0]));
 		case (Constants.TYPE_MAGIC_MIRROIR_2):
-			return MagicMirror.getImage(image, MagicMirror.TYPE_CONVEX);
+			return MagicMirror.getImage(image, MagicMirror.TYPE_CONVEX,(float) (parameter[0]));
 		case (Constants.TYPE_MOSIC):
-			return Mosaic.getImage(image, (int) (parameter[0]));
+			return Mosaic.getImage(image);
 		default:
 			return null;
 		}

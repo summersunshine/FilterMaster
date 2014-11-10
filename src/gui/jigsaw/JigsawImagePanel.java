@@ -26,7 +26,7 @@ public class JigsawImagePanel extends ImagePanel
 
 	}
 
-	public void setImage(int type)
+	public void updateImage(int type)
 	{
 		displayImage = FunImageFactory.getImage(type, firstImage, secondImage);
 

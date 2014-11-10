@@ -13,6 +13,7 @@ import javax.swing.ImageIcon;
 
 import algorithm.basic.Erase;
 import algorithm.blur.DoubleGuassBlur;
+import algorithm.fun.Mosaic;
 import util.Geometry;
 import util.ImgUtil;
 import gui.ImagePanel;
@@ -76,7 +77,8 @@ public class BackgroundBlurImagePanel extends ImagePanel implements MouseListene
 		displayX = (int) (x / ratio);
 		displayY = (int) (y / ratio);
 
-		this.setImage(Erase.getImage(displayImage, sourceImage, displayX, displayY, BackgroundBlurFrame.sizeValue));
+		//this.updateImage(Erase.getImage(displayImage, sourceImage, displayX, displayY, BackgroundBlurFrame.sizeValue));
+		this.updateImage(Mosaic.getImage(displayImage, displayX, displayY, BackgroundBlurFrame.sizeValue));
 	}
 
 	@Override

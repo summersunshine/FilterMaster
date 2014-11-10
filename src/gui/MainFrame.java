@@ -2,6 +2,7 @@ package gui;
 
 import gui.backgroundblur.BackgroundBlurFrame;
 import gui.jigsaw.JigsawFrame;
+import gui.magicmirror.MagicMirrorFrame;
 import gui.preview.PreviewListPanel;
 import gui.preview.PreviewPanel;
 import gui.preview.PreviewTabbedPanel;
@@ -55,6 +56,9 @@ public class MainFrame extends JFrame
 
 	// 拼图界面
 	public JigsawFrame jigsawFrame;
+	
+	//魔镜界面
+	public MagicMirrorFrame magicMirrorFrame;
 
 	private static MainFrame instance;
 
@@ -83,12 +87,14 @@ public class MainFrame extends JFrame
 		initOpenButton();
 		initBackgroundBlurButton();
 		initJigasawButton();
-
+		initMagicMirrorButton();
+		
 		initBasicAdjustPanel();
 
 		File file = new File("C:\\Users\\Public\\Pictures\\Sample Pictures\\sand.jpg");
 		loadImage(file);
-		jigsawFrame = new JigsawFrame(sourceImage);
+		magicMirrorFrame = new MagicMirrorFrame(sourceImage);
+		//jigsawFrame = new JigsawFrame(sourceImage);
 		// backgroundBlurFrame = new BackgroundBlurFrame(sourceImage);
 	}
 
@@ -145,7 +151,7 @@ public class MainFrame extends JFrame
 	}
 
 	/**
-	 * 初始化背景虚幻按钮
+	 * 初始化拼图按钮
 	 * */
 	private void initJigasawButton()
 	{
@@ -167,6 +173,30 @@ public class MainFrame extends JFrame
 		getContentPane().add(jigasawButton);
 	}
 
+	/**
+	 * 初始化魔镜按钮
+	 * */
+	private void initMagicMirrorButton()
+	{
+		JButton magicMirrorButton = new JButton();
+		magicMirrorButton.setSize(100, 30);
+		magicMirrorButton.setLocation(450, 0);
+		magicMirrorButton.setText("魔镜");
+		magicMirrorButton.addActionListener(new ActionListener()
+		{
+
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				// TODO Auto-generated method stub
+				// backgroundBlurFrame = new BackgroundBlurFrame(sourceImage);
+				magicMirrorFrame = new MagicMirrorFrame(sourceImage);
+			}
+		});
+		getContentPane().add(magicMirrorButton);
+	}
+	
+	
 	/**
 	 * 初始化文件选择器
 	 * */
@@ -214,11 +244,7 @@ public class MainFrame extends JFrame
 	 * */
 	public void setMainImagePanel(int type, Object... parameter)
 	{
-
-		BufferedImage image = ImageFactory.getImage(type, sourceImage, parameter);
-		imagePanel.setImage(image);
-		imagePanel.repaint();
-		System.out.println("change to type" + type);
+		imagePanel.updateImage(type,parameter);
 	}
 
 	/**
