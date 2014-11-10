@@ -10,8 +10,6 @@ import algorithm.blur.MotionBlur;
 public class BlurImageFactory
 {
 
-
-
 	public static BufferedImage getImage(int type, BufferedImage image, Object... parameter)
 	{
 		switch (type)

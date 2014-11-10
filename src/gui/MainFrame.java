@@ -1,6 +1,7 @@
 package gui;
 
 import gui.backgroundblur.BackgroundBlurFrame;
+import gui.jigsaw.JigsawFrame;
 import gui.preview.PreviewListPanel;
 import gui.preview.PreviewPanel;
 import gui.preview.PreviewTabbedPanel;
@@ -31,31 +32,32 @@ import algorithm.fun.MagicMirror;
 public class MainFrame extends JFrame
 {
 
-	
-	//显示的图像
-	public  BufferedImage displayImage;
-	
-	//源图像
-	public  BufferedImage sourceImage;
-	
-	//缩小的预览图
-	public  BufferedImage previewImage;
-	
-	//主界面
-	//public static JFrame mainFrame;
-	
-	//主图像显示面板
-	public MainImagePanel mainImagePanel;
-	
-	//源图像路径
+	// 显示的图像
+	public BufferedImage displayImage;
+
+	// 源图像
+	public BufferedImage sourceImage;
+
+	// 缩小的预览图
+	public BufferedImage previewImage;
+
+	// 主界面
+	// public static JFrame mainFrame;
+
+	// 主图像显示面板
+	public ImagePanel imagePanel;
+
+	// 源图像路径
 	public String sourceImagePath;
-	
-	//
+
+	// 背景虚化界面
 	public BackgroundBlurFrame backgroundBlurFrame;
-	
-	
+
+	// 拼图界面
+	public JigsawFrame jigsawFrame;
+
 	private static MainFrame instance;
-	
+
 	public static MainFrame getInstance()
 	{
 		if (instance == null)
@@ -64,28 +66,31 @@ public class MainFrame extends JFrame
 		}
 		return instance;
 	}
-	
-	
+
 	public static void main(String args[])
 	{
 		MainFrame.getInstance();
 	}
-	
+
 	public MainFrame()
 	{
 		this.setSize(1280, 720);
 		this.setVisible(true);
 		this.setLayout(null);
+		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
 
 		initOpenButton();
 		initBackgroundBlurButton();
+		initJigasawButton();
+
 		initBasicAdjustPanel();
 
+		File file = new File("C:\\Users\\Public\\Pictures\\Sample Pictures\\sand.jpg");
+		loadImage(file);
+		jigsawFrame = new JigsawFrame(sourceImage);
+		// backgroundBlurFrame = new BackgroundBlurFrame(sourceImage);
 	}
-	
-
 
 	/**
 	 * 初始化基础调整面板
@@ -93,10 +98,9 @@ public class MainFrame extends JFrame
 	private void initBasicAdjustPanel()
 	{
 		getContentPane().add(BasicAdjustPanel.getInstance());
-		
+
 	}
 
-	
 	/**
 	 * 初始化打开按钮
 	 * */
@@ -118,7 +122,6 @@ public class MainFrame extends JFrame
 		getContentPane().add(openButton);
 	}
 
-	
 	/**
 	 * 初始化背景虚幻按钮
 	 * */
@@ -127,7 +130,7 @@ public class MainFrame extends JFrame
 		JButton backgroundButton = new JButton();
 		backgroundButton.setSize(100, 30);
 		backgroundButton.setLocation(150, 0);
-		backgroundButton.setText("背景虚幻");
+		backgroundButton.setText("背景虚化");
 		backgroundButton.addActionListener(new ActionListener()
 		{
 
@@ -140,8 +143,30 @@ public class MainFrame extends JFrame
 		});
 		getContentPane().add(backgroundButton);
 	}
-	
-	
+
+	/**
+	 * 初始化背景虚幻按钮
+	 * */
+	private void initJigasawButton()
+	{
+		JButton jigasawButton = new JButton();
+		jigasawButton.setSize(100, 30);
+		jigasawButton.setLocation(300, 0);
+		jigasawButton.setText("背景拼图");
+		jigasawButton.addActionListener(new ActionListener()
+		{
+
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				// TODO Auto-generated method stub
+				// backgroundBlurFrame = new BackgroundBlurFrame(sourceImage);
+				jigsawFrame = new JigsawFrame(sourceImage);
+			}
+		});
+		getContentPane().add(jigasawButton);
+	}
+
 	/**
 	 * 初始化文件选择器
 	 * */
@@ -158,81 +183,65 @@ public class MainFrame extends JFrame
 		}
 
 	}
-	
-	
+
 	/**
 	 * 载入图像
+	 * 
 	 * @param currFile
 	 * */
 	private void loadImage(File currFile)
 	{
 		sourceImagePath = currFile.getAbsolutePath();
 		sourceImage = ImgUtil.getImg(sourceImagePath);
-		
-		if (sourceImage!=null)
+
+		if (sourceImage != null)
 		{
 
 			displayImage = sourceImage;
-			previewImage = Scale.getImage(sourceImage, 80, 100);
-			
+			previewImage = Scale.getImage(sourceImage, 140, 96);
+
 			setPreviewImages();
 			setMainImagePanel();
-			
+
 		}
-		
 	}
-	
+
 	/**
 	 * 设置主图像面板
+	 * 
 	 * @param type
 	 * @param parameter
 	 * */
-	public void setMainImagePanel(int type,Object... parameter)
+	public void setMainImagePanel(int type, Object... parameter)
 	{
 
-		BufferedImage image = ImageFactory.getImage(type, sourceImage,parameter);
-		mainImagePanel.setImage(image);
-		mainImagePanel.repaint();
+		BufferedImage image = ImageFactory.getImage(type, sourceImage, parameter);
+		imagePanel.setImage(image);
+		imagePanel.repaint();
 		System.out.println("change to type" + type);
 	}
-	
+
 	/**
 	 * 设置住图像面板
 	 * */
 	private void setMainImagePanel()
 	{
-	
-		mainImagePanel = new MainImagePanel(sourceImage);
-		getContentPane().add(mainImagePanel);
-		mainImagePanel.repaint();
+
+		imagePanel = new ImagePanel(sourceImage);
+		getContentPane().add(imagePanel);
+		imagePanel.repaint();
 	}
-	
+
 	/**
 	 * 设置预览面板
 	 * */
 	public void setPreviewImages()
 	{
-		
-//		for (int i = 0; i < Constants.TYPE_ALPA_LIST.length; i++)
-//		{
-//			PreviewPanel previewPanel = new PreviewPanel(Constants.TYPE_ALPA_LIST[i],previewImage);
-//			previewPanel.setLocation(900 + (i%2)*100, (i/2)*100);
-//			getContentPane().add(previewPanel);
-//			previewPanel.repaint();
-//		}
-		
-		//PreviewListPanel artPanel = new PreviewListPanel(previewImage, Constants.TYPE_ART);
-		
-		PreviewTabbedPanel previewTabbedPanel =  new PreviewTabbedPanel(previewImage);
-		previewTabbedPanel.setLocation(1080,0);
+
+		PreviewTabbedPanel previewTabbedPanel = new PreviewTabbedPanel(previewImage);
 		getContentPane().add(previewTabbedPanel);
 		setVisible(true);
-		//previewTabbedPanel.repaint();
-		
-	}
-	
-	
-	
 
+	}
 
 }

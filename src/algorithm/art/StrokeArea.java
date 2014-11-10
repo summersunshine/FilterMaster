@@ -16,9 +16,9 @@ public class StrokeArea
 
 		int[] inPixels = new int[width * height];
 		int[] outPixels = new int[width * height];
-		
+
 		ImgUtil.getRGB(image, inPixels, 0, 0, width, height);
-		
+
 		int index = 0, index2 = 0;
 		int semiRow = (int) (size / 2);
 		int semiCol = (int) (size / 2);
@@ -27,7 +27,7 @@ public class StrokeArea
 		// initialize the color RGB array with zero...
 		int[] rgb = new int[3];
 		int[] rgb2 = new int[3];
-		
+
 		for (int i = 0; i < rgb.length; i++)
 		{
 			rgb[i] = rgb2[i] = 0;

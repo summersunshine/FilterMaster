@@ -30,7 +30,7 @@ public class Palette extends JFrame implements AdjustmentListener
 	private int redValue;
 	private int blueValue;
 	private int greenValue;
-	
+
 	public Palette(String title) throws HeadlessException
 	{
 		super(title);
@@ -56,7 +56,7 @@ public class Palette extends JFrame implements AdjustmentListener
 		lbColorPallet = new JPanel();
 		lbColorPallet.setSize(200, 200);
 		lbColorPallet.setBackground(new Color(0, 0, 0));
-		//lbColorPallet.setBorder(BorderFactory.createEmptyBorder());
+		// lbColorPallet.setBorder(BorderFactory.createEmptyBorder());
 		lbColorPallet.setOpaque(true);
 
 		Container panel = getContentPane();
@@ -91,7 +91,7 @@ public class Palette extends JFrame implements AdjustmentListener
 			greenValue = e.getValue();
 		}
 		lbScale.setText("¿Ì¶È£º" + "red:" + redValue + "blue:" + blueValue + "green:" + greenValue);
-		lbColorPallet.setBackground(new Color(redValue,greenValue, blueValue));
+		lbColorPallet.setBackground(new Color(redValue, greenValue, blueValue));
 	}
 
 }

@@ -40,7 +40,7 @@ public class ImgUtil
 		ImgPanel ip = new ImgPanel();
 		return ip;
 	}
-	
+
 	public static BufferedImage getImg(String fileName)
 	{
 		BufferedImage bufferedImage = null;
@@ -53,7 +53,7 @@ public class ImgUtil
 		}
 		return bufferedImage;
 	}
-	
+
 	public static int[] getSplitRGB(int rgb)
 	{
 		int[] rgbs = new int[3];
@@ -155,7 +155,7 @@ public class ImgUtil
 	/**
 	 * @param image1
 	 * @param image2
-	 * 将两张图加起来 以两张图中，最小的长和宽作为输出图像的长宽
+	 *            将两张图加起来 以两张图中，最小的长和宽作为输出图像的长宽
 	 * */
 	public static BufferedImage addImage(BufferedImage image1, BufferedImage image2)
 	{
@@ -181,7 +181,7 @@ public class ImgUtil
 	/**
 	 * @param image1
 	 * @param image2
-	 * 将两张图加起来 以两张图中，最小的长和宽作为输出图像的长宽
+	 *            将两张图加起来 以两张图中，最小的长和宽作为输出图像的长宽
 	 * */
 	public static BufferedImage subImage(BufferedImage image1, BufferedImage image2)
 	{
@@ -208,12 +208,12 @@ public class ImgUtil
 	 * @param image
 	 * @param x
 	 * @param y
-	 * 判断一个坐标点是否在图像里面
+	 *            判断一个坐标点是否在图像里面
 	 * */
-	public static boolean isInsideImage(BufferedImage image,int x,int y)
+	public static boolean isInsideImage(BufferedImage image, int x, int y)
 	{
 		int width = image.getWidth();
 		int height = image.getHeight();
-		return 0<= x && x < width && 0 <=y && y < height;
+		return 0 <= x && x < width && 0 <= y && y < height;
 	}
 }

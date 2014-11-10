@@ -9,8 +9,7 @@ public class ImageFactory
 	public static BufferedImage getImage(int type, BufferedImage image, Object... parameter)
 	{
 		int classify = type / 100;
-		
-		
+
 		switch (classify)
 		{
 		case (Constants.TYPE_ART):

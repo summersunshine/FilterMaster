@@ -19,7 +19,6 @@ import algorithm.fun.AlphaMerge;
 public class ArtImageFactory
 {
 
-
 	public static BufferedImage getImage(int type, BufferedImage image, Object... parameter)
 	{
 		switch (type)
@@ -27,7 +26,7 @@ public class ArtImageFactory
 		case (Constants.TYPE_OIL_PAINT):
 			return OilPaint.getImage(image);
 		case (Constants.TYPE_PENCIL):
-			return Pencil.getImage(image, 180);
+			return Pencil.getImage(image, 30);
 		case (Constants.TYPE_SCULPTUE):
 			return Sculpture.getImage(image);
 		case (Constants.TYPE_SKETCH):

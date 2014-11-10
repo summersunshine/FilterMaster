@@ -1,72 +1,103 @@
 package gui.backgroundblur;
 
+import java.awt.Cursor;
 import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 
+import javax.swing.ImageIcon;
+
 import algorithm.basic.Erase;
 import algorithm.blur.DoubleGuassBlur;
 import util.Geometry;
-import gui.MainImagePanel;
+import util.ImgUtil;
+import gui.ImagePanel;
+import gui.mousedisplay.*;
 
-public class BackgroundBlurImagePanel extends MainImagePanel implements MouseMotionListener, MouseListener
+public class BackgroundBlurImagePanel extends ImagePanel implements MouseListener, MouseMotionListener
 {
 
+	// 原始图像
 	public BufferedImage sourceImage;
+
+	// 鼠标是否进入
 	public boolean isMouseEntered;
 
-	private int x;
-	private int y;
+	// 显示的x坐标
+	private int displayX;
+
+	// 显示的y坐标
+	private int displayY;
 
 	public BackgroundBlurImagePanel(BufferedImage image)
 	{
 
 		super(DoubleGuassBlur.getImage(image));
-		sourceImage = image;
 
-		// TODO Auto-generated constructor stub
+		sourceImage = image;
 
 		isMouseEntered = false;
 
 		this.addMouseListener(this);
 		this.addMouseMotionListener(this);
+
+		setCircleCursor();
+	}
+
+	/**
+	 * 设置光标为圆形
+	 * */
+	public void setCircleCursor()
+	{
+		// TODO Auto-generated method stub
+		System.out.println("change cursor");
+
+		BufferedImage image = ImgUtil.getImg("res/circle.png");
+
+		Toolkit tk = Toolkit.getDefaultToolkit();
+
+		Cursor cursor = tk.createCustomCursor(image, new Point(16, 16), "blur");
+
+		setCursor(cursor);
+	}
+
+	/**
+	 * 根据涂抹的位置更新图像
+	 * 
+	 * @param x
+	 * @param y
+	 * */
+	private void updateImage(int x, int y)
+	{
+		displayX = (int) (x / ratio);
+		displayY = (int) (y / ratio);
+
+		this.setImage(Erase.getImage(displayImage, sourceImage, displayX, displayY, BackgroundBlurFrame.sizeValue));
 	}
 
 	@Override
 	public void mouseDragged(MouseEvent e)
 	{
-		// TODO Auto-generated method stub
-
+		updateImage(e.getX(), e.getY());
+		repaint();
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e)
 	{
 		// TODO Auto-generated method stub
-		x = e.getX();
-		y = e.getY();
 
-		if (isMouseEntered)
-		{
-			int[] xPoints = Geometry.getXPoints(x, BackgroundBlurFrame.sizeValue);
-			int[] yPoints = Geometry.getYPoints(y, BackgroundBlurFrame.sizeValue);
-			// getGraphics().clearRect(0, 0, width, height);
-			// /paint(getGraphics());
-			// getGraphics().drawPolyline(xPoints, yPoints, 100);
-		}
-		// System.out.println("mouse move" + x + "  " + y);
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e)
 	{
 		// TODO Auto-generated method stub
-		// displayImage =
-		// DoubleGuassBlur.getImage(displayImage,x,y,BackgroundBlurFrame.sizeValue);
-		displayImage = Erase.getImage(displayImage, sourceImage, x, y, BackgroundBlurFrame.sizeValue);
-		paint(getGraphics());
+
 	}
 
 	@Override
@@ -74,8 +105,6 @@ public class BackgroundBlurImagePanel extends MainImagePanel implements MouseMot
 	{
 		// TODO Auto-generated method stub
 		isMouseEntered = true;
-
-		System.out.println("mouse enter");
 	}
 
 	@Override
@@ -83,14 +112,13 @@ public class BackgroundBlurImagePanel extends MainImagePanel implements MouseMot
 	{
 		// TODO Auto-generated method stub
 		isMouseEntered = false;
-		System.out.println("mouse exit");
+		// System.out.println("mouse exit");
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e)
 	{
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override

@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 
 import algorithm.ImageFactory;
 
-public class MainImagePanel extends JPanel
+public class ImagePanel extends JPanel
 {
 	// 显示图像的最大宽度
 	public static final int MAX_IMAGE_WIDTH = 450;
@@ -26,32 +26,30 @@ public class MainImagePanel extends JPanel
 	public static final int IMAGE_CENTER_Y = 360;
 
 	// 显示的图像
-	public BufferedImage displayImage;
+	protected BufferedImage displayImage;
 
-	private float ratioX;
-	private float ratioY;
-	private float ratio;
-	private int x;
-	private int y;
+	protected float ratioX;
+	protected float ratioY;
+	protected float ratio;
+	protected int x;
+	protected int y;
 	protected int width;
 	protected int height;
 
-	public MainImagePanel(BufferedImage image)
+	public ImagePanel(BufferedImage image)
 	{
-		this.setVisible(true);
+
 		setImage(image);
 		calRatio();
 		calSizeAndPos();
+		setVisible(true);
 	}
-	
-	public  void setImage(BufferedImage image)
+
+	public void setImage(BufferedImage image)
 	{
 		// TODO Auto-generated method stub
 		displayImage = image;
 	}
-
-
-	
 
 	@Override
 	public void paint(Graphics g)
@@ -62,7 +60,6 @@ public class MainImagePanel extends JPanel
 
 			g2.drawImage(displayImage, 0, 0, width, height, null);
 
-			// g2.drawImage(displayImage,0,0,400,400,null);
 		} finally
 		{
 			g2.dispose();
@@ -88,14 +85,12 @@ public class MainImagePanel extends JPanel
 
 		ratio = ratioX < ratioY ? ratioX : ratioY;
 
-
 	}
-	
-	
+
 	/**
 	 * 重新计算图片绘制的位置和大小
 	 * */
-	private void calSizeAndPos()
+	protected void calSizeAndPos()
 	{
 		width = (int) (displayImage.getWidth() * ratio);
 		height = (int) (displayImage.getHeight() * ratio);

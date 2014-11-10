@@ -7,8 +7,6 @@ import algorithm.lomo.Lomo;
 public class LomoImageFactory
 {
 
-
-
 	public static BufferedImage getImage(int type, BufferedImage image, Object... parameter)
 	{
 		switch (type)

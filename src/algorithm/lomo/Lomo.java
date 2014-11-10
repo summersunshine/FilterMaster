@@ -16,8 +16,8 @@ public class Lomo
 		int width = image.getWidth();
 		int height = image.getHeight();
 
-		float radius = width > height? height: width;
-		
+		float radius = width > height ? height : width;
+
 		for (int y = 0; y < height; y++)
 		{
 			for (int x = 0; x < width; x++)
@@ -41,12 +41,11 @@ public class Lomo
 
 		return image;
 	}
-	
+
 	public static BufferedImage getImage(BufferedImage image, int radius)
 	{
 		int width = image.getWidth();
 		int height = image.getHeight();
-
 
 		for (int y = 0; y < height; y++)
 		{

@@ -6,7 +6,7 @@ import util.ImgUtil;
 
 public class IntensityAndContrast
 {
-	
+
 	/**
 	 * @param image
 	 * @param intensity

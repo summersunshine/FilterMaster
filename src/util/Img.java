@@ -1,4 +1,4 @@
-package gui;
+package util;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -384,34 +384,29 @@ public class Img
 		frame.setVisible(true);
 	}
 
-
 	public JPanel imgPanel(String fileName)
 	{
 		BufferedImage img = getImg(fileName);
-		img = MagicMirror.getImage(img,MagicMirror.TYPE_CONVEX);
+		img = MagicMirror.getImage(img, MagicMirror.TYPE_CONVEX);
 		return showImg(img);
 	}
-	
-	
 
-
-
-//	private JFrame imgFrame(String fnm)
-//	{
-//		// ∂¡»°Õº∆¨
-//		BufferedImage img = getImg(fnm);
-//		JPanel p = showImg(img);
-//		JFrame frame = new JFrame("Image JFrame");
-//		frame.add(p);
-//		frame.setSize(img.getWidth(), img.getHeight());
-//		frame.setVisible(true);
-//		return frame;
-//	}
-//
-//	static public void main(String args[])
-//	{
-//		String fnm = "res/test.png";
-//		Img img = new Img();
-//		img.imgFrame(fnm);
-//	}
+	// private JFrame imgFrame(String fnm)
+	// {
+	// // ∂¡»°Õº∆¨
+	// BufferedImage img = getImg(fnm);
+	// JPanel p = showImg(img);
+	// JFrame frame = new JFrame("Image JFrame");
+	// frame.add(p);
+	// frame.setSize(img.getWidth(), img.getHeight());
+	// frame.setVisible(true);
+	// return frame;
+	// }
+	//
+	// static public void main(String args[])
+	// {
+	// String fnm = "res/test.png";
+	// Img img = new Img();
+	// img.imgFrame(fnm);
+	// }
 }

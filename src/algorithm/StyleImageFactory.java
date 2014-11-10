@@ -7,8 +7,6 @@ import algorithm.style.RetroStyle;
 public class StyleImageFactory
 {
 
-
-
 	public static BufferedImage getImage(int type, BufferedImage image, Object... parameter)
 	{
 		switch (type)

@@ -1,110 +1,70 @@
 package gui.backgroundblur;
 
-import gui.MainFrame;
-import gui.MainImagePanel;
-
-import java.awt.BorderLayout;
-import java.awt.Container;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.awt.Insets;
-import java.awt.event.AdjustmentEvent;
-import java.awt.event.AdjustmentListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JScrollBar;
 
 import algorithm.blur.DoubleGuassBlur;
 
-public class BackgroundBlurFrame extends JFrame implements AdjustmentListener
+public class BackgroundBlurFrame extends JFrame
 {
+	// 画笔的大小
 	public static int sizeValue = 40;
+
+	// 模糊的力度
 	public static int levelValue = 40;
 
+	// 原始图像
 	public BufferedImage sourceImage;
-	public BufferedImage displayImage;
 
+	// 模糊图像面板
 	public BackgroundBlurImagePanel imagePanel;
+
+	// 调节数据面板
 	public BackgroundAdjustPanel adjustPanel;
 
 	public BackgroundBlurFrame(BufferedImage image)
 	{
 		this.setSize(1280, 720);
-		this.setVisible(true);
-
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setLayout(null);
 
 		sourceImage = image;
-		displayImage = DoubleGuassBlur.getImage(image);
-		// displayImage = image;
 
 		initAdjustPanel();
 
 		initImagePanel();
 
+		this.setVisible(true);
+
 	}
 
-	public void initAdjustPanel()
+	/**
+	 * 初始化调整面板
+	 * */
+	private void initAdjustPanel()
 	{
-		this.setLayout(new BorderLayout());
-
 		adjustPanel = new BackgroundAdjustPanel();
-		imagePanel = new BackgroundBlurImagePanel(displayImage);
 
-		GridBagConstraints constraints = new GridBagConstraints();
-		constraints.fill = GridBagConstraints.VERTICAL;
-		constraints.weighty = 1;
-		constraints.weightx = 1;
+		getContentPane().add(adjustPanel);
 
-		// constraints.fill = GridBagConstraints.REMAINDER;
-
-		// getContentPane().add(adjustPanel,BorderLayout.WEST);
-		// getContentPane().add(imagePanel,BorderLayout.CENTER);
-
-		imagePanel.repaint();
 	}
 
-	public void initImagePanel()
+	/**
+	 * 初始化图像面板
+	 * */
+	private void initImagePanel()
 	{
-		this.setLayout(new GridBagLayout());
-		GridBagConstraints constraints = new GridBagConstraints();
-		constraints.gridx = 0;
-		constraints.gridy = 0;
-		constraints.gridwidth = 1;
-		constraints.gridheight = 1;
-		constraints.weightx = 0;
-		constraints.weighty = 0;
-		constraints.anchor = GridBagConstraints.NORTHWEST;
-		constraints.fill = GridBagConstraints.BOTH;
-		constraints.insets = new Insets(5, 5, 5, 5);
-		constraints.ipadx = 200;
-		constraints.ipady = 720;
+		imagePanel = new BackgroundBlurImagePanel(sourceImage);
 
-		getContentPane().add(adjustPanel, constraints);
-
-		constraints.gridx = 1;
-		constraints.gridy = 0;
-		constraints.gridwidth = GridBagConstraints.REMAINDER;
-		constraints.gridheight = 1;
-		constraints.weightx = 1;
-		constraints.weighty = 0;
-		constraints.anchor = GridBagConstraints.CENTER;
-		constraints.fill = GridBagConstraints.BOTH;
-		getContentPane().add(imagePanel, constraints);
-		//
-		imagePanel.repaint();
+		getContentPane().add(imagePanel);
 	}
 
-	@Override
-	public void adjustmentValueChanged(AdjustmentEvent e)
+	/**
+	 * 设置圆形的光标
+	 * */
+	public void setCircleCursor()
 	{
-		// TODO Auto-generated method stub
-
+		imagePanel.setCircleCursor();
 	}
 
 }
