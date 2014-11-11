@@ -4,14 +4,10 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
 
+import algorithm.Constants;
+
 public class BlurFrame extends JFrame
 {
-	// 画笔的大小
-	public static int sizeValue = 40;
-
-	// 模糊的力度
-	public static int levelValue = 40;
-
 	// 原始图像
 	public BufferedImage sourceImage;
 

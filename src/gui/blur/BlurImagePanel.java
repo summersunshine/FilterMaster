@@ -11,14 +11,16 @@ import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 
 import util.ImgUtil;
+import algorithm.Constants;
 import algorithm.basic.Erase;
 import algorithm.blur.DoubleGuassBlur;
 
 public class BlurImagePanel extends ImagePanel implements MouseListener, MouseMotionListener
 {
+	
 
-	// 原始图像
-	public BufferedImage sourceImage;
+	// 高斯模糊图像
+	public BufferedImage guassBlurImage;
 
 	// 鼠标是否进入
 	public boolean isMouseEntered;
@@ -28,12 +30,20 @@ public class BlurImagePanel extends ImagePanel implements MouseListener, MouseMo
 
 	// 显示的y坐标
 	private int displayY;
+	
+	//上次的x坐标
+	private int lastX;
+	
+	//上次的y坐标
+	private int lastY;
 
 	public BlurImagePanel(BufferedImage image)
 	{
 
 		super(DoubleGuassBlur.getImage(image));
 
+		guassBlurImage = DoubleGuassBlur.getImage(image);
+		
 		sourceImage = image;
 
 		isMouseEntered = false;
@@ -69,12 +79,28 @@ public class BlurImagePanel extends ImagePanel implements MouseListener, MouseMo
 	 * */
 	private void updateImage(int x, int y)
 	{
+		
+		if (lastX == x && lastY == y)
+		{
+			return ;
+		}
+		
 		displayX = (int) (x / ratio);
 		displayY = (int) (y / ratio);
 
-		this.updateImage(Erase.getImage(displayImage, sourceImage, displayX, displayY, BlurFrame.sizeValue));
-		// this.updateImage(Mosaic.getImage(displayImage, displayX, displayY,
-		// BackgroundBlurFrame.sizeValue));
+		
+		if(BlurSetting.type == Constants.TYPE_ERASE)
+		{
+			updateImage(Erase.getImage(displayImage, sourceImage, displayX, displayY, BlurSetting.sizeValue));
+		}
+		else
+		{
+			updateImage(Erase.getImage(displayImage,guassBlurImage, displayX, displayY, BlurSetting.sizeValue));
+		}
+		
+		lastX = x;
+		lastY = y;
+
 	}
 
 	@Override

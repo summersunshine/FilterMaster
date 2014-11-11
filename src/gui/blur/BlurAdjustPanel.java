@@ -1,14 +1,19 @@
 package gui.blur;
 
 import java.awt.HeadlessException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 
-public class BlurAdjustPanel extends JPanel implements AdjustmentListener
+import algorithm.Constants;
+
+public class BlurAdjustPanel extends JPanel implements AdjustmentListener, ActionListener
 {
 	// 画笔大小滚动条
 	private JScrollBar sizeScrollBar;
@@ -21,11 +26,18 @@ public class BlurAdjustPanel extends JPanel implements AdjustmentListener
 
 	// 模糊程度标签
 	private JLabel levelLabel;
+	
+	//画笔按钮
+	private JButton paintButton;
+	
+	//橡皮按钮
+	private JButton eraserButton;
 
 	public BlurAdjustPanel() throws HeadlessException
 	{
 		this.setLayout(null);
 
+		initButtons();
 		initSizeBarAndLabel();
 		initLevelBarAndLabel();
 
@@ -69,6 +81,25 @@ public class BlurAdjustPanel extends JPanel implements AdjustmentListener
 		this.add(levelScrollBar);
 
 	}
+	
+	/**
+	 * 初始化切换按钮
+	 * */
+	private void initButtons()
+	{
+		// TODO Auto-generated method stub
+		paintButton = new JButton("画笔");
+		paintButton.setBounds(0, 0, 100, 40);
+		paintButton.addActionListener(this);
+		
+		eraserButton = new JButton("橡皮擦");
+		eraserButton.setBounds(100,0,100,40);
+		eraserButton.addActionListener(this);
+		
+		this.add(paintButton);
+		this.add(eraserButton);
+		
+	}
 
 	@Override
 	public void adjustmentValueChanged(AdjustmentEvent e)
@@ -76,12 +107,27 @@ public class BlurAdjustPanel extends JPanel implements AdjustmentListener
 		// TODO Auto-generated method stub
 		if (e.getSource() == sizeScrollBar)
 		{
-			BlurFrame.sizeValue = e.getValue();
-
+			BlurSetting.sizeValue = e.getValue();
 		}
 		if (e.getSource() == levelScrollBar)
 		{
-			BlurFrame.levelValue = e.getValue();
+			BlurSetting.levelValue = e.getValue();
+		}
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e)
+	{
+		// TODO Auto-generated method stub
+		if (e.getSource() == paintButton)
+		{
+			//画笔实际上是在消除被模糊的部分
+			BlurSetting.type = Constants.TYPE_ERASE;
+		}
+		if (e.getSource() == eraserButton)
+		{
+			//橡皮擦实际是在继续做模糊
+			BlurSetting.type = Constants.TYPE_DOUBLE_GUASS_BLUR;
 		}
 	}
 

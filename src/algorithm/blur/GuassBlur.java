@@ -38,22 +38,34 @@ public class GuassBlur
 		{
 			for (int x = 1; x < width - 1; x++)
 			{
+				int r = imageMatrix[x - 1][y - 1].r + 1 * imageMatrix[x - 1][y].r + imageMatrix[x - 1][y + 1].r + 
+						1 * imageMatrix[x][y - 1].r + 2 * imageMatrix[x][y].r + 1 * imageMatrix[x][y + 1].r + 
+						imageMatrix[x + 1][y - 1].r + 1 * imageMatrix[x + 1][y].r+ imageMatrix[x + 1][y + 1].r;
 
-				int r = imageMatrix[x - 1][y - 1].r + 2 * imageMatrix[x - 1][y].r + imageMatrix[x - 1][y + 1].r + 2 * imageMatrix[x][y - 1].r + 4
-						* imageMatrix[x][y].r + 2 * imageMatrix[x][y + 1].r + imageMatrix[x + 1][y - 1].r + 2 * imageMatrix[x + 1][y].r
-						+ imageMatrix[x + 1][y + 1].r;
+				int g = imageMatrix[x - 1][y - 1].g + 1 * imageMatrix[x - 1][y].g + imageMatrix[x - 1][y + 1].g + 
+						1 * imageMatrix[x][y - 1].g + 2 * imageMatrix[x][y].g + 1 * imageMatrix[x][y + 1].g + 
+						imageMatrix[x + 1][y - 1].g + 1 * imageMatrix[x + 1][y].g + imageMatrix[x + 1][y + 1].g;
 
-				int g = imageMatrix[x - 1][y - 1].g + 2 * imageMatrix[x - 1][y].g + imageMatrix[x - 1][y + 1].g + 2 * imageMatrix[x][y - 1].g + 4
-						* imageMatrix[x][y].g + 2 * imageMatrix[x][y + 1].g + imageMatrix[x + 1][y - 1].g + 2 * imageMatrix[x + 1][y].g
-						+ imageMatrix[x + 1][y + 1].g;
+				int b = imageMatrix[x - 1][y - 1].b + 1 * imageMatrix[x - 1][y].b + imageMatrix[x - 1][y + 1].b + 
+						1 * imageMatrix[x][y - 1].b + 2 * imageMatrix[x][y].b + 1 * imageMatrix[x][y + 1].b + 
+						imageMatrix[x + 1][y - 1].b + 1 * imageMatrix[x + 1][y].b+ imageMatrix[x + 1][y + 1].b;
+				
 
-				int b = imageMatrix[x - 1][y - 1].b + 2 * imageMatrix[x - 1][y].b + imageMatrix[x - 1][y + 1].b + 2 * imageMatrix[x][y - 1].b + 4
-						* imageMatrix[x][y].b + 2 * imageMatrix[x][y + 1].b + imageMatrix[x + 1][y - 1].b + 2 * imageMatrix[x + 1][y].b
-						+ imageMatrix[x + 1][y + 1].b;
+//				int r = imageMatrix[x - 1][y - 1].r + 2 * imageMatrix[x - 1][y].r + imageMatrix[x - 1][y + 1].r + 
+//						2 * imageMatrix[x][y - 1].r + 4 * imageMatrix[x][y].r + 2 * imageMatrix[x][y + 1].r + 
+//						imageMatrix[x + 1][y - 1].r + 2 * imageMatrix[x + 1][y].r+ imageMatrix[x + 1][y + 1].r;
+//
+//				int g = imageMatrix[x - 1][y - 1].g + 2 * imageMatrix[x - 1][y].g + imageMatrix[x - 1][y + 1].g + 
+//						2 * imageMatrix[x][y - 1].g + 4 * imageMatrix[x][y].g + 2 * imageMatrix[x][y + 1].g + 
+//						imageMatrix[x + 1][y - 1].g + 2 * imageMatrix[x + 1][y].g + imageMatrix[x + 1][y + 1].g;
+//
+//				int b = imageMatrix[x - 1][y - 1].b + 2 * imageMatrix[x - 1][y].b + imageMatrix[x - 1][y + 1].b + 
+//						2 * imageMatrix[x][y - 1].b + 4 * imageMatrix[x][y].b + 2 * imageMatrix[x][y + 1].b + 
+//						imageMatrix[x + 1][y - 1].b + 2 * imageMatrix[x + 1][y].b+ imageMatrix[x + 1][y + 1].b;
 
-				r = r / 16;
-				g = g / 16;
-				b = b / 16;
+				r = r / 10;
+				g = g / 10;
+				b = b / 10;
 
 				r = ImgUtil.clamp(r);
 				g = ImgUtil.clamp(g);
