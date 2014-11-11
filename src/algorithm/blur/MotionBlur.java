@@ -91,7 +91,8 @@ public class MotionBlur
 				if (count == 0)
 				{
 					outPixels[index] = inPixels[index];
-				} else
+				}
+				else
 				{
 					ta = ImgUtil.clamp((int) (ta / count));
 					tr = ImgUtil.clamp((int) (tr / count));

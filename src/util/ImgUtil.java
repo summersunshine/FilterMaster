@@ -31,7 +31,8 @@ public class ImgUtil
 				try
 				{
 					g2.drawImage(bimg, 0, 0, null);
-				} finally
+				}
+				finally
 				{
 					g2.dispose();
 				}
@@ -47,7 +48,8 @@ public class ImgUtil
 		try
 		{
 			bufferedImage = ImageIO.read(new File(fileName));
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			e.printStackTrace();
 		}

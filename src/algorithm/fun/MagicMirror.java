@@ -15,55 +15,56 @@ public class MagicMirror
 
 	public static float change = 1;
 
-	
-	public static BufferedImage getImage(BufferedImage image, int type,float radius)
+	public static BufferedImage getImage(BufferedImage image, int type, float radius)
 	{
 		if (type == TYPE_CONVEX)
 		{
-			return getConvexImage(image,radius);
-		} else
+			return getConvexImage(image, radius);
+		}
+		else
 		{
-			return getConcaveImage(image,radius);
+			return getConcaveImage(image, radius);
 		}
 	}
-	
 
 	public static BufferedImage getImage(BufferedImage image, int type)
 	{
 		if (type == TYPE_CONVEX)
 		{
 			return getConvexImage(image);
-		} else
+		}
+		else
 		{
 			return getConcaveImage(image);
 		}
 	}
-	
-	
 
 	private static BufferedImage getConcaveImage(BufferedImage image)
 	{
 		// TODO Auto-generated method stub
-		return getConcaveImage(image,100000);
+		return getConcaveImage(image, 100000);
 	}
 
 	private static BufferedImage getConvexImage(BufferedImage image)
 	{
 		// TODO Auto-generated method stub
-		return getConvexImage(image,100000);
+		return getConvexImage(image, 100000);
 	}
-	
 
-
-	// Í¹Í¸¾µ
-	public static BufferedImage getConvexImage(BufferedImage image,float radius)
+	/**
+	 * Í¹Í¸¾µÐ§¹û
+	 * 
+	 * @param image
+	 * @param radius
+	 * */
+	public static BufferedImage getConvexImage(BufferedImage image, float radius)
 	{
 		int width = image.getWidth();
 		int height = image.getHeight();
 		int centerX = width / 2;
 		int centerY = height / 2;
 		float max = width > height ? width / 2 : height / 2;
-		radius = radius>max?max:radius;
+		radius = radius > max ? max : radius;
 
 		BufferedImage outputImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 
@@ -76,7 +77,8 @@ public class MagicMirror
 				if (distance > radius)
 				{
 					outputImage.setRGB(x, y, image.getRGB(x, y));
-				} else
+				}
+				else
 				{
 
 					float srcX = (float) ((x - centerX) / change);
@@ -91,7 +93,8 @@ public class MagicMirror
 					if (ImgUtil.isInsideImage(image, (int) srcX, (int) srcY))
 					{
 						outputImage.setRGB(x, y, image.getRGB((int) srcX, (int) srcY));
-					} else
+					}
+					else
 					{
 						outputImage.setRGB(x, y, ImgUtil.getRGB(0, 0, 0));
 					}
@@ -103,8 +106,13 @@ public class MagicMirror
 		return outputImage;
 	}
 
-	// °¼Í¸¾µ
-	public static BufferedImage getConcaveImage(BufferedImage image,float radius)
+	/**
+	 * °¼Í¸¾µÐ§¹û
+	 * 
+	 * @param image
+	 * @param radius
+	 * */
+	public static BufferedImage getConcaveImage(BufferedImage image, float radius)
 	{
 		int width = image.getWidth();
 		int height = image.getHeight();
@@ -112,7 +120,7 @@ public class MagicMirror
 		int centerY = height / 2;
 
 		float max = Geometry.getDistance(0, 0, centerX, centerY);
-		radius = radius>max?max:radius;
+		radius = radius > max ? max : radius;
 
 		BufferedImage outputImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 
@@ -125,7 +133,8 @@ public class MagicMirror
 				if (distance > radius)
 				{
 					outputImage.setRGB(x, y, image.getRGB(x, y));
-				} else
+				}
+				else
 				{
 
 					float radio = distance / radius;
@@ -142,7 +151,8 @@ public class MagicMirror
 					if (ImgUtil.isInsideImage(image, (int) srcX, (int) srcY))
 					{
 						outputImage.setRGB(x, y, image.getRGB((int) srcX, (int) srcY));
-					} else
+					}
+					else
 					{
 						outputImage.setRGB(x, y, ImgUtil.getRGB(0, 0, 0));
 					}

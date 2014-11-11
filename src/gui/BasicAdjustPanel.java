@@ -1,23 +1,17 @@
 package gui;
 
-import java.awt.Color;
-import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.HeadlessException;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 
 import algorithm.Constants;
-import algorithm.basic.IntensityAndContrast;
 
 /**
  * 基础调节面板 包括亮度，对比度，饱和度，色相的调节
@@ -165,13 +159,16 @@ public class BasicAdjustPanel extends JPanel implements AdjustmentListener, Mous
 		{
 			intensityValue = e.getValue();
 
-		} else if (e.getSource() == contrastScrollBar)
+		}
+		else if (e.getSource() == contrastScrollBar)
 		{
 			contrastValue = e.getValue();
-		} else if (e.getSource() == saturationScrollBar)
+		}
+		else if (e.getSource() == saturationScrollBar)
 		{
 			saturationValue = e.getValue();
-		} else
+		}
+		else
 		{
 			hueValue = e.getValue();
 		}

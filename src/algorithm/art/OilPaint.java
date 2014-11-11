@@ -9,19 +9,27 @@ import util.ImgUtil;
  * */
 public class OilPaint
 {
+	// °ë¾¶
 	private static int radius = 5;
+
+	// ÁÁ¶È
 	private static int intensity = 20;
 
-	public static BufferedImage getImage(BufferedImage src)
+	/**
+	 * ÓÍ»­ÂË¾µ
+	 * 
+	 * @param image
+	 * */
+	public static BufferedImage getImage(BufferedImage image)
 	{
-		int width = src.getWidth();
-		int height = src.getHeight();
+		int width = image.getWidth();
+		int height = image.getHeight();
 
 		BufferedImage outputImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 
 		int[] inPixels = new int[width * height];
 		int[] outPixels = new int[width * height];
-		ImgUtil.getRGB(src, inPixels);
+		ImgUtil.getRGB(image, inPixels);
 
 		int index = 0;
 		int subradius = radius / 2;

@@ -1,20 +1,12 @@
 package gui;
 
-import gui.backgroundblur.BackgroundBlurFrame;
+import gui.blur.BlurFrame;
 import gui.jigsaw.JigsawFrame;
 import gui.magicmirror.MagicMirrorFrame;
-import gui.partcolor.PartColorAdjustPanel;
 import gui.partcolor.PartColorFrame;
-import gui.partcolor.PartColorImagePanel;
-import gui.preview.PreviewListPanel;
-import gui.preview.PreviewPanel;
+import gui.partmosaic.PartMosaicFrame;
 import gui.preview.PreviewTabbedPanel;
 
-import java.awt.BorderLayout;
-import java.awt.Button;
-import java.awt.Frame;
-import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -23,15 +15,10 @@ import java.io.File;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.Border;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import util.ImgUtil;
-import algorithm.Constants;
-import algorithm.ImageFactory;
 import algorithm.basic.Scale;
-import algorithm.fun.MagicMirror;
 
 public class MainFrame extends JFrame
 {
@@ -55,16 +42,19 @@ public class MainFrame extends JFrame
 	public String sourceImagePath;
 
 	// 背景虚化界面
-	public BackgroundBlurFrame backgroundBlurFrame;
+	public BlurFrame blurFrame;
 
 	// 拼图界面
 	public JigsawFrame jigsawFrame;
-	
-	//魔镜界面
+
+	// 魔镜界面
 	public MagicMirrorFrame magicMirrorFrame;
-	
-	//局部彩色界面
+
+	// 局部彩色界面
 	public PartColorFrame partColorFrame;
+
+	// 局部马赛克界面
+	public PartMosaicFrame partMosaicFrame;
 
 	private static MainFrame instance;
 
@@ -94,15 +84,16 @@ public class MainFrame extends JFrame
 		initBackgroundBlurButton();
 		initJigasawButton();
 		initMagicMirrorButton();
-		
+
 		initBasicAdjustPanel();
 
 		File file = new File("C:\\Users\\Public\\Pictures\\Sample Pictures\\sand.jpg");
 		loadImage(file);
-		
-		partColorFrame = new PartColorFrame(sourceImage);
-		//magicMirrorFrame = new MagicMirrorFrame(sourceImage);
-		//jigsawFrame = new JigsawFrame(sourceImage);
+
+		partMosaicFrame = new PartMosaicFrame(sourceImage);
+		// partColorFrame = new PartColorFrame(sourceImage);
+		// magicMirrorFrame = new MagicMirrorFrame(sourceImage);
+		// jigsawFrame = new JigsawFrame(sourceImage);
 		// backgroundBlurFrame = new BackgroundBlurFrame(sourceImage);
 	}
 
@@ -152,7 +143,7 @@ public class MainFrame extends JFrame
 			public void actionPerformed(ActionEvent e)
 			{
 				// TODO Auto-generated method stub
-				backgroundBlurFrame = new BackgroundBlurFrame(sourceImage);
+				blurFrame = new BlurFrame(sourceImage);
 			}
 		});
 		getContentPane().add(backgroundButton);
@@ -203,8 +194,7 @@ public class MainFrame extends JFrame
 		});
 		getContentPane().add(magicMirrorButton);
 	}
-	
-	
+
 	/**
 	 * 初始化文件选择器
 	 * */
@@ -252,7 +242,7 @@ public class MainFrame extends JFrame
 	 * */
 	public void setMainImagePanel(int type, Object... parameter)
 	{
-		imagePanel.updateImage(type,parameter);
+		imagePanel.updateImage(type, parameter);
 	}
 
 	/**

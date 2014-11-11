@@ -12,11 +12,7 @@ import util.RGB;
 public class GuassBlur
 {
 
-	public static final int[][] MASK =
-	{
-	{ 1, 2, 1 },
-	{ 2, 4, 2 },
-	{ 1, 2, 1 } };
+	public static final int[][] MASK = { { 1, 2, 1 }, { 2, 4, 2 }, { 1, 2, 1 } };
 
 	public static final int MASK_SIZE = 3;
 
@@ -72,6 +68,14 @@ public class GuassBlur
 
 	}
 
+	/**
+	 * 局部高斯模糊
+	 * 
+	 * @param image
+	 * @param centerX
+	 * @param centerY
+	 * @param radius
+	 * */
 	public static BufferedImage getImage(BufferedImage image, int centerX, int centerY, int radius)
 	{
 		int startX = centerX - radius;
@@ -131,10 +135,12 @@ public class GuassBlur
 				if (type == RGB.R)
 				{
 					sum += imageMatrix[x + i][y + i].r * MASK[i + 1][j + 1];
-				} else if (type == RGB.G)
+				}
+				else if (type == RGB.G)
 				{
 					sum += imageMatrix[x + i][y + i].g * MASK[i + 1][j + 1];
-				} else
+				}
+				else
 				{
 					sum += imageMatrix[x + i][y + i].b * MASK[i + 1][j + 1];
 				}

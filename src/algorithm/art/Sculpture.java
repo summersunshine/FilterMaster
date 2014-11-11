@@ -10,6 +10,11 @@ import util.ImgUtil;
 public class Sculpture
 {
 
+	/**
+	 * ¸¡µñÂË¾µ
+	 * 
+	 * @param image
+	 * */
 	public static BufferedImage getImage(BufferedImage image)
 	{
 		int width = image.getWidth();

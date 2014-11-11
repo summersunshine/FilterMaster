@@ -1,12 +1,10 @@
-package gui.backgroundblur;
+package gui.partmosaic;
 
 import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
 
-import algorithm.blur.DoubleGuassBlur;
-
-public class BackgroundBlurFrame extends JFrame
+public class PartMosaicFrame extends JFrame
 {
 	// 画笔的大小
 	public static int sizeValue = 40;
@@ -18,12 +16,12 @@ public class BackgroundBlurFrame extends JFrame
 	public BufferedImage sourceImage;
 
 	// 模糊图像面板
-	public BackgroundBlurImagePanel imagePanel;
+	public PartMosaicImagePanel imagePanel;
 
 	// 调节数据面板
-	public BackgroundAdjustPanel adjustPanel;
+	public PartMosaicAdjustPanel adjustPanel;
 
-	public BackgroundBlurFrame(BufferedImage image)
+	public PartMosaicFrame(BufferedImage image)
 	{
 		this.setSize(1280, 720);
 		this.setLayout(null);
@@ -43,7 +41,7 @@ public class BackgroundBlurFrame extends JFrame
 	 * */
 	private void initAdjustPanel()
 	{
-		adjustPanel = new BackgroundAdjustPanel();
+		adjustPanel = new PartMosaicAdjustPanel();
 
 		getContentPane().add(adjustPanel);
 
@@ -54,7 +52,7 @@ public class BackgroundBlurFrame extends JFrame
 	 * */
 	private void initImagePanel()
 	{
-		imagePanel = new BackgroundBlurImagePanel(sourceImage);
+		imagePanel = new PartMosaicImagePanel(sourceImage);
 
 		getContentPane().add(imagePanel);
 	}

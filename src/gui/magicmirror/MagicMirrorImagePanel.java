@@ -13,7 +13,7 @@ public class MagicMirrorImagePanel extends ImagePanel
 	{
 		super(image);
 		// TODO Auto-generated constructor stub
-
+		sourceImage = image;
 	}
 
 	/**

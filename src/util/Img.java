@@ -52,7 +52,8 @@ public class Img
 		try
 		{
 			bi = ImageIO.read(new File(fnm));
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			e.printStackTrace();
 		}
@@ -70,7 +71,8 @@ public class Img
 		try
 		{
 			ImageIO.write(img, "jpg", new File(fnm));
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			e.printStackTrace();
 		}
@@ -232,7 +234,8 @@ public class Img
 		try
 		{
 			pg.grabPixels();
-		} catch (InterruptedException e)
+		}
+		catch (InterruptedException e)
 		{
 		}
 
@@ -279,7 +282,8 @@ public class Img
 			GraphicsDevice gs = ge.getDefaultScreenDevice();
 			GraphicsConfiguration gc = gs.getDefaultConfiguration();
 			bimage = gc.createCompatibleImage(image.getWidth(null), image.getHeight(null), transparency);
-		} catch (HeadlessException e)
+		}
+		catch (HeadlessException e)
 		{
 			// The system does not have a screen
 		}
@@ -323,7 +327,8 @@ public class Img
 				try
 				{
 					g2.drawImage(bimg, 0, 0, null);
-				} finally
+				}
+				finally
 				{
 					g2.dispose();
 				}
@@ -345,7 +350,8 @@ public class Img
 				try
 				{
 					g2.drawImage(img, 0, 0, null);
-				} finally
+				}
+				finally
 				{
 					g2.dispose();
 				}

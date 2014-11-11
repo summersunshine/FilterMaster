@@ -63,7 +63,8 @@ public class PreviewPanel extends JPanel implements MouseListener
 		try
 		{
 			g2.drawImage(displayImage, 0, 0, displayImage.getWidth(), displayImage.getHeight(), null);
-		} finally
+		}
+		finally
 		{
 			g2.dispose();
 		}

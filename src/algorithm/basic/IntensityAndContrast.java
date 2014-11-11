@@ -8,6 +8,8 @@ public class IntensityAndContrast
 {
 
 	/**
+	 * 调节图像的亮度和对比度
+	 * 
 	 * @param image
 	 * @param intensity
 	 * @param contrast
@@ -46,7 +48,8 @@ public class IntensityAndContrast
 			if (contrast >= 255)
 			{
 				v = v >= threshold ? 255 : 0;
-			} else
+			}
+			else
 			{
 				v = ImgUtil.clamp(v + (int) ((v - threshold) * cv + 0.5f));
 			}

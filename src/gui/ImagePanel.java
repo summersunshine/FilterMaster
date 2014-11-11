@@ -2,14 +2,12 @@ package gui;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.GridLayout;
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import algorithm.ImageFactory;
+import algorithm.basic.Clone;
 
 public class ImagePanel extends JPanel
 {
@@ -30,7 +28,7 @@ public class ImagePanel extends JPanel
 
 	// 原始的图像
 	protected BufferedImage sourceImage;
-	
+
 	protected float ratioX;
 	protected float ratioY;
 	protected float ratio;
@@ -42,21 +40,43 @@ public class ImagePanel extends JPanel
 	public ImagePanel(BufferedImage image)
 	{
 
-		initImage(image);
+		initDisplayImage(image);
 		calRatio();
 		calSizeAndPos();
 		setVisible(true);
 	}
 
+	/**
+	 * 初始化显示图像 需要深度复制重新克隆出一个
+	 * 
+	 * @param image
+	 * */
+	private void initDisplayImage(BufferedImage image)
+	{
+		// sourceImage = image;
+		displayImage = Clone.getImage(image);
+	}
+
+	/**
+	 * 直接更新图像并重画
+	 * 
+	 * @param image
+	 * */
 	public void updateImage(BufferedImage image)
 	{
 		// TODO Auto-generated method stub
 		displayImage = image;
-		
+
 		repaint();
 	}
-	
-	public void updateImage(int type,Object... parameter)
+
+	/**
+	 * 使用类型和参数更新图像
+	 * 
+	 * @param type
+	 * @param parameter
+	 * */
+	public void updateImage(int type, Object... parameter)
 	{
 		// TODO Auto-generated method stub
 		displayImage = ImageFactory.getImage(type, sourceImage, parameter);
@@ -73,19 +93,13 @@ public class ImagePanel extends JPanel
 
 			g2.drawImage(displayImage, 0, 0, width, height, null);
 
-		} finally
+		}
+		finally
 		{
 			g2.dispose();
 		}
 	}
 
-	
-	private void initImage(BufferedImage image)
-	{
-		sourceImage = image;
-		displayImage = image;
-	}
-	
 	/**
 	 * 计算ratio
 	 * */

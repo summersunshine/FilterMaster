@@ -5,8 +5,18 @@ import java.awt.image.BufferedImage;
 
 import util.ImgUtil;
 
+/**
+ * ±Ê´¥
+ * */
 public class StrokeArea
 {
+
+	/**
+	 * ±Ê´¥ÂË¾µ
+	 * 
+	 * @param image
+	 * @param size
+	 * */
 	public static BufferedImage getImage(BufferedImage image, int size)
 	{
 		int width = image.getWidth();

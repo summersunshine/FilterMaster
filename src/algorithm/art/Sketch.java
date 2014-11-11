@@ -13,6 +13,11 @@ import util.ImgUtil;
 public class Sketch
 {
 
+	/**
+	 * ËØÃèÂË¾µ
+	 * 
+	 * @param image
+	 * */
 	public static BufferedImage getImage(BufferedImage image)
 	{
 		int height = image.getHeight();

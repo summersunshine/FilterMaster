@@ -9,6 +9,12 @@ import util.ImgUtil;
  * */
 public class Pencil
 {
+	/**
+	 * Ç¦±ÊÂË¾µ
+	 * 
+	 * @param image
+	 * @param sensitivity
+	 * */
 	public static BufferedImage getImage(BufferedImage image, int sensitivity)
 	{
 		int width = image.getWidth();
@@ -32,7 +38,8 @@ public class Pencil
 				if (color - nextColor > sensitivity)
 				{
 					outputImage.setRGB(x, y, ImgUtil.getRGB(0, 0, 0));
-				} else
+				}
+				else
 				{
 					outputImage.setRGB(x, y, ImgUtil.getRGB(255, 255, 255));
 				}
@@ -42,6 +49,11 @@ public class Pencil
 		return outputImage;
 	}
 
+	/**
+	 * ÑÕÉ«»»Ëã
+	 * 
+	 * @param rgb
+	 * */
 	public static int getColor(int rgb)
 	{
 		int[] rgbColor = ImgUtil.getSplitRGB(rgb);

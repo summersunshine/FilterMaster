@@ -20,19 +20,23 @@ public class ColorUtil
 		if (max == min)
 		{
 			h = 0;
-		} else if (max == value.r)
+		}
+		else if (max == value.r)
 		{
 			if (value.g >= value.b)
 			{
 				h = 60 * (value.g - value.b) / (max - min);
-			} else
+			}
+			else
 			{
 				h = 60 * (value.g - value.b) / (max - min) + 360;
 			}
-		} else if (max == value.g)
+		}
+		else if (max == value.g)
 		{
 			h = 60 * (value.b - value.r) / (max - min) + 120;
-		} else
+		}
+		else
 		{
 			h = 60 * (value.r - value.g) / (max - min) + 240;
 		}
@@ -42,10 +46,12 @@ public class ColorUtil
 		if (l == 0 || max == min)
 		{
 			s = 0;
-		} else if (0 < l && l <= 127)
+		}
+		else if (0 < l && l <= 127)
 		{
 			s = (max - min) / (2 * l);
-		} else
+		}
+		else
 		{
 			s = (max - min) / (2 - 2 * l);
 		}
@@ -77,7 +83,8 @@ public class ColorUtil
 		if (l < 0.5)
 		{
 			q = l * (1 + s);
-		} else
+		}
+		else
 		{
 			q = l + s - (l * s);
 		}
@@ -126,13 +133,16 @@ public class ColorUtil
 		if (value < 1 / 6f)
 		{
 			value = p + ((q - p) * 6 * value);
-		} else if (1 / 6f <= value && value < 1 / 2f)
+		}
+		else if (1 / 6f <= value && value < 1 / 2f)
 		{
 			value = q;
-		} else if (1 / 2f <= value && value < 2 / 3f)
+		}
+		else if (1 / 2f <= value && value < 2 / 3f)
 		{
 			value = p + ((q - p) * 6 * (2 / 3f - value));
-		} else
+		}
+		else
 		{
 			value = p;
 		}

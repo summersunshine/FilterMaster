@@ -1,11 +1,11 @@
 package gui.jigsaw;
 
+import gui.ImagePanel;
+
 import java.awt.image.BufferedImage;
 
 import algorithm.FunImageFactory;
-import algorithm.ImageFactory;
 import algorithm.fun.AlphaMerge;
-import gui.ImagePanel;
 
 /**
  * Æ´Í¼Í¼ÏñÃæ°å

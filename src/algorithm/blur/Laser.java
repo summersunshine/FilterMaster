@@ -69,7 +69,8 @@ public class Laser
 					r = ImgUtil.clamp((int) (r * strength) + r2);
 					g = ImgUtil.clamp((int) (g * strength) + g2);
 					b = ImgUtil.clamp((int) (b * strength) + b2);
-				} else
+				}
+				else
 				{
 					r = r2;
 					g = g2;

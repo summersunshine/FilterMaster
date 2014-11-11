@@ -1,7 +1,5 @@
 package gui.partcolor;
 
-import gui.backgroundblur.BackgroundBlurFrame;
-
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,14 +20,14 @@ public class PartColorAdjustPanel extends JPanel implements AdjustmentListener, 
 
 	// »­±Ê´óÐ¡±êÇ©
 	private JLabel sizeLabel;
-	
-	//Ìí¼Ó
+
+	// Ìí¼Ó
 	private JButton addButton;
-	
-	//²Á³ý
+
+	// ²Á³ý
 	private JButton eraseButton;
 
-	//¸¸Ãæ°å
+	// ¸¸Ãæ°å
 	private PartColorFrame parent;
 
 	public PartColorAdjustPanel(PartColorFrame parent) throws HeadlessException
@@ -37,9 +35,9 @@ public class PartColorAdjustPanel extends JPanel implements AdjustmentListener, 
 		this.setLayout(null);
 
 		this.parent = parent;
-		
+
 		initButtons();
-		
+
 		initSizeBarAndLabel();
 
 		setBounds(0, 200, 200, 200);
@@ -73,15 +71,15 @@ public class PartColorAdjustPanel extends JPanel implements AdjustmentListener, 
 		addButton = new JButton("Ìí¼Ó");
 		addButton.setBounds(0, 0, 100, 40);
 		addButton.addActionListener(this);
-		
+
 		eraseButton = new JButton("Ïû³ý");
-		eraseButton.setBounds(100,0,100,40);
+		eraseButton.setBounds(100, 0, 100, 40);
 		eraseButton.addActionListener(this);
 		addButton.setSelected(true);
-		
+
 		this.add(addButton);
 		this.add(eraseButton);
-		
+
 	}
 
 	@Override
@@ -90,7 +88,7 @@ public class PartColorAdjustPanel extends JPanel implements AdjustmentListener, 
 		// TODO Auto-generated method stub
 		if (e.getSource() == sizeScrollBar)
 		{
-			//sizeValue = e.getValue();
+			// sizeValue = e.getValue();
 			PartColorFrame.sizeValue = e.getValue();
 		}
 	}
@@ -101,11 +99,11 @@ public class PartColorAdjustPanel extends JPanel implements AdjustmentListener, 
 		// TODO Auto-generated method stub
 		if (e.getSource() == addButton)
 		{
-			//sizeValue = e.getValue();
+			// sizeValue = e.getValue();
 			PartColorFrame.type = Constants.TYPE_ERASE;
 		}
-		
-		if(e.getSource() == eraseButton)
+
+		if (e.getSource() == eraseButton)
 		{
 			PartColorFrame.type = Constants.TYPE_GRAY;
 		}

@@ -11,7 +11,6 @@ import javax.swing.JFrame;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import util.ImgUtil;
-import algorithm.basic.Scale;
 import app.Global;
 
 public class BaseFrame extends JFrame

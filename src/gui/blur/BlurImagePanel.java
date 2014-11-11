@@ -1,4 +1,4 @@
-package gui.partcolor;
+package gui.blur;
 
 import gui.ImagePanel;
 
@@ -11,14 +11,14 @@ import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 
 import util.ImgUtil;
-import algorithm.Constants;
 import algorithm.basic.Erase;
-import algorithm.basic.Gray;
+import algorithm.blur.DoubleGuassBlur;
 
-public class PartColorImagePanel extends ImagePanel implements MouseListener, MouseMotionListener
+public class BlurImagePanel extends ImagePanel implements MouseListener, MouseMotionListener
 {
-	// 灰度图像
-	public BufferedImage grayImage;
+
+	// 原始图像
+	public BufferedImage sourceImage;
 
 	// 鼠标是否进入
 	public boolean isMouseEntered;
@@ -29,14 +29,12 @@ public class PartColorImagePanel extends ImagePanel implements MouseListener, Mo
 	// 显示的y坐标
 	private int displayY;
 
-	public PartColorImagePanel(BufferedImage image)
+	public BlurImagePanel(BufferedImage image)
 	{
 
-		super(Gray.getImage(image));
+		super(DoubleGuassBlur.getImage(image));
 
 		sourceImage = image;
-
-		grayImage = Gray.getImage(image);
 
 		isMouseEntered = false;
 
@@ -69,20 +67,12 @@ public class PartColorImagePanel extends ImagePanel implements MouseListener, Mo
 	 * @param x
 	 * @param y
 	 * */
-	public void updateImage(int x, int y)
+	private void updateImage(int x, int y)
 	{
 		displayX = (int) (x / ratio);
 		displayY = (int) (y / ratio);
 
-		if (PartColorFrame.type == Constants.TYPE_ERASE)
-		{
-			this.updateImage(Erase.getImage(displayImage, sourceImage, displayX, displayY, PartColorFrame.sizeValue));
-		}
-		else
-		{
-			this.updateImage(Erase.getImage(displayImage, grayImage, displayX, displayY, PartColorFrame.sizeValue));
-		}
-
+		this.updateImage(Erase.getImage(displayImage, sourceImage, displayX, displayY, BlurFrame.sizeValue));
 		// this.updateImage(Mosaic.getImage(displayImage, displayX, displayY,
 		// BackgroundBlurFrame.sizeValue));
 	}
@@ -135,4 +125,5 @@ public class PartColorImagePanel extends ImagePanel implements MouseListener, Mo
 		// TODO Auto-generated method stub
 
 	}
+
 }

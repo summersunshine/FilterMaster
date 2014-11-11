@@ -27,7 +27,8 @@ public class Lomo
 				if (distance > radius)
 				{
 					image.setRGB(x, y, ImgUtil.getRGB(0, 0, 0));
-				} else
+				}
+				else
 				{
 					int[] rgb = ImgUtil.getSplitRGB(image.getRGB(x, y));
 					float ratio = (float) (1 - distance * 1.0 / radius);
@@ -56,7 +57,8 @@ public class Lomo
 				if (distance > radius)
 				{
 					image.setRGB(x, y, ImgUtil.getRGB(0, 0, 0));
-				} else
+				}
+				else
 				{
 					int[] rgb = ImgUtil.getSplitRGB(image.getRGB(x, y));
 					float ratio = (float) (1 - distance * 1.0 / radius);

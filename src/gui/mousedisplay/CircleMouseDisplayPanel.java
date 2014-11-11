@@ -1,17 +1,9 @@
 package gui.mousedisplay;
 
-import java.awt.Cursor;
 import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.Point;
 import java.awt.Rectangle;
-import java.awt.Toolkit;
-import java.awt.image.BufferedImage;
-
-import javax.swing.ImageIcon;
 
 import util.Geometry;
-import util.ImgUtil;
 
 public class CircleMouseDisplayPanel extends MouseDisplayPanel
 {

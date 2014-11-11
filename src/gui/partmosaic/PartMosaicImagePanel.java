@@ -1,7 +1,8 @@
-package gui.backgroundblur;
+package gui.partmosaic;
+
+import gui.ImagePanel;
 
 import java.awt.Cursor;
-import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
@@ -9,17 +10,11 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 
-import javax.swing.ImageIcon;
-
-import algorithm.basic.Erase;
-import algorithm.blur.DoubleGuassBlur;
-import algorithm.fun.Mosaic;
-import util.Geometry;
 import util.ImgUtil;
-import gui.ImagePanel;
-import gui.mousedisplay.*;
+import algorithm.basic.Clone;
+import algorithm.fun.Mosaic;
 
-public class BackgroundBlurImagePanel extends ImagePanel implements MouseListener, MouseMotionListener
+public class PartMosaicImagePanel extends ImagePanel implements MouseListener, MouseMotionListener
 {
 
 	// 原始图像
@@ -34,13 +29,12 @@ public class BackgroundBlurImagePanel extends ImagePanel implements MouseListene
 	// 显示的y坐标
 	private int displayY;
 
-	public BackgroundBlurImagePanel(BufferedImage image)
+	public PartMosaicImagePanel(BufferedImage image)
 	{
 
-		super(DoubleGuassBlur.getImage(image));
+		super(image);
 
 		sourceImage = image;
-
 		isMouseEntered = false;
 
 		this.addMouseListener(this);
@@ -77,8 +71,9 @@ public class BackgroundBlurImagePanel extends ImagePanel implements MouseListene
 		displayX = (int) (x / ratio);
 		displayY = (int) (y / ratio);
 
-		//this.updateImage(Erase.getImage(displayImage, sourceImage, displayX, displayY, BackgroundBlurFrame.sizeValue));
-		this.updateImage(Mosaic.getImage(displayImage, displayX, displayY, BackgroundBlurFrame.sizeValue));
+		// this.updateImage(Erase.getImage(displayImage, sourceImage, displayX,
+		// displayY, PartMosaicFrame.sizeValue));
+		this.updateImage(Mosaic.getImage(displayImage, displayX, displayY, PartMosaicFrame.sizeValue));
 	}
 
 	@Override

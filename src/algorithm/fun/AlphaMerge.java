@@ -36,13 +36,16 @@ public class AlphaMerge
 		if (type == TYPE_LEFT_2_RIGHT)
 		{
 			return scanFromLeftToRight(image1, image2, width, height);
-		} else if (type == TYPE_RIGHT_2_LEFT)
+		}
+		else if (type == TYPE_RIGHT_2_LEFT)
 		{
 			return scanFromRightToLeft(image1, image2, width, height);
-		} else if (type == TYPE_UP_2_DOWN)
+		}
+		else if (type == TYPE_UP_2_DOWN)
 		{
 			return scanFromUpToDown(image1, image2, width, height);
-		} else
+		}
+		else
 		{
 			return scanFromDownToUp(image1, image2, width, height);
 		}

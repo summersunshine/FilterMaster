@@ -64,19 +64,23 @@ public class JigsawButtonGroup extends JPanel implements ActionListener
 		{
 			parent.setImagePanel(Constants.TYPE_ALPHA_MERGE);
 
-		} else if (e.getSource() == openButton1)
+		}
+		else if (e.getSource() == openButton1)
 		{
 			parent.setImagePanel(Constants.TYPE_ALPHA_MERGE_1);
 
-		} else if (e.getSource() == openButton2)
+		}
+		else if (e.getSource() == openButton2)
 		{
 			parent.setImagePanel(Constants.TYPE_ALPHA_MERGE_2);
 
-		} else if (e.getSource() == openButton3)
+		}
+		else if (e.getSource() == openButton3)
 		{
 			parent.setImagePanel(Constants.TYPE_ALPHA_MERGE_3);
 
-		} else if (e.getSource() == openButton4)
+		}
+		else if (e.getSource() == openButton4)
 		{
 			parent.setImagePanel(Constants.TYPE_ALPHA_MERGE_4);
 		}

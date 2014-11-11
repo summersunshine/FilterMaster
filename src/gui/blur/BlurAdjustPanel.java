@@ -1,13 +1,6 @@
-package gui.backgroundblur;
+package gui.blur;
 
-import java.awt.Color;
-import java.awt.Container;
-import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.HeadlessException;
-import java.awt.Insets;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
 
@@ -15,7 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 
-public class BackgroundAdjustPanel extends JPanel implements AdjustmentListener
+public class BlurAdjustPanel extends JPanel implements AdjustmentListener
 {
 	// 画笔大小滚动条
 	private JScrollBar sizeScrollBar;
@@ -29,7 +22,7 @@ public class BackgroundAdjustPanel extends JPanel implements AdjustmentListener
 	// 模糊程度标签
 	private JLabel levelLabel;
 
-	public BackgroundAdjustPanel() throws HeadlessException
+	public BlurAdjustPanel() throws HeadlessException
 	{
 		this.setLayout(null);
 
@@ -83,12 +76,12 @@ public class BackgroundAdjustPanel extends JPanel implements AdjustmentListener
 		// TODO Auto-generated method stub
 		if (e.getSource() == sizeScrollBar)
 		{
-			BackgroundBlurFrame.sizeValue = e.getValue();
+			BlurFrame.sizeValue = e.getValue();
 
 		}
 		if (e.getSource() == levelScrollBar)
 		{
-			BackgroundBlurFrame.levelValue = e.getValue();
+			BlurFrame.levelValue = e.getValue();
 		}
 	}
 

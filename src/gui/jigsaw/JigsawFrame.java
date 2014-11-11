@@ -1,25 +1,10 @@
 package gui.jigsaw;
 
+import gui.BaseFrame;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
-
-import gui.BaseFrame;
-import gui.ImagePanel;
-import gui.preview.PreviewListPanel;
-
-import javax.swing.ButtonGroup;
-import javax.swing.JButton;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.filechooser.FileNameExtensionFilter;
-
-import util.ImgUtil;
-import algorithm.Constants;
-import algorithm.FunImageFactory;
-import algorithm.basic.Scale;
-import algorithm.fun.AlphaMerge;
 
 public class JigsawFrame extends BaseFrame implements ActionListener
 {
@@ -55,9 +40,9 @@ public class JigsawFrame extends BaseFrame implements ActionListener
 	private void initButtonGroup()
 	{
 		buttonGroup = new JigsawButtonGroup(this);
-		
+
 		getContentPane().add(buttonGroup);
-		
+
 		buttonGroup.repaint();
 	}
 

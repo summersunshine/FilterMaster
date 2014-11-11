@@ -1,15 +1,10 @@
 package gui.mousedisplay;
 
-import java.awt.Cursor;
-import java.awt.Graphics;
-import java.awt.Point;
 import java.awt.Rectangle;
-import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 public class MouseDisplayPanel extends JPanel implements MouseListener, MouseMotionListener

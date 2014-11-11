@@ -11,11 +11,14 @@ import util.RGB;
  * */
 public class Mosaic
 {
+	/**
+	 * 马赛克滤镜
+	 * */
 	public static BufferedImage getImage(BufferedImage image)
 	{
+		int size = 12;
 		int width = image.getWidth();
 		int height = image.getHeight();
-		int size = 12;
 		int r = 0, g = 0, b = 0;
 		BufferedImage outputImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 
@@ -32,11 +35,13 @@ public class Mosaic
 						r = rgb[0];
 						g = rgb[1];
 						b = rgb[2];
-					} else
+					}
+					else
 					{
 						outputImage.setRGB(x, y, ImgUtil.getRGB(r, g, b));
 					}
-				} else
+				}
+				else
 				{
 					outputImage.setRGB(x, y, outputImage.getRGB(x, y - 1));
 				}
@@ -46,9 +51,16 @@ public class Mosaic
 
 		return outputImage;
 	}
-	
-	
-	public static BufferedImage getImage(BufferedImage image,int centerX,int centerY,int radius)
+
+	/**
+	 * 局部马赛克
+	 * 
+	 * @param image
+	 * @param centerX
+	 * @param centerY
+	 * @param radius
+	 * */
+	public static BufferedImage getImage(BufferedImage image, int centerX, int centerY, int radius)
 	{
 		int size = 12;
 		int startX = centerX - radius;
@@ -61,11 +73,10 @@ public class Mosaic
 			for (int x = startX; x < endX; x++)
 			{
 
-				if (Geometry.getDistance(x, y, centerX, centerY) < radius &&
-						ImgUtil.isInsideImage(image,x,y))
+				if (Geometry.getDistance(x, y, centerX, centerY) < radius && ImgUtil.isInsideImage(image, x, y))
 				{
-					int targetX = (x/size)*size;
-					int targetY = (y/size)*size;
+					int targetX = (x / size) * size;
+					int targetY = (y / size) * size;
 					image.setRGB(x, y, image.getRGB(targetX, targetY));
 				}
 			}
@@ -73,5 +84,5 @@ public class Mosaic
 
 		return image;
 	}
-	
+
 }
