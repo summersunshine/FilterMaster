@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 
 public class MagicMirrorFrame extends JFrame
 {
+
 	
 	//Ô´Í¼Ïñ
 	private BufferedImage sourceImage;

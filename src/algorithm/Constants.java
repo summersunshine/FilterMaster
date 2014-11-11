@@ -11,6 +11,7 @@ public class Constants
 	public static final int TYPE_FUN = 4;
 	public static final int TYPE_LOMO = 5;
 	public static final int TYPE_STYLE = 6;
+	public static final int TYPE_ERASE = 7;
 
 	// art
 	public static final int TYPE_OIL_PAINT = 101;

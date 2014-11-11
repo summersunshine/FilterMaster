@@ -28,7 +28,7 @@ public class ImagePanel extends JPanel
 	// 显示的图像
 	protected BufferedImage displayImage;
 
-	// 显示的图像
+	// 原始的图像
 	protected BufferedImage sourceImage;
 	
 	protected float ratioX;

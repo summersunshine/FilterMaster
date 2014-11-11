@@ -3,6 +3,9 @@ package gui;
 import gui.backgroundblur.BackgroundBlurFrame;
 import gui.jigsaw.JigsawFrame;
 import gui.magicmirror.MagicMirrorFrame;
+import gui.partcolor.PartColorAdjustPanel;
+import gui.partcolor.PartColorFrame;
+import gui.partcolor.PartColorImagePanel;
 import gui.preview.PreviewListPanel;
 import gui.preview.PreviewPanel;
 import gui.preview.PreviewTabbedPanel;
@@ -59,6 +62,9 @@ public class MainFrame extends JFrame
 	
 	//魔镜界面
 	public MagicMirrorFrame magicMirrorFrame;
+	
+	//局部彩色界面
+	public PartColorFrame partColorFrame;
 
 	private static MainFrame instance;
 
@@ -93,7 +99,9 @@ public class MainFrame extends JFrame
 
 		File file = new File("C:\\Users\\Public\\Pictures\\Sample Pictures\\sand.jpg");
 		loadImage(file);
-		magicMirrorFrame = new MagicMirrorFrame(sourceImage);
+		
+		partColorFrame = new PartColorFrame(sourceImage);
+		//magicMirrorFrame = new MagicMirrorFrame(sourceImage);
 		//jigsawFrame = new JigsawFrame(sourceImage);
 		// backgroundBlurFrame = new BackgroundBlurFrame(sourceImage);
 	}
