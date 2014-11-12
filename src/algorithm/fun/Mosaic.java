@@ -11,12 +11,25 @@ import util.RGB;
  * */
 public class Mosaic
 {
+	
 	/**
 	 * 马赛克滤镜
+	 * @param image
 	 * */
 	public static BufferedImage getImage(BufferedImage image)
 	{
-		int size = 12;
+		return getImage(image, 12);
+	}
+	
+	
+	/**
+	 * 马赛克滤镜
+	 * 
+	 * @param image
+	 * @param size
+	 * */
+	public static BufferedImage getImage(BufferedImage image,int size)
+	{
 		int width = image.getWidth();
 		int height = image.getHeight();
 		int r = 0, g = 0, b = 0;
@@ -27,24 +40,9 @@ public class Mosaic
 			for (int x = 0; x < width; x++)
 			{
 
-				if (y % size == 0)
-				{
-					if (x % size == 0)
-					{
-						int[] rgb = ImgUtil.getSplitRGB(image.getRGB(x, y));
-						r = rgb[0];
-						g = rgb[1];
-						b = rgb[2];
-					}
-					else
-					{
-						outputImage.setRGB(x, y, ImgUtil.getRGB(r, g, b));
-					}
-				}
-				else
-				{
-					outputImage.setRGB(x, y, outputImage.getRGB(x, y - 1));
-				}
+				int targetX = (x / size) * size;
+				int targetY = (y / size) * size;
+				image.setRGB(x, y, image.getRGB(targetX, targetY));
 
 			}
 		}
@@ -52,6 +50,18 @@ public class Mosaic
 		return outputImage;
 	}
 
+	
+	/**
+	 * 局部马赛克
+	 * @param image
+	 * */
+	public static BufferedImage getImage(BufferedImage image,int centerX, int centerY, int radius)
+	{
+		return getImage(image, 12,centerX,centerY,radius);
+	}
+	
+	
+	
 	/**
 	 * 局部马赛克
 	 * 
@@ -60,9 +70,8 @@ public class Mosaic
 	 * @param centerY
 	 * @param radius
 	 * */
-	public static BufferedImage getImage(BufferedImage image, int centerX, int centerY, int radius)
+	public static BufferedImage getImage(BufferedImage image,int size, int centerX, int centerY, int radius)
 	{
-		int size = 12;
 		int startX = centerX - radius;
 		int startY = centerY - radius;
 		int endX = centerX + radius;

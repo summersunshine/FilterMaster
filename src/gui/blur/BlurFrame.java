@@ -1,12 +1,15 @@
 package gui.blur;
 
+import gui.BaseFrame;
+import gui.MainFrame;
+
 import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
 
 import algorithm.Constants;
 
-public class BlurFrame extends JFrame
+public class BlurFrame extends BaseFrame
 {
 	// 原始图像
 	public BufferedImage sourceImage;
@@ -19,8 +22,7 @@ public class BlurFrame extends JFrame
 
 	public BlurFrame(BufferedImage image)
 	{
-		this.setSize(1280, 720);
-		this.setLayout(null);
+		super();
 
 		sourceImage = image;
 
@@ -29,7 +31,21 @@ public class BlurFrame extends JFrame
 		initImagePanel();
 
 		this.setVisible(true);
+	}
 
+	@Override
+	protected void saveOperation()
+	{
+		// TODO Auto-generated method stub
+		MainFrame.getInstance().setImagePanel(imagePanel.getDisplayImage());
+		super.saveOperation();
+	}
+
+	@Override
+	protected void cancelOperation()
+	{
+		// TODO Auto-generated method stub
+		super.cancelOperation();
 	}
 
 	/**
@@ -37,7 +53,7 @@ public class BlurFrame extends JFrame
 	 * */
 	private void initAdjustPanel()
 	{
-		adjustPanel = new BlurAdjustPanel();
+		adjustPanel = new BlurAdjustPanel(this);
 
 		getContentPane().add(adjustPanel);
 
@@ -52,13 +68,16 @@ public class BlurFrame extends JFrame
 
 		getContentPane().add(imagePanel);
 	}
-
+	
+	
 	/**
-	 * 设置圆形的光标
-	 * */
-	public void setCircleCursor()
+	 * 更新图像面板
+	 */
+	public void setImagePanel()
 	{
-		imagePanel.setCircleCursor();
+		System.out.println("update image" + BlurSetting.levelValue);
+		imagePanel.updateImage(BlurSetting.levelValue);
 	}
+	
 
 }

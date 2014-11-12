@@ -1,5 +1,7 @@
 package gui.partcolor;
 
+import gui.blur.BlurSetting;
+
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,8 +23,8 @@ public class PartColorAdjustPanel extends JPanel implements AdjustmentListener, 
 	// »­±Ê´óÐ¡±êÇ©
 	private JLabel sizeLabel;
 
-	// Ìí¼Ó
-	private JButton addButton;
+	//»­±Ê
+	private JButton paintButton;
 
 	// ²Á³ý
 	private JButton eraseButton;
@@ -40,7 +42,7 @@ public class PartColorAdjustPanel extends JPanel implements AdjustmentListener, 
 
 		initSizeBarAndLabel();
 
-		setBounds(0, 200, 200, 200);
+		setBounds(PartColorSetting.ADJUST_PANEL_RECTANGLE);
 	}
 
 	/**
@@ -49,12 +51,16 @@ public class PartColorAdjustPanel extends JPanel implements AdjustmentListener, 
 	private void initSizeBarAndLabel()
 	{
 		sizeLabel = new JLabel("´óÐ¡");
-		sizeLabel.setBounds(100, 10, 30, 40);
+		sizeLabel.setBounds(PartColorSetting.SIZE_LABEL_RECTANGLE);
 
-		sizeScrollBar = new JScrollBar(JScrollBar.HORIZONTAL, 40, 1, 40, 200);
-		sizeScrollBar.setBounds(20, 40, 160, 20);
-		sizeScrollBar.setUnitIncrement(5);
-		sizeScrollBar.setBlockIncrement(10);
+		int extent = PartColorSetting.sizeExtent;
+		int min = PartColorSetting.minSizeValue;
+		int max = PartColorSetting.maxSizeValue;
+		
+		sizeScrollBar = new JScrollBar(JScrollBar.HORIZONTAL, min,extent,min,max);
+		sizeScrollBar.setBounds(PartColorSetting.SIZE_SCROLLBAR_RECTANGLE);
+		sizeScrollBar.setUnitIncrement(extent);
+		sizeScrollBar.setBlockIncrement(extent);
 		sizeScrollBar.addAdjustmentListener(this);
 
 		this.add(sizeLabel);
@@ -68,16 +74,16 @@ public class PartColorAdjustPanel extends JPanel implements AdjustmentListener, 
 	private void initButtons()
 	{
 		// TODO Auto-generated method stub
-		addButton = new JButton("Ìí¼Ó");
-		addButton.setBounds(0, 0, 100, 40);
-		addButton.addActionListener(this);
+		paintButton = new JButton("»­±Ê");
+		paintButton.setBounds(0, 0, 100, 40);
+		paintButton.addActionListener(this);
 
-		eraseButton = new JButton("Ïû³ý");
+		eraseButton = new JButton("ÏðÆ¤²Á");
 		eraseButton.setBounds(100, 0, 100, 40);
 		eraseButton.addActionListener(this);
-		addButton.setSelected(true);
+		paintButton.setSelected(true);
 
-		this.add(addButton);
+		this.add(paintButton);
 		this.add(eraseButton);
 
 	}
@@ -89,7 +95,7 @@ public class PartColorAdjustPanel extends JPanel implements AdjustmentListener, 
 		if (e.getSource() == sizeScrollBar)
 		{
 			// sizeValue = e.getValue();
-			PartColorFrame.sizeValue = e.getValue();
+			PartColorSetting.sizeValue = e.getValue();
 		}
 	}
 
@@ -97,15 +103,15 @@ public class PartColorAdjustPanel extends JPanel implements AdjustmentListener, 
 	public void actionPerformed(ActionEvent e)
 	{
 		// TODO Auto-generated method stub
-		if (e.getSource() == addButton)
+		if (e.getSource() == paintButton)
 		{
 			// sizeValue = e.getValue();
-			PartColorFrame.type = Constants.TYPE_ERASE;
+			PartColorSetting.type = Constants.TYPE_ERASE;
 		}
 
 		if (e.getSource() == eraseButton)
 		{
-			PartColorFrame.type = Constants.TYPE_GRAY;
+			PartColorSetting.type = Constants.TYPE_GRAY;
 		}
 	}
 }

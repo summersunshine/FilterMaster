@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -13,7 +15,7 @@ import javax.swing.JScrollBar;
 
 import algorithm.Constants;
 
-public class BlurAdjustPanel extends JPanel implements AdjustmentListener, ActionListener
+public class BlurAdjustPanel extends JPanel implements AdjustmentListener, ActionListener,MouseListener
 {
 	// 画笔大小滚动条
 	private JScrollBar sizeScrollBar;
@@ -32,16 +34,21 @@ public class BlurAdjustPanel extends JPanel implements AdjustmentListener, Actio
 	
 	//橡皮按钮
 	private JButton eraserButton;
+	
+	//父界面
+	private BlurFrame parent;
 
-	public BlurAdjustPanel() throws HeadlessException
+	public BlurAdjustPanel(BlurFrame parent) throws HeadlessException
 	{
+		this.parent = parent;
 		this.setLayout(null);
 
 		initButtons();
 		initSizeBarAndLabel();
 		initLevelBarAndLabel();
 
-		setBounds(0, 200, 200, 200);
+		this.setBounds(BlurSetting.ADJUST_PANEL_RECTANGLE);
+		levelScrollBar.addMouseListener(this);
 	}
 
 	/**
@@ -50,12 +57,16 @@ public class BlurAdjustPanel extends JPanel implements AdjustmentListener, Actio
 	private void initSizeBarAndLabel()
 	{
 		sizeLabel = new JLabel("大小");
-		sizeLabel.setBounds(100, 10, 30, 40);
+		sizeLabel.setBounds(BlurSetting.SIZE_LABEL_RECTANGLE);
 
-		sizeScrollBar = new JScrollBar(JScrollBar.HORIZONTAL, 40, 1, 40, 200);
-		sizeScrollBar.setBounds(20, 40, 160, 20);
-		sizeScrollBar.setUnitIncrement(5);
-		sizeScrollBar.setBlockIncrement(10);
+		int extent = BlurSetting.sizeExtent;
+		int min = BlurSetting.minSizeValue;
+		int max = BlurSetting.maxSizeValue;
+		
+		sizeScrollBar = new JScrollBar(JScrollBar.HORIZONTAL, min,extent,min,max);
+		sizeScrollBar.setBounds(BlurSetting.SIZE_SCROLLBAR_RECTANGLE);
+		sizeScrollBar.setUnitIncrement(extent);
+		sizeScrollBar.setBlockIncrement(extent);
 		sizeScrollBar.addAdjustmentListener(this);
 
 		this.add(sizeLabel);
@@ -69,12 +80,16 @@ public class BlurAdjustPanel extends JPanel implements AdjustmentListener, Actio
 	private void initLevelBarAndLabel()
 	{
 		levelLabel = new JLabel("力度");
-		levelLabel.setBounds(100, 110, 30, 40);
+		levelLabel.setBounds(BlurSetting.LEVEL_LABEL_RECTANGLE);
 
-		levelScrollBar = new JScrollBar(JScrollBar.HORIZONTAL, 40, 1, 40, 200);
-		levelScrollBar.setBounds(20, 140, 160, 20);
-		levelScrollBar.setUnitIncrement(5);
-		levelScrollBar.setBlockIncrement(10);
+		int extent = BlurSetting.levelExtent;
+		int min = BlurSetting.minLevelValue;
+		int max = BlurSetting.maxLevelValue;
+		
+		levelScrollBar = new JScrollBar(JScrollBar.HORIZONTAL, min, extent, min, max);
+		levelScrollBar.setBounds(BlurSetting.LEVEL_SCROLLBAR_RECTANGLE);
+		levelScrollBar.setUnitIncrement(extent);
+		levelScrollBar.setBlockIncrement(extent);
 		levelScrollBar.addAdjustmentListener(this);
 
 		this.add(levelLabel);
@@ -89,11 +104,11 @@ public class BlurAdjustPanel extends JPanel implements AdjustmentListener, Actio
 	{
 		// TODO Auto-generated method stub
 		paintButton = new JButton("画笔");
-		paintButton.setBounds(0, 0, 100, 40);
+		paintButton.setBounds(BlurSetting.PAINT_BUTTON_RECTANGLE);
 		paintButton.addActionListener(this);
 		
 		eraserButton = new JButton("橡皮擦");
-		eraserButton.setBounds(100,0,100,40);
+		eraserButton.setBounds(BlurSetting.ERASE_BUTTON_RECTANGLE);
 		eraserButton.addActionListener(this);
 		
 		this.add(paintButton);
@@ -121,14 +136,73 @@ public class BlurAdjustPanel extends JPanel implements AdjustmentListener, Actio
 		// TODO Auto-generated method stub
 		if (e.getSource() == paintButton)
 		{
-			//画笔实际上是在消除被模糊的部分
-			BlurSetting.type = Constants.TYPE_ERASE;
+			switchToPaint();
 		}
 		if (e.getSource() == eraserButton)
 		{
-			//橡皮擦实际是在继续做模糊
-			BlurSetting.type = Constants.TYPE_DOUBLE_GUASS_BLUR;
+			switchToEraser();
 		}
+	}
+	
+	/**
+	 * 切换到画笔
+	 * */
+	private void switchToPaint()
+	{
+		//画笔实际上是在消除被模糊的部分
+		BlurSetting.type = Constants.TYPE_ERASE;
+		
+		levelLabel.setVisible(true);
+		levelScrollBar.setVisible(true);
+		
+	}
+	
+	/**
+	 * 切换到橡皮
+	 * */
+	private void switchToEraser()
+	{
+		// TODO Auto-generated method stub
+		//橡皮擦实际是在继续做模糊
+		BlurSetting.type = Constants.TYPE_DOUBLE_GUASS_BLUR;
+		
+		levelLabel.setVisible(false);
+		levelScrollBar.setVisible(false);
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent arg0)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent arg0)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent arg0)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent arg0)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent arg0)
+	{
+		// TODO Auto-generated method stub
+		parent.setImagePanel();
 	}
 
 }

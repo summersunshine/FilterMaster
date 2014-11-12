@@ -1,29 +1,29 @@
 package gui.partcolor;
 
+import gui.BaseFrame;
+import gui.MainFrame;
+
 import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
 
 import algorithm.Constants;
 
-public class PartColorFrame extends JFrame
+public class PartColorFrame extends BaseFrame
 {
-	public static int type = Constants.TYPE_ERASE;
 
-	public static int sizeValue = 40;
 
 	// 原始图像
 	public BufferedImage sourceImage;
 
-	private PartColorAdjustPanel partColorAdjustPanel;
+	private PartColorAdjustPanel adjustPanel;
 
-	private PartColorImagePanel partColorImagePanel;
+	private PartColorImagePanel imagePanel;
 
 	public PartColorFrame(BufferedImage image)
 	{
-		this.setSize(1280, 720);
-		this.setLayout(null);
-
+		super();
+		
 		sourceImage = image;
 
 		initAdjustPanel();
@@ -33,16 +33,31 @@ public class PartColorFrame extends JFrame
 
 	}
 
+	@Override
+	protected void saveOperation()
+	{
+		// TODO Auto-generated method stub
+		MainFrame.getInstance().setImagePanel(imagePanel.getDisplayImage());
+		super.saveOperation();
+	}
+
+	@Override
+	protected void cancelOperation()
+	{
+		// TODO Auto-generated method stub
+		super.cancelOperation();
+	}
+
 	/**
 	 * 初始化调整面板
 	 * */
 	private void initAdjustPanel()
 	{
-		partColorAdjustPanel = new PartColorAdjustPanel(this);
+		adjustPanel = new PartColorAdjustPanel(this);
 
-		getContentPane().add(partColorAdjustPanel);
+		getContentPane().add(adjustPanel);
 
-		partColorAdjustPanel.repaint();
+		adjustPanel.repaint();
 	}
 
 	/**
@@ -50,11 +65,11 @@ public class PartColorFrame extends JFrame
 	 * */
 	private void initImagePanel()
 	{
-		partColorImagePanel = new PartColorImagePanel(sourceImage);
+		imagePanel = new PartColorImagePanel(sourceImage);
 
-		getContentPane().add(partColorImagePanel);
+		getContentPane().add(imagePanel);
 
-		partColorImagePanel.repaint();
+		imagePanel.repaint();
 	}
 
 	/**
@@ -63,6 +78,6 @@ public class PartColorFrame extends JFrame
 	public void setImagePanel(float radius, int type)
 	{
 		// TODO Auto-generated method stub
-		partColorImagePanel.updateImage(type, radius);
+		imagePanel.updateImage(type, radius);
 	}
 }

@@ -179,7 +179,7 @@ public class BasicAdjustPanel extends JPanel implements AdjustmentListener, Mous
 	public void mouseReleased(MouseEvent e)
 	{
 		// TODO Auto-generated method stub
-		MainFrame.getInstance().setMainImagePanel(Constants.TYPE_INTENSITY_CONTRAST, intensityValue, contrastValue, 50);
+		MainFrame.getInstance().setImagePanel(Constants.TYPE_INTENSITY_CONTRAST, intensityValue, contrastValue, 50);
 	}
 
 	@Override

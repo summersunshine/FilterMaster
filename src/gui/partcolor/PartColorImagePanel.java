@@ -20,8 +20,6 @@ public class PartColorImagePanel extends ImagePanel implements MouseListener, Mo
 	// 灰度图像
 	public BufferedImage grayImage;
 
-	// 鼠标是否进入
-	public boolean isMouseEntered;
 
 	// 显示的x坐标
 	private int displayX;
@@ -38,7 +36,6 @@ public class PartColorImagePanel extends ImagePanel implements MouseListener, Mo
 
 		grayImage = Gray.getImage(image);
 
-		isMouseEntered = false;
 
 		this.addMouseListener(this);
 		this.addMouseMotionListener(this);
@@ -74,17 +71,15 @@ public class PartColorImagePanel extends ImagePanel implements MouseListener, Mo
 		displayX = (int) (x / ratio);
 		displayY = (int) (y / ratio);
 
-		if (PartColorFrame.type == Constants.TYPE_ERASE)
+		if (PartColorSetting.type == Constants.TYPE_ERASE)
 		{
-			this.updateImage(Erase.getImage(displayImage, sourceImage, displayX, displayY, PartColorFrame.sizeValue));
+			this.updateImage(Erase.getImage(displayImage, sourceImage, displayX, displayY, PartColorSetting.sizeValue));
 		}
 		else
 		{
-			this.updateImage(Erase.getImage(displayImage, grayImage, displayX, displayY, PartColorFrame.sizeValue));
+			this.updateImage(Erase.getImage(displayImage, grayImage, displayX, displayY, PartColorSetting.sizeValue));
 		}
 
-		// this.updateImage(Mosaic.getImage(displayImage, displayX, displayY,
-		// BackgroundBlurFrame.sizeValue));
 	}
 
 	@Override
@@ -105,21 +100,20 @@ public class PartColorImagePanel extends ImagePanel implements MouseListener, Mo
 	public void mouseClicked(MouseEvent e)
 	{
 		// TODO Auto-generated method stub
-
+		updateImage(e.getX(), e.getY());
+		repaint();
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e)
 	{
 		// TODO Auto-generated method stub
-		isMouseEntered = true;
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e)
 	{
 		// TODO Auto-generated method stub
-		isMouseEntered = false;
 		// System.out.println("mouse exit");
 	}
 

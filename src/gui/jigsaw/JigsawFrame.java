@@ -29,7 +29,7 @@ public class JigsawFrame extends BaseFrame implements ActionListener
 	private void initImagePanel()
 	{
 		// TODO Auto-generated method stub
-		imagePanel = new JigsawImagePanel(firstSourceImage, sourceImage);
+		//imagePanel = new JigsawImagePanel(firstSourceImage, sourceImage);
 
 		getContentPane().add(imagePanel);
 
@@ -46,7 +46,6 @@ public class JigsawFrame extends BaseFrame implements ActionListener
 		buttonGroup.repaint();
 	}
 
-	@Override
 	protected void afterLoadImage()
 	{
 		initImagePanel();

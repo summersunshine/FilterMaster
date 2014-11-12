@@ -1,6 +1,7 @@
 package gui.blur;
 
 import gui.ImagePanel;
+import gui.MainFrame;
 
 import java.awt.Cursor;
 import java.awt.Point;
@@ -12,18 +13,15 @@ import java.awt.image.BufferedImage;
 
 import util.ImgUtil;
 import algorithm.Constants;
+import algorithm.basic.Clone;
 import algorithm.basic.Erase;
 import algorithm.blur.DoubleGuassBlur;
 
 public class BlurImagePanel extends ImagePanel implements MouseListener, MouseMotionListener
 {
 	
-
 	// 高斯模糊图像
 	public BufferedImage guassBlurImage;
-
-	// 鼠标是否进入
-	public boolean isMouseEntered;
 
 	// 显示的x坐标
 	private int displayX;
@@ -40,13 +38,8 @@ public class BlurImagePanel extends ImagePanel implements MouseListener, MouseMo
 	public BlurImagePanel(BufferedImage image)
 	{
 
-		super(DoubleGuassBlur.getImage(image));
+		super(image);
 
-		guassBlurImage = DoubleGuassBlur.getImage(image);
-		
-		sourceImage = image;
-
-		isMouseEntered = false;
 
 		this.addMouseListener(this);
 		this.addMouseMotionListener(this);
@@ -54,23 +47,45 @@ public class BlurImagePanel extends ImagePanel implements MouseListener, MouseMo
 		setCircleCursor();
 	}
 
-	/**
-	 * 设置光标为圆形
-	 * */
-	public void setCircleCursor()
+	@Override
+	protected void initDisplayImage(BufferedImage image)
 	{
 		// TODO Auto-generated method stub
-		System.out.println("change cursor");
-
-		BufferedImage image = ImgUtil.getImg("res/circle.png");
-
-		Toolkit tk = Toolkit.getDefaultToolkit();
-
-		Cursor cursor = tk.createCustomCursor(image, new Point(16, 16), "blur");
-
-		setCursor(cursor);
+		displayImage = DoubleGuassBlur.getImage(image,BlurSetting.levelValue);
+		
+		MainFrame.getInstance().displayImage = Clone.getImage(displayImage);
 	}
 
+	@Override
+	protected void initSourceImage(BufferedImage image)
+	{
+		// TODO Auto-generated method stub
+		sourceImage = Clone.getImage(image);
+	}
+
+	protected void initGuassBlurImage(BufferedImage image)
+	{
+		// TODO Auto-generated method stub
+		guassBlurImage = DoubleGuassBlur.getImage(image,BlurSetting.levelValue);
+	}
+	
+
+
+	
+	/**
+	 * 更新模糊程度
+	 * @param level
+	 * */
+	public void updateImage(int level)
+	{
+		guassBlurImage = DoubleGuassBlur.getImage(sourceImage,level);
+		
+		displayImage = Clone.getImage(guassBlurImage);
+		
+		repaint();
+	}
+	
+	
 	/**
 	 * 根据涂抹的位置更新图像
 	 * 
@@ -103,6 +118,23 @@ public class BlurImagePanel extends ImagePanel implements MouseListener, MouseMo
 
 	}
 
+	/**
+	 * 设置光标为圆形
+	 * */
+	public void setCircleCursor()
+	{
+		// TODO Auto-generated method stub
+		System.out.println("change cursor");
+
+		BufferedImage image = ImgUtil.getImg("res/circle.png");
+
+		Toolkit tk = Toolkit.getDefaultToolkit();
+
+		Cursor cursor = tk.createCustomCursor(image, new Point(16, 16), "blur");
+
+		setCursor(cursor);
+	}
+	
 	@Override
 	public void mouseDragged(MouseEvent e)
 	{
@@ -121,22 +153,20 @@ public class BlurImagePanel extends ImagePanel implements MouseListener, MouseMo
 	public void mouseClicked(MouseEvent e)
 	{
 		// TODO Auto-generated method stub
-
+		updateImage(e.getX(), e.getY());
+		repaint();
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e)
 	{
 		// TODO Auto-generated method stub
-		isMouseEntered = true;
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e)
 	{
 		// TODO Auto-generated method stub
-		isMouseEntered = false;
-		// System.out.println("mouse exit");
 	}
 
 	@Override

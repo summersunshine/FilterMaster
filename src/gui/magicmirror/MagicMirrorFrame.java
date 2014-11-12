@@ -1,25 +1,27 @@
 package gui.magicmirror;
 
+import gui.BaseFrame;
+import gui.MainFrame;
+
 import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
 
-public class MagicMirrorFrame extends JFrame
+public class MagicMirrorFrame extends BaseFrame
 {
 
 	// 源图像
 	private BufferedImage sourceImage;
 
 	// 魔镜调节面板
-	private MagicMirrorAdjustPanel magicMirrorAdjustPanel;
+	private MagicMirrorAdjustPanel adjustPanel;
 
 	// 魔镜图像面板
-	private MagicMirrorImagePanel magicMirrorImagePanel;
+	private MagicMirrorImagePanel imagePanel;
 
 	public MagicMirrorFrame(BufferedImage image)
-	{
-		this.setSize(1280, 720);
-		this.setLayout(null);
+	{	
+		super();
 
 		sourceImage = image;
 
@@ -29,16 +31,31 @@ public class MagicMirrorFrame extends JFrame
 		this.setVisible(true);
 	}
 
+	@Override
+	protected void saveOperation()
+	{
+		// TODO Auto-generated method stub
+		MainFrame.getInstance().setImagePanel(imagePanel.getDisplayImage());
+		super.saveOperation();
+	}
+
+	@Override
+	protected void cancelOperation()
+	{
+		// TODO Auto-generated method stub
+		super.cancelOperation();
+	}
+
 	/**
 	 * 初始化调整面板
 	 * */
 	private void initAdjustPanel()
 	{
-		magicMirrorAdjustPanel = new MagicMirrorAdjustPanel(this);
+		adjustPanel = new MagicMirrorAdjustPanel(this);
 
-		getContentPane().add(magicMirrorAdjustPanel);
+		getContentPane().add(adjustPanel);
 
-		magicMirrorAdjustPanel.repaint();
+		adjustPanel.repaint();
 	}
 
 	/**
@@ -46,19 +63,19 @@ public class MagicMirrorFrame extends JFrame
 	 * */
 	private void initImagePanel()
 	{
-		magicMirrorImagePanel = new MagicMirrorImagePanel(sourceImage);
+		imagePanel = new MagicMirrorImagePanel(sourceImage);
 
-		getContentPane().add(magicMirrorImagePanel);
+		getContentPane().add(imagePanel);
 
-		magicMirrorImagePanel.repaint();
+		imagePanel.repaint();
 	}
 
 	/**
 	 * 设置图像面板
 	 * */
-	public void setImagePanel(float radius, int type)
+	public void setImagePanel()
 	{
 		// TODO Auto-generated method stub
-		magicMirrorImagePanel.updateImage(type, radius);
+		imagePanel.updateImage(MagicMirrorSetting.type, MagicMirrorSetting.radiusValue);
 	}
 }

@@ -1,5 +1,7 @@
 package gui.magicmirror;
 
+import gui.blur.BlurSetting;
+
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,11 +20,6 @@ import algorithm.Constants;
 public class MagicMirrorAdjustPanel extends JPanel implements AdjustmentListener, ActionListener, MouseListener
 {
 
-	// 类型
-	private int type;
-
-	// 半径
-	private float radius;
 
 	// 凸的
 	private JButton convexButton;
@@ -31,10 +28,10 @@ public class MagicMirrorAdjustPanel extends JPanel implements AdjustmentListener
 	private JButton concaveButton;
 
 	// 嘻哈程度滚动条
-	private JScrollBar levelScrollBar;
+	private JScrollBar radiusScrollBar;
 
 	// 嘻哈标签
-	private JLabel levelLabel;
+	private JLabel radiusLabel;
 
 	// 主界面
 	MagicMirrorFrame parent;
@@ -45,35 +42,35 @@ public class MagicMirrorAdjustPanel extends JPanel implements AdjustmentListener
 
 		this.parent = parent;
 
-		this.type = Constants.TYPE_MAGIC_MIRROIR_1;
-
-		this.radius = 100;
-
-		initLevelBarAndLabel();
+		initRadiusBarAndLabel();
 
 		initButtons();
 
 		this.addMouseListener(this);
 
-		setBounds(0, 200, 200, 200);
+		setBounds(MagicMirrorSetting.ADJUST_PANEL_RECTANGLE);
 	}
 
 	/**
 	 * 初始化半径滚动条和标签
 	 * */
-	private void initLevelBarAndLabel()
+	private void initRadiusBarAndLabel()
 	{
-		levelLabel = new JLabel("力度");
-		levelLabel.setBounds(100, 110, 30, 40);
+		radiusLabel = new JLabel("范围");
+		radiusLabel.setBounds(MagicMirrorSetting.RADIUS_LABEL_RECTANGLE);
 
-		levelScrollBar = new JScrollBar(JScrollBar.HORIZONTAL, 0, 1, 0, 2000);
-		levelScrollBar.setBounds(20, 140, 160, 20);
-		levelScrollBar.setUnitIncrement(5);
-		levelScrollBar.setBlockIncrement(10);
-		levelScrollBar.addAdjustmentListener(this);
+		int extent = MagicMirrorSetting.radiusExtent;
+		int min = MagicMirrorSetting.minRadiusValue;
+		int max = MagicMirrorSetting.maxRadiusValue;
+		
+		radiusScrollBar = new JScrollBar(JScrollBar.HORIZONTAL, min,extent,min,max);
+		radiusScrollBar.setBounds(MagicMirrorSetting.RADIUS_SCROLLBAR_RECTANGLE);
+		radiusScrollBar.setUnitIncrement(extent);
+		radiusScrollBar.setBlockIncrement(extent);
+		radiusScrollBar.addAdjustmentListener(this);
 
-		this.add(levelLabel);
-		this.add(levelScrollBar);
+		this.add(radiusLabel);
+		this.add(radiusScrollBar);
 
 	}
 
@@ -84,11 +81,11 @@ public class MagicMirrorAdjustPanel extends JPanel implements AdjustmentListener
 	{
 		// TODO Auto-generated method stub
 		convexButton = new JButton("凸透镜");
-		convexButton.setBounds(0, 0, 100, 40);
+		convexButton.setBounds(MagicMirrorSetting.CONVEX_BUTTON_RECTANGLE);
 		convexButton.addActionListener(this);
 
 		concaveButton = new JButton("凹透镜");
-		concaveButton.setBounds(100, 0, 100, 40);
+		concaveButton.setBounds(MagicMirrorSetting.CONCAVE_BUTTON_RECTANGLE);
 		concaveButton.addActionListener(this);
 		convexButton.setSelected(false);
 
@@ -101,11 +98,10 @@ public class MagicMirrorAdjustPanel extends JPanel implements AdjustmentListener
 	public void adjustmentValueChanged(AdjustmentEvent e)
 	{
 		// TODO Auto-generated method stub
-		if (e.getSource() == levelScrollBar)
+		if (e.getSource() == radiusScrollBar)
 		{
-			radius = e.getValue();
-			System.out.println(radius);
-			parent.setImagePanel(radius, type);
+			MagicMirrorSetting.radiusValue = e.getValue();
+			parent.setImagePanel();
 		}
 	}
 
@@ -115,23 +111,42 @@ public class MagicMirrorAdjustPanel extends JPanel implements AdjustmentListener
 		// TODO Auto-generated method stub
 		if (e.getSource() == concaveButton)
 		{
-			concaveButton.setSelected(false);
-			convexButton.setSelected(true);
-			type = Constants.TYPE_MAGIC_MIRROIR_1;
-
-			parent.setImagePanel(radius, type);
+			switchToConcave();
 		}
 
 		if (e.getSource() == convexButton)
 		{
-			convexButton.setSelected(false);
-			concaveButton.setSelected(true);
-			type = Constants.TYPE_MAGIC_MIRROIR_2;
-
-			parent.setImagePanel(radius, type);
+			switchToConvex();
 		}
 
 	}
+	
+	/**
+	 * 将滤镜切换到凹透镜
+	 * */
+	private void switchToConcave()
+	{
+		// TODO Auto-generated method stub
+		concaveButton.setSelected(false);
+		convexButton.setSelected(true);
+		MagicMirrorSetting.type = Constants.TYPE_MAGIC_MIRROIR_1;
+
+		parent.setImagePanel();
+	}
+	
+	/**
+	 * 将滤镜切换到凸透镜
+	 * */
+	private void switchToConvex()
+	{
+		// TODO Auto-generated method stub
+		convexButton.setSelected(false);
+		concaveButton.setSelected(true);
+		MagicMirrorSetting.type = Constants.TYPE_MAGIC_MIRROIR_2;
+
+		parent.setImagePanel();
+	}
+	
 
 	@Override
 	public void mouseClicked(MouseEvent arg0)
@@ -165,6 +180,6 @@ public class MagicMirrorAdjustPanel extends JPanel implements AdjustmentListener
 	public void mouseReleased(MouseEvent arg0)
 	{
 		// TODO Auto-generated method stub
-		parent.setImagePanel(radius, type);
+		parent.setImagePanel();
 	}
 }

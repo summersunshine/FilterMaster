@@ -121,7 +121,7 @@ public class PreviewPanel extends JPanel implements MouseListener
 	public void mouseReleased(MouseEvent e)
 	{
 		// TODO Auto-generated method stub
-		MainFrame.getInstance().setMainImagePanel(type);
+		MainFrame.getInstance().setImagePanel(type);
 	}
 
 }

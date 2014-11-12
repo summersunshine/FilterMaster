@@ -1,6 +1,7 @@
 package gui.partmosaic;
 
 import gui.ImagePanel;
+import gui.blur.BlurSetting;
 
 import java.awt.Cursor;
 import java.awt.Point;
@@ -11,7 +12,10 @@ import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 
 import util.ImgUtil;
+import algorithm.Constants;
+import algorithm.FunImageFactory;
 import algorithm.basic.Clone;
+import algorithm.basic.Erase;
 import algorithm.fun.Mosaic;
 
 public class PartMosaicImagePanel extends ImagePanel implements MouseListener, MouseMotionListener
@@ -71,11 +75,29 @@ public class PartMosaicImagePanel extends ImagePanel implements MouseListener, M
 		displayX = (int) (x / ratio);
 		displayY = (int) (y / ratio);
 
-		// this.updateImage(Erase.getImage(displayImage, sourceImage, displayX,
-		// displayY, PartMosaicFrame.sizeValue));
-		this.updateImage(Mosaic.getImage(displayImage, displayX, displayY, PartMosaicFrame.sizeValue));
+		if(PartMosaicSetting.type == Constants.TYPE_ERASE)
+		{
+			updateImage(Erase.getImage(displayImage, sourceImage, displayX, displayY, PartMosaicSetting.sizeValue));
+		}
+		else
+		{
+			updateImage(Mosaic.getImage(displayImage,PartMosaicSetting.patchValue, displayX, displayY, PartMosaicSetting.sizeValue));
+		}
 	}
 
+	/**
+	 * 依据patchValue更新图像
+	 * 
+	 * @param patchValue
+	 *            马赛克块的大小
+	 * */
+	public void updateImage(int patchValue)
+	{
+		displayImage = Mosaic.getImage(sourceImage, patchValue);
+
+		repaint();
+	}
+	
 	@Override
 	public void mouseDragged(MouseEvent e)
 	{
@@ -94,7 +116,8 @@ public class PartMosaicImagePanel extends ImagePanel implements MouseListener, M
 	public void mouseClicked(MouseEvent e)
 	{
 		// TODO Auto-generated method stub
-
+		updateImage(e.getX(), e.getY());
+		repaint();
 	}
 
 	@Override

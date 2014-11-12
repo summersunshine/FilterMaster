@@ -1,16 +1,15 @@
 package gui.partmosaic;
 
+import gui.BaseFrame;
+import gui.MainFrame;
+import gui.magicmirror.MagicMirrorSetting;
+
 import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
 
-public class PartMosaicFrame extends JFrame
+public class PartMosaicFrame extends BaseFrame
 {
-	// 画笔的大小
-	public static int sizeValue = 40;
-
-	// 模糊的力度
-	public static int levelValue = 40;
 
 	// 原始图像
 	public BufferedImage sourceImage;
@@ -23,8 +22,7 @@ public class PartMosaicFrame extends JFrame
 
 	public PartMosaicFrame(BufferedImage image)
 	{
-		this.setSize(1280, 720);
-		this.setLayout(null);
+		super();
 
 		sourceImage = image;
 
@@ -36,6 +34,7 @@ public class PartMosaicFrame extends JFrame
 
 	}
 
+	
 	/**
 	 * 初始化调整面板
 	 * */
@@ -56,6 +55,33 @@ public class PartMosaicFrame extends JFrame
 
 		getContentPane().add(imagePanel);
 	}
+
+	
+	/**
+	 * 设置图像面板
+	 * */
+	public void setImagePanel()
+	{
+		// TODO Auto-generated method stub
+		imagePanel.updateImage(PartMosaicSetting.patchValue);
+	}
+	
+	@Override
+	protected void saveOperation()
+	{
+		// TODO Auto-generated method stub
+		MainFrame.getInstance().setImagePanel(imagePanel.getDisplayImage());
+		super.saveOperation();
+	}
+
+
+	@Override
+	protected void cancelOperation()
+	{
+		// TODO Auto-generated method stub
+		super.cancelOperation();
+	}
+
 
 	/**
 	 * 设置圆形的光标
