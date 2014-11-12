@@ -73,6 +73,25 @@ public class ImgUtil
 		return (r | g | b);
 	}
 
+	public static float clamp(float c,float value)
+	{
+		if (c < 0)
+			return 0;
+		if (c > value)
+			return value;
+		return c;
+	}
+	
+	public static int clamp(int c,int value)
+	{
+		if (c < 0)
+			return 0;
+		if (c > value)
+			return value;
+		return c;
+	}
+	
+	
 	public static float clamp(float c)
 	{
 		if (c < 0)

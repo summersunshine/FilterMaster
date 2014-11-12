@@ -8,58 +8,61 @@ public class ColorUtil
 	 * 
 	 * @param value
 	 * */
-	public static HSL getHsl(RGB value)
+	public static HSV getHSV(RGB value)
 	{
+		
+		float r = value.r/255f;
+		float g = value.g/255f;
+		float b = value.b/255f;
+		
 		// 获取r,g,b中的最大值
-		int max = Math.max(Math.max(value.r, value.g), value.b);
+		float max = Math.max(Math.max(r, g), b);
 		// 获取r,g,b中的最小值
-		int min = Math.min(Math.min(value.r, value.g), value.b);
-
-		float h, s, l;
+		float min = Math.min(Math.min(r, g), b);
+	
+		float h, s, v;
 
 		if (max == min)
 		{
 			h = 0;
 		}
-		else if (max == value.r)
+		else if (max == r)
 		{
-			if (value.g >= value.b)
+			if (g >= b)
 			{
-				h = 60 * (value.g - value.b) / (max - min);
+				h = 60 * (g - b) / (max - min);
 			}
 			else
 			{
-				h = 60 * (value.g - value.b) / (max - min) + 360;
+				h = 60 * (g - b) / (max - min) + 360;
 			}
 		}
-		else if (max == value.g)
+		else if (max == g)
 		{
-			h = 60 * (value.b - value.r) / (max - min) + 120;
+			h = 60 * (b - r) / (max - min) + 120;
 		}
 		else
 		{
-			h = 60 * (value.r - value.g) / (max - min) + 240;
+			h = 60 * (r - g) / (max - min) + 240;
 		}
 
-		l = (max + min) / 2 / 255;
 
-		if (l == 0 || max == min)
+		if(max == 0)
 		{
 			s = 0;
 		}
-		else if (0 < l && l <= 127)
-		{
-			s = (max - min) / (2 * l);
-		}
 		else
 		{
-			s = (max - min) / (2 - 2 * l);
+			s = 1 - (min/max);
 		}
-
-		h = h * 255 / 360f;
-		l *= 255;
-		s *= 255;
-		return new HSL((int) h, (int) s, (int) l);
+		
+		
+		v = max;
+		
+		
+		v *= 100;
+		s *= 100;
+		return new HSV((int) h, (int) s, (int) v);
 	}
 
 	/**
@@ -67,38 +70,46 @@ public class ColorUtil
 	 * 
 	 * @param value
 	 * */
-	public static RGB getRGB(HSL value)
+	public static RGB getRGB(HSV value)
 	{
-		float r, g, b;
-		float h = value.h * 360 / 255f;
-		float l = value.l / 255f;
-		float s = value.s / 255f;
-		if (value.s == 0)
+		//float r, g, b;
+		float h = value.h;
+		float s = value.s / 100f;
+		float v = value.v / 100f;
+		
+		
+		int hi = (int) (h/60);
+		float f = h/60 - hi;
+		
+		float p = v*(1-s);
+		float q = v*(1-f*s);
+		float t = v*(1-(1-f)*s);
+		
+		if (hi==0)
 		{
-			r = g = b = value.l;
-			return new RGB(r, g, b);
+			return new RGB(v*255, t*255, p*255); 
 		}
-
-		float p, q;
-		if (l < 0.5)
+		else if (hi==1)
 		{
-			q = l * (1 + s);
+			return new RGB(q*255, v*255, p*255); 
+		}
+		else if (hi==2)
+		{
+			return new RGB(p*255, v*255, t*255); 
+		}
+		else if (hi==3)
+		{
+			return new RGB(p*255, q*255, v*255); 
+		}
+		else if (hi==4)
+		{
+			return new RGB(t*255, p*255, v*255); 
 		}
 		else
 		{
-			q = l + s - (l * s);
+			return new RGB(v*255, p*255, q*255); 
 		}
-		p = 2 * l - q;
-
-		r = h + 1 / 3f;
-		g = h;
-		b = h - 1 / 3f;
-
-		r = getValue(clamp(r), p, q) * 255;
-		g = getValue(clamp(g), p, q) * 255;
-		b = getValue(clamp(b), p, q) * 255;
-
-		return new RGB(r, g, b);
+		
 	}
 
 	/**
@@ -150,4 +161,6 @@ public class ColorUtil
 		return value;
 
 	}
+	
+	
 }

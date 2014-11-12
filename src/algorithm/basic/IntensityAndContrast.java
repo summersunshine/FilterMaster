@@ -4,6 +4,9 @@ import java.awt.image.BufferedImage;
 
 import util.ImgUtil;
 
+/**
+ * 图像的亮度和对比度
+ * */
 public class IntensityAndContrast
 {
 
@@ -15,7 +18,7 @@ public class IntensityAndContrast
 	 * @param contrast
 	 * @param threshod
 	 * */
-	public static BufferedImage getImage(BufferedImage image, int intensity, int contrast, int threshold)
+	public static BufferedImage getImage(BufferedImage image, int intensity, int contrast)
 	{
 		// 为0的时候，直接返回原图就好了
 		if (intensity == 0 && contrast == 0)
@@ -25,6 +28,7 @@ public class IntensityAndContrast
 
 		int width = image.getWidth();
 		int height = image.getHeight();
+		int threshold = 50;
 
 		BufferedImage outputImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 

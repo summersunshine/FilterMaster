@@ -23,9 +23,10 @@ public class Constants
 	// basic
 	public static final int TYPE_GRAY = 201;
 	public static final int TYPE_INTENSITY_CONTRAST = 202;
-	public static final int TYPE_INVERSE = 203;
-	public static final int TYPE_SCALE = 204;
-	public static final int TYPE_SHARPEN = 205;
+	public static final int TYPE_SATURATION_HUE = 203;
+	public static final int TYPE_INVERSE = 204;
+	public static final int TYPE_SCALE = 205;
+	public static final int TYPE_SHARPEN = 206;
 
 	// blur
 	public static final int TYPE_DOUBLE_GUASS_BLUR = 300;

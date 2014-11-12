@@ -22,6 +22,7 @@ import javax.swing.JFrame;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import util.ImgUtil;
+import algorithm.basic.SaturationAndHue;
 import algorithm.basic.Scale;
 import algorithm.basic.Clone;
 
@@ -271,6 +272,7 @@ public class MainFrame extends JFrame implements ActionListener
 		if (sourceImage != null)
 		{
 
+			SaturationAndHue.getImage(sourceImage, 0, 0);
 			displayImage = Clone.getImage(sourceImage);
 			previewImage = Scale.getImage(sourceImage, 140, 96);
 

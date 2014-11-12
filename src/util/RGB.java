@@ -17,6 +17,8 @@ public class RGB
 		this.r = r;
 		this.g = g;
 		this.b = b;
+		
+		clamp();
 	}
 
 	public RGB(float r, float g, float b)
@@ -24,6 +26,8 @@ public class RGB
 		this.r = (int) r;
 		this.g = (int) g;
 		this.b = (int) b;
+		
+		clamp();
 	}
 
 	public RGB(int[] rgb)
@@ -31,6 +35,8 @@ public class RGB
 		this.r = rgb[0];
 		this.g = rgb[1];
 		this.b = rgb[2];
+		
+		clamp();
 	}
 
 	public RGB(int rgb)
@@ -38,6 +44,8 @@ public class RGB
 		this.r = (rgb & 0xff0000) >> 16;
 		this.g = (rgb & 0xff00) >> 8;
 		this.b = (rgb & 0xff);
+		
+		clamp();
 	}
 
 	public int[] getSplitRGB()
@@ -56,5 +64,12 @@ public class RGB
 		int bb = b;
 		return (rr | gg | bb);
 	}
-
+	
+	
+	public void clamp()
+	{
+		r = ImgUtil.clamp(r);
+		g = ImgUtil.clamp(g);
+		b = ImgUtil.clamp(b);
+	}
 }
