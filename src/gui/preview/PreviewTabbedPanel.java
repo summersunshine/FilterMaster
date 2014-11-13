@@ -65,6 +65,9 @@ public class PreviewTabbedPanel extends JTabbedPane implements ChangeListener
 		this.addTab("Style", stylePanel);
 	}
 
+	
+	
+	
 	/**
 	 * 重画所有的面板
 	 * */

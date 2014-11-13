@@ -1,11 +1,9 @@
 package algorithm.basic;
 
-import java.awt.Color;
 import java.awt.image.BufferedImage;
 
 import util.ColorUtil;
 import util.HSV;
-import util.ImgUtil;
 import util.RGB;
 
 /**
@@ -35,11 +33,11 @@ public class SaturationAndHue
 			for (int x = 0; x < width; x++)
 			{
 				RGB rgb = new RGB(image.getRGB(x, y));
-				HSV hsb = ColorUtil.getHSV(rgb);
-				hsb.h += hue;
-				hsb.s += saturation;
-				hsb.clamp();
-				outputImage.setRGB(x, y, ColorUtil.getRGB(hsb).getRGB());
+				HSV hsv = ColorUtil.getHSV(rgb);
+				hsv.h += hue;
+				hsv.s += saturation;
+				hsv.clamp();
+				outputImage.setRGB(x, y, ColorUtil.getRGB(hsv).getRGB());
 				
 			}
 		}

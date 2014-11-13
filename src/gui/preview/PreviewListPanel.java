@@ -76,7 +76,7 @@ public class PreviewListPanel extends JScrollPane
 		switch (type)
 		{
 		case Constants.TYPE_ART:
-			describeList = Constants.DESCRIBE_ALPA_LIST;
+			describeList = Constants.DESCRIBE_ART_LIST;
 			break;
 		case Constants.TYPE_BAISC:
 			describeList = Constants.DESCRIBE_BASIC_LIST;

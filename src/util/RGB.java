@@ -2,6 +2,10 @@ package util;
 
 import java.awt.Color;
 
+
+/**
+ * RGBÑÕÉ«¿Õ¼ä
+ * */
 public class RGB
 {
 	public static final int R = 1;

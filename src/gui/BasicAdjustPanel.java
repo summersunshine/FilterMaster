@@ -88,7 +88,7 @@ public class BasicAdjustPanel extends JPanel implements AdjustmentListener, Mous
 	 * */
 	private void initIntensityBarAndLabel()
 	{
-		intensityScrollBar = new JScrollBar(JScrollBar.HORIZONTAL, 0, 10, -100, 100);
+		intensityScrollBar = new JScrollBar(JScrollBar.HORIZONTAL, 0, 1, -100, 100);
 		intensityScrollBar.setUnitIncrement(5);
 		intensityScrollBar.setBlockIncrement(10);
 		intensityScrollBar.addAdjustmentListener(this);
@@ -106,7 +106,7 @@ public class BasicAdjustPanel extends JPanel implements AdjustmentListener, Mous
 	 * */
 	private void initContrastBarAndLabel()
 	{
-		contrastScrollBar = new JScrollBar(JScrollBar.HORIZONTAL, 0, 10, -100, 100);
+		contrastScrollBar = new JScrollBar(JScrollBar.HORIZONTAL, 0, 1, -100, 100);
 		contrastScrollBar.setUnitIncrement(5);
 		contrastScrollBar.setBlockIncrement(10);
 		contrastScrollBar.addAdjustmentListener(this);
@@ -124,7 +124,7 @@ public class BasicAdjustPanel extends JPanel implements AdjustmentListener, Mous
 	 * */
 	private void initSaturationBarAndLabel()
 	{
-		saturationScrollBar = new JScrollBar(JScrollBar.HORIZONTAL, 0, 10, -100, 100);
+		saturationScrollBar = new JScrollBar(JScrollBar.HORIZONTAL, 0, 1, -100, 100);
 		saturationScrollBar.setUnitIncrement(5);
 		saturationScrollBar.setBlockIncrement(10);
 		saturationScrollBar.addAdjustmentListener(this);
@@ -143,7 +143,7 @@ public class BasicAdjustPanel extends JPanel implements AdjustmentListener, Mous
 	private void initHueBarAndLabel()
 	{
 		// TODO Auto-generated method stub
-		hueScrollBar = new JScrollBar(JScrollBar.HORIZONTAL, 0, 10, -100, 100);
+		hueScrollBar = new JScrollBar(JScrollBar.HORIZONTAL, 0, 1, -100, 100);
 		hueScrollBar.setUnitIncrement(5);
 		hueScrollBar.setBlockIncrement(10);
 		hueScrollBar.addAdjustmentListener(this);

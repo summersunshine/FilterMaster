@@ -44,20 +44,41 @@ public class ImagePanel extends JPanel
 	protected int y;
 	
 	//画布宽度
-	protected int width;
+	protected int canvasWidth;
 	
 	//画布高度
-	protected int height;
+	protected int canvasHeight;
+	
+	public int getCanvasWidth()
+	{
+		return canvasWidth;
+	}
+	
+	public void setCanvasWidth(int width)
+	{
+		this.canvasWidth = width;
+	}
+	
+	public int getCanvasHeight()
+	{
+		return canvasHeight;
+	}
+	
+	public void setCanvasHeight(int height)
+	{
+		this.canvasHeight = height;
+	}
+	
 
 	public ImagePanel(BufferedImage image)
 	{
 		initDisplayImage(image);
 		initSourceImage(image);
 		
-		calRatio();
-		calSizeAndPos();
+		calRatio(MAX_IMAGE_WIDTH,MAX_IMAGE_HEIGHT);
+		calSizeAndPos(IMAGE_CENTER_X,IMAGE_CENTER_Y);
 		
-		setVisible(true);
+		//setVisible(true);
 	}
 
 
@@ -126,15 +147,20 @@ public class ImagePanel extends JPanel
 		repaint();
 	}
 
+	
+	public void clear()
+	{
+		// TODO Auto-generated method stub
+		getGraphics().clearRect(0, 0, canvasWidth, canvasHeight);
+	}
+	
 	@Override
 	public void paint(Graphics g)
 	{
 		Graphics2D g2 = (Graphics2D) g;
 		try
 		{
-
-			g2.drawImage(displayImage, 0, 0, width, height, null);
-
+			g2.drawImage(displayImage, 0, 0, canvasWidth, canvasHeight, null);
 		}
 		finally
 		{
@@ -145,36 +171,39 @@ public class ImagePanel extends JPanel
 	/**
 	 * 计算ratio
 	 * */
-	private void calRatio()
+	public void calRatio(int maxWidth,int maxHeight)
 	{
 		float ratioX = 1, ratioY = 1;
 
-		if (displayImage.getWidth() > MAX_IMAGE_WIDTH)
+		if (displayImage.getWidth() > maxWidth)
 		{
-			ratioX = MAX_IMAGE_WIDTH * 1.0f / displayImage.getWidth();
+			ratioX = maxWidth * 1.0f / displayImage.getWidth();
 		}
 
-		if (displayImage.getHeight() > MAX_IMAGE_HEIGHT)
+		if (displayImage.getHeight() > maxHeight)
 		{
-			ratioY = MAX_IMAGE_HEIGHT * 1.0f / displayImage.getHeight();
+			ratioY = maxHeight * 1.0f / displayImage.getHeight();
 		}
 
 		ratio = ratioX < ratioY ? ratioX : ratioY;
 
 	}
 
+	
+	
 	/**
 	 * 重新计算图片绘制的位置和大小
 	 * */
-	protected void calSizeAndPos()
+	public void calSizeAndPos(int centerX,int centerY)
 	{
-		width = (int) (displayImage.getWidth() * ratio);
-		height = (int) (displayImage.getHeight() * ratio);
+		canvasWidth = (int) (displayImage.getWidth() * ratio);
+		canvasHeight = (int) (displayImage.getHeight() * ratio);
 		
-		x = IMAGE_CENTER_X - width / 2;
-		y = IMAGE_CENTER_Y - height / 2;
+		x = centerX - canvasWidth / 2;
+		y = centerY - canvasHeight / 2;
 
-		setBounds(x, y, width, height);
+		setBounds(x, y, canvasWidth, canvasHeight);
+		repaint();
 	}
 
 

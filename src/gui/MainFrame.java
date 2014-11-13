@@ -1,6 +1,7 @@
 package gui;
 
 import gui.blur.BlurFrame;
+import gui.compare.CompareFrame;
 import gui.jigsaw.JigsawFrame;
 import gui.magicmirror.MagicMirrorFrame;
 import gui.partcolor.PartColorFrame;
@@ -38,9 +39,9 @@ public class MainFrame extends JFrame implements ActionListener
 	// 缩小的预览图
 	public BufferedImage previewImage;
 
-	// 主界面
-	// public static JFrame mainFrame;
-
+	//预览面板
+	PreviewTabbedPanel previewTabbedPanel;
+	
 	// 主图像显示面板
 	public ImagePanel imagePanel;
 
@@ -71,6 +72,9 @@ public class MainFrame extends JFrame implements ActionListener
 	// 取消按钮
 	private JButton cancelButton;
 
+	//对比按钮
+	private JButton compareButton;
+	
 	// 背景模糊按钮
 	private JButton blurButton;
 
@@ -118,6 +122,9 @@ public class MainFrame extends JFrame implements ActionListener
 		initPartMosaicButton();
 		initSaveButton();
 		initCancelButton();
+		initCompareButton();
+		
+		
 		initBasicAdjustPanel();
 
 		File file = new File("C:\\Users\\Public\\Pictures\\Sample Pictures\\sand.jpg");
@@ -144,13 +151,17 @@ public class MainFrame extends JFrame implements ActionListener
 	 * */
 	private void initOpenButton()
 	{
-		JButton openButton = new JButton();
+		openButton = new JButton();
 		openButton.setSize(100, 30);
 		openButton.setText("打开");
 		openButton.addActionListener(this);
 		getContentPane().add(openButton);
 	}
 
+
+
+
+	
 	/**
 	 * 初始化背景虚幻按钮
 	 * */
@@ -242,6 +253,18 @@ public class MainFrame extends JFrame implements ActionListener
 		this.add(cancelButton);
 	}
 
+	/**
+	 * 初始化对比按钮
+	 * */
+	private void initCompareButton()
+	{
+		compareButton = new JButton();
+		compareButton.setBounds(850, 600, 100, 40);
+		compareButton.setText("对比");
+		compareButton.addActionListener(this);
+		getContentPane().add(compareButton);
+	}
+	
 	/**
 	 * 初始化文件选择器
 	 * */
@@ -380,10 +403,16 @@ public class MainFrame extends JFrame implements ActionListener
 	 * */
 	private void setImagePanel()
 	{
-
+		if (imagePanel!=null)
+		{
+			imagePanel.clear();
+			getContentPane().remove(imagePanel);
+		}
+		
 		imagePanel = new ImagePanel(sourceImage);
 		getContentPane().add(imagePanel);
 		imagePanel.repaint();
+
 	}
 
 	/**
@@ -392,11 +421,15 @@ public class MainFrame extends JFrame implements ActionListener
 	public void setPreviewImages()
 	{
 
-		PreviewTabbedPanel previewTabbedPanel = new PreviewTabbedPanel(previewImage);
+		if (previewTabbedPanel!=null)
+		{
+			getContentPane().remove(previewTabbedPanel);
+		}
+		previewTabbedPanel = new PreviewTabbedPanel(previewImage);
 		getContentPane().add(previewTabbedPanel);
 		previewTabbedPanel.repaint();
+		
 		setVisible(true);
-
 	}
 
 	@Override
@@ -430,6 +463,10 @@ public class MainFrame extends JFrame implements ActionListener
 		else if (e.getSource() == saveButton)
 		{
 			initSaveFileChooser();
+		}
+		else if (e.getSource() == compareButton)
+		{
+			CompareFrame compareFrame = new CompareFrame(sourceImage, imagePanel.getDisplayImage());
 		}
 		else
 		{

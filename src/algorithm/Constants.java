@@ -2,6 +2,8 @@ package algorithm;
 
 import java.beans.IntrospectionException;
 
+import javax.naming.InitialContext;
+
 public class Constants
 {
 
@@ -49,6 +51,9 @@ public class Constants
 
 	// style
 	public static final int TYPE_RETRO_STYLE = 601;
+	public static final int TYPE_DUSK_STYLE = 602;
+	public static final int TYPE_YOUTH_STYLE = 603;
+	
 
 	public static int[] TYPE_ALPA_LIST = { TYPE_OIL_PAINT, TYPE_PENCIL, TYPE_SCULPTUE, TYPE_SKETCH, TYPE_STOKEAREA };
 
@@ -61,12 +66,20 @@ public class Constants
 
 	public static int[] TYPE_LOMO_LIST = { TYPE_LOMO_CLASSIC };
 
-	public static int[] TYPE_STYLE_LIST = { TYPE_RETRO_STYLE };
+	public static int[] TYPE_STYLE_LIST = { TYPE_RETRO_STYLE ,TYPE_DUSK_STYLE,TYPE_YOUTH_STYLE};
 
-	public static String[] DESCRIBE_ALPA_LIST = { "ÓÍ»­", "Ç¦±Ê", "¸¡µñ", "ËØÃè", "ËØÃè" };
+	
+	
+	
+	public static String[] DESCRIBE_ART_LIST = { "ÓÍ»­", "Ç¦±Ê", "¸¡µñ", "ËØÃè", "ËØÃè" };
+	
 	public static String[] DESCRIBE_BASIC_LIST = { "»Ò¶ÈÍ¼", "¸ºÆ¬", "Èñ»¯" };
+	
 	public static String[] DESCRIBE_BLUR_LIST = { "¸ß±¶¸ßË¹Ä£ºý", "¸ßË¹Ä£ºý", "¹âÏßÄ£ºý", "¶¯Ì¬Ä£ºý" };
+	
 	public static String[] DESCRIBE_LOMO_LIST = { "¾­µä" };
-	public static String[] DESCRIBE_STYLE_LIST = { "¸´¹Å" };
+	
+	public static String[] DESCRIBE_STYLE_LIST = { "¸´¹Å","»Æ»è","Çà´º" };
+	
 
 }

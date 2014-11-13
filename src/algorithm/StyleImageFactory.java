@@ -3,6 +3,8 @@ package algorithm;
 import java.awt.image.BufferedImage;
 
 import algorithm.style.RetroStyle;
+import algorithm.style.DuskStyle;
+import algorithm.style.YouthStyle;
 
 public class StyleImageFactory
 {
@@ -23,6 +25,10 @@ public class StyleImageFactory
 		{
 		case (Constants.TYPE_RETRO_STYLE):
 			return RetroStyle.getImage(image);
+		case(Constants.TYPE_DUSK_STYLE):
+			return DuskStyle.getImage(image);
+		case(Constants.TYPE_YOUTH_STYLE):
+			return YouthStyle.getImage(image);
 		default:
 			return null;
 		}
