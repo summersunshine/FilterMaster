@@ -2,7 +2,8 @@ package algorithm;
 
 import java.awt.image.BufferedImage;
 
-import algorithm.lomo.Lomo;
+import algorithm.lomo.ClassicalLomo;
+import algorithm.lomo.MemoryLomo;
 
 public class LomoImageFactory
 {
@@ -22,7 +23,9 @@ public class LomoImageFactory
 		switch (type)
 		{
 		case (Constants.TYPE_LOMO_CLASSIC):
-			return Lomo.getImage(image);
+			return ClassicalLomo.getImage(image);
+		case(Constants.TYPE_LOMO_MEMORY):
+			return MemoryLomo.getImage(image);
 		default:
 			return null;
 		}

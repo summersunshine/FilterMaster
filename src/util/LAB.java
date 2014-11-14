@@ -70,8 +70,8 @@ public class LAB
 	
 	public void clamp()
 	{
-		l = ImgUtil.clamp(l);
-		a = ImgUtil.clamp(a);
-		b = ImgUtil.clamp(b);
+		l = ImgUtil.clampIn255(l);
+		a = ImgUtil.clampIn255(a);
+		b = ImgUtil.clampIn255(b);
 	}
 }

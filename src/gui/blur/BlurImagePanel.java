@@ -53,7 +53,7 @@ public class BlurImagePanel extends ImagePanel implements MouseListener, MouseMo
 		// TODO Auto-generated method stub
 		displayImage = DoubleGuassBlur.getImage(image,BlurSetting.levelValue);
 		
-		MainFrame.getInstance().displayImage = Clone.getImage(displayImage);
+		MainFrame.getInstance().setDisplayImage(Clone.getImage(displayImage));
 	}
 
 	@Override

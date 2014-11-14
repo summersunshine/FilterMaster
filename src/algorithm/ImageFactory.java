@@ -34,6 +34,8 @@ public class ImageFactory
 			return LomoImageFactory.getImage(type, image, parameter);
 		case (Constants.TYPE_STYLE):
 			return StyleImageFactory.getImage(type, image, parameter);
+		case(Constants.TYPE_FASHION):
+			return FashionImageFactory.getImage(type, image, parameter);
 		default:
 			return null;
 		}

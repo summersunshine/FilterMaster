@@ -3,6 +3,7 @@ package algorithm.art;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 
+import algorithm.fun.AlphaMerge;
 import util.ImgUtil;
 
 /**
@@ -88,7 +89,7 @@ public class StrokeArea
 					}
 				}
 				// calculate the output pixel value.
-				int outPixelValue = ImgUtil.clamp((int) (255.0d * moment / (size * size)));
+				int outPixelValue = ImgUtil.clampIn255((int) (255.0d * moment / (size * size)));
 				outPixels[index] = (ta << 24) | (outPixelValue << 16) | (outPixelValue << 8) | outPixelValue;
 			}
 		}

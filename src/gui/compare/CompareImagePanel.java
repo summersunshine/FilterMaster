@@ -130,6 +130,8 @@ public class CompareImagePanel extends JPanel
 		}
 
 		ratio = ratioX < ratioY ? ratioX : ratioY;
+		
+		System.out.println("ratio" + ratio);
 	}
 
 	/**
@@ -138,14 +140,14 @@ public class CompareImagePanel extends JPanel
 	private void calRatioInVertical()
 	{
 
-		if (displayImage.getWidth() > CompareSetting.MAX_IMAGE_WDITH)
+		if (sourceImage.getWidth() > CompareSetting.MAX_IMAGE_WDITH)
 		{
-			ratioX = CompareSetting.MAX_IMAGE_WDITH * 1.0f / displayImage.getWidth();
+			ratioX = CompareSetting.MAX_IMAGE_WDITH * 1.0f / sourceImage.getWidth();
 		}
 
-		if (displayImage.getHeight() > CompareSetting.MAX_IMAGE_HEIGHT / 2)
+		if (sourceImage.getHeight() > CompareSetting.MAX_IMAGE_HEIGHT / 2)
 		{
-			ratioY = CompareSetting.MAX_IMAGE_HEIGHT * .5f / displayImage.getHeight();
+			ratioY = CompareSetting.MAX_IMAGE_HEIGHT * .5f / sourceImage.getHeight();
 		}
 
 	}
@@ -155,14 +157,14 @@ public class CompareImagePanel extends JPanel
 	 * */
 	private void calRatioInHorizontal()
 	{
-		if (displayImage.getWidth() > CompareSetting.MAX_IMAGE_WDITH)
+		if (sourceImage.getWidth() > CompareSetting.MAX_IMAGE_WDITH/2)
 		{
-			ratioX = CompareSetting.MAX_IMAGE_WDITH * 0.5f / displayImage.getWidth();
+			ratioX = CompareSetting.MAX_IMAGE_WDITH * 0.5f / sourceImage.getWidth();
 		}
 
-		if (displayImage.getHeight() > CompareSetting.MAX_IMAGE_HEIGHT)
+		if (sourceImage.getHeight() > CompareSetting.MAX_IMAGE_HEIGHT)
 		{
-			ratioY = CompareSetting.MAX_IMAGE_HEIGHT * 1.0f / displayImage.getHeight();
+			ratioY = CompareSetting.MAX_IMAGE_HEIGHT * 1.0f / sourceImage.getHeight();
 		}
 
 	}

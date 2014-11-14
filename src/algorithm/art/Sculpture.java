@@ -41,9 +41,9 @@ public class Sculpture
 				int r = rgbColor1[0] - rgbColor2[0] + 128;
 				int g = rgbColor1[1] - rgbColor2[1] + 128;
 				int b = rgbColor1[2] - rgbColor2[2] + 128;
-				r = ImgUtil.clamp(r);
-				g = ImgUtil.clamp(g);
-				b = ImgUtil.clamp(b);
+				r = ImgUtil.clampIn255(r);
+				g = ImgUtil.clampIn255(g);
+				b = ImgUtil.clampIn255(b);
 
 				outputImage.setRGB(x, y, ImgUtil.getRGB(r, g, b));
 			}

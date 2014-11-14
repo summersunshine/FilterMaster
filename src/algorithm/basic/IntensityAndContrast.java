@@ -48,16 +48,16 @@ public class IntensityAndContrast
 		int[] values = new int[256];
 		for (int i = 0; i < 256; i++)
 		{
-			int v = contrast > 0 ? ImgUtil.clamp((i + (int) (i * bv + 0.5f))) : i;
+			int v = contrast > 0 ? ImgUtil.clampIn255((i + (int) (i * bv + 0.5f))) : i;
 			if (contrast >= 255)
 			{
 				v = v >= threshold ? 255 : 0;
 			}
 			else
 			{
-				v = ImgUtil.clamp(v + (int) ((v - threshold) * cv + 0.5f));
+				v = ImgUtil.clampIn255(v + (int) ((v - threshold) * cv + 0.5f));
 			}
-			values[i] = contrast <= 0 ? ImgUtil.clamp(v + (int) (v * bv + 0.5f)) : v;
+			values[i] = contrast <= 0 ? ImgUtil.clampIn255(v + (int) (v * bv + 0.5f)) : v;
 		}
 
 		for (int y = 0; y < height; y++)

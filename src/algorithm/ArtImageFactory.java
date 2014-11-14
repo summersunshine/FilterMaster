@@ -6,6 +6,7 @@ import algorithm.art.OilPaint;
 import algorithm.art.Pencil;
 import algorithm.art.Sculpture;
 import algorithm.art.Sketch;
+import algorithm.art.StrokeArea;
 import algorithm.basic.Gray;
 import algorithm.basic.IntensityAndContrast;
 import algorithm.basic.Inverse;
@@ -42,7 +43,7 @@ public class ArtImageFactory
 		case (Constants.TYPE_SKETCH):
 			return Sketch.getImage(image);
 		case (Constants.TYPE_STOKEAREA):
-			return Sketch.getImage(image);
+			return StrokeArea.getImage(image,2);
 		default:
 			return null;
 		}

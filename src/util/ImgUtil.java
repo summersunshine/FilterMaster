@@ -101,7 +101,7 @@ public class ImgUtil
 		return c;
 	}
 	
-	public static int clamp(int c)
+	public static int clampIn255(int c)
 	{
 		if (c < 0)
 			return 0;

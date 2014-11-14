@@ -6,14 +6,14 @@ import javax.naming.InitialContext;
 
 public class Constants
 {
-
+	public static final int TYPE_ERASE = 0;
 	public static final int TYPE_ART = 1;
 	public static final int TYPE_BAISC = 2;
 	public static final int TYPE_BLUR = 3;
 	public static final int TYPE_FUN = 4;
 	public static final int TYPE_LOMO = 5;
 	public static final int TYPE_STYLE = 6;
-	public static final int TYPE_ERASE = 7;
+	public static final int TYPE_FASHION = 7;
 
 	// art
 	public static final int TYPE_OIL_PAINT = 101;
@@ -48,11 +48,19 @@ public class Constants
 
 	// lomo
 	public static final int TYPE_LOMO_CLASSIC = 501;
+	public static final int TYPE_LOMO_MEMORY = 502;
 
 	// style
 	public static final int TYPE_RETRO_STYLE = 601;
 	public static final int TYPE_DUSK_STYLE = 602;
 	public static final int TYPE_YOUTH_STYLE = 603;
+	
+	//fashion
+	public static final int TYPE_RAINBOW = 701;
+	public static final int TYPE_PHOTON = 702;
+	public static final int TYPE_PARCHMENT = 703;
+	public static final int TYPE_FLARE = 704;
+	
 	
 
 	public static int[] TYPE_ALPA_LIST = { TYPE_OIL_PAINT, TYPE_PENCIL, TYPE_SCULPTUE, TYPE_SKETCH, TYPE_STOKEAREA };
@@ -64,22 +72,23 @@ public class Constants
 	public static int[] TYPE_FUN_LIST = { TYPE_ALPHA_MERGE, TYPE_ALPHA_MERGE_1, TYPE_ALPHA_MERGE_2, TYPE_ALPHA_MERGE_3, TYPE_ALPHA_MERGE_4,
 			TYPE_MAGIC_MIRROIR_1, TYPE_MAGIC_MIRROIR_2, TYPE_MOSIC };
 
-	public static int[] TYPE_LOMO_LIST = { TYPE_LOMO_CLASSIC };
+	public static int[] TYPE_LOMO_LIST = { TYPE_LOMO_CLASSIC ,TYPE_LOMO_MEMORY};
 
 	public static int[] TYPE_STYLE_LIST = { TYPE_RETRO_STYLE ,TYPE_DUSK_STYLE,TYPE_YOUTH_STYLE};
 
+	public static int[] TYPE_FASHION_LIST = {TYPE_RAINBOW,TYPE_PHOTON,TYPE_PARCHMENT,TYPE_FLARE};
 	
 	
-	
-	public static String[] DESCRIBE_ART_LIST = { "ÓÍ»­", "Ç¦±Ê", "¸¡µñ", "ËØÃè", "ËØÃè" };
+	public static String[] DESCRIBE_ART_LIST = { "ÓÍ»­", "Ç¦±Ê", "¸¡µñ", "ËØÃè", "±Ê´¥ÇøÓò" };
 	
 	public static String[] DESCRIBE_BASIC_LIST = { "»Ò¶ÈÍ¼", "¸ºÆ¬", "Èñ»¯" };
 	
 	public static String[] DESCRIBE_BLUR_LIST = { "¸ß±¶¸ßË¹Ä£ºý", "¸ßË¹Ä£ºý", "¹âÏßÄ£ºý", "¶¯Ì¬Ä£ºý" };
 	
-	public static String[] DESCRIBE_LOMO_LIST = { "¾­µä" };
+	public static String[] DESCRIBE_LOMO_LIST = { "¾­µä" ,"»ØÒä"};
 	
 	public static String[] DESCRIBE_STYLE_LIST = { "¸´¹Å","»Æ»è","Çà´º" };
 	
+	public static String[] DESCRIBE_FASHION_LIST = {"²Êºç","¼«¹â","ÑòÆ¤Ö½","¹âÔÎ"};
 
 }

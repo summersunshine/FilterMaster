@@ -50,9 +50,9 @@ public class Sharpen
 				sumG /= 273;
 				sumB /= 273;
 
-				sumR = ImgUtil.clamp(sumR);
-				sumG = ImgUtil.clamp(sumG);
-				sumB = ImgUtil.clamp(sumB);
+				sumR = ImgUtil.clampIn255(sumR);
+				sumG = ImgUtil.clampIn255(sumG);
+				sumB = ImgUtil.clampIn255(sumB);
 
 				outputImage.setRGB(x, y, ImgUtil.getRGB(sumR, sumG, sumB));
 			}

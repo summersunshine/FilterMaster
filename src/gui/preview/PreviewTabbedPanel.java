@@ -27,6 +27,9 @@ public class PreviewTabbedPanel extends JTabbedPane implements ChangeListener
 
 	// 风格化面板
 	public PreviewListPanel stylePanel;
+	
+	//时尚面板
+	public PreviewListPanel fashionPanel;
 
 	public PreviewTabbedPanel(BufferedImage previewImage)
 	{
@@ -37,7 +40,7 @@ public class PreviewTabbedPanel extends JTabbedPane implements ChangeListener
 
 		this.addChangeListener(this);
 
-		this.setSelectedIndex(0);
+		this.setSelectedIndex(5);
 		this.setBounds(1040, 0, 240, 720);
 		this.setVisible(true);
 
@@ -55,7 +58,7 @@ public class PreviewTabbedPanel extends JTabbedPane implements ChangeListener
 		blurPanel = new PreviewListPanel(previewImage, Constants.TYPE_BLUR);
 		lomoPanel = new PreviewListPanel(previewImage, Constants.TYPE_LOMO);
 		stylePanel = new PreviewListPanel(previewImage, Constants.TYPE_STYLE);
-
+		fashionPanel = new PreviewListPanel(previewImage, Constants.TYPE_FASHION);
 		JScrollPane scrollPane = new JScrollPane(artPanel);
 
 		this.addTab("Art", scrollPane);
@@ -63,6 +66,7 @@ public class PreviewTabbedPanel extends JTabbedPane implements ChangeListener
 		this.addTab("Blur", blurPanel);
 		this.addTab("Lomo", lomoPanel);
 		this.addTab("Style", stylePanel);
+		this.addTab("Fashion", fashionPanel);
 	}
 
 	
@@ -78,6 +82,7 @@ public class PreviewTabbedPanel extends JTabbedPane implements ChangeListener
 		blurPanel.repaint();
 		lomoPanel.repaint();
 		stylePanel.repaint();
+		fashionPanel.repaint();
 	}
 
 	@Override

@@ -34,7 +34,7 @@ import algorithm.blur.MotionBlur;
 import algorithm.fun.AlphaMerge;
 import algorithm.fun.MagicMirror;
 import algorithm.fun.Mosaic;
-import algorithm.lomo.Lomo;
+import algorithm.lomo.ClassicalLomo;
 import algorithm.style.RetroStyle;
 
 public class Img

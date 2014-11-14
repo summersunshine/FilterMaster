@@ -66,9 +66,9 @@ public class Laser
 
 				if (r > 0)
 				{
-					r = ImgUtil.clamp((int) (r * strength) + r2);
-					g = ImgUtil.clamp((int) (g * strength) + g2);
-					b = ImgUtil.clamp((int) (b * strength) + b2);
+					r = ImgUtil.clampIn255((int) (r * strength) + r2);
+					g = ImgUtil.clampIn255((int) (g * strength) + g2);
+					b = ImgUtil.clampIn255((int) (b * strength) + b2);
 				}
 				else
 				{

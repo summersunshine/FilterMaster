@@ -59,7 +59,9 @@ public class PreviewListPanel extends JScrollPane
 		case Constants.TYPE_STYLE:
 			typeList = Constants.TYPE_STYLE_LIST;
 			break;
-
+		case Constants.TYPE_FASHION:
+			typeList = Constants.TYPE_FASHION_LIST;
+			break;
 		default:
 			typeList = null;
 			break;
@@ -90,7 +92,9 @@ public class PreviewListPanel extends JScrollPane
 		case Constants.TYPE_STYLE:
 			describeList = Constants.DESCRIBE_STYLE_LIST;
 			break;
-
+		case Constants.TYPE_FASHION:
+			describeList = Constants.DESCRIBE_FASHION_LIST;
+			break;
 		default:
 			typeList = null;
 			break;

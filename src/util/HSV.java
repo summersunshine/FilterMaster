@@ -3,6 +3,9 @@ package util;
 
 /**
  * HSVÑÕÉ«¿Õ¼ä
+ * H 0~360
+ * S 0~100
+ * V 0~100
  * */
 public class HSV
 {

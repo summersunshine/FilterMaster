@@ -94,10 +94,10 @@ public class MotionBlur
 				}
 				else
 				{
-					ta = ImgUtil.clamp((int) (ta / count));
-					tr = ImgUtil.clamp((int) (tr / count));
-					tg = ImgUtil.clamp((int) (tg / count));
-					tb = ImgUtil.clamp((int) (tb / count));
+					ta = ImgUtil.clampIn255((int) (ta / count));
+					tr = ImgUtil.clampIn255((int) (tr / count));
+					tg = ImgUtil.clampIn255((int) (tg / count));
+					tb = ImgUtil.clampIn255((int) (tb / count));
 					outPixels[index] = (ta << 24) | (tr << 16) | (tg << 8) | tb;
 				}
 				index++;

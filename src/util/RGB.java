@@ -72,8 +72,8 @@ public class RGB
 	
 	public void clamp()
 	{
-		r = ImgUtil.clamp(r);
-		g = ImgUtil.clamp(g);
-		b = ImgUtil.clamp(b);
+		r = ImgUtil.clampIn255(r);
+		g = ImgUtil.clampIn255(g);
+		b = ImgUtil.clampIn255(b);
 	}
 }

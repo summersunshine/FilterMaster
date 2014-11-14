@@ -53,9 +53,9 @@ public class GuassBlur
 				g = g / 9;
 				b = b / 9;
 
-				r = ImgUtil.clamp(r);
-				g = ImgUtil.clamp(g);
-				b = ImgUtil.clamp(b);
+				r = ImgUtil.clampIn255(r);
+				g = ImgUtil.clampIn255(g);
+				b = ImgUtil.clampIn255(b);
 
 				outputImage.setRGB(x, y, ImgUtil.getRGB(r, g, b));
 
@@ -147,7 +147,7 @@ public class GuassBlur
 		}
 		sum /= 16;
 
-		sum = ImgUtil.clamp(sum);
+		sum = ImgUtil.clampIn255(sum);
 
 		return sum;
 	}

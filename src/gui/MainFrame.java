@@ -31,7 +31,7 @@ public class MainFrame extends JFrame implements ActionListener
 {
 
 	// ÏÔÊ¾µÄÍ¼Ïñ
-	public BufferedImage displayImage;
+	//public BufferedImage displayImage;
 
 	// Ô´Í¼Ïñ
 	public BufferedImage sourceImage;
@@ -135,6 +135,13 @@ public class MainFrame extends JFrame implements ActionListener
 		// magicMirrorFrame = new MagicMirrorFrame(sourceImage);
 		// jigsawFrame = new JigsawFrame(sourceImage);
 		// blurFrame = new BlurFrame(sourceImage);
+	}
+	
+	
+	public void setDisplayImage(BufferedImage displayImage)
+	{
+		imagePanel.updateImage(displayImage);
+		
 	}
 
 	/**
@@ -296,8 +303,8 @@ public class MainFrame extends JFrame implements ActionListener
 		{
 
 			SaturationAndHue.getImage(sourceImage, 0, 0);
-			displayImage = Clone.getImage(sourceImage);
-			previewImage = Scale.getImage(sourceImage, 140, 96);
+			//displayImage = Clone.getImage(sourceImage);
+			previewImage = Scale.getImage(sourceImage, 100, 100);
 
 			setPreviewImages();
 			setImagePanel();
@@ -348,8 +355,8 @@ public class MainFrame extends JFrame implements ActionListener
 			{
 				file.createNewFile();
 			}
-			sourceImage = Clone.getImage(displayImage);
-			ImageIO.write(displayImage, "JPG", file);
+			sourceImage = Clone.getImage(imagePanel.getDisplayImage());
+			ImageIO.write(sourceImage, "JPG", file);
 		}
 		catch (FileNotFoundException e)
 		{
@@ -442,23 +449,23 @@ public class MainFrame extends JFrame implements ActionListener
 		}
 		else if (e.getSource() == blurButton)
 		{
-			blurFrame = new BlurFrame(sourceImage);
+			blurFrame = new BlurFrame(imagePanel.getDisplayImage());
 		}
 		else if (e.getSource() == jigsawButton)
 		{
-			jigsawFrame = new JigsawFrame(sourceImage);
+			jigsawFrame = new JigsawFrame(imagePanel.getDisplayImage());
 		}
 		else if (e.getSource() == magicMirrorButton)
 		{
-			magicMirrorFrame = new MagicMirrorFrame(sourceImage);
+			magicMirrorFrame = new MagicMirrorFrame(imagePanel.getDisplayImage());
 		}
 		else if (e.getSource() == partColorButton)
 		{
-			partColorFrame = new PartColorFrame(sourceImage);
+			partColorFrame = new PartColorFrame(imagePanel.getDisplayImage());
 		}
 		else if (e.getSource() == partMosaicButton)
 		{
-			partMosaicFrame = new PartMosaicFrame(sourceImage);
+			partMosaicFrame = new PartMosaicFrame(imagePanel.getDisplayImage());
 		}
 		else if (e.getSource() == saveButton)
 		{

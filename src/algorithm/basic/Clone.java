@@ -20,7 +20,7 @@ public class Clone
 		int width = image.getWidth();
 		int height = image.getHeight();
 
-		BufferedImage outputImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+		BufferedImage outputImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 
 		for (int y = 0; y < height; y++)
 		{
