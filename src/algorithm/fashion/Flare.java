@@ -17,8 +17,8 @@ public class Flare
 	 * */
 	public static BufferedImage getImage(BufferedImage image)
 	{
-		BufferedImage flareImage = ImgUtil.getImg("res/glass.jpg");
+		BufferedImage flareImage = ImgUtil.getImg("res/flare.jpg");
 		
-		return AlphaMerge.getImage(flareImage,image,0.2f);
+		return AlphaMerge.getImage(flareImage,image,0.5f);
 	}
 }

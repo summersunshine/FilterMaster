@@ -1,8 +1,8 @@
 package gui.partmosaic;
 
 import gui.BaseFrame;
-import gui.MainFrame;
 import gui.magicmirror.MagicMirrorSetting;
+import gui.main.MainFrame;
 
 import java.awt.image.BufferedImage;
 

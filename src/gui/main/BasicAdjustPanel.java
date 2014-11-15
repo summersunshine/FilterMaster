@@ -1,4 +1,4 @@
-package gui;
+package gui.main;
 
 import java.awt.GridLayout;
 import java.awt.HeadlessException;

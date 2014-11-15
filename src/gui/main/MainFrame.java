@@ -1,5 +1,7 @@
-package gui;
+package gui.main;
 
+import gui.ImagePanel;
+import gui.ScrawlImagePanel;
 import gui.blur.BlurFrame;
 import gui.compare.CompareFrame;
 import gui.jigsaw.JigsawFrame;
@@ -44,6 +46,9 @@ public class MainFrame extends JFrame implements ActionListener
 	
 	// 主图像显示面板
 	public ImagePanel imagePanel;
+	
+	//按钮面板
+	public MainButtonPanel mainButtonPanel;
 
 	// 源图像路径
 	public String sourceImagePath;
@@ -115,11 +120,12 @@ public class MainFrame extends JFrame implements ActionListener
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		initOpenButton();
-		initBlurButton();
-		initJigsawButton();
-		initMagicMirrorButton();
-		initPartColorButton();
-		initPartMosaicButton();
+		initButtonPanel();
+//		initBlurButton();
+//		initJigsawButton();
+//		initMagicMirrorButton();
+//		initPartColorButton();
+//		initPartMosaicButton();
 		initSaveButton();
 		initCancelButton();
 		initCompareButton();
@@ -138,9 +144,15 @@ public class MainFrame extends JFrame implements ActionListener
 	}
 	
 	
-	public void setDisplayImage(BufferedImage displayImage)
+
+	/**
+	 * 初始化按钮面板
+	 * */
+	private void initButtonPanel()
 	{
-		imagePanel.updateImage(displayImage);
+		mainButtonPanel = new MainButtonPanel();
+		getContentPane().add(mainButtonPanel);
+		mainButtonPanel.repaint();
 		
 	}
 
@@ -387,6 +399,35 @@ public class MainFrame extends JFrame implements ActionListener
 		return file;
 	}
 
+	
+	/**
+	 * 设置显示的图像
+	 * 
+	 * @param displayImage
+	 * */
+	public void setDisplayImage(BufferedImage displayImage)
+	{
+		imagePanel.updateImage(displayImage);
+		
+	}
+	
+	/**
+	 * 获取显示的图像
+	 * */
+	public BufferedImage getDisplayImage()
+	{
+		return imagePanel.getDisplayImage();
+	}
+	
+	
+	/**
+	 * 获取图像面板
+	 * */
+	public ImagePanel getImagePanel()
+	{
+		return imagePanel;
+	}
+	
 	/**
 	 * 设置主图像面板
 	 * 
@@ -416,7 +457,7 @@ public class MainFrame extends JFrame implements ActionListener
 			getContentPane().remove(imagePanel);
 		}
 		
-		imagePanel = new ImagePanel(sourceImage);
+		imagePanel = new ScrawlImagePanel(sourceImage);
 		getContentPane().add(imagePanel);
 		imagePanel.repaint();
 

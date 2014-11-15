@@ -16,6 +16,13 @@ public class RGB
 	public int g;
 	public int b;
 
+	/**
+	 * 构造函数
+	 *
+	 *@param r
+	 *@param g
+	 *@param b
+	 * */
 	public RGB(int r, int g, int b)
 	{
 		this.r = r;
@@ -25,6 +32,13 @@ public class RGB
 		clamp();
 	}
 
+	/**
+	 * 构造函数
+	 * 
+	 * @param r
+	 * @param g
+	 * @param b
+	 * */
 	public RGB(float r, float g, float b)
 	{
 		this.r = (int) r;
@@ -34,6 +48,12 @@ public class RGB
 		clamp();
 	}
 
+	/**
+	 * 构造函数
+	 * 
+	 * @param rgb[]
+	 * 以数组的方式分别保存三个通道
+	 * */
 	public RGB(int[] rgb)
 	{
 		this.r = rgb[0];
@@ -43,6 +63,12 @@ public class RGB
 		clamp();
 	}
 
+	/**
+	 * 构造函数
+	 * 
+	 * @param rgb
+	 * 24位整数
+	 * */
 	public RGB(int rgb)
 	{
 		this.r = (rgb & 0xff0000) >> 16;
@@ -51,6 +77,24 @@ public class RGB
 		
 		clamp();
 	}
+	
+	
+	/**
+	 * 是否是纯白色
+	 * */
+	public boolean isPureWhite()
+	{
+		return this.r == 255 && this.g == 255 && this.b == 255;
+	}
+	
+	/**
+	 * 是否是纯黑色
+	 * */
+	public boolean isPureBlack()
+	{
+		return this.r == 0 && this.g == 0 && this.b == 255;
+	}
+	
 
 	public int[] getSplitRGB()
 	{

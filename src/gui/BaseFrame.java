@@ -1,5 +1,8 @@
 package gui;
 
+import gui.main.MainButtonPanel;
+import gui.main.MainFrame;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -24,11 +27,18 @@ public class BaseFrame extends JFrame implements ActionListener
 
 	public BaseFrame()
 	{
-		this.setSize(1280, 720);
+		this.initBounds();
+//		this.setSize(1280, 720);
 		this.setLayout(null);
 		initSaveButton();
 		initCancelButton();
 	}
+	
+	private void initBounds()
+	{
+		this.setBounds(MainFrame.getInstance().getBounds());
+	}
+	
 	
 	/**
 	 * 初始化保存按钮

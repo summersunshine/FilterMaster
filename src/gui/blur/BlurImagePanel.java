@@ -1,7 +1,7 @@
 package gui.blur;
 
 import gui.ImagePanel;
-import gui.MainFrame;
+import gui.main.MainFrame;
 
 import java.awt.Cursor;
 import java.awt.Point;

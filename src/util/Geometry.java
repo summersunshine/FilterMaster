@@ -93,4 +93,75 @@ public class Geometry
 		return getYPointsForCircle(y, radius, 100);
 	}
 
+	/**
+	 * 判断一个点是否在多边形之内
+	 * 
+	 * @param polygon
+	 * @param pt
+	 * */
+	boolean isInsidePolygon(Point[] polygon, Point pt)
+	{
+		int i, j;
+		boolean inside = false, redo = true;
+
+		for (i = 0; i < polygon.length; ++i)
+		{
+			if (polygon[i].x == pt.x && // 是否在顶点上
+					polygon[i].y == pt.y)
+			{
+				redo = false;
+				inside = true;
+				break;
+			}
+		}
+
+		while (redo)
+		{
+			redo = false;
+			inside = false;
+			for (i = 0, j = polygon.length - 1; i < polygon.length; j = i++)
+			{
+				if ((polygon[i].y < pt.y && pt.y < polygon[j].y) || (polygon[j].y < pt.y && pt.y < polygon[i].y))
+				{
+					if (pt.x <= polygon[i].x || pt.x <= polygon[j].x)
+					{
+						double _x = (pt.y - polygon[i].y) * (polygon[j].x - polygon[i].x) / (polygon[j].y - polygon[i].y) + polygon[i].x;
+
+						if (pt.x < _x) // 在线的左侧
+							inside = !inside;
+						else if (pt.x == _x) // 在线上
+						{
+							inside = true;
+							break;
+						}
+					}
+				}
+				else if (pt.y == polygon[i].y)
+				{
+					if (pt.x < polygon[i].x) // 交点在顶点上
+					{
+						if (polygon[i].y > polygon[j].y)
+						{
+							--pt.y;
+						}
+						else
+						{
+							++pt.y;
+						}
+						redo = true;
+						break;
+					}
+				}
+				else if (polygon[i].y == polygon[j].y && // 在水平的边界线上
+						pt.y == polygon[i].y && ((polygon[i].x < pt.x && pt.x < polygon[j].x) || (polygon[j].x < pt.x && pt.x < polygon[i].x)))
+				{
+					inside = true;
+					break;
+				}
+			}
+		}
+
+		return inside;
+	}
+
 }

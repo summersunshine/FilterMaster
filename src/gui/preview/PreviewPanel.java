@@ -1,6 +1,6 @@
 package gui.preview;
 
-import gui.MainFrame;
+import gui.main.MainFrame;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;

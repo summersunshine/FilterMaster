@@ -42,6 +42,11 @@ public class ImgUtil
 		return ip;
 	}
 
+	/**
+	 * 通过文件名读取图像
+	 * 
+	 * @param fileName
+	 * */
 	public static BufferedImage getImg(String fileName)
 	{
 		BufferedImage bufferedImage = null;
@@ -56,6 +61,26 @@ public class ImgUtil
 		return bufferedImage;
 	}
 
+	
+	/**
+	 * 通过文件名读取图像,保留alpha通道
+	 * 
+	 * @param fileName
+	 * */
+	public static BufferedImage getAlphaImg(String fileName)
+	{
+		BufferedImage bufferedImage = null;
+		try
+		{
+			bufferedImage = ImageIO.read(new File(fileName));
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		return bufferedImage;
+	}
+	
 	public static int[] getSplitRGB(int rgb)
 	{
 		int[] rgbs = new int[3];
