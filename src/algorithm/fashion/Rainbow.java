@@ -20,7 +20,7 @@ public class Rainbow
 	public static BufferedImage getImage(BufferedImage image)
 	{
 		
-		//return Frame.getImage(image, 1);
+		//return Frame.getImage(image, 2);
 		
 		BufferedImage paperImage = ImgUtil.getImg("res/rainbow.jpg");
 		

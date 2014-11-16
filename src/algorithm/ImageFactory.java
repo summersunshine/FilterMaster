@@ -36,6 +36,8 @@ public class ImageFactory
 			return StyleImageFactory.getImage(type, image, parameter);
 		case(Constants.TYPE_FASHION):
 			return FashionImageFactory.getImage(type, image, parameter);
+		case(Constants.TYPE_FRAME):
+			return FrameImageFactory.getImage(type, image, parameter);
 		default:
 			return null;
 		}

@@ -1,5 +1,6 @@
 package algorithm.frame;
 
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 
@@ -46,7 +47,8 @@ public class Frame
 		float ratioX = frameImage.getWidth()*1f/width;
 		float ratioY = frameImage.getHeight()*1f/height;
 		float frameX,frameY;
-		int frameRgb;
+		int frameRgb,sourceRgb;
+		Color frameColor,sourceColor;
 		
 		BufferedImage outputImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 
@@ -59,16 +61,20 @@ public class Frame
 				frameY = y*ratioY;
 				
 				frameRgb = frameImage.getRGB((int)frameX, (int)frameY);
-				RGB value = new RGB(frameRgb);
+				frameColor= new Color(frameRgb, true);
 				
-				if (value.isPureWhite())
-				{
-					outputImage.setRGB(x, y, image.getRGB(x, y));
-				}
-				else
-				{
-					outputImage.setRGB(x, y, frameRgb);
-				}
+				sourceRgb = image.getRGB(x, y);
+				sourceColor = new Color(sourceRgb, true);
+				
+				float alpha =  frameColor.getAlpha()/255f;
+				
+				int r = (int) (frameColor.getRed()*alpha + sourceColor.getRed()*(1-alpha));
+				int g = (int) (frameColor.getGreen()*alpha + sourceColor.getGreen()*(1-alpha));
+				int b = (int) (frameColor.getBlue()*alpha + sourceColor.getBlue()*(1-alpha));
+				
+				outputImage.setRGB(x, y, ImgUtil.getRGB(r, g, b));
+				
+				
 			}
 		}
 

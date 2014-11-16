@@ -10,7 +10,7 @@ import util.ImgUtil;
 public class Laser
 {
 	private static float threshold = 0.5f;
-	private static float strength = 0.8f;
+	private static float strength = 0.3f;
 
 	public static BufferedImage getImage(BufferedImage image)
 	{

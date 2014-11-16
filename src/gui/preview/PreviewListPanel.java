@@ -2,6 +2,7 @@ package gui.preview;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Label;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
 import java.awt.image.BufferedImage;
@@ -26,13 +27,20 @@ public class PreviewListPanel extends JScrollPane
 
 	// 现实内容的高度
 	private int contentHeight;
+	
+	private JLabel[] labelList;
+	
+	private PreviewPanel[] previewPanelList;
+	
+	//预览图
+	private BufferedImage previewImage;
 
 	public PreviewListPanel(BufferedImage previewImage, int type)
 	{
-
+		this.previewImage = previewImage;
 		initTypeList(type);
 		initDescribeList(type);
-		initPanel(previewImage);
+		initPanel();
 	}
 
 	/**
@@ -61,6 +69,9 @@ public class PreviewListPanel extends JScrollPane
 			break;
 		case Constants.TYPE_FASHION:
 			typeList = Constants.TYPE_FASHION_LIST;
+			break;
+		case Constants.TYPE_FRAME:
+			typeList = Constants.TYPE_FRAME_LIST;
 			break;
 		default:
 			typeList = null;
@@ -95,6 +106,9 @@ public class PreviewListPanel extends JScrollPane
 		case Constants.TYPE_FASHION:
 			describeList = Constants.DESCRIBE_FASHION_LIST;
 			break;
+		case Constants.TYPE_FRAME:
+			describeList = Constants.DESCRIBE_FRAME_LIST;
+			break;
 		default:
 			typeList = null;
 			break;
@@ -106,27 +120,54 @@ public class PreviewListPanel extends JScrollPane
 	 * 
 	 * @param previewImage
 	 * */
-	private void initPanel(BufferedImage previewImage)
+	public void initPanel()
 	{
-		contentHeight = 0;
 		this.setLayout(null);
+		this.contentHeight = 0;
+
 		for (int i = 0; i < typeList.length; i++)
 		{
-			JLabel label = new JLabel(describeList[i]);
-			label.setBounds(20, i * 150, 200, 50);
-			add(label);
-
-			PreviewPanel previewPanel = new PreviewPanel(typeList[i], previewImage);
-			previewPanel.setBounds(20, i * 150 + 50, 200, 100);
-			add(previewPanel);
-			previewPanel.repaint();
-
+			addLabel(i);
+			addPreviewPanel(i);
 			contentHeight += 150;
 		}
 
 		this.setPreferredSize(new Dimension(240, 800));
+		
+		this.setVisible(true);
 	}
+	
+	
+	/**
+	 * 添加标签
+	 * 
+	 * @param index 
+	 * */
+	private void addLabel(int index)
+	{
+		JLabel label = new JLabel(describeList[index]);
+		label.setBounds(20, index * 150, 200, 50);
+		add(label);
 
+	}
+	
+	/**
+	 * 添加预览面板
+	 * 
+	 * @param index
+	 * */
+	private void addPreviewPanel(int index)
+	{
+		PreviewPanel previewPanel = new PreviewPanel(typeList[index], previewImage);
+		previewPanel.setBounds(20, index * 150 + 50, 200, 100);
+		add(previewPanel);
+
+	}
+	
+
+	/**
+	 * 获取内容的高度
+	 * */
 	public int getContentHeight()
 	{
 		return contentHeight;

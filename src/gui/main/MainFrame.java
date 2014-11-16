@@ -34,10 +34,6 @@ import algorithm.basic.Clone;
 
 public class MainFrame extends JFrame implements ActionListener
 {
-
-	// 显示的图像
-	// public BufferedImage displayImage;
-
 	// 源图像
 	public BufferedImage sourceImage;
 
@@ -49,6 +45,9 @@ public class MainFrame extends JFrame implements ActionListener
 
 	// 主图像显示面板
 	public ImagePanel imagePanel;
+	
+	//基础调节面板
+	public BasicAdjustPanel adjustPanel;
 
 	// 按钮面板
 	public MainButtonPanel mainButtonPanel;
@@ -83,20 +82,6 @@ public class MainFrame extends JFrame implements ActionListener
 	// 对比按钮
 	private JButton compareButton;
 
-	// 背景模糊按钮
-	private JButton blurButton;
-
-	// 拼图按钮
-	private JButton jigsawButton;
-
-	// 魔镜按钮
-	private JButton magicMirrorButton;
-
-	// 局部彩色按钮
-	private JButton partColorButton;
-
-	// 马赛克按钮
-	private JButton partMosaicButton;
 
 	private static MainFrame instance;
 
@@ -118,7 +103,7 @@ public class MainFrame extends JFrame implements ActionListener
 		catch (Exception e)
 		{
 		}
-
+		
 		MainFrame.getInstance();
 	}
 
@@ -132,18 +117,10 @@ public class MainFrame extends JFrame implements ActionListener
 
 		initOpenButton();
 		initButtonPanel();
-		// initBlurButton();
-		// initJigsawButton();
-		// initMagicMirrorButton();
-		// initPartColorButton();
-		// initPartMosaicButton();
+		initBasicAdjustPanel();
 		initSaveButton();
 		initCancelButton();
 		initCompareButton();
-
-		// Palette x = new Palette("");
-
-		initBasicAdjustPanel();
 
 		File file = new File("C:\\Users\\Public\\Pictures\\Sample Pictures\\sand.jpg");
 		loadImage(file);
@@ -162,8 +139,6 @@ public class MainFrame extends JFrame implements ActionListener
 	{
 		mainButtonPanel = new MainButtonPanel();
 		getContentPane().add(mainButtonPanel);
-		mainButtonPanel.repaint();
-
 	}
 
 	/**
@@ -171,8 +146,17 @@ public class MainFrame extends JFrame implements ActionListener
 	 * */
 	private void initBasicAdjustPanel()
 	{
-		getContentPane().add(BasicAdjustPanel.getInstance());
+		adjustPanel = new BasicAdjustPanel();
+		getContentPane().add(adjustPanel);
 
+	}
+	
+	/**
+	 * 初始化对比面板
+	 * */
+	private void initCompareFrame()
+	{
+		CompareFrame compareFrame = new CompareFrame(sourceImage, imagePanel.getDisplayImage());
 	}
 
 	/**
@@ -187,70 +171,7 @@ public class MainFrame extends JFrame implements ActionListener
 		getContentPane().add(openButton);
 	}
 
-	/**
-	 * 初始化背景虚幻按钮
-	 * */
-	private void initBlurButton()
-	{
-		blurButton = new JButton();
-		blurButton.setSize(100, 30);
-		blurButton.setLocation(150, 0);
-		blurButton.setText("背景虚化");
-		blurButton.addActionListener(this);
-		getContentPane().add(blurButton);
-	}
 
-	/**
-	 * 初始化拼图按钮
-	 * */
-	private void initJigsawButton()
-	{
-		jigsawButton = new JButton();
-		jigsawButton.setSize(100, 30);
-		jigsawButton.setLocation(300, 0);
-		jigsawButton.setText("背景拼图");
-		jigsawButton.addActionListener(this);
-		getContentPane().add(jigsawButton);
-	}
-
-	/**
-	 * 初始化魔镜按钮
-	 * */
-	private void initMagicMirrorButton()
-	{
-		magicMirrorButton = new JButton();
-		magicMirrorButton.setSize(100, 30);
-		magicMirrorButton.setLocation(450, 0);
-		magicMirrorButton.setText("魔镜");
-		magicMirrorButton.addActionListener(this);
-		getContentPane().add(magicMirrorButton);
-	}
-
-	/**
-	 * 初始化局部彩色按钮
-	 * */
-	private void initPartColorButton()
-	{
-		partColorButton = new JButton();
-		partColorButton.setSize(100, 30);
-		partColorButton.setLocation(600, 0);
-		partColorButton.setText("局部彩色");
-		partColorButton.addActionListener(this);
-		getContentPane().add(partColorButton);
-	}
-
-	/**
-	 * 初始化局部马赛克按钮
-	 * */
-	private void initPartMosaicButton()
-	{
-		partMosaicButton = new JButton();
-		partMosaicButton.setSize(100, 30);
-		partMosaicButton.setLocation(750, 0);
-		partMosaicButton.setText("局部马赛克");
-		partMosaicButton.addActionListener(this);
-		getContentPane().add(partMosaicButton);
-	}
 
 	/**
 	 * 初始化保存按钮
@@ -321,7 +242,6 @@ public class MainFrame extends JFrame implements ActionListener
 		{
 
 			SaturationAndHue.getImage(sourceImage, 0, 0);
-			// displayImage = Clone.getImage(sourceImage);
 			previewImage = Scale.getImage(sourceImage, 100, 100);
 
 			setPreviewImages();
@@ -491,33 +411,13 @@ public class MainFrame extends JFrame implements ActionListener
 		{
 			initOpenFileChooser();
 		}
-		else if (e.getSource() == blurButton)
-		{
-			blurFrame = new BlurFrame(imagePanel.getDisplayImage());
-		}
-		else if (e.getSource() == jigsawButton)
-		{
-			jigsawFrame = new JigsawFrame(imagePanel.getDisplayImage());
-		}
-		else if (e.getSource() == magicMirrorButton)
-		{
-			magicMirrorFrame = new MagicMirrorFrame(imagePanel.getDisplayImage());
-		}
-		else if (e.getSource() == partColorButton)
-		{
-			partColorFrame = new PartColorFrame(imagePanel.getDisplayImage());
-		}
-		else if (e.getSource() == partMosaicButton)
-		{
-			partMosaicFrame = new PartMosaicFrame(imagePanel.getDisplayImage());
-		}
 		else if (e.getSource() == saveButton)
 		{
 			initSaveFileChooser();
 		}
 		else if (e.getSource() == compareButton)
 		{
-			CompareFrame compareFrame = new CompareFrame(sourceImage, imagePanel.getDisplayImage());
+			initCompareFrame();
 		}
 		else
 		{

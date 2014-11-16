@@ -21,7 +21,6 @@ public class PreviewListPanelWithScrollBar extends JPanel implements AdjustmentL
 		initPrevieListPanel(previewImage, type);
 		initScrollBar();
 
-		// this.setBounds(0, 0, 280, 720);
 	}
 
 	private void initPrevieListPanel(BufferedImage previewImage, int type)

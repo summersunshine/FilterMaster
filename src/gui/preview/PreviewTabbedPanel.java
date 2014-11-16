@@ -2,6 +2,7 @@ package gui.preview;
 
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.util.Vector;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
@@ -30,6 +31,12 @@ public class PreviewTabbedPanel extends JTabbedPane implements ChangeListener
 	
 	//时尚面板
 	public PreviewListPanel fashionPanel;
+	
+	//相框面板
+	public PreviewListPanel framePanel;
+	
+	
+	public Vector<PreviewListPanel> previewListPanels;
 
 	public PreviewTabbedPanel(BufferedImage previewImage)
 	{
@@ -40,7 +47,7 @@ public class PreviewTabbedPanel extends JTabbedPane implements ChangeListener
 
 		this.addChangeListener(this);
 
-		this.setSelectedIndex(5);
+		//this.setSelectedIndex(5);
 		this.setBounds(1040, 0, 240, 720);
 		this.setVisible(true);
 
@@ -53,20 +60,32 @@ public class PreviewTabbedPanel extends JTabbedPane implements ChangeListener
 	 * */
 	private void initPreviewListPanels(BufferedImage previewImage)
 	{
+		previewListPanels = new Vector<>();
 		artPanel = new PreviewListPanel(previewImage, Constants.TYPE_ART);
 		basicPanel = new PreviewListPanel(previewImage, Constants.TYPE_BAISC);
 		blurPanel = new PreviewListPanel(previewImage, Constants.TYPE_BLUR);
 		lomoPanel = new PreviewListPanel(previewImage, Constants.TYPE_LOMO);
 		stylePanel = new PreviewListPanel(previewImage, Constants.TYPE_STYLE);
 		fashionPanel = new PreviewListPanel(previewImage, Constants.TYPE_FASHION);
+		framePanel = new PreviewListPanel(previewImage, Constants.TYPE_FRAME);
 		JScrollPane scrollPane = new JScrollPane(artPanel);
 
+		
+//		previewListPanels.add(artPanel);
+//		previewListPanels.add(basicPanel);
+//		previewListPanels.add(blurPanel);
+//		previewListPanels.add(lomoPanel);
+//		previewListPanels.add(stylePanel);
+//		previewListPanels.add(fashionPanel);
+//		previewListPanels.add(framePanel);
+		
 		this.addTab("Art", scrollPane);
 		this.addTab("Basic", basicPanel);
 		this.addTab("Blur", blurPanel);
 		this.addTab("Lomo", lomoPanel);
 		this.addTab("Style", stylePanel);
 		this.addTab("Fashion", fashionPanel);
+		this.addTab("Frame", framePanel);
 	}
 
 	
@@ -83,6 +102,7 @@ public class PreviewTabbedPanel extends JTabbedPane implements ChangeListener
 		lomoPanel.repaint();
 		stylePanel.repaint();
 		fashionPanel.repaint();
+		framePanel.repaint();
 	}
 
 	@Override
@@ -93,6 +113,8 @@ public class PreviewTabbedPanel extends JTabbedPane implements ChangeListener
 		int selectedIndex = getSelectedIndex();
 		// 获得选项卡标签
 		String title = getTitleAt(selectedIndex);
-		System.out.println(title);
+		
+		System.out.println("state change" + selectedIndex);
+
 	}
 }

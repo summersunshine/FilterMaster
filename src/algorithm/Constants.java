@@ -14,6 +14,7 @@ public class Constants
 	public static final int TYPE_LOMO = 5;
 	public static final int TYPE_STYLE = 6;
 	public static final int TYPE_FASHION = 7;
+	public static final int TYPE_FRAME = 8;
 
 	// art
 	public static final int TYPE_OIL_PAINT = 101;
@@ -62,6 +63,12 @@ public class Constants
 	public static final int TYPE_FLARE = 704;
 	
 	
+	//frame
+	public static final int TYPE_FRAME_WOOD = 801;
+	public static final int TYPE_FRAME_INSTANT = 802;
+	public static final int TYPE_FRAME_FILM = 803;
+	public static final int TYPE_FRAME_SIMPLE = 804;
+	
 
 	public static int[] TYPE_ALPA_LIST = { TYPE_OIL_PAINT, TYPE_PENCIL, TYPE_SCULPTUE, TYPE_SKETCH, TYPE_STOKEAREA };
 
@@ -78,6 +85,8 @@ public class Constants
 
 	public static int[] TYPE_FASHION_LIST = {TYPE_RAINBOW,TYPE_PHOTON,TYPE_PARCHMENT,TYPE_FLARE};
 	
+	public static int[] TYPE_FRAME_LIST = {TYPE_FRAME_WOOD,TYPE_FRAME_INSTANT,TYPE_FRAME_FILM,TYPE_FRAME_SIMPLE};
+	
 	
 	public static String[] DESCRIBE_ART_LIST = { "”Õª≠", "«¶± ", "∏°µÒ", "Àÿ√Ë", "± ¥•«¯”Ú" };
 	
@@ -90,5 +99,7 @@ public class Constants
 	public static String[] DESCRIBE_STYLE_LIST = { "∏¥π≈","ª∆ªË","«‡¥∫" };
 	
 	public static String[] DESCRIBE_FASHION_LIST = {"≤ ∫Á","º´π‚","—Ú∆§÷Ω","π‚‘Œ"};
+	
+	public static String[] DESCRIBE_FRAME_LIST = {"ƒæ÷∆","≈ƒ¡¢µ√","Ω∫∆¨","ºÚµ•"};
 
 }

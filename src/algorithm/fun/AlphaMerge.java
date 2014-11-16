@@ -240,13 +240,13 @@ public class AlphaMerge
 
 	public static void printInfo(int type)
 	{
-		System.out.println("ratioX1 " + ratioX1);
-		System.out.println("ratioY1 " + ratioY1);
-		System.out.println("ratioX2 " + ratioX2);
-		System.out.println("ratioY2 " + ratioY2);
-		System.out.println("width " + targetWidth);
-		System.out.println("height " + targetHeight);
-		System.out.println("TYPE " + type);
+//		System.out.println("ratioX1 " + ratioX1);
+//		System.out.println("ratioY1 " + ratioY1);
+//		System.out.println("ratioX2 " + ratioX2);
+//		System.out.println("ratioY2 " + ratioY2);
+//		System.out.println("width " + targetWidth);
+//		System.out.println("height " + targetHeight);
+//		System.out.println("TYPE " + type);
 
 	}
 
