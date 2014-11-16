@@ -1,9 +1,12 @@
 package gui.partmosaic;
 
 import gui.ImagePanel;
+import gui.ImagePanelWithCursor;
 import gui.blur.BlurSetting;
 
 import java.awt.Cursor;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
@@ -18,20 +21,13 @@ import algorithm.basic.Clone;
 import algorithm.basic.Erase;
 import algorithm.fun.Mosaic;
 
-public class PartMosaicImagePanel extends ImagePanel implements MouseListener, MouseMotionListener
+public class PartMosaicImagePanel extends ImagePanelWithCursor
 {
+
+	public BufferedImage circleImage;
 
 	// 原始图像
 	public BufferedImage sourceImage;
-
-	// 鼠标是否进入
-	public boolean isMouseEntered;
-
-	// 显示的x坐标
-	private int displayX;
-
-	// 显示的y坐标
-	private int displayY;
 
 	public PartMosaicImagePanel(BufferedImage image)
 	{
@@ -39,12 +35,6 @@ public class PartMosaicImagePanel extends ImagePanel implements MouseListener, M
 		super(image);
 
 		sourceImage = image;
-		isMouseEntered = false;
-
-		this.addMouseListener(this);
-		this.addMouseMotionListener(this);
-
-		setCircleCursor();
 	}
 
 	/**
@@ -55,13 +45,26 @@ public class PartMosaicImagePanel extends ImagePanel implements MouseListener, M
 		// TODO Auto-generated method stub
 		System.out.println("change cursor");
 
-		BufferedImage image = ImgUtil.getImg("res/circle.png");
+		circleImage = ImgUtil.getImg("res/circle.png");
 
-		Toolkit tk = Toolkit.getDefaultToolkit();
+		// Toolkit tk = Toolkit.getDefaultToolkit();
 
-		Cursor cursor = tk.createCustomCursor(image, new Point(16, 16), "blur");
+		// Cursor cursor = tk.createCustomCursor(circleImage, new Point(16, 16),
+		// "blur");
 
-		setCursor(cursor);
+		// setCursor(cursor);
+	}
+
+	@Override
+	public void setCursorImage()
+	{
+		// TODO Auto-generated method stub
+		cursorImage = ImgUtil.getImg("res/circle.png");
+	}
+
+	public void setCursorRadius()
+	{
+		radius = PartMosaicSetting.sizeValue;
 	}
 
 	/**
@@ -70,18 +73,18 @@ public class PartMosaicImagePanel extends ImagePanel implements MouseListener, M
 	 * @param x
 	 * @param y
 	 * */
-	private void updateImage(int x, int y)
+	public void updateImage(int x, int y)
 	{
-		displayX = (int) (x / ratio);
-		displayY = (int) (y / ratio);
 
-		if(PartMosaicSetting.type == Constants.TYPE_ERASE)
+		super.updateImage(x, y);
+
+		if (PartMosaicSetting.type == Constants.TYPE_ERASE)
 		{
 			updateImage(Erase.getImage(displayImage, sourceImage, displayX, displayY, PartMosaicSetting.sizeValue));
 		}
 		else
 		{
-			updateImage(Mosaic.getImage(displayImage,PartMosaicSetting.patchValue, displayX, displayY, PartMosaicSetting.sizeValue));
+			updateImage(Mosaic.getImage(displayImage, PartMosaicSetting.patchValue, displayX, displayY, PartMosaicSetting.sizeValue));
 		}
 	}
 
@@ -96,56 +99,6 @@ public class PartMosaicImagePanel extends ImagePanel implements MouseListener, M
 		displayImage = Mosaic.getImage(sourceImage, patchValue);
 
 		repaint();
-	}
-	
-	@Override
-	public void mouseDragged(MouseEvent e)
-	{
-		updateImage(e.getX(), e.getY());
-		repaint();
-	}
-
-	@Override
-	public void mouseMoved(MouseEvent e)
-	{
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void mouseClicked(MouseEvent e)
-	{
-		// TODO Auto-generated method stub
-		updateImage(e.getX(), e.getY());
-		repaint();
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e)
-	{
-		// TODO Auto-generated method stub
-		isMouseEntered = true;
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e)
-	{
-		// TODO Auto-generated method stub
-		isMouseEntered = false;
-		// System.out.println("mouse exit");
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e)
-	{
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e)
-	{
-		// TODO Auto-generated method stub
-
 	}
 
 }

@@ -1,6 +1,8 @@
 package gui.partcolor;
 
 import gui.ImagePanel;
+import gui.ImagePanelWithCursor;
+import gui.partmosaic.PartMosaicSetting;
 
 import java.awt.Cursor;
 import java.awt.Point;
@@ -15,17 +17,10 @@ import algorithm.Constants;
 import algorithm.basic.Erase;
 import algorithm.basic.Gray;
 
-public class PartColorImagePanel extends ImagePanel implements MouseListener, MouseMotionListener
+public class PartColorImagePanel extends ImagePanelWithCursor
 {
 	// 灰度图像
 	public BufferedImage grayImage;
-
-
-	// 显示的x坐标
-	private int displayX;
-
-	// 显示的y坐标
-	private int displayY;
 
 	public PartColorImagePanel(BufferedImage image)
 	{
@@ -36,11 +31,6 @@ public class PartColorImagePanel extends ImagePanel implements MouseListener, Mo
 
 		grayImage = Gray.getImage(image);
 
-
-		this.addMouseListener(this);
-		this.addMouseMotionListener(this);
-
-		setCircleCursor();
 	}
 
 	/**
@@ -60,16 +50,29 @@ public class PartColorImagePanel extends ImagePanel implements MouseListener, Mo
 		setCursor(cursor);
 	}
 
+	@Override
+	public void setCursorImage()
+	{
+		// TODO Auto-generated method stub
+		cursorImage = ImgUtil.getImg("res/circle.png");
+	}
+
+	@Override
+	public void setCursorRadius()
+	{
+		radius = PartColorSetting.sizeValue;
+	}
+
 	/**
 	 * 根据涂抹的位置更新图像
 	 * 
 	 * @param x
 	 * @param y
 	 * */
+	@Override
 	public void updateImage(int x, int y)
 	{
-		displayX = (int) (x / ratio);
-		displayY = (int) (y / ratio);
+		super.updateImage(x, y);
 
 		if (PartColorSetting.type == Constants.TYPE_ERASE)
 		{
@@ -82,51 +85,4 @@ public class PartColorImagePanel extends ImagePanel implements MouseListener, Mo
 
 	}
 
-	@Override
-	public void mouseDragged(MouseEvent e)
-	{
-		updateImage(e.getX(), e.getY());
-		repaint();
-	}
-
-	@Override
-	public void mouseMoved(MouseEvent e)
-	{
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void mouseClicked(MouseEvent e)
-	{
-		// TODO Auto-generated method stub
-		updateImage(e.getX(), e.getY());
-		repaint();
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e)
-	{
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e)
-	{
-		// TODO Auto-generated method stub
-		// System.out.println("mouse exit");
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e)
-	{
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e)
-	{
-		// TODO Auto-generated method stub
-
-	}
 }

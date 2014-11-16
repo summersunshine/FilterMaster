@@ -10,10 +10,10 @@ public class PartMosaicSetting
 	public static int type = Constants.TYPE_MOSIC;
 
 	// 画笔的大小
-	public static int sizeValue = 10;
+	public static int sizeValue = 20;
 
 	// 模糊的力度
-	public static int patchValue = 3;
+	public static int patchValue = 8;
 
 	// 画笔大小的最小值
 	public static final int minSizeValue = 20;

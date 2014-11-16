@@ -27,9 +27,9 @@ public class BasicAdjustPanel extends JPanel implements AdjustmentListener, Mous
 	public static int saturationValue;
 	// Й«Па
 	public static int hueValue;
-	
+
 	private boolean isAdjustIntensityAndContrast;
-	
+
 	private static BasicAdjustPanel instance;
 
 	public static BasicAdjustPanel getInstance()
@@ -77,7 +77,7 @@ public class BasicAdjustPanel extends JPanel implements AdjustmentListener, Mous
 		initSaturationBarAndLabel();
 
 		initHueBarAndLabel();
-		
+
 		isAdjustIntensityAndContrast = false;
 
 		setBounds(0, 30, 200, 300);
@@ -193,9 +193,9 @@ public class BasicAdjustPanel extends JPanel implements AdjustmentListener, Mous
 		}
 		else
 		{
-			MainFrame.getInstance().setImagePanel(Constants.TYPE_SATURATION_HUE, saturationValue,hueValue);
+			MainFrame.getInstance().setImagePanel(Constants.TYPE_SATURATION_HUE, saturationValue, hueValue);
 		}
-		
+
 	}
 
 	@Override

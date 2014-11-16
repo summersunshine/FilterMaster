@@ -1,7 +1,7 @@
 package gui.main;
 
 import gui.ImagePanel;
-import gui.ScrawlImagePanel;
+import gui.Palette;
 import gui.blur.BlurFrame;
 import gui.compare.CompareFrame;
 import gui.jigsaw.JigsawFrame;
@@ -9,6 +9,7 @@ import gui.magicmirror.MagicMirrorFrame;
 import gui.partcolor.PartColorFrame;
 import gui.partmosaic.PartMosaicFrame;
 import gui.preview.PreviewTabbedPanel;
+import gui.scrawl.ScrawlImagePanel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,9 +20,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.security.auth.x500.X500Principal;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.UIManager;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import util.ImgUtil;
@@ -33,7 +36,7 @@ public class MainFrame extends JFrame implements ActionListener
 {
 
 	// 显示的图像
-	//public BufferedImage displayImage;
+	// public BufferedImage displayImage;
 
 	// 源图像
 	public BufferedImage sourceImage;
@@ -41,13 +44,13 @@ public class MainFrame extends JFrame implements ActionListener
 	// 缩小的预览图
 	public BufferedImage previewImage;
 
-	//预览面板
+	// 预览面板
 	PreviewTabbedPanel previewTabbedPanel;
-	
+
 	// 主图像显示面板
 	public ImagePanel imagePanel;
-	
-	//按钮面板
+
+	// 按钮面板
 	public MainButtonPanel mainButtonPanel;
 
 	// 源图像路径
@@ -77,9 +80,9 @@ public class MainFrame extends JFrame implements ActionListener
 	// 取消按钮
 	private JButton cancelButton;
 
-	//对比按钮
+	// 对比按钮
 	private JButton compareButton;
-	
+
 	// 背景模糊按钮
 	private JButton blurButton;
 
@@ -108,6 +111,14 @@ public class MainFrame extends JFrame implements ActionListener
 
 	public static void main(String args[])
 	{
+		try
+		{
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		}
+		catch (Exception e)
+		{
+		}
+
 		MainFrame.getInstance();
 	}
 
@@ -121,16 +132,17 @@ public class MainFrame extends JFrame implements ActionListener
 
 		initOpenButton();
 		initButtonPanel();
-//		initBlurButton();
-//		initJigsawButton();
-//		initMagicMirrorButton();
-//		initPartColorButton();
-//		initPartMosaicButton();
+		// initBlurButton();
+		// initJigsawButton();
+		// initMagicMirrorButton();
+		// initPartColorButton();
+		// initPartMosaicButton();
 		initSaveButton();
 		initCancelButton();
 		initCompareButton();
-		
-		
+
+		// Palette x = new Palette("");
+
 		initBasicAdjustPanel();
 
 		File file = new File("C:\\Users\\Public\\Pictures\\Sample Pictures\\sand.jpg");
@@ -142,8 +154,6 @@ public class MainFrame extends JFrame implements ActionListener
 		// jigsawFrame = new JigsawFrame(sourceImage);
 		// blurFrame = new BlurFrame(sourceImage);
 	}
-	
-	
 
 	/**
 	 * 初始化按钮面板
@@ -153,7 +163,7 @@ public class MainFrame extends JFrame implements ActionListener
 		mainButtonPanel = new MainButtonPanel();
 		getContentPane().add(mainButtonPanel);
 		mainButtonPanel.repaint();
-		
+
 	}
 
 	/**
@@ -177,10 +187,6 @@ public class MainFrame extends JFrame implements ActionListener
 		getContentPane().add(openButton);
 	}
 
-
-
-
-	
 	/**
 	 * 初始化背景虚幻按钮
 	 * */
@@ -283,7 +289,7 @@ public class MainFrame extends JFrame implements ActionListener
 		compareButton.addActionListener(this);
 		getContentPane().add(compareButton);
 	}
-	
+
 	/**
 	 * 初始化文件选择器
 	 * */
@@ -315,7 +321,7 @@ public class MainFrame extends JFrame implements ActionListener
 		{
 
 			SaturationAndHue.getImage(sourceImage, 0, 0);
-			//displayImage = Clone.getImage(sourceImage);
+			// displayImage = Clone.getImage(sourceImage);
 			previewImage = Scale.getImage(sourceImage, 100, 100);
 
 			setPreviewImages();
@@ -384,22 +390,21 @@ public class MainFrame extends JFrame implements ActionListener
 	private File getLegalFile(File file)
 	{
 		String name = file.getName().toLowerCase();
-		
+
 		if (!name.endsWith("jpg") || !name.endsWith("png") || !name.endsWith("bmp"))
 		{
 			String path = file.getAbsolutePath();
 			file = new File(path + ".jpg");
-			
+
 			for (int i = 0; file.exists(); i++)
 			{
 				file = new File(path + "(" + i + ").jpg");
 			}
 		}
-		
+
 		return file;
 	}
 
-	
 	/**
 	 * 设置显示的图像
 	 * 
@@ -408,9 +413,9 @@ public class MainFrame extends JFrame implements ActionListener
 	public void setDisplayImage(BufferedImage displayImage)
 	{
 		imagePanel.updateImage(displayImage);
-		
+
 	}
-	
+
 	/**
 	 * 获取显示的图像
 	 * */
@@ -418,8 +423,7 @@ public class MainFrame extends JFrame implements ActionListener
 	{
 		return imagePanel.getDisplayImage();
 	}
-	
-	
+
 	/**
 	 * 获取图像面板
 	 * */
@@ -427,7 +431,7 @@ public class MainFrame extends JFrame implements ActionListener
 	{
 		return imagePanel;
 	}
-	
+
 	/**
 	 * 设置主图像面板
 	 * 
@@ -439,25 +443,24 @@ public class MainFrame extends JFrame implements ActionListener
 		imagePanel.updateImage(type, parameter);
 	}
 
-	
 	/***/
 	public void setImagePanel(BufferedImage image)
 	{
 		imagePanel.updateImage(image);
 	}
-	
+
 	/**
 	 * 设置住图像面板
 	 * */
 	private void setImagePanel()
 	{
-		if (imagePanel!=null)
+		if (imagePanel != null)
 		{
 			imagePanel.clear();
 			getContentPane().remove(imagePanel);
 		}
-		
-		imagePanel = new ScrawlImagePanel(sourceImage);
+
+		imagePanel = new ImagePanel(sourceImage);
 		getContentPane().add(imagePanel);
 		imagePanel.repaint();
 
@@ -469,14 +472,14 @@ public class MainFrame extends JFrame implements ActionListener
 	public void setPreviewImages()
 	{
 
-		if (previewTabbedPanel!=null)
+		if (previewTabbedPanel != null)
 		{
 			getContentPane().remove(previewTabbedPanel);
 		}
 		previewTabbedPanel = new PreviewTabbedPanel(previewImage);
 		getContentPane().add(previewTabbedPanel);
 		previewTabbedPanel.repaint();
-		
+
 		setVisible(true);
 	}
 

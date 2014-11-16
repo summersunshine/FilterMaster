@@ -31,58 +31,52 @@ public class ImagePanel extends JPanel
 
 	// 原始的图像
 	protected BufferedImage sourceImage;
-	
 
-
-	//缩放比例
+	// 缩放比例
 	protected float ratio;
-	
-	//面板x坐标
+
+	// 面板x坐标
 	protected int x;
-	
-	//面板y坐标
+
+	// 面板y坐标
 	protected int y;
-	
-	//画布宽度
+
+	// 画布宽度
 	protected int canvasWidth;
-	
-	//画布高度
+
+	// 画布高度
 	protected int canvasHeight;
-	
+
 	public int getCanvasWidth()
 	{
 		return canvasWidth;
 	}
-	
+
 	public void setCanvasWidth(int width)
 	{
 		this.canvasWidth = width;
 	}
-	
+
 	public int getCanvasHeight()
 	{
 		return canvasHeight;
 	}
-	
+
 	public void setCanvasHeight(int height)
 	{
 		this.canvasHeight = height;
 	}
-	
 
 	public ImagePanel(BufferedImage image)
 	{
 		initDisplayImage(image);
 		initSourceImage(image);
-		
-		calRatio(MAX_IMAGE_WIDTH,MAX_IMAGE_HEIGHT);
-		calSizeAndPos(IMAGE_CENTER_X,IMAGE_CENTER_Y);
-		
-		//setVisible(true);
+
+		calRatio(MAX_IMAGE_WIDTH, MAX_IMAGE_HEIGHT);
+		calSizeAndPos(IMAGE_CENTER_X, IMAGE_CENTER_Y);
+
 	}
 
-
-	
 	/**
 	 * 初始化显示图像 需要深度复制重新克隆出一个
 	 * 
@@ -92,7 +86,7 @@ public class ImagePanel extends JPanel
 	{
 		displayImage = Clone.getImage(image);
 	}
-	
+
 	/**
 	 * 初始化源图像
 	 * 
@@ -102,7 +96,6 @@ public class ImagePanel extends JPanel
 	{
 		sourceImage = image;
 	}
-	
 
 	/**
 	 * 获取sourceImage
@@ -111,7 +104,7 @@ public class ImagePanel extends JPanel
 	{
 		return sourceImage;
 	}
-	
+
 	/**
 	 * 获取displayImage
 	 * */
@@ -119,7 +112,7 @@ public class ImagePanel extends JPanel
 	{
 		return displayImage;
 	}
-	
+
 	/**
 	 * 直接更新图像并重画
 	 * 
@@ -147,31 +140,24 @@ public class ImagePanel extends JPanel
 		repaint();
 	}
 
-	
 	public void clear()
 	{
 		// TODO Auto-generated method stub
 		getGraphics().clearRect(0, 0, canvasWidth, canvasHeight);
 	}
-	
+
 	@Override
-	public void paint(Graphics g)
+	protected void paintComponent(Graphics g)
 	{
 		Graphics2D g2 = (Graphics2D) g;
-		try
-		{
-			g2.drawImage(displayImage, 0, 0, canvasWidth, canvasHeight, null);
-		}
-		finally
-		{
-			g2.dispose();
-		}
+		g2.drawImage(displayImage, 0, 0, canvasWidth, canvasHeight, null);
+
 	}
 
 	/**
 	 * 计算ratio
 	 * */
-	public void calRatio(int maxWidth,int maxHeight)
+	public void calRatio(int maxWidth, int maxHeight)
 	{
 		float ratioX = 1, ratioY = 1;
 
@@ -189,23 +175,19 @@ public class ImagePanel extends JPanel
 
 	}
 
-	
-	
 	/**
 	 * 重新计算图片绘制的位置和大小
 	 * */
-	public void calSizeAndPos(int centerX,int centerY)
+	public void calSizeAndPos(int centerX, int centerY)
 	{
 		canvasWidth = (int) (displayImage.getWidth() * ratio);
 		canvasHeight = (int) (displayImage.getHeight() * ratio);
-		
+
 		x = centerX - canvasWidth / 2;
 		y = centerY - canvasHeight / 2;
 
 		setBounds(x, y, canvasWidth, canvasHeight);
 		repaint();
 	}
-
-
 
 }

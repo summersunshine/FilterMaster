@@ -50,6 +50,46 @@ public class Erase
 		return currImage;
 
 	}
+	
+	
+	/**
+	 * 擦除应用在源图片上的效果（仅有原图片的情况下，擦除区域为圆形区域）
+	 * 
+	 * @param sourceImage
+	 *            原图片
+	 * @param centerX
+	 *            擦除的中心点X坐标
+	 * @param centerY
+	 *            擦除的中心店Y坐标
+	 * @param radius
+	 *            擦除的半径
+	 * */
+	public static BufferedImage getImage(BufferedImage sourceImage, int centerX, int centerY, int radius)
+	{
+		int startX = centerX - radius;
+		int startY = centerY - radius;
+		int endX = centerX + radius;
+		int endY = centerY + radius;
+
+		startX = startX < 0 ? 0 : startX;
+		startY = startY < 0 ? 0 : startY;
+		endX = endX > sourceImage.getWidth() ? sourceImage.getWidth() : endX;
+		endY = endY > sourceImage.getHeight() ? sourceImage.getHeight() : endY;
+
+		for (int y = startY; y < endY; y++)
+		{
+			for (int x = startX; x < endX; x++)
+			{
+				if (Geometry.getDistance(x, y, centerX, centerY) < radius)
+				{
+					sourceImage.setRGB(x, y, 0x00ffffff);
+				}
+			}
+		}
+		return sourceImage;
+
+	}
+	
 
 	/**
 	 * 擦除应用在源图片上的效果（矩形区域）

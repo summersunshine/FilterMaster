@@ -1,7 +1,9 @@
 package gui.blur;
 
 import gui.ImagePanel;
+import gui.ImagePanelWithCursor;
 import gui.main.MainFrame;
+import gui.partcolor.PartColorSetting;
 
 import java.awt.Cursor;
 import java.awt.Point;
@@ -17,7 +19,7 @@ import algorithm.basic.Clone;
 import algorithm.basic.Erase;
 import algorithm.blur.DoubleGuassBlur;
 
-public class BlurImagePanel extends ImagePanel implements MouseListener, MouseMotionListener
+public class BlurImagePanel extends ImagePanelWithCursor
 {
 	
 	// 高斯模糊图像
@@ -29,22 +31,11 @@ public class BlurImagePanel extends ImagePanel implements MouseListener, MouseMo
 	// 显示的y坐标
 	private int displayY;
 	
-	//上次的x坐标
-	private int lastX;
-	
-	//上次的y坐标
-	private int lastY;
 
 	public BlurImagePanel(BufferedImage image)
 	{
 
 		super(image);
-
-
-		this.addMouseListener(this);
-		this.addMouseMotionListener(this);
-
-		setCircleCursor();
 	}
 
 	@Override
@@ -92,17 +83,9 @@ public class BlurImagePanel extends ImagePanel implements MouseListener, MouseMo
 	 * @param x
 	 * @param y
 	 * */
-	private void updateImage(int x, int y)
+	public void updateImage(int x, int y)
 	{
-		
-		if (lastX == x && lastY == y)
-		{
-			return ;
-		}
-		
-		displayX = (int) (x / ratio);
-		displayY = (int) (y / ratio);
-
+		super.updateImage(x, y);
 		
 		if(BlurSetting.type == Constants.TYPE_ERASE)
 		{
@@ -113,8 +96,6 @@ public class BlurImagePanel extends ImagePanel implements MouseListener, MouseMo
 			updateImage(Erase.getImage(displayImage,guassBlurImage, displayX, displayY, BlurSetting.sizeValue));
 		}
 		
-		lastX = x;
-		lastY = y;
 
 	}
 
@@ -136,50 +117,16 @@ public class BlurImagePanel extends ImagePanel implements MouseListener, MouseMo
 	}
 	
 	@Override
-	public void mouseDragged(MouseEvent e)
+	public void setCursorImage()
 	{
-		updateImage(e.getX(), e.getY());
-		repaint();
+		// TODO Auto-generated method stub
+		cursorImage = ImgUtil.getImg("res/circle.png");
 	}
 
 	@Override
-	public void mouseMoved(MouseEvent e)
+	public void setCursorRadius()
 	{
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void mouseClicked(MouseEvent e)
-	{
-		// TODO Auto-generated method stub
-		updateImage(e.getX(), e.getY());
-		repaint();
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e)
-	{
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e)
-	{
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e)
-	{
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e)
-	{
-		// TODO Auto-generated method stub
-
+		radius = BlurSetting.sizeValue;
 	}
 
 }

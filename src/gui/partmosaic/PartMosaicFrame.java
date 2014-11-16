@@ -34,7 +34,6 @@ public class PartMosaicFrame extends BaseFrame
 
 	}
 
-	
 	/**
 	 * 初始化调整面板
 	 * */
@@ -56,7 +55,6 @@ public class PartMosaicFrame extends BaseFrame
 		getContentPane().add(imagePanel);
 	}
 
-	
 	/**
 	 * 设置图像面板
 	 * */
@@ -65,7 +63,7 @@ public class PartMosaicFrame extends BaseFrame
 		// TODO Auto-generated method stub
 		imagePanel.updateImage(PartMosaicSetting.patchValue);
 	}
-	
+
 	@Override
 	protected void saveOperation()
 	{
@@ -74,14 +72,12 @@ public class PartMosaicFrame extends BaseFrame
 		super.saveOperation();
 	}
 
-
 	@Override
 	protected void cancelOperation()
 	{
 		// TODO Auto-generated method stub
 		super.cancelOperation();
 	}
-
 
 	/**
 	 * 设置圆形的光标

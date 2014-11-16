@@ -2,6 +2,8 @@ package gui;
 
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.HeadlessException;
 import java.awt.event.AdjustmentEvent;
@@ -68,7 +70,7 @@ public class Palette extends JFrame implements AdjustmentListener
 		panel.add(greenScrollBar);
 		setLocation(300, 200);
 		setSize(400, 200);
-
+		setVisible(true);
 	}
 
 	@Override
@@ -88,7 +90,17 @@ public class Palette extends JFrame implements AdjustmentListener
 			greenValue = e.getValue();
 		}
 		lbScale.setText("¿Ì¶È£º" + "red:" + redValue + "blue:" + blueValue + "green:" + greenValue);
-		lbColorPallet.setBackground(new Color(redValue, greenValue, blueValue));
+
+		paintComponent();
+	}
+
+	protected void paintComponent()
+	{
+		Graphics2D graphics2d = (Graphics2D) getContentPane().getGraphics();
+
+		graphics2d.setColor(new Color((int) redValue, (int) greenValue, (int) blueValue));
+		graphics2d.fillRect(0, 0, 100, 100);
+
 	}
 
 }

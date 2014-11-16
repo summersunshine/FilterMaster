@@ -6,6 +6,7 @@ import gui.jigsaw.JigsawFrame;
 import gui.magicmirror.MagicMirrorFrame;
 import gui.partcolor.PartColorFrame;
 import gui.partmosaic.PartMosaicFrame;
+import gui.scrawl.ScrawlFrame;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -31,24 +32,23 @@ public class MainButtonPanel extends JPanel implements ActionListener
 
 	// 马赛克按钮
 	private JButton partMosaicButton;
-	
-	
+
+	// 涂鸦按钮
+	private JButton scrawlButton;
+
 	public MainButtonPanel()
 	{
-		this.setLayout(new GridLayout(3,2));
-		
+		this.setLayout(new GridLayout(3, 2));
+
 		initBlurButton();
 		initJigsawButton();
 		initMagicMirrorButton();
 		initPartColorButton();
 		initPartMosaicButton();
-		
-		this.setBounds(0,360,200,300);
+		initScrawlButton();
+		this.setBounds(0, 360, 200, 300);
 	}
-	
 
-
-	
 	/**
 	 * 初始化背景虚幻按钮
 	 * */
@@ -114,13 +114,24 @@ public class MainButtonPanel extends JPanel implements ActionListener
 		this.add(partMosaicButton);
 	}
 
-
+	/**
+	 * 初始化涂鸦按钮
+	 * */
+	private void initScrawlButton()
+	{
+		scrawlButton = new JButton();
+		scrawlButton.setSize(100, 30);
+		scrawlButton.setLocation(750, 0);
+		scrawlButton.setText("涂鸦");
+		scrawlButton.addActionListener(this);
+		this.add(scrawlButton);
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
 		BufferedImage image = MainFrame.getInstance().getDisplayImage();
-		
+
 		// TODO Auto-generated method stub
 		if (e.getSource() == blurButton)
 		{
@@ -142,6 +153,10 @@ public class MainButtonPanel extends JPanel implements ActionListener
 		{
 			PartMosaicFrame partMosaicFrame = new PartMosaicFrame(image);
 		}
+		else if (e.getSource() == scrawlButton)
+		{
+			ScrawlFrame scrawlFrame = new ScrawlFrame(image);
+		}
 	}
-	
+
 }

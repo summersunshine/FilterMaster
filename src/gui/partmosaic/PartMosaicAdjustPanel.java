@@ -17,7 +17,7 @@ import javax.swing.JScrollBar;
 
 import algorithm.Constants;
 
-public class PartMosaicAdjustPanel extends JPanel implements AdjustmentListener,ActionListener,MouseListener
+public class PartMosaicAdjustPanel extends JPanel implements AdjustmentListener, ActionListener, MouseListener
 {
 	// 画笔大小滚动条
 	private JScrollBar sizeScrollBar;
@@ -30,17 +30,15 @@ public class PartMosaicAdjustPanel extends JPanel implements AdjustmentListener,
 
 	// 马赛克颗粒大小标签
 	private JLabel patchLabel;
-	
-	
-	//画笔按钮
+
+	// 画笔按钮
 	private JButton paintButton;
-	
-	//橡皮按钮
+
+	// 橡皮按钮
 	private JButton eraserButton;
-	
-	//父界面
+
+	// 父界面
 	private PartMosaicFrame parent;
-	
 
 	public PartMosaicAdjustPanel() throws HeadlessException
 	{
@@ -49,7 +47,7 @@ public class PartMosaicAdjustPanel extends JPanel implements AdjustmentListener,
 		initButtons();
 		initSizeBarAndLabel();
 		initPatchBarAndLabel();
-		
+
 		setBounds(PartMosaicSetting.ADJUST_PANEL_RECTANGLE);
 	}
 
@@ -64,8 +62,8 @@ public class PartMosaicAdjustPanel extends JPanel implements AdjustmentListener,
 		int extent = PartMosaicSetting.sizeExtent;
 		int min = PartMosaicSetting.minSizeValue;
 		int max = PartMosaicSetting.maxSizeValue;
-		
-		sizeScrollBar = new JScrollBar(JScrollBar.HORIZONTAL, min,extent,min,max);
+
+		sizeScrollBar = new JScrollBar(JScrollBar.HORIZONTAL, min, extent, min, max);
 		sizeScrollBar.setBounds(PartMosaicSetting.SIZE_SCROLLBAR_RECTANGLE);
 		sizeScrollBar.setUnitIncrement(extent);
 		sizeScrollBar.setBlockIncrement(extent);
@@ -87,8 +85,8 @@ public class PartMosaicAdjustPanel extends JPanel implements AdjustmentListener,
 		int extent = PartMosaicSetting.sizeExtent;
 		int min = PartMosaicSetting.minSizeValue;
 		int max = PartMosaicSetting.maxSizeValue;
-		
-		patchScrollBar = new JScrollBar(JScrollBar.HORIZONTAL, min,extent,min,max);
+
+		patchScrollBar = new JScrollBar(JScrollBar.HORIZONTAL, min, extent, min, max);
 		patchScrollBar.setBounds(PartMosaicSetting.PATCH_SCROLLBAR_RECTANGLE);
 		patchScrollBar.setUnitIncrement(extent);
 		patchScrollBar.setBlockIncrement(extent);
@@ -108,17 +106,16 @@ public class PartMosaicAdjustPanel extends JPanel implements AdjustmentListener,
 		paintButton = new JButton("画笔");
 		paintButton.setBounds(BlurSetting.PAINT_BUTTON_RECTANGLE);
 		paintButton.addActionListener(this);
-		
+
 		eraserButton = new JButton("橡皮擦");
 		eraserButton.setBounds(BlurSetting.ERASE_BUTTON_RECTANGLE);
 		eraserButton.addActionListener(this);
-		
+
 		this.add(paintButton);
 		this.add(eraserButton);
-		
+
 	}
-	
-	
+
 	@Override
 	public void adjustmentValueChanged(AdjustmentEvent e)
 	{
@@ -146,8 +143,7 @@ public class PartMosaicAdjustPanel extends JPanel implements AdjustmentListener,
 			switchToEraser();
 		}
 	}
-	
-	
+
 	/**
 	 * 切换到画笔
 	 * */
@@ -156,7 +152,7 @@ public class PartMosaicAdjustPanel extends JPanel implements AdjustmentListener,
 		PartMosaicSetting.type = Constants.TYPE_MOSIC;
 
 	}
-	
+
 	/**
 	 * 切换到橡皮
 	 * */
@@ -164,35 +160,35 @@ public class PartMosaicAdjustPanel extends JPanel implements AdjustmentListener,
 	{
 		// TODO Auto-generated method stub
 		PartMosaicSetting.type = Constants.TYPE_ERASE;
-		
+
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent arg0)
 	{
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent arg0)
 	{
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseExited(MouseEvent arg0)
 	{
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mousePressed(MouseEvent arg0)
 	{
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
