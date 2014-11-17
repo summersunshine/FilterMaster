@@ -1,16 +1,11 @@
 package gui.blur;
 
-import gui.ImagePanel;
 import gui.ImagePanelWithCursor;
 import gui.main.MainFrame;
-import gui.partcolor.PartColorSetting;
 
 import java.awt.Cursor;
 import java.awt.Point;
 import java.awt.Toolkit;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 
 import util.ImgUtil;
@@ -24,18 +19,14 @@ public class BlurImagePanel extends ImagePanelWithCursor
 	
 	// 高斯模糊图像
 	public BufferedImage guassBlurImage;
-
-	// 显示的x坐标
-	private int displayX;
-
-	// 显示的y坐标
-	private int displayY;
 	
 
 	public BlurImagePanel(BufferedImage image)
 	{
 
 		super(image);
+		
+		initGuassBlurImage(image);
 	}
 
 	@Override
@@ -44,7 +35,7 @@ public class BlurImagePanel extends ImagePanelWithCursor
 		// TODO Auto-generated method stub
 		displayImage = DoubleGuassBlur.getImage(image,BlurSetting.levelValue);
 		
-		MainFrame.getInstance().setDisplayImage(Clone.getImage(displayImage));
+		//MainFrame.getInstance().setDisplayImage(Clone.getImage(displayImage));
 	}
 
 	@Override
@@ -57,7 +48,7 @@ public class BlurImagePanel extends ImagePanelWithCursor
 	protected void initGuassBlurImage(BufferedImage image)
 	{
 		// TODO Auto-generated method stub
-		guassBlurImage = DoubleGuassBlur.getImage(image,BlurSetting.levelValue);
+		guassBlurImage = Clone.getImage(displayImage);
 	}
 	
 
@@ -87,6 +78,7 @@ public class BlurImagePanel extends ImagePanelWithCursor
 	{
 		super.updateImage(x, y);
 		
+		System.out.println("update image");
 		if(BlurSetting.type == Constants.TYPE_ERASE)
 		{
 			updateImage(Erase.getImage(displayImage, sourceImage, displayX, displayY, BlurSetting.sizeValue));
