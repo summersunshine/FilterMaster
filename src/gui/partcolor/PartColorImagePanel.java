@@ -30,7 +30,8 @@ public class PartColorImagePanel extends ImagePanelWithCursor
 		sourceImage = image;
 
 		grayImage = Gray.getImage(image);
-
+		//grayImage = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_INT_RGB);
+		
 	}
 
 	/**

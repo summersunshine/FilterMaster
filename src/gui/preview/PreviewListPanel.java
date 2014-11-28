@@ -132,7 +132,7 @@ public class PreviewListPanel extends JScrollPane
 			contentHeight += 150;
 		}
 
-		this.setPreferredSize(new Dimension(240, 800));
+		this.setPreferredSize(new Dimension(240, contentHeight+50));
 		
 		this.setVisible(true);
 	}

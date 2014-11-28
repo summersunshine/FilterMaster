@@ -1,6 +1,7 @@
 package util;
 
 import java.awt.Label;
+import java.awt.image.BufferedImage;
 
 public class ColorUtil
 {
@@ -400,5 +401,24 @@ public class ColorUtil
 		return value;
 
 	}
+	
+	
+	public static RGB[][] getRGBMatrix(BufferedImage image)
+	{
+		int width = image.getWidth();
+		int height = image.getHeight();
+		RGB[][] imageMatrix = new RGB[width][height];
+		for (int y = 0; y < height; y++)
+		{
+			for (int x = 0; x < width; x++)
+			{
+				imageMatrix[x][y]  = new RGB(image.getRGB(x, y));
+			}
+		}
+		return imageMatrix;
+		
+	}
+
+
 
 }

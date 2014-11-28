@@ -8,6 +8,7 @@ import java.awt.Color;
  * */
 public class RGB
 {
+	public static final int GRAY = 0;
 	public static final int R = 1;
 	public static final int G = 2;
 	public static final int B = 3;

@@ -30,6 +30,9 @@ public class Constants
 	public static final int TYPE_INVERSE = 204;
 	public static final int TYPE_SCALE = 205;
 	public static final int TYPE_SHARPEN = 206;
+	public static final int TYPE_EDGE_SOBEL_X = 207;
+	public static final int TYPE_EDGE_SOBEL_Y = 208;
+	public static final int TYPE_EDGE_LAPLACE = 209;
 
 	// blur
 	public static final int TYPE_DOUBLE_GUASS_BLUR = 300;
@@ -69,10 +72,11 @@ public class Constants
 	public static final int TYPE_FRAME_FILM = 803;
 	public static final int TYPE_FRAME_SIMPLE = 804;
 	
+	
 
 	public static int[] TYPE_ALPA_LIST = { TYPE_OIL_PAINT, TYPE_PENCIL, TYPE_SCULPTUE, TYPE_SKETCH, TYPE_STOKEAREA };
 
-	public static int[] TYPE_BASIC_LIST = { TYPE_GRAY, TYPE_INVERSE, TYPE_SHARPEN };
+	public static int[] TYPE_BASIC_LIST = { TYPE_GRAY, TYPE_INVERSE, TYPE_SHARPEN,TYPE_EDGE_SOBEL_X,TYPE_EDGE_SOBEL_Y,TYPE_EDGE_LAPLACE };
 
 	public static int[] TYPE_BLUR_LIST = { TYPE_DOUBLE_GUASS_BLUR, TYPE_GUASS_BLUR, TYPE_LASER, TYPE_MOTION_BLUR };
 
@@ -90,7 +94,7 @@ public class Constants
 	
 	public static String[] DESCRIBE_ART_LIST = { "油画", "铅笔", "浮雕", "素描", "笔触区域" };
 	
-	public static String[] DESCRIBE_BASIC_LIST = { "灰度图", "负片", "锐化" };
+	public static String[] DESCRIBE_BASIC_LIST = { "灰度图", "负片", "锐化","SLOBEL边缘检测1","SLOBEL边缘检测2","拉普拉斯边缘检测" };
 	
 	public static String[] DESCRIBE_BLUR_LIST = { "高倍高斯模糊", "高斯模糊", "光线模糊", "动态模糊" };
 	

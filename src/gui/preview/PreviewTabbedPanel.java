@@ -68,19 +68,12 @@ public class PreviewTabbedPanel extends JTabbedPane implements ChangeListener
 		stylePanel = new PreviewListPanel(previewImage, Constants.TYPE_STYLE);
 		fashionPanel = new PreviewListPanel(previewImage, Constants.TYPE_FASHION);
 		framePanel = new PreviewListPanel(previewImage, Constants.TYPE_FRAME);
-		JScrollPane scrollPane = new JScrollPane(artPanel);
-
+		JScrollPane artScrollPane = new JScrollPane(artPanel);
+		JScrollPane basicJScrollPane = new JScrollPane(basicPanel);
+	
 		
-//		previewListPanels.add(artPanel);
-//		previewListPanels.add(basicPanel);
-//		previewListPanels.add(blurPanel);
-//		previewListPanels.add(lomoPanel);
-//		previewListPanels.add(stylePanel);
-//		previewListPanels.add(fashionPanel);
-//		previewListPanels.add(framePanel);
-		
-		this.addTab("Art", scrollPane);
-		this.addTab("Basic", basicPanel);
+		this.addTab("Art", artScrollPane);
+		this.addTab("Basic", basicJScrollPane);
 		this.addTab("Blur", blurPanel);
 		this.addTab("Lomo", lomoPanel);
 		this.addTab("Style", stylePanel);

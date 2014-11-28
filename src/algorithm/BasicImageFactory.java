@@ -2,6 +2,7 @@ package algorithm;
 
 import java.awt.image.BufferedImage;
 
+import algorithm.basic.EdgeDetector;
 import algorithm.basic.Gray;
 import algorithm.basic.IntensityAndContrast;
 import algorithm.basic.Inverse;
@@ -39,6 +40,12 @@ public class BasicImageFactory
 			return Scale.getImage(image, (int) (parameter[0]), (int) (parameter[1]));
 		case (Constants.TYPE_SHARPEN):
 			return Sharpen.getImage(image);
+		case(Constants.TYPE_EDGE_SOBEL_X):
+			return EdgeDetector.getImage(image,Constants.TYPE_EDGE_SOBEL_X);
+		case(Constants.TYPE_EDGE_SOBEL_Y):
+			return EdgeDetector.getImage(image,Constants.TYPE_EDGE_SOBEL_Y);
+		case(Constants.TYPE_EDGE_LAPLACE):
+			return EdgeDetector.getImage(image,Constants.TYPE_EDGE_LAPLACE);
 		default:
 			return null;
 		}

@@ -2,6 +2,7 @@ package algorithm;
 
 import java.awt.image.BufferedImage;
 
+import algorithm.basic.EdgeDetector;
 import algorithm.blur.DoubleGuassBlur;
 import algorithm.blur.GuassBlur;
 import algorithm.blur.Laser;
