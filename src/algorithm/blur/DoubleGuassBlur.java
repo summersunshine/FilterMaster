@@ -116,5 +116,7 @@ public class DoubleGuassBlur
 		return (maskSize/2)*2 +1;
 	}
 	
+	
+	
 
 }

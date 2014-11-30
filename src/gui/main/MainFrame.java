@@ -218,7 +218,7 @@ public class MainFrame extends JFrame implements ActionListener
 	{
 		File desktop = new File(System.getProperty("user.home") + System.getProperty("file.separator") + "×ÀÃæ");
 		JFileChooser fileChooser = new JFileChooser(desktop);
-		fileChooser.setFileFilter(new FileNameExtensionFilter("Í¼Ïñ", "jpg", "png"));
+		fileChooser.setFileFilter(new FileNameExtensionFilter("Í¼Ïñ", "jpg", "png","jpeg","bmp"));
 
 		int option = fileChooser.showOpenDialog(null);
 		if (JFileChooser.APPROVE_OPTION == option)

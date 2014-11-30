@@ -18,7 +18,9 @@ public class BlurFrame extends BaseFrame
 	public BlurImagePanel imagePanel;
 
 	// 调节数据面板
-	public BlurAdjustPanel adjustPanel;
+//	public BlurAdjustPanel adjustPanel;
+	
+	public BlurTabbedPanel tabbedPanel;
 
 	public BlurFrame(BufferedImage image)
 	{
@@ -26,8 +28,10 @@ public class BlurFrame extends BaseFrame
 
 		sourceImage = image;
 
-		initAdjustPanel();
+		//initAdjustPanel();
 
+		initTabbedPanel();
+		
 		initImagePanel();
 
 		this.setVisible(true);
@@ -48,17 +52,28 @@ public class BlurFrame extends BaseFrame
 		super.cancelOperation();
 	}
 
+//	/**
+//	 * 初始化调整面板
+//	 * */
+//	private void initAdjustPanel()
+//	{
+//		adjustPanel = new BlurAdjustPanel(this);
+//
+//		getContentPane().add(adjustPanel);
+//
+//	}
+
 	/**
 	 * 初始化调整面板
 	 * */
-	private void initAdjustPanel()
+	private void initTabbedPanel()
 	{
-		adjustPanel = new BlurAdjustPanel(this);
+		tabbedPanel = new BlurTabbedPanel(this);
 
-		getContentPane().add(adjustPanel);
+		getContentPane().add(tabbedPanel);
 
 	}
-
+	
 	/**
 	 * 初始化图像面板
 	 * */
@@ -76,7 +91,7 @@ public class BlurFrame extends BaseFrame
 	public void setImagePanel()
 	{
 		System.out.println("update image" + BlurSetting.levelValue);
-		imagePanel.updateImage(BlurSetting.levelValue);
+		imagePanel.updateBlurLevel(BlurSetting.levelValue);
 	}
 	
 

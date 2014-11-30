@@ -21,6 +21,22 @@ public class Geometry
 		int y = y1 - y2;
 		return (int) Math.sqrt(x * x + y * y);
 	}
+	
+	
+	/**
+	 * 获取两点之间的距离
+	 * 
+	 * @param point1
+	 *            第一个点的坐标
+	 * @param point2
+	 *            第二个点的X坐标
+	 * */
+	public static int getDistance(Point point1,Point point2)
+	{
+		return (int) point1.sub(point2).length();
+	}
+
+	
 
 	/**
 	 * 获取一个圆周上的x坐标集合

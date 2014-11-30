@@ -116,6 +116,14 @@ public class ImgUtil
 		return c;
 	}
 	
+	public static int clamp(int c)
+	{
+		if (c < 0)
+			return 0;
+		if (c > 255)
+			return 255;
+		return c;
+	}
 	
 	public static float clamp(float c)
 	{
