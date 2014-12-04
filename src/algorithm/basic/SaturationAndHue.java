@@ -35,19 +35,12 @@ public class SaturationAndHue
 			for (int x = 0; x < width; x++)
 			{
 				RGB rgb = new RGB(image.getRGB(x, y));
-//				HSL hsl = ColorUtil.getHSL(rgb);
-//				hsl.h += hue;
-//				hsl.s += saturation;
+
 				HSV hsv = ColorUtil.getHSV(rgb);
 				hsv.h += hue;
 				hsv.s += saturation;
 				hsv.clamp();
-				
-//				LAB value = ColorUtil.getLAB(rgb);
-//				value.a +=hue;
-//				value.b += saturation;
-//				value.clamp();
-				
+
 				outputImage.setRGB(x, y, ColorUtil.getRGB(hsv).getRGB());
 				
 			}

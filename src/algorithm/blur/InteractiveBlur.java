@@ -49,6 +49,44 @@ public class InteractiveBlur
 	private static Color[][] colorMatrix;
 
 
+	/**
+	 * 获取图像
+	 * 
+	 * @param image
+	 *            源图像
+	 * @param x
+	 *            x坐标
+	 * @param y
+	 *            y坐标
+	 * @param size
+	 *            作用范围
+	 * @param type
+	 *            类型
+	 * */
+	public static BufferedImage getImage(BufferedImage image,int type)
+	{
+		int x = image.getWidth()/2;
+		int y = image.getHeight()/2;
+		int size = (int) (Math.sqrt(x*x+y*y)/6);
+		
+		InteractiveBlur.innerSize = size;
+		InteractiveBlur.outSize = (int) (size * 1.5);
+		// 获取rgb矩阵
+		colorMatrix = getColorMatrix(image);
+		
+
+
+		switch (type)
+		{
+		case TYPE_VERTCIAL:
+			return getVecticalImage(image, x, size);
+		case TYPE_HORIZONTAL:
+			return getHozizontalImage(image, y, size);
+		default:
+			return getCircleImage(image, x, y, size);
+		}
+	}
+	
 
 
 	/**
