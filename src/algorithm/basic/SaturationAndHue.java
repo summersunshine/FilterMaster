@@ -3,9 +3,7 @@ package algorithm.basic;
 import java.awt.image.BufferedImage;
 
 import util.ColorUtil;
-import util.HSL;
 import util.HSV;
-import util.LAB;
 import util.RGB;
 
 /**
@@ -22,13 +20,11 @@ public class SaturationAndHue
 	 * */
 	public static BufferedImage getImage(BufferedImage image, int saturation, int hue)
 	{
-		
 
 		int width = image.getWidth();
 		int height = image.getHeight();
 
 		BufferedImage outputImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-
 
 		for (int y = 0; y < height; y++)
 		{
@@ -42,7 +38,7 @@ public class SaturationAndHue
 				hsv.clamp();
 
 				outputImage.setRGB(x, y, ColorUtil.getRGB(hsv).getRGB());
-				
+
 			}
 		}
 

@@ -1,9 +1,7 @@
 package algorithm.art;
 
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 
-import algorithm.fun.AlphaMerge;
 import util.ImgUtil;
 
 /**

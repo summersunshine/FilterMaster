@@ -2,11 +2,6 @@ package algorithm;
 
 import java.awt.image.BufferedImage;
 
-import algorithm.art.OilPaint;
-import algorithm.art.Pencil;
-import algorithm.art.Sculpture;
-import algorithm.art.Sketch;
-import algorithm.art.StrokeArea;
 import algorithm.frame.Frame;
 
 public class FrameImageFactory

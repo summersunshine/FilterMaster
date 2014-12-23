@@ -2,8 +2,6 @@ package algorithm.basic;
 
 import java.awt.image.BufferedImage;
 
-import util.ImgUtil;
-
 /**
  * 缩放图片到制定大小
  * */

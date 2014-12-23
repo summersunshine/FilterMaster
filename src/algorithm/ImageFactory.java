@@ -2,8 +2,6 @@ package algorithm;
 
 import java.awt.image.BufferedImage;
 
-import algorithm.style.RetroStyle;
-
 public class ImageFactory
 {
 	/**
@@ -34,9 +32,9 @@ public class ImageFactory
 			return LomoImageFactory.getImage(type, image, parameter);
 		case (Constants.TYPE_STYLE):
 			return StyleImageFactory.getImage(type, image, parameter);
-		case(Constants.TYPE_FASHION):
+		case (Constants.TYPE_FASHION):
 			return FashionImageFactory.getImage(type, image, parameter);
-		case(Constants.TYPE_FRAME):
+		case (Constants.TYPE_FRAME):
 			return FrameImageFactory.getImage(type, image, parameter);
 		default:
 			return null;

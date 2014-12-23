@@ -3,8 +3,6 @@ package algorithm.basic;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
-import util.Geometry;
-
 /**
  * 获取一个图片的整体或者部分拷贝
  * */

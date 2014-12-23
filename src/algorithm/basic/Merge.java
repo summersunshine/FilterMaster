@@ -2,13 +2,12 @@ package algorithm.basic;
 
 import java.awt.image.BufferedImage;
 
-
 /**
  * 简单的给一张图像加上一张透明图像
  * */
 public class Merge
 {
-	public static BufferedImage getImage(BufferedImage image,BufferedImage alphaImage)
+	public static BufferedImage getImage(BufferedImage image, BufferedImage alphaImage)
 	{
 		int width = image.getWidth();
 		int height = image.getHeight();
@@ -18,7 +17,7 @@ public class Merge
 			for (int x = 0; x < width; x++)
 			{
 				int rgb = alphaImage.getRGB(x, y);
-				if (rgb>>24!=0)
+				if (rgb >> 24 != 0)
 				{
 					image.setRGB(x, y, rgb);
 				}
@@ -27,5 +26,5 @@ public class Merge
 
 		return image;
 	}
-	
+
 }

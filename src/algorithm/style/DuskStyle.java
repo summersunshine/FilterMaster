@@ -1,11 +1,9 @@
 package algorithm.style;
 
-import java.awt.Color;
 import java.awt.image.BufferedImage;
 
 import util.ColorUtil;
 import util.HSV;
-import util.ImgUtil;
 import util.RGB;
 
 /**
@@ -13,18 +11,18 @@ import util.RGB;
  * */
 public class DuskStyle
 {
-	public static int TARGET_HUE = 60;
-	
-	public static final int MAX_HUE = 80;
-	
-	public static final int MIN_HUE = 20;
-	
-	public static final int TARGET_SATURATION = 30;
-	
-	public static final int MAX_SATURATION = 50;
-	
-	public static final int MIN_SATURATION = 10;
-	
+	public static int		TARGET_HUE			= 60;
+
+	public static final int	MAX_HUE				= 80;
+
+	public static final int	MIN_HUE				= 20;
+
+	public static final int	TARGET_SATURATION	= 30;
+
+	public static final int	MAX_SATURATION		= 50;
+
+	public static final int	MIN_SATURATION		= 10;
+
 	public static BufferedImage getImage(BufferedImage image)
 	{
 		int height = image.getHeight();
@@ -36,10 +34,10 @@ public class DuskStyle
 		{
 			for (int x = 0; x < width; x++)
 			{
-				RGB rgbValue =  new RGB(image.getRGB(x, y));
+				RGB rgbValue = new RGB(image.getRGB(x, y));
 				HSV hsvValue = ColorUtil.getHSV(rgbValue);
 				hsvValue.h = getHue(hsvValue.h);
-				//hsvValue.s = getSaturation(hsvValue.s);
+				// hsvValue.s = getSaturation(hsvValue.s);
 				rgbValue = ColorUtil.getRGB(hsvValue);
 				outputImage.setRGB(x, y, rgbValue.getRGB());
 			}
@@ -47,42 +45,39 @@ public class DuskStyle
 		return outputImage;
 
 	}
-	
+
 	public static int getHue(int h)
 	{
-	
-		if (h-TARGET_HUE > 180)
+
+		if (h - TARGET_HUE > 180)
 		{
-			h -=360;
+			h -= 360;
 		}
-		else if (h-TARGET_HUE < -180)
+		else if (h - TARGET_HUE < -180)
 		{
 			h += 360;
 		}
-		
-		
+
 		if (h > TARGET_HUE)
 		{
-			return (TARGET_HUE +(MAX_HUE - TARGET_HUE)*((h-TARGET_HUE))/(180))%360;
+			return (TARGET_HUE + (MAX_HUE - TARGET_HUE) * ((h - TARGET_HUE)) / (180)) % 360;
 		}
 		else
 		{
-			return (TARGET_HUE +(TARGET_HUE - MIN_HUE)*((h-TARGET_HUE))/(180))%360;
+			return (TARGET_HUE + (TARGET_HUE - MIN_HUE) * ((h - TARGET_HUE)) / (180)) % 360;
 		}
-		
 
 	}
-	
-	
+
 	public static int getSaturation(int s)
 	{
 		if (s > TARGET_SATURATION)
 		{
-			return TARGET_SATURATION + (MAX_SATURATION - TARGET_SATURATION)*((s-TARGET_SATURATION))/(100-TARGET_SATURATION);
+			return TARGET_SATURATION + (MAX_SATURATION - TARGET_SATURATION) * ((s - TARGET_SATURATION)) / (100 - TARGET_SATURATION);
 		}
 		else
 		{
-			return TARGET_SATURATION + (TARGET_SATURATION-MIN_SATURATION)*((s-TARGET_SATURATION))/(TARGET_SATURATION);
+			return TARGET_SATURATION + (TARGET_SATURATION - MIN_SATURATION) * ((s - TARGET_SATURATION)) / (TARGET_SATURATION);
 		}
 	}
 }

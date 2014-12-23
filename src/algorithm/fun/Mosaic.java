@@ -4,31 +4,30 @@ import java.awt.image.BufferedImage;
 
 import util.Geometry;
 import util.ImgUtil;
-import util.RGB;
 
 /**
  * 马赛克
  * */
 public class Mosaic
 {
-	
+
 	/**
 	 * 马赛克滤镜
+	 * 
 	 * @param image
 	 * */
 	public static BufferedImage getImage(BufferedImage image)
 	{
 		return getImage(image, 12);
 	}
-	
-	
+
 	/**
 	 * 马赛克滤镜
 	 * 
 	 * @param image
 	 * @param size
 	 * */
-	public static BufferedImage getImage(BufferedImage image,int size)
+	public static BufferedImage getImage(BufferedImage image, int size)
 	{
 		int width = image.getWidth();
 		int height = image.getHeight();
@@ -50,18 +49,16 @@ public class Mosaic
 		return outputImage;
 	}
 
-	
 	/**
 	 * 局部马赛克
+	 * 
 	 * @param image
 	 * */
-	public static BufferedImage getImage(BufferedImage image,int centerX, int centerY, int radius)
+	public static BufferedImage getImage(BufferedImage image, int centerX, int centerY, int radius)
 	{
-		return getImage(image, 12,centerX,centerY,radius);
+		return getImage(image, 12, centerX, centerY, radius);
 	}
-	
-	
-	
+
 	/**
 	 * 局部马赛克
 	 * 
@@ -70,7 +67,7 @@ public class Mosaic
 	 * @param centerY
 	 * @param radius
 	 * */
-	public static BufferedImage getImage(BufferedImage image,int size, int centerX, int centerY, int radius)
+	public static BufferedImage getImage(BufferedImage image, int size, int centerX, int centerY, int radius)
 	{
 		int startX = centerX - radius;
 		int startY = centerY - radius;

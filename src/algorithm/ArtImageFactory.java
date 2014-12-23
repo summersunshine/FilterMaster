@@ -7,15 +7,6 @@ import algorithm.art.Pencil;
 import algorithm.art.Sculpture;
 import algorithm.art.Sketch;
 import algorithm.art.StrokeArea;
-import algorithm.basic.Gray;
-import algorithm.basic.IntensityAndContrast;
-import algorithm.basic.Inverse;
-import algorithm.basic.Scale;
-import algorithm.basic.Sharpen;
-import algorithm.blur.GuassBlur;
-import algorithm.blur.Laser;
-import algorithm.blur.MotionBlur;
-import algorithm.fun.AlphaMerge;
 
 public class ArtImageFactory
 {
@@ -43,7 +34,7 @@ public class ArtImageFactory
 		case (Constants.TYPE_SKETCH):
 			return Sketch.getImage(image);
 		case (Constants.TYPE_STOKEAREA):
-			return StrokeArea.getImage(image,2);
+			return StrokeArea.getImage(image, 2);
 		default:
 			return null;
 		}

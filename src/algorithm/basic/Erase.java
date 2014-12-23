@@ -50,8 +50,7 @@ public class Erase
 		return currImage;
 
 	}
-	
-	
+
 	/**
 	 * 擦除应用在源图片上的效果（仅有原图片的情况下，擦除区域为圆形区域）
 	 * 
@@ -89,7 +88,6 @@ public class Erase
 		return sourceImage;
 
 	}
-	
 
 	/**
 	 * 擦除应用在源图片上的效果（矩形区域）
