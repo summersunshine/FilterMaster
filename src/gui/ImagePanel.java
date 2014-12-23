@@ -9,8 +9,8 @@ import java.awt.image.BufferedImage;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import algorithm.ImageFactory;
 import algorithm.basic.Clone;
+import algorithm.factory.ImageFactory;
 
 public class ImagePanel extends JPanel
 {

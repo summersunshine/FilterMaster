@@ -1,6 +1,8 @@
-package algorithm;
+package algorithm.factory;
 
 import java.awt.image.BufferedImage;
+
+import app.Constants;
 
 public class ImageFactory
 {

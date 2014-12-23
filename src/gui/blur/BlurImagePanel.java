@@ -10,11 +10,11 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 import util.ImgUtil;
-import algorithm.Constants;
 import algorithm.basic.Clone;
 import algorithm.basic.Erase;
 import algorithm.blur.DoubleGuassBlur;
 import algorithm.blur.InteractiveBlur;
+import app.Constants;
 
 public class BlurImagePanel extends ImagePanelWithCursor
 {

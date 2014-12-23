@@ -13,7 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 
-import algorithm.Constants;
+import app.Constants;
 
 public class PartColorAdjustPanel extends JPanel implements AdjustmentListener, ActionListener
 {

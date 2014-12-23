@@ -1,4 +1,4 @@
-package algorithm;
+package algorithm.factory;
 
 import java.awt.image.BufferedImage;
 
@@ -6,6 +6,7 @@ import algorithm.blur.DoubleGuassBlur;
 import algorithm.blur.Laser;
 import algorithm.blur.MotionBlur;
 import algorithm.blur.TiltShiftCamera;
+import app.Constants;
 
 public class BlurImageFactory
 {

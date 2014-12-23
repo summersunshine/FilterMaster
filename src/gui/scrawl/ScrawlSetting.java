@@ -3,7 +3,7 @@ package gui.scrawl;
 import java.awt.Color;
 import java.awt.Rectangle;
 
-import algorithm.Constants;
+import app.Constants;
 
 public class ScrawlSetting
 {

@@ -1,4 +1,4 @@
-package algorithm;
+package algorithm.factory;
 
 import java.awt.image.BufferedImage;
 
@@ -7,6 +7,7 @@ import algorithm.art.Pencil;
 import algorithm.art.Sculpture;
 import algorithm.art.Sketch;
 import algorithm.art.StrokeArea;
+import app.Constants;
 
 public class ArtImageFactory
 {

@@ -1,4 +1,4 @@
-package algorithm;
+package algorithm.factory;
 
 import java.awt.image.BufferedImage;
 
@@ -6,6 +6,7 @@ import algorithm.fashion.Flare;
 import algorithm.fashion.Parchment;
 import algorithm.fashion.Photon;
 import algorithm.fashion.Rainbow;
+import app.Constants;
 
 public class FashionImageFactory
 {

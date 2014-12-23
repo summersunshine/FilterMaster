@@ -1,10 +1,11 @@
-package algorithm;
+package algorithm.factory;
 
 import java.awt.image.BufferedImage;
 
 import algorithm.fun.AlphaMerge;
 import algorithm.fun.MagicMirror;
 import algorithm.fun.Mosaic;
+import app.Constants;
 
 public class FunImageFactory
 {

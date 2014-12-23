@@ -2,7 +2,7 @@ package gui.partcolor;
 
 import java.awt.Rectangle;
 
-import algorithm.Constants;
+import app.Constants;
 
 public class PartColorSetting
 {

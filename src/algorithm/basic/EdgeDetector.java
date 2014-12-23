@@ -2,7 +2,7 @@ package algorithm.basic;
 
 import java.awt.image.BufferedImage;
 
-import algorithm.Constants;
+import app.Constants;
 import util.ColorUtil;
 import util.ImgUtil;
 import util.RGB;

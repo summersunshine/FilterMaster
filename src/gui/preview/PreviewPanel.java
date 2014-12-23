@@ -13,7 +13,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import algorithm.ImageFactory;
+import algorithm.factory.ImageFactory;
 
 public class PreviewPanel extends JPanel implements MouseListener
 {

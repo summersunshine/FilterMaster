@@ -7,8 +7,8 @@ import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import algorithm.Constants;
 import algorithm.blur.InteractiveBlur;
+import app.Constants;
 
 public class BlurTabbedPanel extends JTabbedPane implements ChangeListener
 {

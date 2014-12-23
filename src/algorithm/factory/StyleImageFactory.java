@@ -1,10 +1,11 @@
-package algorithm;
+package algorithm.factory;
 
 import java.awt.image.BufferedImage;
 
 import algorithm.style.RetroStyle;
 import algorithm.style.DuskStyle;
 import algorithm.style.YouthStyle;
+import app.Constants;
 
 public class StyleImageFactory
 {

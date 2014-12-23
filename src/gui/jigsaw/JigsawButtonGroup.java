@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import algorithm.Constants;
+import app.Constants;
 
 public class JigsawButtonGroup extends JPanel implements ActionListener
 {

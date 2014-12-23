@@ -1,9 +1,10 @@
-package algorithm;
+package algorithm.factory;
 
 import java.awt.image.BufferedImage;
 
 import algorithm.lomo.ClassicalLomo;
 import algorithm.lomo.MemoryLomo;
+import app.Constants;
 
 public class LomoImageFactory
 {

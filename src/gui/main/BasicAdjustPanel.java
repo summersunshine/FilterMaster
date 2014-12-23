@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 
-import algorithm.Constants;
+import app.Constants;
 
 /**
  * 基础调节面板 包括亮度，对比度，饱和度，色相的调节

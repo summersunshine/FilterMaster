@@ -1,8 +1,9 @@
-package algorithm;
+package algorithm.factory;
 
 import java.awt.image.BufferedImage;
 
 import algorithm.frame.Frame;
+import app.Constants;
 
 public class FrameImageFactory
 {

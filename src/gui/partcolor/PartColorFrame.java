@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
 
-import algorithm.Constants;
+import app.Constants;
 
 public class PartColorFrame extends BaseFrame
 {

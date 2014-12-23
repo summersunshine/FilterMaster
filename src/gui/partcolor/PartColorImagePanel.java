@@ -13,9 +13,9 @@ import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 
 import util.ImgUtil;
-import algorithm.Constants;
 import algorithm.basic.Erase;
 import algorithm.basic.Gray;
+import app.Constants;
 
 public class PartColorImagePanel extends ImagePanelWithCursor
 {

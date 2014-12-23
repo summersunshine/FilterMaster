@@ -14,7 +14,7 @@ import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.xml.ws.handler.MessageContext.Scope;
 
-import algorithm.Constants;
+import app.Constants;
 import app.Global;
 
 public class PreviewListPanel extends JScrollPane

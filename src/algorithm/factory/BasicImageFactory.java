@@ -1,4 +1,4 @@
-package algorithm;
+package algorithm.factory;
 
 import java.awt.image.BufferedImage;
 
@@ -9,6 +9,7 @@ import algorithm.basic.Inverse;
 import algorithm.basic.SaturationAndHue;
 import algorithm.basic.Scale;
 import algorithm.basic.Sharpen;
+import app.Constants;
 
 public class BasicImageFactory
 {

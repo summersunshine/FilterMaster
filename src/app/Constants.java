@@ -1,4 +1,4 @@
-package algorithm;
+package app;
 
 public class Constants
 {

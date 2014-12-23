@@ -9,7 +9,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import algorithm.Constants;
+import app.Constants;
 
 public class PreviewTabbedPanel extends JTabbedPane implements ChangeListener
 {

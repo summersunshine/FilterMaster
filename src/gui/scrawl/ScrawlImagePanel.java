@@ -18,10 +18,10 @@ import java.io.OutputStream;
 
 import javax.imageio.ImageIO;
 
-import algorithm.Constants;
 import algorithm.basic.Alpha;
 import algorithm.basic.Erase;
 import algorithm.basic.Merge;
+import app.Constants;
 import util.ImgUtil;
 
 public class ScrawlImagePanel extends ImagePanelWithCursor

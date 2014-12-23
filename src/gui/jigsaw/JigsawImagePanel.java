@@ -4,7 +4,7 @@ import gui.ImagePanel;
 
 import java.awt.image.BufferedImage;
 
-import algorithm.FunImageFactory;
+import algorithm.factory.FunImageFactory;
 import algorithm.fun.AlphaMerge;
 
 /**

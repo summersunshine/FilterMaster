@@ -9,9 +9,9 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 
-import algorithm.Constants;
 import algorithm.basic.Erase;
 import algorithm.fashion.Rainbow;
+import app.Constants;
 
 public class ImagePanelWithCursor extends ImagePanel implements MouseListener, MouseMotionListener
 {
