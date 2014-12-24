@@ -5,22 +5,25 @@ import gui.main.MainFrame;
 
 import java.awt.image.BufferedImage;
 
-import javax.swing.JFrame;
-
 public class MagicMirrorFrame extends BaseFrame
 {
 
+	/**
+	 * 
+	 */
+	private static final long		serialVersionUID	= 1L;
+
 	// Ô´Í¼Ïñ
-	private BufferedImage sourceImage;
+	private BufferedImage			sourceImage;
 
 	// Ä§¾µµ÷½ÚÃæ°å
-	private MagicMirrorAdjustPanel adjustPanel;
+	private MagicMirrorAdjustPanel	adjustPanel;
 
 	// Ä§¾µÍ¼ÏñÃæ°å
-	private MagicMirrorImagePanel imagePanel;
+	private MagicMirrorImagePanel	imagePanel;
 
 	public MagicMirrorFrame(BufferedImage image)
-	{	
+	{
 		super();
 
 		sourceImage = image;

@@ -1,9 +1,7 @@
 package util;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
@@ -23,6 +21,11 @@ public class ImgUtil
 	{
 		class ImgPanel extends JPanel
 		{
+
+			/**
+			 * 
+			 */
+			private static final long	serialVersionUID	= 1L;
 
 			@Override
 			public void paint(Graphics g)
@@ -61,7 +64,6 @@ public class ImgUtil
 		return bufferedImage;
 	}
 
-	
 	/**
 	 * 通过文件名读取图像,保留alpha通道
 	 * 
@@ -80,7 +82,7 @@ public class ImgUtil
 		}
 		return bufferedImage;
 	}
-	
+
 	public static int[] getSplitRGB(int rgb)
 	{
 		int[] rgbs = new int[3];
@@ -98,7 +100,7 @@ public class ImgUtil
 		return (r | g | b);
 	}
 
-	public static float clamp(float c,float value)
+	public static float clamp(float c, float value)
 	{
 		if (c < 0)
 			return 0;
@@ -106,8 +108,8 @@ public class ImgUtil
 			return value;
 		return c;
 	}
-	
-	public static int clamp(int c,int value)
+
+	public static int clamp(int c, int value)
 	{
 		if (c < 0)
 			return 0;
@@ -115,7 +117,7 @@ public class ImgUtil
 			return value;
 		return c;
 	}
-	
+
 	public static int clamp(int c)
 	{
 		if (c < 0)
@@ -124,7 +126,7 @@ public class ImgUtil
 			return 255;
 		return c;
 	}
-	
+
 	public static float clamp(float c)
 	{
 		if (c < 0)
@@ -133,7 +135,7 @@ public class ImgUtil
 			return 255;
 		return c;
 	}
-	
+
 	public static int clampIn255(int c)
 	{
 		if (c < 0)

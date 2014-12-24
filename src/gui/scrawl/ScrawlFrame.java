@@ -1,24 +1,30 @@
 package gui.scrawl;
 
-import java.awt.image.BufferedImage;
-
-import app.Global;
 import gui.BaseFrame;
 import gui.main.MainFrame;
 
+import java.awt.image.BufferedImage;
+
+import app.Global;
+
 public class ScrawlFrame extends BaseFrame
 {
+	/**
+	 * 
+	 */
+	private static final long		serialVersionUID	= 1L;
+
 	// 原始图像
-	public BufferedImage sourceImage;
+	public BufferedImage			sourceImage;
 
 	// 调节面板
-	private ScrawlAdjustPanel adjustPanel;
+	private ScrawlAdjustPanel		adjustPanel;
 
 	// 颜色选择面板
-	private ScrawlColorSelectPanel colorSelectPanel;
+	private ScrawlColorSelectPanel	colorSelectPanel;
 
 	// 图像显示面板
-	private ScrawlImagePanel imagePanel;
+	private ScrawlImagePanel		imagePanel;
 
 	public ScrawlFrame(BufferedImage image)
 	{
@@ -35,12 +41,11 @@ public class ScrawlFrame extends BaseFrame
 
 		// colorSelectPanel.paintComponent();
 	}
-	
-	
+
 	public void updateDrawingALpha()
 	{
 		imagePanel.updateAlpha();
-		
+
 	}
 
 	/**
@@ -82,9 +87,9 @@ public class ScrawlFrame extends BaseFrame
 	{
 		// TODO Auto-generated method stub
 		imagePanel.merge();
-		
+
 		MainFrame.getInstance().setImagePanel(imagePanel.getDisplayImage());
-		
+
 		super.saveOperation();
 	}
 

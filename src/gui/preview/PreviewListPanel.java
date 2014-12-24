@@ -1,39 +1,35 @@
 package gui.preview;
 
 import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.awt.Label;
-import java.awt.event.AdjustmentEvent;
-import java.awt.event.AdjustmentListener;
 import java.awt.image.BufferedImage;
-import java.text.BreakIterator;
 
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
-import javax.xml.ws.handler.MessageContext.Scope;
 
 import app.Constants;
-import app.Global;
 
 public class PreviewListPanel extends JScrollPane
 {
+	/**
+	 * 
+	 */
+	private static final long	serialVersionUID	= 1L;
+
 	// 类型列表
-	private int[] typeList;
+	private int[]				typeList;
 
 	// 描述列表
-	private String[] describeList;
+	private String[]			describeList;
 
 	// 现实内容的高度
-	private int contentHeight;
-	
-	private JLabel[] labelList;
-	
-	private PreviewPanel[] previewPanelList;
-	
-	//预览图
-	private BufferedImage previewImage;
+	private int					contentHeight;
+
+	private JLabel[]			labelList;
+
+	private PreviewPanel[]		previewPanelList;
+
+	// 预览图
+	private BufferedImage		previewImage;
 
 	public PreviewListPanel(BufferedImage previewImage, int type)
 	{
@@ -132,16 +128,15 @@ public class PreviewListPanel extends JScrollPane
 			contentHeight += 150;
 		}
 
-		this.setPreferredSize(new Dimension(240, contentHeight+50));
-		
+		this.setPreferredSize(new Dimension(240, contentHeight + 50));
+
 		this.setVisible(true);
 	}
-	
-	
+
 	/**
 	 * 添加标签
 	 * 
-	 * @param index 
+	 * @param index
 	 * */
 	private void addLabel(int index)
 	{
@@ -150,7 +145,7 @@ public class PreviewListPanel extends JScrollPane
 		add(label);
 
 	}
-	
+
 	/**
 	 * 添加预览面板
 	 * 
@@ -163,7 +158,6 @@ public class PreviewListPanel extends JScrollPane
 		add(previewPanel);
 
 	}
-	
 
 	/**
 	 * 获取内容的高度

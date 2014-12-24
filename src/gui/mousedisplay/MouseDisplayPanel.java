@@ -9,11 +9,16 @@ import javax.swing.JPanel;
 
 public class MouseDisplayPanel extends JPanel implements MouseListener, MouseMotionListener
 {
-	public static final int TYPE_CIRCLE = 1;
+	/**
+	 * 
+	 */
+	private static final long	serialVersionUID	= 1L;
 
-	protected int mouseX;
-	protected int mouseY;
-	protected int type;
+	public static final int		TYPE_CIRCLE			= 1;
+
+	protected int				mouseX;
+	protected int				mouseY;
+	protected int				type;
 
 	public MouseDisplayPanel(Rectangle rectangle)
 	{

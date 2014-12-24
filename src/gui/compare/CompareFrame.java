@@ -9,20 +9,25 @@ import javax.swing.JFrame;
 
 public class CompareFrame extends JFrame implements ActionListener
 {
-	//图像对比面板
-	private CompareImagePanel compareImagePanel;
+	/**
+	 * 
+	 */
+	private static final long	serialVersionUID	= 1L;
 
-	//竖直按钮
-	private JButton verticalButton;
-	
-	//水平按钮
-	private JButton horizontalButton;
+	// 图像对比面板
+	private CompareImagePanel	compareImagePanel;
 
-	//源图像
-	private BufferedImage sourceImage;
-	
-	//显示图像
-	private BufferedImage displayImage;
+	// 竖直按钮
+	private JButton				verticalButton;
+
+	// 水平按钮
+	private JButton				horizontalButton;
+
+	// 源图像
+	private BufferedImage		sourceImage;
+
+	// 显示图像
+	private BufferedImage		displayImage;
 
 	public CompareFrame(BufferedImage sourceImage, BufferedImage displayImage)
 	{

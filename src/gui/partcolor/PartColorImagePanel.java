@@ -1,15 +1,10 @@
 package gui.partcolor;
 
-import gui.ImagePanel;
 import gui.ImagePanelWithCursor;
-import gui.partmosaic.PartMosaicSetting;
 
 import java.awt.Cursor;
 import java.awt.Point;
 import java.awt.Toolkit;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 
 import util.ImgUtil;
@@ -19,8 +14,12 @@ import app.Constants;
 
 public class PartColorImagePanel extends ImagePanelWithCursor
 {
+	/**
+	 * 
+	 */
+	private static final long	serialVersionUID	= 1L;
 	// »Ò¶ÈÍ¼Ïñ
-	public BufferedImage grayImage;
+	public BufferedImage		grayImage;
 
 	public PartColorImagePanel(BufferedImage image)
 	{
@@ -30,8 +29,9 @@ public class PartColorImagePanel extends ImagePanelWithCursor
 		sourceImage = image;
 
 		grayImage = Gray.getImage(image);
-		//grayImage = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_INT_RGB);
-		
+		// grayImage = new BufferedImage(image.getWidth(), image.getHeight(),
+		// BufferedImage.TYPE_INT_RGB);
+
 	}
 
 	/**

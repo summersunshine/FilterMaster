@@ -11,10 +11,15 @@ import app.Global;
 
 public class PreviewListPanelWithScrollBar extends JPanel implements AdjustmentListener
 {
-	// 如果现实内容超过了面板，就使用scrollBar
-	private JScrollBar scrollBar;
+	/**
+	 * 
+	 */
+	private static final long	serialVersionUID	= 1L;
 
-	private PreviewListPanel previewListPanel;
+	// 如果现实内容超过了面板，就使用scrollBar
+	private JScrollBar			scrollBar;
+
+	private PreviewListPanel	previewListPanel;
 
 	public PreviewListPanelWithScrollBar(BufferedImage previewImage, int type)
 	{

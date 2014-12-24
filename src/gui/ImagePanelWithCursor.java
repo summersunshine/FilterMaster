@@ -1,7 +1,5 @@
 package gui;
 
-import gui.partcolor.PartColorSetting;
-
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
@@ -9,35 +7,36 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 
-import algorithm.basic.Erase;
-import algorithm.fashion.Rainbow;
-import app.Constants;
-
 public class ImagePanelWithCursor extends ImagePanel implements MouseListener, MouseMotionListener
 {
+	/**
+	 * 
+	 */
+	private static final long	serialVersionUID	= 1L;
+
 	// 显示的x坐标
-	protected int displayX = 0;
+	protected int				displayX			= 0;
 
 	// 显示的y坐标
-	protected int displayY = 0;
+	protected int				displayY			= 0;
 
 	// 鼠标的x坐标
-	private int mouseX;
+	private int					mouseX;
 
 	// 鼠标的y坐标
-	private int mouseY;
+	private int					mouseY;
 
 	// cursor的x坐标
-	private int cursorX;
+	private int					cursorX;
 
 	// cursor的y坐标
-	private int cursorY;
+	private int					cursorY;
 
-	protected int radius;
+	protected int				radius;
 
-	private boolean isMouseEntered;
+	private boolean				isMouseEntered;
 
-	protected BufferedImage cursorImage;
+	protected BufferedImage		cursorImage;
 
 	public ImagePanelWithCursor(BufferedImage image)
 	{

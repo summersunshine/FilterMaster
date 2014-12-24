@@ -8,7 +8,11 @@ import util.Geometry;
 public class CircleMouseDisplayPanel extends MouseDisplayPanel
 {
 
-	int radius;
+	/**
+	 * 
+	 */
+	private static final long	serialVersionUID	= 1L;
+	private int					radius;
 
 	public CircleMouseDisplayPanel(Rectangle rectangle)
 	{

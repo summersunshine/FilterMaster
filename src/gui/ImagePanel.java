@@ -2,50 +2,53 @@ package gui;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
-import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import algorithm.basic.Clone;
-import algorithm.factory.ImageFactory;
+import filter.Filter;
+import filter.factory.FilterFactory;
 
 public class ImagePanel extends JPanel
 {
+	/**
+	 * 
+	 */
+	private static final long	serialVersionUID	= 1L;
+
 	// 显示图像的最大宽度
-	public static final int MAX_IMAGE_WIDTH = 800;
+	public static final int		MAX_IMAGE_WIDTH		= 800;
 
 	// 显示图像的最大长度
-	public static final int MAX_IMAGE_HEIGHT = 450;
+	public static final int		MAX_IMAGE_HEIGHT	= 450;
 
 	// 图像中心的X
-	public static final int IMAGE_CENTER_X = 640;
+	public static final int		IMAGE_CENTER_X		= 640;
 
 	// 图像中心的Y
-	public static final int IMAGE_CENTER_Y = 320;
+	public static final int		IMAGE_CENTER_Y		= 320;
 
 	// 显示的图像
-	protected BufferedImage displayImage;
+	protected BufferedImage		displayImage;
 
 	// 原始的图像
-	protected BufferedImage sourceImage;
+	protected BufferedImage		sourceImage;
 
 	// 缩放比例
-	protected float ratio;
+	protected float				ratio;
 
 	// 面板x坐标
-	protected int x;
+	protected int				x;
 
 	// 面板y坐标
-	protected int y;
+	protected int				y;
 
 	// 画布宽度
-	protected int canvasWidth;
+	protected int				canvasWidth;
 
 	// 画布高度
-	protected int canvasHeight;
+	protected int				canvasHeight;
 
 	public int getCanvasWidth()
 	{
@@ -134,9 +137,12 @@ public class ImagePanel extends JPanel
 	 * */
 	public void updateImage(int type, Object... parameter)
 	{
-		// TODO Auto-generated method stub
-		displayImage = ImageFactory.getImage(type, sourceImage, parameter);
 
+		// TODO Auto-generated method stub
+		Filter filter = FilterFactory.getFilter(type);
+		displayImage = filter.getImage(sourceImage);
+
+		// displayImage = ImageFactory.getImage(type, sourceImage, parameter);
 		repaint();
 	}
 

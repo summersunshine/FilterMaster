@@ -35,9 +35,9 @@ public class FunImageFactory
 			return AlphaMerge.getImage(image, (BufferedImage) (parameter[0]), AlphaMerge.DIR_UP_2_DOWN);
 		case (Constants.TYPE_ALPHA_MERGE_4):
 			return AlphaMerge.getImage(image, (BufferedImage) (parameter[0]), AlphaMerge.DIR_DOWN_2_UP);
-		case (Constants.TYPE_MAGIC_MIRROIR_1):
+		case (Constants.TYPE_CONCAVE_MIRROIR):
 			return MagicMirror.getImage(image, MagicMirror.TYPE_CONCAVE, (float) (parameter[0]));
-		case (Constants.TYPE_MAGIC_MIRROIR_2):
+		case (Constants.TYPE_CONVEX_MIRROIR):
 			return MagicMirror.getImage(image, MagicMirror.TYPE_CONVEX, (float) (parameter[0]));
 		case (Constants.TYPE_MOSIC):
 			return Mosaic.getImage(image);

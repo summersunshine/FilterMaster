@@ -9,6 +9,11 @@ import algorithm.factory.FunImageFactory;
 public class MagicMirrorImagePanel extends ImagePanel
 {
 
+	/**
+	 * 
+	 */
+	private static final long	serialVersionUID	= 1L;
+
 	public MagicMirrorImagePanel(BufferedImage image)
 	{
 		super(image);

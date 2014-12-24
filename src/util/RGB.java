@@ -1,35 +1,32 @@
 package util;
 
-import java.awt.Color;
-
-
 /**
  * RGB颜色空间
  * */
 public class RGB
 {
-	public static final int GRAY = 0;
-	public static final int R = 1;
-	public static final int G = 2;
-	public static final int B = 3;
+	public static final int	GRAY	= 0;
+	public static final int	R		= 1;
+	public static final int	G		= 2;
+	public static final int	B		= 3;
 
-	public int r;
-	public int g;
-	public int b;
+	public int				r;
+	public int				g;
+	public int				b;
 
 	/**
 	 * 构造函数
 	 *
-	 *@param r
-	 *@param g
-	 *@param b
+	 * @param r
+	 * @param g
+	 * @param b
 	 * */
 	public RGB(int r, int g, int b)
 	{
 		this.r = r;
 		this.g = g;
 		this.b = b;
-		
+
 		clamp();
 	}
 
@@ -45,22 +42,7 @@ public class RGB
 		this.r = (int) r;
 		this.g = (int) g;
 		this.b = (int) b;
-		
-		clamp();
-	}
 
-	/**
-	 * 构造函数
-	 * 
-	 * @param rgb[]
-	 * 以数组的方式分别保存三个通道
-	 * */
-	public RGB(int[] rgb)
-	{
-		this.r = rgb[0];
-		this.g = rgb[1];
-		this.b = rgb[2];
-		
 		clamp();
 	}
 
@@ -68,18 +50,32 @@ public class RGB
 	 * 构造函数
 	 * 
 	 * @param rgb
-	 * 24位整数
+	 *            [] 以数组的方式分别保存三个通道
+	 * */
+	public RGB(int[] rgb)
+	{
+		this.r = rgb[0];
+		this.g = rgb[1];
+		this.b = rgb[2];
+
+		clamp();
+	}
+
+	/**
+	 * 构造函数
+	 * 
+	 * @param rgb
+	 *            24位整数
 	 * */
 	public RGB(int rgb)
 	{
 		this.r = (rgb & 0xff0000) >> 16;
 		this.g = (rgb & 0xff00) >> 8;
 		this.b = (rgb & 0xff);
-		
+
 		clamp();
 	}
-	
-	
+
 	/**
 	 * 是否是纯白色
 	 * */
@@ -87,7 +83,7 @@ public class RGB
 	{
 		return this.r == 255 && this.g == 255 && this.b == 255;
 	}
-	
+
 	/**
 	 * 是否是纯黑色
 	 * */
@@ -95,7 +91,6 @@ public class RGB
 	{
 		return this.r == 0 && this.g == 0 && this.b == 255;
 	}
-	
 
 	public int[] getSplitRGB()
 	{
@@ -113,8 +108,7 @@ public class RGB
 		int bb = b;
 		return (rr | gg | bb);
 	}
-	
-	
+
 	public void clamp()
 	{
 		r = ImgUtil.clampIn255(r);

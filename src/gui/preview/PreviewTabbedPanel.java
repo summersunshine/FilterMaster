@@ -1,6 +1,5 @@
 package gui.preview;
 
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.util.Vector;
 
@@ -14,29 +13,33 @@ import app.Constants;
 public class PreviewTabbedPanel extends JTabbedPane implements ChangeListener
 {
 
+	/**
+	 * 
+	 */
+	private static final long		serialVersionUID	= 1L;
+
 	// 艺术化面板
-	public PreviewListPanel artPanel;
+	public PreviewListPanel			artPanel;
 
 	// 基础面板
-	public PreviewListPanel basicPanel;
+	public PreviewListPanel			basicPanel;
 
 	// 模糊面板
-	public PreviewListPanel blurPanel;
+	public PreviewListPanel			blurPanel;
 
 	// lomo面板
-	public PreviewListPanel lomoPanel;
+	public PreviewListPanel			lomoPanel;
 
 	// 风格化面板
-	public PreviewListPanel stylePanel;
-	
-	//时尚面板
-	public PreviewListPanel fashionPanel;
-	
-	//相框面板
-	public PreviewListPanel framePanel;
-	
-	
-	public Vector<PreviewListPanel> previewListPanels;
+	public PreviewListPanel			stylePanel;
+
+	// 时尚面板
+	public PreviewListPanel			fashionPanel;
+
+	// 相框面板
+	public PreviewListPanel			framePanel;
+
+	public Vector<PreviewListPanel>	previewListPanels;
 
 	public PreviewTabbedPanel(BufferedImage previewImage)
 	{
@@ -47,7 +50,7 @@ public class PreviewTabbedPanel extends JTabbedPane implements ChangeListener
 
 		this.addChangeListener(this);
 
-		//this.setSelectedIndex(5);
+		// this.setSelectedIndex(5);
 		this.setBounds(1040, 0, 240, 720);
 		this.setVisible(true);
 
@@ -70,8 +73,7 @@ public class PreviewTabbedPanel extends JTabbedPane implements ChangeListener
 		framePanel = new PreviewListPanel(previewImage, Constants.TYPE_FRAME);
 		JScrollPane artScrollPane = new JScrollPane(artPanel);
 		JScrollPane basicJScrollPane = new JScrollPane(basicPanel);
-	
-		
+
 		this.addTab("Art", artScrollPane);
 		this.addTab("Basic", basicJScrollPane);
 		this.addTab("Blur", blurPanel);
@@ -81,9 +83,6 @@ public class PreviewTabbedPanel extends JTabbedPane implements ChangeListener
 		this.addTab("Frame", framePanel);
 	}
 
-	
-	
-	
 	/**
 	 * 重画所有的面板
 	 * */
@@ -106,7 +105,7 @@ public class PreviewTabbedPanel extends JTabbedPane implements ChangeListener
 		int selectedIndex = getSelectedIndex();
 		// 获得选项卡标签
 		String title = getTitleAt(selectedIndex);
-		
+
 		System.out.println("state change" + selectedIndex);
 
 	}

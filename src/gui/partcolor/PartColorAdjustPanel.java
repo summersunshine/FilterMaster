@@ -1,7 +1,5 @@
 package gui.partcolor;
 
-import gui.blur.BlurSetting;
-
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,20 +15,25 @@ import app.Constants;
 
 public class PartColorAdjustPanel extends JPanel implements AdjustmentListener, ActionListener
 {
+	/**
+	 * 
+	 */
+	private static final long	serialVersionUID	= 1L;
+
 	// »­±Ê´óÐ¡¹ö¶¯Ìõ
-	private JScrollBar sizeScrollBar;
+	private JScrollBar			sizeScrollBar;
 
 	// »­±Ê´óÐ¡±êÇ©
-	private JLabel sizeLabel;
+	private JLabel				sizeLabel;
 
-	//»­±Ê
-	private JButton paintButton;
+	// »­±Ê
+	private JButton				paintButton;
 
 	// ²Á³ý
-	private JButton eraseButton;
+	private JButton				eraseButton;
 
 	// ¸¸Ãæ°å
-	private PartColorFrame parent;
+	private PartColorFrame		parent;
 
 	public PartColorAdjustPanel(PartColorFrame parent) throws HeadlessException
 	{
@@ -56,8 +59,8 @@ public class PartColorAdjustPanel extends JPanel implements AdjustmentListener, 
 		int extent = PartColorSetting.sizeExtent;
 		int min = PartColorSetting.minSizeValue;
 		int max = PartColorSetting.maxSizeValue;
-		
-		sizeScrollBar = new JScrollBar(JScrollBar.HORIZONTAL, min,extent,min,max);
+
+		sizeScrollBar = new JScrollBar(JScrollBar.HORIZONTAL, min, extent, min, max);
 		sizeScrollBar.setBounds(PartColorSetting.SIZE_SCROLLBAR_RECTANGLE);
 		sizeScrollBar.setUnitIncrement(extent);
 		sizeScrollBar.setBlockIncrement(extent);

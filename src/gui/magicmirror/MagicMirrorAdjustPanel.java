@@ -1,7 +1,5 @@
 package gui.magicmirror;
 
-import gui.blur.BlurSetting;
-
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,21 +18,25 @@ import app.Constants;
 public class MagicMirrorAdjustPanel extends JPanel implements AdjustmentListener, ActionListener, MouseListener
 {
 
+	/**
+	 * 
+	 */
+	private static final long	serialVersionUID	= 1L;
 
 	// 凸的
-	private JButton convexButton;
+	private JButton				convexButton;
 
 	// 凹的
-	private JButton concaveButton;
+	private JButton				concaveButton;
 
 	// 嘻哈程度滚动条
-	private JScrollBar radiusScrollBar;
+	private JScrollBar			radiusScrollBar;
 
 	// 嘻哈标签
-	private JLabel radiusLabel;
+	private JLabel				radiusLabel;
 
 	// 主界面
-	MagicMirrorFrame parent;
+	MagicMirrorFrame			parent;
 
 	public MagicMirrorAdjustPanel(MagicMirrorFrame parent) throws HeadlessException
 	{
@@ -62,8 +64,8 @@ public class MagicMirrorAdjustPanel extends JPanel implements AdjustmentListener
 		int extent = MagicMirrorSetting.radiusExtent;
 		int min = MagicMirrorSetting.minRadiusValue;
 		int max = MagicMirrorSetting.maxRadiusValue;
-		
-		radiusScrollBar = new JScrollBar(JScrollBar.HORIZONTAL, min,extent,min,max);
+
+		radiusScrollBar = new JScrollBar(JScrollBar.HORIZONTAL, min, extent, min, max);
 		radiusScrollBar.setBounds(MagicMirrorSetting.RADIUS_SCROLLBAR_RECTANGLE);
 		radiusScrollBar.setUnitIncrement(extent);
 		radiusScrollBar.setBlockIncrement(extent);
@@ -120,7 +122,7 @@ public class MagicMirrorAdjustPanel extends JPanel implements AdjustmentListener
 		}
 
 	}
-	
+
 	/**
 	 * 将滤镜切换到凹透镜
 	 * */
@@ -129,11 +131,11 @@ public class MagicMirrorAdjustPanel extends JPanel implements AdjustmentListener
 		// TODO Auto-generated method stub
 		concaveButton.setSelected(false);
 		convexButton.setSelected(true);
-		MagicMirrorSetting.type = Constants.TYPE_MAGIC_MIRROIR_1;
+		MagicMirrorSetting.type = Constants.TYPE_CONCAVE_MIRROIR;
 
 		parent.setImagePanel();
 	}
-	
+
 	/**
 	 * 将滤镜切换到凸透镜
 	 * */
@@ -142,11 +144,10 @@ public class MagicMirrorAdjustPanel extends JPanel implements AdjustmentListener
 		// TODO Auto-generated method stub
 		convexButton.setSelected(false);
 		concaveButton.setSelected(true);
-		MagicMirrorSetting.type = Constants.TYPE_MAGIC_MIRROIR_2;
+		MagicMirrorSetting.type = Constants.TYPE_CONVEX_MIRROIR;
 
 		parent.setImagePanel();
 	}
-	
 
 	@Override
 	public void mouseClicked(MouseEvent arg0)

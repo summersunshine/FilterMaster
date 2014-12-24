@@ -1,39 +1,33 @@
 package gui.scrawl;
 
-import gui.ImagePanel;
 import gui.ImagePanelWithCursor;
-import gui.partcolor.PartColorSetting;
 
 import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.io.OutputStream;
 
-import javax.imageio.ImageIO;
-
+import util.ImgUtil;
 import algorithm.basic.Alpha;
 import algorithm.basic.Erase;
 import algorithm.basic.Merge;
 import app.Constants;
-import util.ImgUtil;
 
 public class ScrawlImagePanel extends ImagePanelWithCursor
 {
+	/**
+	 * 
+	 */
+	private static final long	serialVersionUID	= 1L;
+
 	// 涂鸦层图像
-	private BufferedImage drawingImage;
+	private BufferedImage		drawingImage;
 
 	// 上一次显示的x坐标
-	private int lastDisplayX;
+	private int					lastDisplayX;
 
 	// 上一次显示的y坐标
-	private int lastDisplayY;
+	private int					lastDisplayY;
 
 	public ScrawlImagePanel(BufferedImage image)
 	{
@@ -125,7 +119,7 @@ public class ScrawlImagePanel extends ImagePanelWithCursor
 	{
 		Graphics2D g2d = drawingImage.createGraphics();
 		g2d.setPaint(ScrawlSetting.brushColor);
-		
+
 		g2d.setStroke(new BasicStroke(ScrawlSetting.sizeValue / ratio, BasicStroke.CAP_ROUND, BasicStroke.JOIN_BEVEL));
 		g2d.drawLine(displayX, displayY, lastDisplayX, lastDisplayY);
 	}
@@ -135,8 +129,6 @@ public class ScrawlImagePanel extends ImagePanelWithCursor
 	 * */
 	public void erase()
 	{
-		Graphics2D g2d = drawingImage.createGraphics();
-
 		drawingImage = Erase.getImage(drawingImage, displayX, displayY, ScrawlSetting.sizeValue);
 
 	}
@@ -146,25 +138,25 @@ public class ScrawlImagePanel extends ImagePanelWithCursor
 	 * */
 	public void updateAlpha()
 	{
-		
+
 		drawingImage = Alpha.getImage(drawingImage, ScrawlSetting.alphaValue);
-		
+
 		repaint();
 	}
-	
+
 	public void merge()
 	{
-		
+
 		displayImage = Merge.getImage(displayImage, drawingImage);
-//		try
-//		{
-//			ImageIO.write(drawingImage, "JPEG", new File("res/s.jpg"));
-//		}
-//		catch (IOException e)
-//		{
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		// try
+		// {
+		// ImageIO.write(drawingImage, "JPEG", new File("res/s.jpg"));
+		// }
+		// catch (IOException e)
+		// {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// }
 	}
 
 }

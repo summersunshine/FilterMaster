@@ -42,10 +42,10 @@ public class Constants
 	public static final int	TYPE_ALPHA_MERGE_2		= 402;
 	public static final int	TYPE_ALPHA_MERGE_3		= 403;
 	public static final int	TYPE_ALPHA_MERGE_4		= 404;
-	public static final int	TYPE_MAGIC_MIRROIR_1	= 405;
-	public static final int	TYPE_MAGIC_MIRROIR_2	= 406;
+	public static final int	TYPE_CONCAVE_MIRROIR	= 405;
+	public static final int	TYPE_CONVEX_MIRROIR		= 406;
 	public static final int	TYPE_MOSIC				= 407;
-
+	public static final int	TYPE_PART_MOSIC			= 408;
 	// lomo
 	public static final int	TYPE_LOMO_CLASSIC		= 501;
 	public static final int	TYPE_LOMO_MEMORY		= 502;
@@ -74,7 +74,7 @@ public class Constants
 	public static int[]		TYPE_BLUR_LIST			= { TYPE_DOUBLE_GUASS_BLUR, TYPE_GUASS_BLUR, TYPE_LASER, TYPE_MOTION_BLUR };
 
 	public static int[]		TYPE_FUN_LIST			= { TYPE_ALPHA_MERGE, TYPE_ALPHA_MERGE_1, TYPE_ALPHA_MERGE_2, TYPE_ALPHA_MERGE_3, TYPE_ALPHA_MERGE_4,
-			TYPE_MAGIC_MIRROIR_1, TYPE_MAGIC_MIRROIR_2, TYPE_MOSIC };
+			TYPE_CONCAVE_MIRROIR, TYPE_CONVEX_MIRROIR, TYPE_MOSIC };
 
 	public static int[]		TYPE_LOMO_LIST			= { TYPE_LOMO_CLASSIC, TYPE_LOMO_MEMORY };
 

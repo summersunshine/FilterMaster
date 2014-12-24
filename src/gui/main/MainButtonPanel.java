@@ -1,7 +1,6 @@
 package gui.main;
 
 import gui.blur.BlurFrame;
-import gui.compare.CompareFrame;
 import gui.jigsaw.JigsawFrame;
 import gui.magicmirror.MagicMirrorFrame;
 import gui.partcolor.PartColorFrame;
@@ -18,23 +17,28 @@ import javax.swing.JPanel;
 
 public class MainButtonPanel extends JPanel implements ActionListener
 {
+	/**
+	 * 
+	 */
+	private static final long	serialVersionUID	= 1L;
+
 	// 背景模糊按钮
-	private JButton blurButton;
+	private JButton				blurButton;
 
 	// 拼图按钮
-	private JButton jigsawButton;
+	private JButton				jigsawButton;
 
 	// 魔镜按钮
-	private JButton magicMirrorButton;
+	private JButton				magicMirrorButton;
 
 	// 局部彩色按钮
-	private JButton partColorButton;
+	private JButton				partColorButton;
 
 	// 马赛克按钮
-	private JButton partMosaicButton;
+	private JButton				partMosaicButton;
 
 	// 涂鸦按钮
-	private JButton scrawlButton;
+	private JButton				scrawlButton;
 
 	public MainButtonPanel()
 	{
@@ -135,27 +139,27 @@ public class MainButtonPanel extends JPanel implements ActionListener
 		// TODO Auto-generated method stub
 		if (e.getSource() == blurButton)
 		{
-			BlurFrame blurFrame = new BlurFrame(image);
+			new BlurFrame(image);
 		}
 		else if (e.getSource() == jigsawButton)
 		{
-			JigsawFrame jigsawFrame = new JigsawFrame(image);
+			new JigsawFrame(image);
 		}
 		else if (e.getSource() == magicMirrorButton)
 		{
-			MagicMirrorFrame magicMirrorFrame = new MagicMirrorFrame(image);
+			new MagicMirrorFrame(image);
 		}
 		else if (e.getSource() == partColorButton)
 		{
-			PartColorFrame partColorFrame = new PartColorFrame(image);
+			new PartColorFrame(image);
 		}
 		else if (e.getSource() == partMosaicButton)
 		{
-			PartMosaicFrame partMosaicFrame = new PartMosaicFrame(image);
+			new PartMosaicFrame(image);
 		}
 		else if (e.getSource() == scrawlButton)
 		{
-			ScrawlFrame scrawlFrame = new ScrawlFrame(image);
+			new ScrawlFrame(image);
 		}
 	}
 

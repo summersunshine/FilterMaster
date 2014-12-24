@@ -1,33 +1,26 @@
 package gui.partmosaic;
 
-import gui.ImagePanel;
 import gui.ImagePanelWithCursor;
-import gui.blur.BlurSetting;
 
-import java.awt.Cursor;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Point;
-import java.awt.Toolkit;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 
 import util.ImgUtil;
-import algorithm.basic.Clone;
 import algorithm.basic.Erase;
-import algorithm.factory.FunImageFactory;
 import algorithm.fun.Mosaic;
 import app.Constants;
 
 public class PartMosaicImagePanel extends ImagePanelWithCursor
 {
 
-	public BufferedImage circleImage;
+	/**
+	 * 
+	 */
+	private static final long	serialVersionUID	= 1L;
+
+	public BufferedImage		circleImage;
 
 	// Ô­Ê¼Í¼Ïñ
-	public BufferedImage sourceImage;
+	public BufferedImage		sourceImage;
 
 	public PartMosaicImagePanel(BufferedImage image)
 	{

@@ -14,54 +14,59 @@ import javax.swing.JScrollBar;
 
 import algorithm.blur.InteractiveBlur;
 
-public class BlurControlPanel extends JPanel implements ActionListener, AdjustmentListener,MouseListener
+public class BlurControlPanel extends JPanel implements ActionListener, AdjustmentListener, MouseListener
 {
-	
-	//作用范围lebel
-	private JLabel rangeLabel;
-	
+
+	/**
+	 * 
+	 */
+	private static final long	serialVersionUID	= 1L;
+
+	// 作用范围lebel
+	private JLabel				rangeLabel;
+
 	// 作用范围滚动条
-	private JScrollBar rangeScrollBar;
-	
-	public JButton radialButton;
-	public JButton verticalButton;
-	public JButton horziontalButton;
-	
-	public BlurFrame parent;
-	
+	private JScrollBar			rangeScrollBar;
+
+	public JButton				radialButton;
+	public JButton				verticalButton;
+	public JButton				horziontalButton;
+
+	public BlurFrame			parent;
+
 	public BlurControlPanel(BlurFrame parent)
 	{
 		this.setLayout(null);
 
 		this.parent = parent;
-		
+
 		this.initButtons();
-		
+
 		this.initRangeBar();
-		
+
 		this.setBounds(BlurSetting.ADJUST_PANEL_RECTANGLE);
 	}
-	
+
 	private void initButtons()
 	{
 		// TODO Auto-generated method stub
 		radialButton = new JButton("圆形");
 		radialButton.setBounds(BlurSetting.RADIAL_BUTTON_RECTANGLE);
 		radialButton.addActionListener(this);
-		
+
 		verticalButton = new JButton("垂直");
 		verticalButton.setBounds(BlurSetting.VERTICAL_BUTTON_RECTANGLE);
 		verticalButton.addActionListener(this);
-		
+
 		horziontalButton = new JButton("水平");
 		horziontalButton.setBounds(BlurSetting.HORZIONTAL_BUTTON_RECTANGLE);
 		horziontalButton.addActionListener(this);
-		
+
 		this.add(radialButton);
 		this.add(verticalButton);
 		this.add(horziontalButton);
 	}
-	
+
 	private void initRangeBar()
 	{
 		rangeLabel = new JLabel("范围");
@@ -71,8 +76,8 @@ public class BlurControlPanel extends JPanel implements ActionListener, Adjustme
 		int extent = BlurSetting.rangeExtent;
 		int min = BlurSetting.minRangeValue;
 		int max = BlurSetting.maxRangeValue;
-		
-		rangeScrollBar= new JScrollBar(JScrollBar.HORIZONTAL, value,extent,min,max);
+
+		rangeScrollBar = new JScrollBar(JScrollBar.HORIZONTAL, value, extent, min, max);
 		rangeScrollBar.setBounds(BlurSetting.RANGE_SCROLLBAR_RECTANGLE);
 		rangeScrollBar.setUnitIncrement(extent);
 		rangeScrollBar.setBlockIncrement(extent);
@@ -80,7 +85,7 @@ public class BlurControlPanel extends JPanel implements ActionListener, Adjustme
 
 		this.add(rangeLabel);
 		this.add(rangeScrollBar);
-		
+
 	}
 
 	@Override
@@ -109,7 +114,7 @@ public class BlurControlPanel extends JPanel implements ActionListener, Adjustme
 		{
 			BlurSetting.type = InteractiveBlur.TYPE_HORIZONTAL;
 		}
-		
+
 		parent.imagePanel.switchModel();
 	}
 
@@ -117,28 +122,28 @@ public class BlurControlPanel extends JPanel implements ActionListener, Adjustme
 	public void mouseClicked(MouseEvent e)
 	{
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e)
 	{
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e)
 	{
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e)
 	{
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -147,7 +152,5 @@ public class BlurControlPanel extends JPanel implements ActionListener, Adjustme
 		// TODO Auto-generated method stub
 		parent.imagePanel.updateClearRange();
 	}
-	
-	
-	
+
 }

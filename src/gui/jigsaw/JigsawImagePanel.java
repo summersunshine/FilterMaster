@@ -13,8 +13,12 @@ import algorithm.fun.AlphaMerge;
 public class JigsawImagePanel extends ImagePanel
 {
 
-	private BufferedImage firstImage;
-	private BufferedImage secondImage;
+	/**
+	 * 
+	 */
+	private static final long	serialVersionUID	= 1L;
+	private BufferedImage		firstImage;
+	private BufferedImage		secondImage;
 
 	public JigsawImagePanel(BufferedImage firstImage, BufferedImage secondImage)
 	{

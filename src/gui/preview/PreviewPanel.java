@@ -1,11 +1,7 @@
 package gui.preview;
 
-import gui.main.MainFrame;
-
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.GridLayout;
-import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
@@ -13,21 +9,28 @@ import java.awt.image.BufferedImage;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import algorithm.factory.ImageFactory;
+import filter.Filter;
+import filter.factory.FilterFactory;
+import gui.main.MainFrame;
 
 public class PreviewPanel extends JPanel implements MouseListener
 {
+	/**
+	 * 
+	 */
+	private static final long	serialVersionUID	= 1L;
+
 	// 描述预览界面
-	public JLabel discribelLabel;
+	public JLabel				discribelLabel;
 
 	// 显示的图像
-	public BufferedImage displayImage;
+	public BufferedImage		displayImage;
 
 	// 滤镜类型
-	public int type;
+	public int					type;
 
 	// 参数
-	public Object[] parameter;
+	public Object[]				parameter;
 
 	/**
 	 * 构造函数
@@ -86,7 +89,10 @@ public class PreviewPanel extends JPanel implements MouseListener
 	private void initDisplayImage(BufferedImage sourceImage)
 	{
 		// TODO Auto-generated method stub
-		displayImage = ImageFactory.getImage(type, sourceImage, parameter);
+		// displayImage = ImageFactory.getImage(type, sourceImage, parameter);
+		Filter filter = FilterFactory.getFilter(type);
+		displayImage = filter.getImage(sourceImage);
+
 	}
 
 	@Override

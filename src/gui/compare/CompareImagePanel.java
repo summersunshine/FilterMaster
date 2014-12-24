@@ -8,32 +8,37 @@ import javax.swing.JPanel;
 
 public class CompareImagePanel extends JPanel
 {
+	/**
+	 * 
+	 */
+	private static final long	serialVersionUID	= 1L;
+
 	// 源图像
-	private BufferedImage sourceImage;
+	private BufferedImage		sourceImage;
 
 	// 显示图像，美化之后的图像
-	private BufferedImage displayImage;
+	private BufferedImage		displayImage;
 
 	// 图像宽度
-	private int imageWidth;
+	private int					imageWidth;
 
 	// 图像高度
-	private int imageHeight;
+	private int					imageHeight;
 
 	// x坐标
-	private int x;
+	private int					x;
 
 	// y坐标
-	private int y;
+	private int					y;
 
 	// x轴方向的比率
-	private float ratioX;
+	private float				ratioX;
 
 	// y轴方向的比率
-	private float ratioY;
+	private float				ratioY;
 
 	// 总的比率
-	private float ratio;
+	private float				ratio;
 
 	public CompareImagePanel(BufferedImage sourceImage, BufferedImage displayImage)
 	{
@@ -130,7 +135,7 @@ public class CompareImagePanel extends JPanel
 		}
 
 		ratio = ratioX < ratioY ? ratioX : ratioY;
-		
+
 		System.out.println("ratio" + ratio);
 	}
 
@@ -157,7 +162,7 @@ public class CompareImagePanel extends JPanel
 	 * */
 	private void calRatioInHorizontal()
 	{
-		if (sourceImage.getWidth() > CompareSetting.MAX_IMAGE_WDITH/2)
+		if (sourceImage.getWidth() > CompareSetting.MAX_IMAGE_WDITH / 2)
 		{
 			ratioX = CompareSetting.MAX_IMAGE_WDITH * 0.5f / sourceImage.getWidth();
 		}

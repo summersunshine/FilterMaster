@@ -19,26 +19,31 @@ import app.Constants;
 
 public class PartMosaicAdjustPanel extends JPanel implements AdjustmentListener, ActionListener, MouseListener
 {
+	/**
+	 * 
+	 */
+	private static final long	serialVersionUID	= 1L;
+
 	// 画笔大小滚动条
-	private JScrollBar sizeScrollBar;
+	private JScrollBar			sizeScrollBar;
 
 	// 模糊程度滚动条
-	private JScrollBar patchScrollBar;
+	private JScrollBar			patchScrollBar;
 
 	// 画笔大小标签
-	private JLabel sizeLabel;
+	private JLabel				sizeLabel;
 
 	// 马赛克颗粒大小标签
-	private JLabel patchLabel;
+	private JLabel				patchLabel;
 
 	// 画笔按钮
-	private JButton paintButton;
+	private JButton				paintButton;
 
 	// 橡皮按钮
-	private JButton eraserButton;
+	private JButton				eraserButton;
 
 	// 父界面
-	private PartMosaicFrame parent;
+	private PartMosaicFrame		parent;
 
 	public PartMosaicAdjustPanel() throws HeadlessException
 	{

@@ -1,7 +1,6 @@
 package gui.main;
 
 import gui.ImagePanel;
-import gui.Palette;
 import gui.blur.BlurFrame;
 import gui.compare.CompareFrame;
 import gui.jigsaw.JigsawFrame;
@@ -9,18 +8,15 @@ import gui.magicmirror.MagicMirrorFrame;
 import gui.partcolor.PartColorFrame;
 import gui.partmosaic.PartMosaicFrame;
 import gui.preview.PreviewTabbedPanel;
-import gui.scrawl.ScrawlImagePanel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.security.auth.x500.X500Principal;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -28,62 +24,66 @@ import javax.swing.UIManager;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import util.ImgUtil;
+import algorithm.basic.Clone;
 import algorithm.basic.SaturationAndHue;
 import algorithm.basic.Scale;
-import algorithm.basic.Clone;
 
 public class MainFrame extends JFrame implements ActionListener
 {
+	/**
+	 * 
+	 */
+	private static final long	serialVersionUID	= 1L;
+
 	// 源图像
-	public BufferedImage sourceImage;
+	public BufferedImage		sourceImage;
 
 	// 缩小的预览图
-	public BufferedImage previewImage;
+	public BufferedImage		previewImage;
 
 	// 预览面板
-	PreviewTabbedPanel previewTabbedPanel;
+	PreviewTabbedPanel			previewTabbedPanel;
 
 	// 主图像显示面板
-	public ImagePanel imagePanel;
-	
-	//基础调节面板
-	public BasicAdjustPanel adjustPanel;
+	public ImagePanel			imagePanel;
+
+	// 基础调节面板
+	public BasicAdjustPanel		adjustPanel;
 
 	// 按钮面板
-	public MainButtonPanel mainButtonPanel;
+	public MainButtonPanel		mainButtonPanel;
 
 	// 源图像路径
-	public String sourceImagePath;
+	public String				sourceImagePath;
 
 	// 背景虚化界面
-	public BlurFrame blurFrame;
+	public BlurFrame			blurFrame;
 
 	// 拼图界面
-	public JigsawFrame jigsawFrame;
+	public JigsawFrame			jigsawFrame;
 
 	// 魔镜界面
-	public MagicMirrorFrame magicMirrorFrame;
+	public MagicMirrorFrame		magicMirrorFrame;
 
 	// 局部彩色界面
-	public PartColorFrame partColorFrame;
+	public PartColorFrame		partColorFrame;
 
 	// 局部马赛克界面
-	public PartMosaicFrame partMosaicFrame;
+	public PartMosaicFrame		partMosaicFrame;
 
 	// 打开按钮
-	private JButton openButton;
+	private JButton				openButton;
 
 	// 保存按钮
-	private JButton saveButton;
+	private JButton				saveButton;
 
 	// 取消按钮
-	private JButton cancelButton;
+	private JButton				cancelButton;
 
 	// 对比按钮
-	private JButton compareButton;
+	private JButton				compareButton;
 
-
-	private static MainFrame instance;
+	private static MainFrame	instance;
 
 	public static MainFrame getInstance()
 	{
@@ -103,7 +103,7 @@ public class MainFrame extends JFrame implements ActionListener
 		catch (Exception e)
 		{
 		}
-		
+
 		MainFrame.getInstance();
 	}
 
@@ -150,13 +150,13 @@ public class MainFrame extends JFrame implements ActionListener
 		getContentPane().add(adjustPanel);
 
 	}
-	
+
 	/**
 	 * 初始化对比面板
 	 * */
 	private void initCompareFrame()
 	{
-		CompareFrame compareFrame = new CompareFrame(sourceImage, imagePanel.getDisplayImage());
+		new CompareFrame(sourceImage, imagePanel.getDisplayImage());
 	}
 
 	/**
@@ -170,8 +170,6 @@ public class MainFrame extends JFrame implements ActionListener
 		openButton.addActionListener(this);
 		getContentPane().add(openButton);
 	}
-
-
 
 	/**
 	 * 初始化保存按钮
@@ -218,7 +216,7 @@ public class MainFrame extends JFrame implements ActionListener
 	{
 		File desktop = new File(System.getProperty("user.home") + System.getProperty("file.separator") + "桌面");
 		JFileChooser fileChooser = new JFileChooser(desktop);
-		fileChooser.setFileFilter(new FileNameExtensionFilter("图像", "jpg", "png","jpeg","bmp"));
+		fileChooser.setFileFilter(new FileNameExtensionFilter("图像", "jpg", "png", "jpeg", "bmp"));
 
 		int option = fileChooser.showOpenDialog(null);
 		if (JFileChooser.APPROVE_OPTION == option)

@@ -1,34 +1,33 @@
 package gui.scrawl;
 
-import java.awt.Color;
-import java.awt.Container;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.GridLayout;
 import java.awt.HeadlessException;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 
 public class ScrawlColorSelectPanel extends JPanel implements AdjustmentListener
 {
-	private JScrollBar redScrollBar;
-	private JScrollBar blueScrollBar;
-	private JScrollBar greenScrollBar;
+	/**
+	 * 
+	 */
+	private static final long	serialVersionUID	= 1L;
+	private JScrollBar			redScrollBar;
+	private JScrollBar			blueScrollBar;
+	private JScrollBar			greenScrollBar;
 
-	private JLabel redLabel;
-	private JLabel blueLabel;
-	private JLabel greenLabel;
+	private JLabel				redLabel;
+	private JLabel				blueLabel;
+	private JLabel				greenLabel;
 
-	private ScrawlFrame parent;
+	private ScrawlFrame			parent;
 
-	private final Timer timer = new Timer();
+	private final Timer			timer				= new Timer();
 
 	public ScrawlColorSelectPanel(ScrawlFrame parent) throws HeadlessException
 	{

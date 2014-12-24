@@ -11,12 +11,16 @@ import app.Constants;
 
 public class JigsawButtonGroup extends JPanel implements ActionListener
 {
-	private JigsawFrame parent;
-	private JButton openButton;
-	private JButton openButton1;
-	private JButton openButton2;
-	private JButton openButton3;
-	private JButton openButton4;
+	/**
+	 * 
+	 */
+	private static final long	serialVersionUID	= 1L;
+	private JigsawFrame			parent;
+	private JButton				openButton;
+	private JButton				openButton1;
+	private JButton				openButton2;
+	private JButton				openButton3;
+	private JButton				openButton4;
 
 	public JigsawButtonGroup(JigsawFrame parent)
 	{

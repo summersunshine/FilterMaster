@@ -2,7 +2,6 @@ package gui;
 
 import java.awt.Color;
 import java.awt.Container;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.HeadlessException;
@@ -16,19 +15,23 @@ import javax.swing.JScrollBar;
 
 public class Palette extends JFrame implements AdjustmentListener
 {
-	private JScrollBar redScrollBar;
-	private JScrollBar blueScrollBar;
-	private JScrollBar greenScrollBar;
+	/**
+	 * 
+	 */
+	private static final long	serialVersionUID	= 1L;
+	private JScrollBar			redScrollBar;
+	private JScrollBar			blueScrollBar;
+	private JScrollBar			greenScrollBar;
 
-	private JLabel lbScale;
-	private JLabel lbRedScale;
-	private JLabel lbBlueScale;
-	private JLabel lbGreenScale;
-	private JPanel lbColorPallet;
+	private JLabel				lbScale;
+	private JLabel				lbRedScale;
+	private JLabel				lbBlueScale;
+	private JLabel				lbGreenScale;
+	private JPanel				lbColorPallet;
 
-	private int redValue;
-	private int blueValue;
-	private int greenValue;
+	private int					redValue;
+	private int					blueValue;
+	private int					greenValue;
 
 	public Palette(String title) throws HeadlessException
 	{

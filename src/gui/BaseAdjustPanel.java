@@ -12,9 +12,14 @@ import javax.swing.JPanel;
 public class BaseAdjustPanel extends JPanel implements ActionListener
 {
 
-	private JButton saveButton;
+	/**
+	 * 
+	 */
+	private static final long	serialVersionUID	= 1L;
 
-	private JButton cancelButton;
+	private JButton				saveButton;
+
+	private JButton				cancelButton;
 
 	public BaseAdjustPanel()
 	{

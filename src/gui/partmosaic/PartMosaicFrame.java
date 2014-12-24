@@ -1,24 +1,26 @@
 package gui.partmosaic;
 
 import gui.BaseFrame;
-import gui.magicmirror.MagicMirrorSetting;
 import gui.main.MainFrame;
 
 import java.awt.image.BufferedImage;
 
-import javax.swing.JFrame;
-
 public class PartMosaicFrame extends BaseFrame
 {
 
+	/**
+	 * 
+	 */
+	private static final long		serialVersionUID	= 1L;
+
 	// 原始图像
-	public BufferedImage sourceImage;
+	public BufferedImage			sourceImage;
 
 	// 模糊图像面板
-	public PartMosaicImagePanel imagePanel;
+	public PartMosaicImagePanel		imagePanel;
 
 	// 调节数据面板
-	public PartMosaicAdjustPanel adjustPanel;
+	public PartMosaicAdjustPanel	adjustPanel;
 
 	public PartMosaicFrame(BufferedImage image)
 	{

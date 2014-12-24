@@ -19,18 +19,22 @@ import app.Constants;
 public class BasicAdjustPanel extends JPanel implements AdjustmentListener, MouseListener
 {
 
+	/**
+	 * 
+	 */
+	private static final long		serialVersionUID	= 1L;
 	// 亮度
-	public static int intensityValue;
+	public static int				intensityValue;
 	// 对比度
-	public static int contrastValue;
+	public static int				contrastValue;
 	// 饱和度
-	public static int saturationValue;
+	public static int				saturationValue;
 	// 色相
-	public static int hueValue;
+	public static int				hueValue;
 
-	private boolean isAdjustIntensityAndContrast;
+	private boolean					isAdjustIntensityAndContrast;
 
-	private static BasicAdjustPanel instance;
+	private static BasicAdjustPanel	instance;
 
 	public static BasicAdjustPanel getInstance()
 	{
@@ -42,28 +46,28 @@ public class BasicAdjustPanel extends JPanel implements AdjustmentListener, Mous
 	}
 
 	// 亮度滑动条
-	private JScrollBar intensityScrollBar;
+	private JScrollBar	intensityScrollBar;
 
 	// 对比度滑动条
-	private JScrollBar contrastScrollBar;
+	private JScrollBar	contrastScrollBar;
 
 	// 饱和度滑动条
-	private JScrollBar saturationScrollBar;
+	private JScrollBar	saturationScrollBar;
 
 	// 色相滑动条
-	private JScrollBar hueScrollBar;
+	private JScrollBar	hueScrollBar;
 
 	// 亮度标签
-	private JLabel intensityLabel;
+	private JLabel		intensityLabel;
 
 	// 对比度标签
-	private JLabel contrastLabel;
+	private JLabel		contrastLabel;
 
 	// 饱和度标签
-	private JLabel saturationLabel;
+	private JLabel		saturationLabel;
 
 	// 色相标签
-	private JLabel hueLabel;
+	private JLabel		hueLabel;
 
 	public BasicAdjustPanel() throws HeadlessException
 	{

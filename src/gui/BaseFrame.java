@@ -1,28 +1,25 @@
 package gui;
 
-import gui.main.MainButtonPanel;
 import gui.main.MainFrame;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
 
 import javax.swing.JButton;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.filechooser.FileNameExtensionFilter;
-
-import util.ImgUtil;
-import app.Global;
 
 public class BaseFrame extends JFrame implements ActionListener
 {
+	/**
+	 * 
+	 */
+	private static final long	serialVersionUID	= 1L;
+
 	// 保存按钮
-	private JButton saveButton;
+	private JButton				saveButton;
 
 	// 取消按钮
-	private JButton cancelButton;
+	private JButton				cancelButton;
 
 	public BaseFrame()
 	{

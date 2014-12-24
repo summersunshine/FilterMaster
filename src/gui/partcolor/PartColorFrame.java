@@ -5,25 +5,25 @@ import gui.main.MainFrame;
 
 import java.awt.image.BufferedImage;
 
-import javax.swing.JFrame;
-
-import app.Constants;
-
 public class PartColorFrame extends BaseFrame
 {
 
+	/**
+	 * 
+	 */
+	private static final long		serialVersionUID	= 1L;
 
 	// Ô­Ê¼Í¼Ïñ
-	public BufferedImage sourceImage;
+	public BufferedImage			sourceImage;
 
-	private PartColorAdjustPanel adjustPanel;
+	private PartColorAdjustPanel	adjustPanel;
 
-	private PartColorImagePanel imagePanel;
+	private PartColorImagePanel		imagePanel;
 
 	public PartColorFrame(BufferedImage image)
 	{
 		super();
-		
+
 		sourceImage = image;
 
 		initAdjustPanel();

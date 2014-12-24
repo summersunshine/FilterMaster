@@ -11,7 +11,7 @@ public class MagicMirrorSetting
 	public static int radiusValue = 100;
 	
 	//ÂË¾µÀàÐÍ
-	public static int type = Constants.TYPE_MAGIC_MIRROIR_1;
+	public static int type = Constants.TYPE_CONCAVE_MIRROIR;
 	
 
 

@@ -15,26 +15,31 @@ import app.Constants;
 
 public class ScrawlAdjustPanel extends JPanel implements ActionListener, AdjustmentListener
 {
+	/**
+	 * 
+	 */
+	private static final long	serialVersionUID	= 1L;
+
 	// 画笔大小滚动条
-	private JScrollBar sizeScrollBar;
+	private JScrollBar			sizeScrollBar;
 
 	// 画笔大小标签
-	private JLabel sizeLabel;
-	
-	//涂鸦区域透明度滚动条
-	private JScrollBar alphaScrollBar;
-	
-	//涂鸦区域透明度标签
-	private JLabel alphaLabel;
+	private JLabel				sizeLabel;
+
+	// 涂鸦区域透明度滚动条
+	private JScrollBar			alphaScrollBar;
+
+	// 涂鸦区域透明度标签
+	private JLabel				alphaLabel;
 
 	// 画笔
-	private JButton paintButton;
+	private JButton				paintButton;
 
 	// 擦除
-	private JButton eraseButton;
+	private JButton				eraseButton;
 
 	// 父面板
-	private ScrawlFrame parent;
+	private ScrawlFrame			parent;
 
 	public ScrawlAdjustPanel(ScrawlFrame parent) throws HeadlessException
 	{
@@ -42,13 +47,11 @@ public class ScrawlAdjustPanel extends JPanel implements ActionListener, Adjustm
 		this.setBounds(ScrawlSetting.ADJUST_PANEL_RECTANGLE);
 		this.setLayout(null);
 
-		
-
 		initSizeBarAndLabel();
-		//initAlphaBarAndLabel();
-		
+		// initAlphaBarAndLabel();
+
 		initButtons();
-		
+
 		setVisible(true);
 	}
 
@@ -74,11 +77,11 @@ public class ScrawlAdjustPanel extends JPanel implements ActionListener, Adjustm
 		this.add(sizeScrollBar);
 
 	}
-	
+
 	/**
 	 * 初始化涂鸦区域透明度滚动条和标签
 	 * */
-	private void initAlphaBarAndLabel()
+	public void initAlphaBarAndLabel()
 	{
 		alphaLabel = new JLabel("涂鸦透明");
 		alphaLabel.setBounds(ScrawlSetting.ALPHA_LABEL_RECTANGLE);
@@ -115,8 +118,6 @@ public class ScrawlAdjustPanel extends JPanel implements ActionListener, Adjustm
 		this.add(paintButton);
 		this.add(eraseButton);
 
-		
-
 	}
 
 	@Override
@@ -128,11 +129,11 @@ public class ScrawlAdjustPanel extends JPanel implements ActionListener, Adjustm
 			// sizeValue = e.getValue();
 			ScrawlSetting.sizeValue = e.getValue();
 		}
-		
+
 		if (e.getSource() == alphaScrollBar)
 		{
 			ScrawlSetting.alphaValue = e.getValue();
-			
+
 			parent.updateDrawingALpha();
 		}
 	}

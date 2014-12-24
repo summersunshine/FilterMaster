@@ -14,21 +14,26 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import util.ImgUtil;
 
 public class JigsawFrame extends BaseFrame implements ActionListener
-{  
+{
+
+	/**
+	 * 
+	 */
+	private static final long	serialVersionUID	= 1L;
 
 	// 第一张图片
-	private BufferedImage firstSourceImage;
-	
-	//第二张图片
-	private BufferedImage secondSourceImage;
+	private BufferedImage		firstSourceImage;
+
+	// 第二张图片
+	private BufferedImage		secondSourceImage;
 
 	// 显示图片面板
-	private JigsawImagePanel imagePanel;
+	private JigsawImagePanel	imagePanel;
 
 	// 按钮组
-	private JigsawButtonGroup buttonGroup;
-	
-	private JButton openButton;
+	private JigsawButtonGroup	buttonGroup;
+
+	private JButton				openButton;
 
 	public JigsawFrame(BufferedImage image)
 	{
@@ -39,10 +44,10 @@ public class JigsawFrame extends BaseFrame implements ActionListener
 
 		initButtonGroup();
 		initOpenButton();
-		//initImagePanel();
+		// initImagePanel();
 
 		this.setVisible(true);
-		
+
 	}
 
 	private void initImagePanel()
@@ -76,7 +81,7 @@ public class JigsawFrame extends BaseFrame implements ActionListener
 		openButton.addActionListener(this);
 		getContentPane().add(openButton);
 	}
-	
+
 	/**
 	 * 初始化文件选择器
 	 * */
@@ -108,7 +113,7 @@ public class JigsawFrame extends BaseFrame implements ActionListener
 			afterLoadImage();
 		}
 	}
-	
+
 	protected void afterLoadImage()
 	{
 		initImagePanel();

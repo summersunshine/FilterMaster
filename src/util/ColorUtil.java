@@ -1,6 +1,6 @@
 package util;
 
-import java.awt.Label;
+import java.awt.Color;
 import java.awt.image.BufferedImage;
 
 public class ColorUtil
@@ -236,11 +236,11 @@ public class ColorUtil
 		float b = value.b - 128;
 		double fx, fy, fz;
 		double x, y, z;
-		double dr,dg,db;
-		 
+		double dr, dg, db;
+
 		fy = (1 + 16f) / 116f;
 		fy = fy * fy * fy;
-		
+
 		if (fy > 0.008856)
 		{
 			y = fy;
@@ -249,7 +249,7 @@ public class ColorUtil
 		{
 			fy = L / 903.3;
 		}
-		
+
 		if (fy > 0.008856)
 		{
 			y = Math.pow(fy, 1.0 / 3.0);
@@ -279,52 +279,20 @@ public class ColorUtil
 			z = (fz - 16.0 / 116.0) / 7.787;
 		}
 
-	   x = x*0.950456*255.0;
-	   y = y*255.0;
-	   z = z*1.088754*255.0;
-		   
-	   dr =  3.240479*x  - 1.537150*y - 0.498535*z;
-	   dg =  -0.969256*x + 1.875992*y + 0.041556*z;
-	   db =  0.055648*x  - 0.204043*y + 1.057311*z;
+		x = x * 0.950456 * 255.0;
+		y = y * 255.0;
+		z = z * 1.088754 * 255.0;
 
-	   dr = ImgUtil.clamp((float) dr);
-	   dg = ImgUtil.clamp((float) dg);
-	   db = ImgUtil.clamp((float) db);
-		  
-		return new RGB((int)dr,(int)dg,(int)db);
+		dr = 3.240479 * x - 1.537150 * y - 0.498535 * z;
+		dg = -0.969256 * x + 1.875992 * y + 0.041556 * z;
+		db = 0.055648 * x - 0.204043 * y + 1.057311 * z;
+
+		dr = ImgUtil.clamp((float) dr);
+		dg = ImgUtil.clamp((float) dg);
+		db = ImgUtil.clamp((float) db);
+
+		return new RGB((int) dr, (int) dg, (int) db);
 	}
-
-	// /**
-	// * 将RGB转换为lab空间
-	// * */
-	// public static LAB getLAB(RGB value)
-	// {
-	// float R = value.r;
-	// float G = value.g;
-	// float B = value.b;
-	//
-	// float L = (float) (0.2126007 * R + 0.7151947 * G + 0.0722046 * B);
-	// float a = (float) (0.3258962 * R - 0.4992596 * G + 0.1733409 * B + 128);
-	// float b = (float) (0.1218128 * R + 0.3785610 * G - 0.5003738 * B + 128);
-	//
-	// return new LAB(L, a, b);
-	// }
-	//
-	// /**
-	// * 将LAB转换为RGB空间
-	// * */
-	// public static RGB getRGB(LAB value)
-	// {
-	// float L = value.l;
-	// float a = value.a;
-	// float b = value.b;
-	//
-	// float R = (float) (L + 0.0120308 * a + 0.0021207 * b);
-	// float G = (float) (L - 0.0035973 * a - 0.0001765 * b);
-	// float B = (float) (L + 0.0002074 * a - 0.0044965 * b);
-	//
-	// return new RGB(R, G, B);
-	// }
 
 	/**
 	 * 将值收到0-1区间内
@@ -401,8 +369,12 @@ public class ColorUtil
 		return value;
 
 	}
-	
-	
+
+	/**
+	 * 获取RGB矩阵
+	 * 
+	 * @param image
+	 * */
 	public static RGB[][] getRGBMatrix(BufferedImage image)
 	{
 		int width = image.getWidth();
@@ -412,13 +384,32 @@ public class ColorUtil
 		{
 			for (int x = 0; x < width; x++)
 			{
-				matrix[x][y]  = new RGB(image.getRGB(x, y));
+				matrix[x][y] = new RGB(image.getRGB(x, y));
 			}
 		}
 		return matrix;
-		
+
 	}
 
+	/**
+	 * 获取Color矩阵
+	 * 
+	 * @param image
+	 * */
+	public static Color[][] getColorMatrix(BufferedImage image)
+	{
+		int width = image.getWidth();
+		int height = image.getHeight();
+		Color[][] matrix = new Color[width][height];
+		for (int y = 0; y < height; y++)
+		{
+			for (int x = 0; x < width; x++)
+			{
+				matrix[x][y] = new Color(image.getRGB(x, y));
+			}
+		}
+		return matrix;
 
+	}
 
 }
