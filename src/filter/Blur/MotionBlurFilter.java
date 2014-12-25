@@ -1,6 +1,6 @@
 package filter.Blur;
 
-import util.ImgUtil;
+import util.ImageUtil;
 import filter.Filter;
 
 public class MotionBlurFilter extends Filter
@@ -18,7 +18,7 @@ public class MotionBlurFilter extends Filter
 		int[] inPixels = new int[width * height];
 		int[] outPixels = new int[width * height];
 
-		ImgUtil.getRGB(image, inPixels);
+		ImageUtil.getRGB(image, inPixels);
 
 		int index = 0;
 		int cx = width / 2;
@@ -87,17 +87,17 @@ public class MotionBlurFilter extends Filter
 				}
 				else
 				{
-					ta = ImgUtil.clampIn255((int) (ta / count));
-					tr = ImgUtil.clampIn255((int) (tr / count));
-					tg = ImgUtil.clampIn255((int) (tg / count));
-					tb = ImgUtil.clampIn255((int) (tb / count));
+					ta = ImageUtil.clampIn255((int) (ta / count));
+					tr = ImageUtil.clampIn255((int) (tr / count));
+					tg = ImageUtil.clampIn255((int) (tg / count));
+					tb = ImageUtil.clampIn255((int) (tb / count));
 					outPixels[index] = (ta << 24) | (tr << 16) | (tg << 8) | tb;
 				}
 				index++;
 			}
 		}
 
-		ImgUtil.setRGB(outputImage, outPixels);
+		ImageUtil.setRGB(outputImage, outPixels);
 	}
 
 }

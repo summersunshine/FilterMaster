@@ -2,7 +2,6 @@ package algorithm.factory;
 
 import java.awt.image.BufferedImage;
 
-import algorithm.blur.DoubleGuassBlur;
 import algorithm.blur.Laser;
 import algorithm.blur.MotionBlur;
 import algorithm.blur.TiltShiftCamera;
@@ -24,8 +23,6 @@ public class BlurImageFactory
 	{
 		switch (type)
 		{
-		case (Constants.TYPE_DOUBLE_GUASS_BLUR):
-			return DoubleGuassBlur.getImage(image);
 		case (Constants.TYPE_GUASS_BLUR):
 			return TiltShiftCamera.getImage(image, 0.1f);
 			// return GuassBlur.getImage(image);

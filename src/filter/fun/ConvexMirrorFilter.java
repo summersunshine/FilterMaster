@@ -2,8 +2,8 @@ package filter.fun;
 
 import java.awt.image.BufferedImage;
 
-import util.Geometry;
-import util.ImgUtil;
+import util.ImageUtil;
+import util.geometry.Geometry;
 import filter.Filter;
 
 public class ConvexMirrorFilter extends Filter
@@ -15,12 +15,14 @@ public class ConvexMirrorFilter extends Filter
 	public void processor()
 	{
 		// TODO Auto-generated method stub
+		int width = image.getWidth();
+		int height = image.getHeight();
 		int centerX = width / 2;
 		int centerY = height / 2;
 		float max = width > height ? width / 2 : height / 2;
 		radius = radius > max ? max : radius;
 
-		BufferedImage outputImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+		outputImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 
 		for (int y = 0; y < height; y++)
 		{
@@ -44,13 +46,13 @@ public class ConvexMirrorFilter extends Filter
 
 					// 判断，如果是画面上，就使用对应的颜色
 					// 否则，使用黑色来进行填充
-					if (ImgUtil.isInsideImage(image, (int) srcX, (int) srcY))
+					if (ImageUtil.isInsideImage(image, (int) srcX, (int) srcY))
 					{
 						outputImage.setRGB(x, y, image.getRGB((int) srcX, (int) srcY));
 					}
 					else
 					{
-						outputImage.setRGB(x, y, ImgUtil.getRGB(0, 0, 0));
+						outputImage.setRGB(x, y, ImageUtil.getRGB(0, 0, 0));
 					}
 
 				}

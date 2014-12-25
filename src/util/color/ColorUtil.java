@@ -1,7 +1,9 @@
-package util;
+package util.color;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
+
+import util.ImageUtil;
 
 public class ColorUtil
 {
@@ -287,9 +289,9 @@ public class ColorUtil
 		dg = -0.969256 * x + 1.875992 * y + 0.041556 * z;
 		db = 0.055648 * x - 0.204043 * y + 1.057311 * z;
 
-		dr = ImgUtil.clamp((float) dr);
-		dg = ImgUtil.clamp((float) dg);
-		db = ImgUtil.clamp((float) db);
+		dr = ImageUtil.clamp((float) dr);
+		dg = ImageUtil.clamp((float) dg);
+		db = ImageUtil.clamp((float) db);
 
 		return new RGB((int) dr, (int) dg, (int) db);
 	}

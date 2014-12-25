@@ -2,7 +2,7 @@ package algorithm.basic;
 
 import java.awt.image.BufferedImage;
 
-import util.ImgUtil;
+import util.ImageUtil;
 
 /**
  * ª“∂»Õº
@@ -20,10 +20,10 @@ public class Gray
 		{
 			for (int x = 0; x < width; x++)
 			{
-				int[] rgb = ImgUtil.getSplitRGB(image.getRGB(x, y));
+				int[] rgb = ImageUtil.getSplitRGB(image.getRGB(x, y));
 				int averageRgb = (rgb[0] + rgb[1] + rgb[2]) / 3;
 
-				outputImage.setRGB(x, y, ImgUtil.getRGB(averageRgb, averageRgb, averageRgb));
+				outputImage.setRGB(x, y, ImageUtil.getRGB(averageRgb, averageRgb, averageRgb));
 			}
 		}
 

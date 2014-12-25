@@ -2,8 +2,8 @@ package algorithm.fun;
 
 import java.awt.image.BufferedImage;
 
-import util.Geometry;
-import util.ImgUtil;
+import util.ImageUtil;
+import util.geometry.Geometry;
 
 public class MagicMirror
 {
@@ -90,13 +90,13 @@ public class MagicMirror
 
 					// 判断，如果是画面上，就使用对应的颜色
 					// 否则，使用黑色来进行填充
-					if (ImgUtil.isInsideImage(image, (int) srcX, (int) srcY))
+					if (ImageUtil.isInsideImage(image, (int) srcX, (int) srcY))
 					{
 						outputImage.setRGB(x, y, image.getRGB((int) srcX, (int) srcY));
 					}
 					else
 					{
-						outputImage.setRGB(x, y, ImgUtil.getRGB(0, 0, 0));
+						outputImage.setRGB(x, y, ImageUtil.getRGB(0, 0, 0));
 					}
 
 				}
@@ -148,13 +148,13 @@ public class MagicMirror
 
 					// 判断，如果是画面上，就使用对应的颜色
 					// 否则，使用黑色来进行填充
-					if (ImgUtil.isInsideImage(image, (int) srcX, (int) srcY))
+					if (ImageUtil.isInsideImage(image, (int) srcX, (int) srcY))
 					{
 						outputImage.setRGB(x, y, image.getRGB((int) srcX, (int) srcY));
 					}
 					else
 					{
-						outputImage.setRGB(x, y, ImgUtil.getRGB(0, 0, 0));
+						outputImage.setRGB(x, y, ImageUtil.getRGB(0, 0, 0));
 					}
 
 				}

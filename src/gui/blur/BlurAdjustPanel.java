@@ -169,7 +169,7 @@ public class BlurAdjustPanel extends JPanel implements AdjustmentListener, Actio
 	{
 		// TODO Auto-generated method stub
 		// 橡皮擦实际是在继续做模糊
-		BlurSetting.type = Constants.TYPE_DOUBLE_GUASS_BLUR;
+		BlurSetting.type = Constants.TYPE_GUASS_BLUR;
 
 		levelLabel.setVisible(false);
 		levelScrollBar.setVisible(false);

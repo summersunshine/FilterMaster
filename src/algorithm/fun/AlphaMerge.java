@@ -2,7 +2,7 @@ package algorithm.fun;
 
 import java.awt.image.BufferedImage;
 
-import util.ImgUtil;
+import util.ImageUtil;
 
 /**
  * AlphaÈÚºÏ
@@ -267,8 +267,8 @@ public class AlphaMerge
 		{
 			for (int x = 0; x < targetWidth; x++)
 			{
-				int[] rgb1 = ImgUtil.getSplitRGB(image1.getRGB((int) (x * ratioX1), (int) (y * ratioY1)));
-				int[] rgb2 = ImgUtil.getSplitRGB(image2.getRGB((int) (x * ratioX2), (int) (y * ratioY2)));
+				int[] rgb1 = ImageUtil.getSplitRGB(image1.getRGB((int) (x * ratioX1), (int) (y * ratioY1)));
+				int[] rgb2 = ImageUtil.getSplitRGB(image2.getRGB((int) (x * ratioX2), (int) (y * ratioY2)));
 				outputImage.setRGB(x, y, getMergeRGB(rgb1, rgb2, alpha));
 			}
 		}
@@ -297,8 +297,8 @@ public class AlphaMerge
 			alpha = (targetHeight - y) * 1.0f / targetHeight;
 			for (int x = 0; x < targetWidth; x++)
 			{
-				int[] rgb1 = ImgUtil.getSplitRGB(image1.getRGB((int) (x * ratioX1), (int) (y * ratioY1)));
-				int[] rgb2 = ImgUtil.getSplitRGB(image2.getRGB((int) (x * ratioX2), (int) (y * ratioY2)));
+				int[] rgb1 = ImageUtil.getSplitRGB(image1.getRGB((int) (x * ratioX1), (int) (y * ratioY1)));
+				int[] rgb2 = ImageUtil.getSplitRGB(image2.getRGB((int) (x * ratioX2), (int) (y * ratioY2)));
 				outputImage.setRGB(x, y, getMergeRGB(rgb1, rgb2, alpha));
 			}
 		}
@@ -329,8 +329,8 @@ public class AlphaMerge
 			alpha = y * 1.0f / targetHeight;
 			for (int x = 0; x < targetWidth; x++)
 			{
-				int[] rgb1 = ImgUtil.getSplitRGB(image1.getRGB((int) (x * ratioX1), (int) (y * ratioY1)));
-				int[] rgb2 = ImgUtil.getSplitRGB(image2.getRGB((int) (x * ratioX2), (int) (y * ratioY2)));
+				int[] rgb1 = ImageUtil.getSplitRGB(image1.getRGB((int) (x * ratioX1), (int) (y * ratioY1)));
+				int[] rgb2 = ImageUtil.getSplitRGB(image2.getRGB((int) (x * ratioX2), (int) (y * ratioY2)));
 				outputImage.setRGB(x, y, getMergeRGB(rgb1, rgb2, alpha));
 			}
 		}
@@ -360,8 +360,8 @@ public class AlphaMerge
 			alpha = (targetHeight - x) * 1.0f / targetHeight;
 			for (int y = 0; y < targetHeight; y++)
 			{
-				int[] rgb1 = ImgUtil.getSplitRGB(image1.getRGB((int) (x * ratioX1), (int) (y * ratioY1)));
-				int[] rgb2 = ImgUtil.getSplitRGB(image2.getRGB((int) (x * ratioX2), (int) (y * ratioY2)));
+				int[] rgb1 = ImageUtil.getSplitRGB(image1.getRGB((int) (x * ratioX1), (int) (y * ratioY1)));
+				int[] rgb2 = ImageUtil.getSplitRGB(image2.getRGB((int) (x * ratioX2), (int) (y * ratioY2)));
 				outputImage.setRGB(x, y, getMergeRGB(rgb1, rgb2, alpha));
 			}
 		}
@@ -390,8 +390,8 @@ public class AlphaMerge
 			alpha = x * 1.0f / targetHeight;
 			for (int y = 0; y < targetHeight; y++)
 			{
-				int[] rgb1 = ImgUtil.getSplitRGB(image1.getRGB((int) (x * ratioX1), (int) (y * ratioY1)));
-				int[] rgb2 = ImgUtil.getSplitRGB(image2.getRGB((int) (x * ratioX2), (int) (y * ratioY2)));
+				int[] rgb1 = ImageUtil.getSplitRGB(image1.getRGB((int) (x * ratioX1), (int) (y * ratioY1)));
+				int[] rgb2 = ImageUtil.getSplitRGB(image2.getRGB((int) (x * ratioX2), (int) (y * ratioY2)));
 				outputImage.setRGB(x, y, getMergeRGB(rgb1, rgb2, alpha));
 			}
 		}
@@ -413,9 +413,9 @@ public class AlphaMerge
 		int r = (int) (rgb1[0] * alpha + rgb2[0] * (1 - alpha));
 		int g = (int) (rgb1[1] * alpha + rgb2[1] * (1 - alpha));
 		int b = (int) (rgb1[2] * alpha + rgb2[2] * (1 - alpha));
-		r = ImgUtil.clampIn255(r);
-		g = ImgUtil.clampIn255(g);
-		b = ImgUtil.clampIn255(b);
-		return ImgUtil.getRGB(r, g, b);
+		r = ImageUtil.clampIn255(r);
+		g = ImageUtil.clampIn255(g);
+		b = ImageUtil.clampIn255(b);
+		return ImageUtil.getRGB(r, g, b);
 	}
 }

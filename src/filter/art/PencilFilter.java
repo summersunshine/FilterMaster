@@ -1,6 +1,6 @@
 package filter.art;
 
-import util.ImgUtil;
+import util.ImageUtil;
 import filter.Filter;
 
 public class PencilFilter extends Filter
@@ -27,11 +27,11 @@ public class PencilFilter extends Filter
 
 				if (color - nextColor > sensitivity)
 				{
-					outputImage.setRGB(x, y, ImgUtil.getRGB(0, 0, 0));
+					outputImage.setRGB(x, y, ImageUtil.getRGB(0, 0, 0));
 				}
 				else
 				{
-					outputImage.setRGB(x, y, ImgUtil.getRGB(255, 255, 255));
+					outputImage.setRGB(x, y, ImageUtil.getRGB(255, 255, 255));
 				}
 			}
 		}
@@ -45,7 +45,7 @@ public class PencilFilter extends Filter
 	 * */
 	private int getColor(int rgb)
 	{
-		int[] rgbColor = ImgUtil.getSplitRGB(rgb);
+		int[] rgbColor = ImageUtil.getSplitRGB(rgb);
 		int color = (int) ((rgbColor[0] * 3 + rgbColor[1] * 6 + rgbColor[2]) / 10.0);
 		return color;
 	}

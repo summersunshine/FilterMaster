@@ -50,7 +50,7 @@ public class BlurTabbedPanel extends JTabbedPane implements ChangeListener
 		if (selectedIndex == 0)
 		{
 			BlurSetting.model = BlurSetting.ADJUST_MODEL;
-			BlurSetting.type = Constants.TYPE_DOUBLE_GUASS_BLUR;
+			BlurSetting.type = Constants.TYPE_GUASS_BLUR;
 		}
 		else
 		{

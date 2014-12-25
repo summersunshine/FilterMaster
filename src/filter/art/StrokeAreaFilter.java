@@ -1,6 +1,6 @@
 package filter.art;
 
-import util.ImgUtil;
+import util.ImageUtil;
 import filter.Filter;
 
 public class StrokeAreaFilter extends Filter
@@ -14,7 +14,7 @@ public class StrokeAreaFilter extends Filter
 		int[] inPixels = new int[width * height];
 		int[] outPixels = new int[width * height];
 
-		ImgUtil.getRGB(image, inPixels, 0, 0, width, height);
+		ImageUtil.getRGB(image, inPixels, 0, 0, width, height);
 
 		int index = 0, index2 = 0;
 		int semiRow = (int) (size / 2);
@@ -71,16 +71,16 @@ public class StrokeAreaFilter extends Filter
 						rgb2[0] = (inPixels[index2] >> 16) & 0xff; // red
 						rgb2[1] = (inPixels[index2] >> 8) & 0xff; // green
 						rgb2[2] = inPixels[index2] & 0xff; // blue
-						moment += ImgUtil.getColorDiff(rgb, rgb2);
+						moment += ImageUtil.getColorDiff(rgb, rgb2);
 					}
 				}
 				// calculate the output pixel value.
-				int outPixelValue = ImgUtil.clampIn255((int) (255.0d * moment / (size * size)));
+				int outPixelValue = ImageUtil.clampIn255((int) (255.0d * moment / (size * size)));
 				outPixels[index] = (ta << 24) | (outPixelValue << 16) | (outPixelValue << 8) | outPixelValue;
 			}
 		}
 
-		ImgUtil.setRGB(outputImage, outPixels);
+		ImageUtil.setRGB(outputImage, outPixels);
 	}
 
 }

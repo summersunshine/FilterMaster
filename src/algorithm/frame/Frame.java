@@ -3,7 +3,7 @@ package algorithm.frame;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 
-import util.ImgUtil;
+import util.ImageUtil;
 
 /**
  * ПаІб
@@ -24,7 +24,7 @@ public class Frame
 	public static BufferedImage getImage(BufferedImage image, int index)
 	{
 		String fileName = "res/frame" + index + ".png";
-		BufferedImage frameImage = ImgUtil.getImg(fileName);
+		BufferedImage frameImage = ImageUtil.getImage(fileName);
 		return getImage(image, frameImage);
 	}
 
@@ -66,7 +66,7 @@ public class Frame
 				int g = (int) (frameColor.getGreen() * alpha + sourceColor.getGreen() * (1 - alpha));
 				int b = (int) (frameColor.getBlue() * alpha + sourceColor.getBlue() * (1 - alpha));
 
-				outputImage.setRGB(x, y, ImgUtil.getRGB(r, g, b));
+				outputImage.setRGB(x, y, ImageUtil.getRGB(r, g, b));
 
 			}
 		}

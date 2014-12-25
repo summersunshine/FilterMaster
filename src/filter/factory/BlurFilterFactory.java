@@ -12,8 +12,6 @@ public class BlurFilterFactory
 	{
 		switch (type)
 		{
-		case (Constants.TYPE_DOUBLE_GUASS_BLUR):
-			return new GuassBlurFilter();
 		case (Constants.TYPE_GUASS_BLUR):
 			return new GuassBlurFilter();
 		case (Constants.TYPE_LASER):

@@ -14,13 +14,13 @@ public class PartMosaicFrame extends BaseFrame
 	private static final long		serialVersionUID	= 1L;
 
 	// 原始图像
-	public BufferedImage			sourceImage;
+	private BufferedImage			sourceImage;
 
 	// 模糊图像面板
-	public PartMosaicImagePanel		imagePanel;
+	private PartMosaicImagePanel	imagePanel;
 
 	// 调节数据面板
-	public PartMosaicAdjustPanel	adjustPanel;
+	private PartMosaicAdjustPanel	adjustPanel;
 
 	public PartMosaicFrame(BufferedImage image)
 	{

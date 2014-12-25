@@ -1,8 +1,8 @@
 package filter.basic;
 
-import util.ColorUtil;
-import util.ImgUtil;
-import util.RGB;
+import util.ImageUtil;
+import util.color.ColorUtil;
+import util.color.RGB;
 import algorithm.basic.Gray;
 import app.Constants;
 import filter.Filter;
@@ -32,7 +32,7 @@ public class EdgeDetectorFilter extends Filter
 			{
 				int gray = getValue(imageMatrix, x, y, mask);
 
-				outputImage.setRGB(x, y, ImgUtil.getRGB(gray, gray, gray));
+				outputImage.setRGB(x, y, ImageUtil.getRGB(gray, gray, gray));
 
 			}
 		}
@@ -67,7 +67,7 @@ public class EdgeDetectorFilter extends Filter
 				sum += imageMatrix[x + i][y + j].r * Mask[i + 1][j + 1];
 			}
 		}
-		sum = ImgUtil.clampIn255(sum);
+		sum = ImageUtil.clampIn255(sum);
 
 		return sum;
 	}

@@ -1,4 +1,6 @@
-package util;
+package util.color;
+
+import util.ImageUtil;
 
 
 /**
@@ -70,8 +72,8 @@ public class LAB
 	
 	public void clamp()
 	{
-		l = ImgUtil.clampIn255(l);
-		a = ImgUtil.clampIn255(a);
-		b = ImgUtil.clampIn255(b);
+		l = ImageUtil.clampIn255(l);
+		a = ImageUtil.clampIn255(a);
+		b = ImageUtil.clampIn255(b);
 	}
 }

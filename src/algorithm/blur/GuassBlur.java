@@ -2,9 +2,9 @@ package algorithm.blur;
 
 import java.awt.image.BufferedImage;
 
-import util.Geometry;
-import util.ImgUtil;
-import util.RGB;
+import util.ImageUtil;
+import util.color.RGB;
+import util.geometry.Geometry;
 
 /**
  * ¸ßË¹Ä£ºý
@@ -53,11 +53,11 @@ public class GuassBlur
 				g = g / 9;
 				b = b / 9;
 
-				r = ImgUtil.clampIn255(r);
-				g = ImgUtil.clampIn255(g);
-				b = ImgUtil.clampIn255(b);
+				r = ImageUtil.clampIn255(r);
+				g = ImageUtil.clampIn255(g);
+				b = ImageUtil.clampIn255(b);
 
-				outputImage.setRGB(x, y, ImgUtil.getRGB(r, g, b));
+				outputImage.setRGB(x, y, ImageUtil.getRGB(r, g, b));
 
 			}
 		}
@@ -104,7 +104,7 @@ public class GuassBlur
 					int g = getValue(imageMatrix, x - startX, y - startY, RGB.G);
 					int b = getValue(imageMatrix, x - startX, y - startY, RGB.B);
 
-					image.setRGB(x, y, ImgUtil.getRGB(r, g, b));
+					image.setRGB(x, y, ImageUtil.getRGB(r, g, b));
 				}
 			}
 		}
@@ -147,7 +147,7 @@ public class GuassBlur
 		}
 		sum /= 16;
 
-		sum = ImgUtil.clampIn255(sum);
+		sum = ImageUtil.clampIn255(sum);
 
 		return sum;
 	}

@@ -2,7 +2,7 @@ package filter.frame;
 
 import java.awt.image.BufferedImage;
 
-import util.ImgUtil;
+import util.ImageUtil;
 
 public class InstantFrameFilter extends FrameFilter
 {
@@ -13,7 +13,7 @@ public class InstantFrameFilter extends FrameFilter
 		// TODO Auto-generated method stub
 		String fileName = "res/frame_instant.png";
 
-		return ImgUtil.getImg(fileName);
+		return ImageUtil.getImage(fileName);
 	}
 
 }

@@ -2,7 +2,7 @@ package algorithm.basic;
 
 import java.awt.image.BufferedImage;
 
-import util.ImgUtil;
+import util.ImageUtil;
 
 /**
  * 图像的亮度和对比度
@@ -48,27 +48,27 @@ public class IntensityAndContrast
 		int[] values = new int[256];
 		for (int i = 0; i < 256; i++)
 		{
-			int v = contrast > 0 ? ImgUtil.clampIn255((i + (int) (i * bv + 0.5f))) : i;
+			int v = contrast > 0 ? ImageUtil.clampIn255((i + (int) (i * bv + 0.5f))) : i;
 			if (contrast >= 255)
 			{
 				v = v >= threshold ? 255 : 0;
 			}
 			else
 			{
-				v = ImgUtil.clampIn255(v + (int) ((v - threshold) * cv + 0.5f));
+				v = ImageUtil.clampIn255(v + (int) ((v - threshold) * cv + 0.5f));
 			}
-			values[i] = contrast <= 0 ? ImgUtil.clampIn255(v + (int) (v * bv + 0.5f)) : v;
+			values[i] = contrast <= 0 ? ImageUtil.clampIn255(v + (int) (v * bv + 0.5f)) : v;
 		}
 
 		for (int y = 0; y < height; y++)
 		{
 			for (int x = 0; x < width; x++)
 			{
-				int[] rgb = ImgUtil.getSplitRGB(image.getRGB(x, y));
+				int[] rgb = ImageUtil.getSplitRGB(image.getRGB(x, y));
 				int r = values[rgb[0]];
 				int g = values[rgb[1]];
 				int b = values[rgb[2]];
-				outputImage.setRGB(x, y, ImgUtil.getRGB(r, g, b));
+				outputImage.setRGB(x, y, ImageUtil.getRGB(r, g, b));
 			}
 		}
 

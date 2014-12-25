@@ -1,5 +1,7 @@
 package gui.partcolor;
 
+import filter.Filter;
+import filter.factory.FilterFactory;
 import gui.ImagePanelWithCursor;
 
 import java.awt.Cursor;
@@ -7,7 +9,7 @@ import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 
-import util.ImgUtil;
+import util.ImageUtil;
 import algorithm.basic.Erase;
 import algorithm.basic.Gray;
 import app.Constants;
@@ -19,7 +21,9 @@ public class PartColorImagePanel extends ImagePanelWithCursor
 	 */
 	private static final long	serialVersionUID	= 1L;
 	// »Ò¶ÈÍ¼Ïñ
-	public BufferedImage		grayImage;
+	private BufferedImage		grayImage;
+
+	private Filter				filter;
 
 	public PartColorImagePanel(BufferedImage image)
 	{
@@ -28,10 +32,8 @@ public class PartColorImagePanel extends ImagePanelWithCursor
 
 		sourceImage = image;
 
-		grayImage = Gray.getImage(image);
-		// grayImage = new BufferedImage(image.getWidth(), image.getHeight(),
-		// BufferedImage.TYPE_INT_RGB);
-
+		filter = FilterFactory.getFilter(Constants.TYPE_GRAY);
+		grayImage = filter.getImage(image);
 	}
 
 	/**
@@ -42,7 +44,7 @@ public class PartColorImagePanel extends ImagePanelWithCursor
 		// TODO Auto-generated method stub
 		System.out.println("change cursor");
 
-		BufferedImage image = ImgUtil.getImg("res/circle.png");
+		BufferedImage image = ImageUtil.getImage("res/circle.png");
 
 		Toolkit tk = Toolkit.getDefaultToolkit();
 
@@ -55,7 +57,7 @@ public class PartColorImagePanel extends ImagePanelWithCursor
 	public void setCursorImage()
 	{
 		// TODO Auto-generated method stub
-		cursorImage = ImgUtil.getImg("res/circle.png");
+		cursorImage = ImageUtil.getImage("res/circle.png");
 	}
 
 	@Override

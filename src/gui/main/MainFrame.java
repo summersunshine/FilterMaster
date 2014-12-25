@@ -23,7 +23,7 @@ import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import util.ImgUtil;
+import util.ImageUtil;
 import algorithm.basic.Clone;
 import algorithm.basic.SaturationAndHue;
 import algorithm.basic.Scale;
@@ -234,7 +234,7 @@ public class MainFrame extends JFrame implements ActionListener
 	private void loadImage(File file)
 	{
 		sourceImagePath = file.getAbsolutePath();
-		sourceImage = ImgUtil.getImg(sourceImagePath);
+		sourceImage = ImageUtil.getImage(sourceImagePath);
 
 		if (sourceImage != null)
 		{
@@ -395,6 +395,8 @@ public class MainFrame extends JFrame implements ActionListener
 			getContentPane().remove(previewTabbedPanel);
 		}
 		previewTabbedPanel = new PreviewTabbedPanel(previewImage);
+		Thread thread = new Thread(previewTabbedPanel);
+		thread.start();
 		getContentPane().add(previewTabbedPanel);
 		previewTabbedPanel.repaint();
 

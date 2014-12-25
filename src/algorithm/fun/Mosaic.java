@@ -2,8 +2,8 @@ package algorithm.fun;
 
 import java.awt.image.BufferedImage;
 
-import util.Geometry;
-import util.ImgUtil;
+import util.ImageUtil;
+import util.geometry.Geometry;
 
 /**
  * ÂíÈü¿Ë
@@ -79,7 +79,7 @@ public class Mosaic
 			for (int x = startX; x < endX; x++)
 			{
 
-				if (Geometry.getDistance(x, y, centerX, centerY) < radius && ImgUtil.isInsideImage(image, x, y))
+				if (Geometry.getDistance(x, y, centerX, centerY) < radius && ImageUtil.isInsideImage(image, x, y))
 				{
 					int targetX = (x / size) * size;
 					int targetY = (y / size) * size;

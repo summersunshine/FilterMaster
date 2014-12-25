@@ -2,7 +2,7 @@ package algorithm.art;
 
 import java.awt.image.BufferedImage;
 
-import util.ImgUtil;
+import util.ImageUtil;
 
 /**
  * ”Õª≠
@@ -29,7 +29,7 @@ public class OilPaint
 
 		int[] inPixels = new int[width * height];
 		int[] outPixels = new int[width * height];
-		ImgUtil.getRGB(image, inPixels);
+		ImageUtil.getRGB(image, inPixels);
 
 		int index = 0;
 		int subradius = radius / 2;
@@ -107,7 +107,7 @@ public class OilPaint
 
 			}
 		}
-		ImgUtil.setRGB(outputImage, outPixels);
+		ImageUtil.setRGB(outputImage, outPixels);
 		return outputImage;
 	}
 

@@ -2,7 +2,7 @@ package algorithm.fashion;
 
 import java.awt.image.BufferedImage;
 
-import util.ImgUtil;
+import util.ImageUtil;
 import algorithm.fun.AlphaMerge;
 
 /**
@@ -20,7 +20,7 @@ public class Rainbow
 
 		// return Frame.getImage(image, 2);
 
-		BufferedImage paperImage = ImgUtil.getImg("res/rainbow.jpg");
+		BufferedImage paperImage = ImageUtil.getImage("res/rainbow.jpg");
 
 		return AlphaMerge.getImage(paperImage, image, 0.5f);
 	}

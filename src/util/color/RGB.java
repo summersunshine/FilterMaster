@@ -1,4 +1,6 @@
-package util;
+package util.color;
+
+import util.ImageUtil;
 
 /**
  * RGBÑÕÉ«¿Õ¼ä
@@ -111,8 +113,8 @@ public class RGB
 
 	public void clamp()
 	{
-		r = ImgUtil.clampIn255(r);
-		g = ImgUtil.clampIn255(g);
-		b = ImgUtil.clampIn255(b);
+		r = ImageUtil.clampIn255(r);
+		g = ImageUtil.clampIn255(g);
+		b = ImageUtil.clampIn255(b);
 	}
 }

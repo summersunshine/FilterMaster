@@ -1,4 +1,4 @@
-package util;
+package util.geometry;
 
 public class Point
 {

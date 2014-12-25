@@ -7,7 +7,7 @@ import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
-import util.ImgUtil;
+import util.ImageUtil;
 import algorithm.basic.Alpha;
 import algorithm.basic.Erase;
 import algorithm.basic.Merge;
@@ -52,7 +52,7 @@ public class ScrawlImagePanel extends ImagePanelWithCursor
 	public void setCursorImage()
 	{
 		// TODO Auto-generated method stub
-		cursorImage = ImgUtil.getImg("res/circle.png");
+		cursorImage = ImageUtil.getImage("res/circle.png");
 	}
 
 	@Override
@@ -119,9 +119,19 @@ public class ScrawlImagePanel extends ImagePanelWithCursor
 	{
 		Graphics2D g2d = drawingImage.createGraphics();
 		g2d.setPaint(ScrawlSetting.brushColor);
-
-		g2d.setStroke(new BasicStroke(ScrawlSetting.sizeValue / ratio, BasicStroke.CAP_ROUND, BasicStroke.JOIN_BEVEL));
+		g2d.setStroke(getBasicStroke());
 		g2d.drawLine(displayX, displayY, lastDisplayX, lastDisplayY);
+	}
+
+	/**
+	 * ªÒ»°± ¥•
+	 * */
+	private BasicStroke getBasicStroke()
+	{
+		float width = ScrawlSetting.sizeValue / ratio;
+		int cap = BasicStroke.CAP_ROUND;
+		int join = BasicStroke.JOIN_BEVEL;
+		return new BasicStroke(width, cap, join);
 	}
 
 	/**
@@ -148,15 +158,6 @@ public class ScrawlImagePanel extends ImagePanelWithCursor
 	{
 
 		displayImage = Merge.getImage(displayImage, drawingImage);
-		// try
-		// {
-		// ImageIO.write(drawingImage, "JPEG", new File("res/s.jpg"));
-		// }
-		// catch (IOException e)
-		// {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
 	}
 
 }

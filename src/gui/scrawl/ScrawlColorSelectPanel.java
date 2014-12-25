@@ -32,7 +32,7 @@ public class ScrawlColorSelectPanel extends JPanel implements AdjustmentListener
 	public ScrawlColorSelectPanel(ScrawlFrame parent) throws HeadlessException
 	{
 		this.setBounds(ScrawlSetting.COLOR_SELECT_PANEL_RECTANGLE);
-		this.parent = parent;
+		this.setParent(parent);
 		this.setLayout(null);
 		this.initScrollBar();
 		this.initLabel();
@@ -138,5 +138,15 @@ public class ScrawlColorSelectPanel extends JPanel implements AdjustmentListener
 		}
 
 		paintComponent();
+	}
+
+	public ScrawlFrame getParent()
+	{
+		return parent;
+	}
+
+	public void setParent(ScrawlFrame parent)
+	{
+		this.parent = parent;
 	}
 }

@@ -2,8 +2,8 @@ package algorithm.lomo;
 
 import java.awt.image.BufferedImage;
 
-import util.Geometry;
-import util.ImgUtil;
+import util.ImageUtil;
+import util.geometry.Geometry;
 
 /**
  * ¾­µäLOMOÌØÐ§
@@ -34,16 +34,16 @@ public class ClassicalLomo
 				int distance = Geometry.getDistance(y, x, height / 2, width / 2);
 				if (distance > radius)
 				{
-					outputImage.setRGB(x, y, ImgUtil.getRGB(0, 0, 0));
+					outputImage.setRGB(x, y, ImageUtil.getRGB(0, 0, 0));
 				}
 				else
 				{
-					int[] rgb = ImgUtil.getSplitRGB(image.getRGB(x, y));
+					int[] rgb = ImageUtil.getSplitRGB(image.getRGB(x, y));
 					float ratio = (float) (1 - distance * 1.0 / radius);
 					int r = (int) (rgb[0] * ratio);
 					int g = (int) (rgb[1] * ratio);
 					int b = (int) (rgb[2] * ratio);
-					outputImage.setRGB(x, y, ImgUtil.getRGB(r, g, b));
+					outputImage.setRGB(x, y, ImageUtil.getRGB(r, g, b));
 				}
 			}
 		}
@@ -74,16 +74,16 @@ public class ClassicalLomo
 				int distance = Geometry.getDistance(y, x, height / 2, width / 2);
 				if (distance > radius)
 				{
-					outputImage.setRGB(x, y, ImgUtil.getRGB(0, 0, 0));
+					outputImage.setRGB(x, y, ImageUtil.getRGB(0, 0, 0));
 				}
 				else
 				{
-					int[] rgb = ImgUtil.getSplitRGB(image.getRGB(x, y));
+					int[] rgb = ImageUtil.getSplitRGB(image.getRGB(x, y));
 					float ratio = (float) (1 - distance * 1.0 / radius);
 					int r = (int) (rgb[0] * ratio);
 					int g = (int) (rgb[1] * ratio);
 					int b = (int) (rgb[2] * ratio);
-					outputImage.setRGB(x, y, ImgUtil.getRGB(r, g, b));
+					outputImage.setRGB(x, y, ImageUtil.getRGB(r, g, b));
 				}
 			}
 		}

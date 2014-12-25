@@ -31,7 +31,7 @@ public class Constants
 	public static final int	TYPE_EDGE_LAPLACE		= 209;
 
 	// blur
-	public static final int	TYPE_DOUBLE_GUASS_BLUR	= 300;
+	// public static final int TYPE_DOUBLE_GUASS_BLUR = 300;
 	public static final int	TYPE_GUASS_BLUR			= 301;
 	public static final int	TYPE_LASER				= 302;
 	public static final int	TYPE_MOTION_BLUR		= 303;
@@ -71,7 +71,7 @@ public class Constants
 
 	public static int[]		TYPE_BASIC_LIST			= { TYPE_GRAY, TYPE_INVERSE, TYPE_SHARPEN, TYPE_EDGE_SOBEL_X, TYPE_EDGE_SOBEL_Y, TYPE_EDGE_LAPLACE };
 
-	public static int[]		TYPE_BLUR_LIST			= { TYPE_DOUBLE_GUASS_BLUR, TYPE_GUASS_BLUR, TYPE_LASER, TYPE_MOTION_BLUR };
+	public static int[]		TYPE_BLUR_LIST			= { TYPE_GUASS_BLUR, TYPE_LASER, TYPE_MOTION_BLUR };
 
 	public static int[]		TYPE_FUN_LIST			= { TYPE_ALPHA_MERGE, TYPE_ALPHA_MERGE_1, TYPE_ALPHA_MERGE_2, TYPE_ALPHA_MERGE_3, TYPE_ALPHA_MERGE_4,
 			TYPE_CONCAVE_MIRROIR, TYPE_CONVEX_MIRROIR, TYPE_MOSIC };
@@ -88,7 +88,7 @@ public class Constants
 
 	public static String[]	DESCRIBE_BASIC_LIST		= { "灰度图", "负片", "锐化", "SLOBEL边缘检测1", "SLOBEL边缘检测2", "拉普拉斯边缘检测" };
 
-	public static String[]	DESCRIBE_BLUR_LIST		= { "高倍高斯模糊", "高斯模糊", "光线模糊", "动态模糊" };
+	public static String[]	DESCRIBE_BLUR_LIST		= { "高斯模糊", "光线模糊", "动态模糊" };
 
 	public static String[]	DESCRIBE_LOMO_LIST		= { "经典", "回忆" };
 

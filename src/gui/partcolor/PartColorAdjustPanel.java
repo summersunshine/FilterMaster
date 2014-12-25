@@ -39,7 +39,7 @@ public class PartColorAdjustPanel extends JPanel implements AdjustmentListener, 
 	{
 		this.setLayout(null);
 
-		this.parent = parent;
+		this.setParent(parent);
 
 		initButtons();
 
@@ -56,11 +56,12 @@ public class PartColorAdjustPanel extends JPanel implements AdjustmentListener, 
 		sizeLabel = new JLabel("ด๓ะก");
 		sizeLabel.setBounds(PartColorSetting.SIZE_LABEL_RECTANGLE);
 
+		int value = PartColorSetting.sizeValue;
 		int extent = PartColorSetting.sizeExtent;
 		int min = PartColorSetting.minSizeValue;
 		int max = PartColorSetting.maxSizeValue;
 
-		sizeScrollBar = new JScrollBar(JScrollBar.HORIZONTAL, min, extent, min, max);
+		sizeScrollBar = new JScrollBar(JScrollBar.HORIZONTAL, value, extent, min, max);
 		sizeScrollBar.setBounds(PartColorSetting.SIZE_SCROLLBAR_RECTANGLE);
 		sizeScrollBar.setUnitIncrement(extent);
 		sizeScrollBar.setBlockIncrement(extent);
@@ -116,5 +117,15 @@ public class PartColorAdjustPanel extends JPanel implements AdjustmentListener, 
 		{
 			PartColorSetting.type = Constants.TYPE_GRAY;
 		}
+	}
+
+	public PartColorFrame getParent()
+	{
+		return parent;
+	}
+
+	public void setParent(PartColorFrame parent)
+	{
+		this.parent = parent;
 	}
 }

@@ -1,10 +1,14 @@
 package gui.magicmirror;
 
+import filter.Filter;
+import filter.factory.FilterFactory;
+import filter.fun.ConcaveMirrorFilter;
+import filter.fun.ConvexMirrorFilter;
 import gui.ImagePanel;
 
 import java.awt.image.BufferedImage;
 
-import algorithm.factory.FunImageFactory;
+import app.Constants;
 
 public class MagicMirrorImagePanel extends ImagePanel
 {
@@ -14,11 +18,14 @@ public class MagicMirrorImagePanel extends ImagePanel
 	 */
 	private static final long	serialVersionUID	= 1L;
 
+	private Filter				filter;
+
 	public MagicMirrorImagePanel(BufferedImage image)
 	{
 		super(image);
 		// TODO Auto-generated constructor stub
 		sourceImage = image;
+
 	}
 
 	/**
@@ -34,7 +41,18 @@ public class MagicMirrorImagePanel extends ImagePanel
 
 		System.out.println("Type " + type + " radius " + radius);
 
-		displayImage = FunImageFactory.getImage(type, sourceImage, radius);
+		filter = FilterFactory.getFilter(MagicMirrorSetting.type);
+
+		if (MagicMirrorSetting.type == Constants.TYPE_CONCAVE_MIRROIR)
+		{
+			ConcaveMirrorFilter.radius = radius;
+		}
+		else
+		{
+			ConvexMirrorFilter.radius = radius;
+		}
+
+		displayImage = filter.getImage(sourceImage);
 
 		repaint();
 	}

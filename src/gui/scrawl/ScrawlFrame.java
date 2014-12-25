@@ -42,7 +42,7 @@ public class ScrawlFrame extends BaseFrame
 		// colorSelectPanel.paintComponent();
 	}
 
-	public void updateDrawingALpha()
+	public void updateDrawingAlpha()
 	{
 		imagePanel.updateAlpha();
 

@@ -10,7 +10,7 @@ import javax.swing.event.ChangeListener;
 
 import app.Constants;
 
-public class PreviewTabbedPanel extends JTabbedPane implements ChangeListener
+public class PreviewTabbedPanel extends JTabbedPane implements ChangeListener, Runnable
 {
 
 	/**
@@ -41,12 +41,13 @@ public class PreviewTabbedPanel extends JTabbedPane implements ChangeListener
 
 	public Vector<PreviewListPanel>	previewListPanels;
 
+	private BufferedImage			previewImage;
+
 	public PreviewTabbedPanel(BufferedImage previewImage)
 	{
 		super(JTabbedPane.LEFT);
 
-		initPreviewListPanels(previewImage);
-		repaintPreviewListPanels();
+		this.previewImage = previewImage;
 
 		this.addChangeListener(this);
 
@@ -61,7 +62,7 @@ public class PreviewTabbedPanel extends JTabbedPane implements ChangeListener
 	 * 
 	 * @param previewImage
 	 * */
-	private void initPreviewListPanels(BufferedImage previewImage)
+	private void initPreviewListPanels()
 	{
 		previewListPanels = new Vector<>();
 		artPanel = new PreviewListPanel(previewImage, Constants.TYPE_ART);
@@ -104,9 +105,17 @@ public class PreviewTabbedPanel extends JTabbedPane implements ChangeListener
 		// 获得选中的选项卡索引
 		int selectedIndex = getSelectedIndex();
 		// 获得选项卡标签
-		String title = getTitleAt(selectedIndex);
+		// String title = getTitleAt(selectedIndex);
 
 		System.out.println("state change" + selectedIndex);
 
+	}
+
+	@Override
+	public void run()
+	{
+		// TODO Auto-generated method stub
+		initPreviewListPanels();
+		repaintPreviewListPanels();
 	}
 }

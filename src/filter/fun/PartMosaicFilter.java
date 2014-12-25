@@ -1,7 +1,7 @@
 package filter.fun;
 
-import util.Geometry;
-import util.ImgUtil;
+import util.ImageUtil;
+import util.geometry.Geometry;
 
 public class PartMosaicFilter extends MosaicFilter
 {
@@ -24,7 +24,7 @@ public class PartMosaicFilter extends MosaicFilter
 			for (int x = startX; x < endX; x++)
 			{
 
-				if (Geometry.getDistance(x, y, centerX, centerY) < radius && ImgUtil.isInsideImage(image, x, y))
+				if (Geometry.getDistance(x, y, centerX, centerY) < radius && ImageUtil.isInsideImage(image, x, y))
 				{
 					int targetX = (x / size) * size;
 					int targetY = (y / size) * size;

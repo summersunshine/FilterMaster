@@ -1,8 +1,8 @@
 package filter.style;
 
-import util.ColorUtil;
-import util.HSV;
-import util.RGB;
+import util.color.ColorUtil;
+import util.color.HSV;
+import util.color.RGB;
 import filter.Filter;
 
 public class TouthStyleFilter extends Filter

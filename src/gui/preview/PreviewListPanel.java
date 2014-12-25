@@ -167,4 +167,24 @@ public class PreviewListPanel extends JScrollPane
 		return contentHeight;
 	}
 
+	public JLabel[] getLabelList()
+	{
+		return labelList;
+	}
+
+	public void setLabelList(JLabel[] labelList)
+	{
+		this.labelList = labelList;
+	}
+
+	public PreviewPanel[] getPreviewPanelList()
+	{
+		return previewPanelList;
+	}
+
+	public void setPreviewPanelList(PreviewPanel[] previewPanelList)
+	{
+		this.previewPanelList = previewPanelList;
+	}
+
 }

@@ -2,7 +2,7 @@ package algorithm.fashion;
 
 import java.awt.image.BufferedImage;
 
-import util.ImgUtil;
+import util.ImageUtil;
 import algorithm.fun.AlphaMerge;
 
 /**
@@ -17,7 +17,7 @@ public class Flare
 	 * */
 	public static BufferedImage getImage(BufferedImage image)
 	{
-		BufferedImage flareImage = ImgUtil.getImg("res/flare.jpg");
+		BufferedImage flareImage = ImageUtil.getImage("res/flare.jpg");
 		
 		return AlphaMerge.getImage(flareImage,image,0.5f);
 	}

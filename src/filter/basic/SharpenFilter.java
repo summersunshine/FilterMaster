@@ -1,7 +1,7 @@
 package filter.basic;
 
-import util.ImgUtil;
-import util.RGB;
+import util.ImageUtil;
+import util.color.RGB;
 import filter.Filter;
 
 public class SharpenFilter extends Filter
@@ -44,11 +44,11 @@ public class SharpenFilter extends Filter
 				sumG /= 273;
 				sumB /= 273;
 
-				sumR = ImgUtil.clampIn255(sumR);
-				sumG = ImgUtil.clampIn255(sumG);
-				sumB = ImgUtil.clampIn255(sumB);
+				sumR = ImageUtil.clampIn255(sumR);
+				sumG = ImageUtil.clampIn255(sumG);
+				sumB = ImageUtil.clampIn255(sumB);
 
-				outputImage.setRGB(x, y, ImgUtil.getRGB(sumR, sumG, sumB));
+				outputImage.setRGB(x, y, ImageUtil.getRGB(sumR, sumG, sumB));
 			}
 		}
 	}

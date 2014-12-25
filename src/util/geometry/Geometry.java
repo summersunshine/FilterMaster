@@ -1,4 +1,5 @@
-package util;
+package util.geometry;
+
 
 public class Geometry
 {

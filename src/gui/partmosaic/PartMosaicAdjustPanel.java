@@ -87,11 +87,12 @@ public class PartMosaicAdjustPanel extends JPanel implements AdjustmentListener,
 		patchLabel = new JLabel("马赛克颗粒大小");
 		patchLabel.setBounds(PartMosaicSetting.PATCH_LABEL_RECTANGLE);
 
+		int value = PartMosaicSetting.sizeValue;
 		int extent = PartMosaicSetting.sizeExtent;
 		int min = PartMosaicSetting.minSizeValue;
 		int max = PartMosaicSetting.maxSizeValue;
 
-		patchScrollBar = new JScrollBar(JScrollBar.HORIZONTAL, min, extent, min, max);
+		patchScrollBar = new JScrollBar(JScrollBar.HORIZONTAL, value, extent, min, max);
 		patchScrollBar.setBounds(PartMosaicSetting.PATCH_SCROLLBAR_RECTANGLE);
 		patchScrollBar.setUnitIncrement(extent);
 		patchScrollBar.setBlockIncrement(extent);

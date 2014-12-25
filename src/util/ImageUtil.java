@@ -8,7 +8,7 @@ import java.io.File;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-public class ImgUtil
+public class ImageUtil
 {
 
 	/**
@@ -50,7 +50,7 @@ public class ImgUtil
 	 * 
 	 * @param fileName
 	 * */
-	public static BufferedImage getImg(String fileName)
+	public static BufferedImage getImage(String fileName)
 	{
 		BufferedImage bufferedImage = null;
 		try
@@ -69,7 +69,7 @@ public class ImgUtil
 	 * 
 	 * @param fileName
 	 * */
-	public static BufferedImage getAlphaImg(String fileName)
+	public static BufferedImage getAlphaImage(String fileName)
 	{
 		BufferedImage bufferedImage = null;
 		try
@@ -233,9 +233,9 @@ public class ImgUtil
 		{
 			for (int j = 0; j < width; j++)
 			{
-				int[] rgb1 = ImgUtil.getSplitRGB(image1.getRGB(j, i));
-				int[] rgb2 = ImgUtil.getSplitRGB(image2.getRGB(j, i));
-				outputImage.setRGB(j, i, ImgUtil.getRGB(rgb1[0] + rgb2[0], rgb1[1] + rgb2[1], rgb1[2] + rgb2[2]));
+				int[] rgb1 = ImageUtil.getSplitRGB(image1.getRGB(j, i));
+				int[] rgb2 = ImageUtil.getSplitRGB(image2.getRGB(j, i));
+				outputImage.setRGB(j, i, ImageUtil.getRGB(rgb1[0] + rgb2[0], rgb1[1] + rgb2[1], rgb1[2] + rgb2[2]));
 
 			}
 		}
@@ -259,9 +259,9 @@ public class ImgUtil
 		{
 			for (int j = 0; j < width; j++)
 			{
-				int[] rgb1 = ImgUtil.getSplitRGB(image1.getRGB(j, i));
-				int[] rgb2 = ImgUtil.getSplitRGB(image2.getRGB(j, i));
-				outputImage.setRGB(j, i, ImgUtil.getRGB(rgb1[0] - rgb2[0], rgb1[1] - rgb2[1], rgb1[2] - rgb2[2]));
+				int[] rgb1 = ImageUtil.getSplitRGB(image1.getRGB(j, i));
+				int[] rgb2 = ImageUtil.getSplitRGB(image2.getRGB(j, i));
+				outputImage.setRGB(j, i, ImageUtil.getRGB(rgb1[0] - rgb2[0], rgb1[1] - rgb2[1], rgb1[2] - rgb2[2]));
 
 			}
 		}

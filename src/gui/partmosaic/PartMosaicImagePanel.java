@@ -4,7 +4,7 @@ import gui.ImagePanelWithCursor;
 
 import java.awt.image.BufferedImage;
 
-import util.ImgUtil;
+import util.ImageUtil;
 import algorithm.basic.Erase;
 import algorithm.fun.Mosaic;
 import app.Constants;
@@ -17,10 +17,10 @@ public class PartMosaicImagePanel extends ImagePanelWithCursor
 	 */
 	private static final long	serialVersionUID	= 1L;
 
-	public BufferedImage		circleImage;
+	private BufferedImage		circleImage;
 
 	// Ô­Ê¼Í¼Ïñ
-	public BufferedImage		sourceImage;
+	private BufferedImage		sourceImage;
 
 	public PartMosaicImagePanel(BufferedImage image)
 	{
@@ -38,21 +38,15 @@ public class PartMosaicImagePanel extends ImagePanelWithCursor
 		// TODO Auto-generated method stub
 		System.out.println("change cursor");
 
-		circleImage = ImgUtil.getImg("res/circle.png");
+		setCircleImage(ImageUtil.getImage("res/circle.png"));
 
-		// Toolkit tk = Toolkit.getDefaultToolkit();
-
-		// Cursor cursor = tk.createCustomCursor(circleImage, new Point(16, 16),
-		// "blur");
-
-		// setCursor(cursor);
 	}
 
 	@Override
 	public void setCursorImage()
 	{
 		// TODO Auto-generated method stub
-		cursorImage = ImgUtil.getImg("res/circle.png");
+		cursorImage = ImageUtil.getImage("res/circle.png");
 	}
 
 	public void setCursorRadius()
@@ -92,6 +86,16 @@ public class PartMosaicImagePanel extends ImagePanelWithCursor
 		displayImage = Mosaic.getImage(sourceImage, patchValue);
 
 		repaint();
+	}
+
+	public BufferedImage getCircleImage()
+	{
+		return circleImage;
+	}
+
+	public void setCircleImage(BufferedImage circleImage)
+	{
+		this.circleImage = circleImage;
 	}
 
 }

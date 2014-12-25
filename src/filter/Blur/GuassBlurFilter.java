@@ -2,14 +2,14 @@ package filter.Blur;
 
 import java.awt.Color;
 
-import util.ColorUtil;
-import util.ImgUtil;
+import util.ImageUtil;
+import util.color.ColorUtil;
 import filter.Filter;
 
 public class GuassBlurFilter extends Filter
 {
 
-	public static int	maskSize	= 5;
+	public static int	MASKSIZE	= 5;
 
 	/**
 	 * 对mask的size做预处理
@@ -20,7 +20,7 @@ public class GuassBlurFilter extends Filter
 	public void preProcessor()
 	{
 		super.preProcessor();
-		maskSize = (maskSize / 2) * 2 + 1;
+		MASKSIZE = (MASKSIZE / 2) * 2 + 1;
 
 	}
 
@@ -29,11 +29,11 @@ public class GuassBlurFilter extends Filter
 	{
 		// TODO Auto-generated method stub
 
-		int halfMaskSize = maskSize / 2;
+		int halfMaskSize = MASKSIZE / 2;
 
 		Color[][] imageMatrix = ColorUtil.getColorMatrix(image);
 
-		double sum = maskSize * maskSize;
+		double sum = MASKSIZE * MASKSIZE;
 
 		for (int y = halfMaskSize; y < height - halfMaskSize; y++)
 		{
@@ -50,13 +50,13 @@ public class GuassBlurFilter extends Filter
 					}
 				}
 				sumR /= sum;
-				sumR = ImgUtil.clamp(sumR);
+				sumR = ImageUtil.clamp(sumR);
 				sumG /= sum;
-				sumG = ImgUtil.clamp(sumG);
+				sumG = ImageUtil.clamp(sumG);
 				sumB /= sum;
-				sumB = ImgUtil.clamp(sumB);
+				sumB = ImageUtil.clamp(sumB);
 
-				outputImage.setRGB(x, y, ImgUtil.getRGB((int) sumR, (int) sumG, (int) sumB));
+				outputImage.setRGB(x, y, ImageUtil.getRGB((int) sumR, (int) sumG, (int) sumB));
 
 			}
 		}

@@ -1,5 +1,8 @@
 package gui.blur;
 
+import filter.Filter;
+import filter.Blur.GuassBlurFilter;
+import filter.factory.FilterFactory;
 import gui.ImagePanelWithCursor;
 
 import java.awt.Cursor;
@@ -8,10 +11,9 @@ import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
-import util.ImgUtil;
+import util.ImageUtil;
 import algorithm.basic.Clone;
 import algorithm.basic.Erase;
-import algorithm.blur.DoubleGuassBlur;
 import algorithm.blur.InteractiveBlur;
 import app.Constants;
 
@@ -25,6 +27,8 @@ public class BlurImagePanel extends ImagePanelWithCursor
 
 	// ¸ßË¹Ä£ºýÍ¼Ïñ
 	public BufferedImage		guassBlurImage;
+
+	private Filter				filter;
 
 	private int					lastMouseX;
 
@@ -42,10 +46,12 @@ public class BlurImagePanel extends ImagePanelWithCursor
 	protected void initDisplayImage(BufferedImage image)
 	{
 		// TODO Auto-generated method stub
-		displayImage = DoubleGuassBlur.getImage(image, BlurSetting.levelValue);
-		// displayImage = InteractiveBlur.getImage(image, 400,400,
-		// 200,InteractiveBlur.TYPE_RADIAL);
-		// MainFrame.getInstance().setDisplayImage(Clone.getImage(displayImage));
+		GuassBlurFilter.MASKSIZE = 5;
+
+		filter = FilterFactory.getFilter(Constants.TYPE_GUASS_BLUR);
+
+		displayImage = filter.getImage(image);
+
 	}
 
 	@Override
@@ -68,7 +74,9 @@ public class BlurImagePanel extends ImagePanelWithCursor
 	 * */
 	public void updateBlurLevel(int level)
 	{
-		guassBlurImage = DoubleGuassBlur.getImage(sourceImage, level);
+		GuassBlurFilter.MASKSIZE = level;
+
+		guassBlurImage = filter.getImage(sourceImage);
 
 		displayImage = Clone.getImage(guassBlurImage);
 
@@ -117,7 +125,7 @@ public class BlurImagePanel extends ImagePanelWithCursor
 		// TODO Auto-generated method stub
 		System.out.println("change cursor");
 
-		BufferedImage image = ImgUtil.getImg("res/circle.png");
+		BufferedImage image = ImageUtil.getImage("res/circle.png");
 
 		Toolkit tk = Toolkit.getDefaultToolkit();
 
@@ -130,7 +138,7 @@ public class BlurImagePanel extends ImagePanelWithCursor
 	public void setCursorImage()
 	{
 		// TODO Auto-generated method stub
-		cursorImage = ImgUtil.getImg("res/circle.png");
+		cursorImage = ImageUtil.getImage("res/circle.png");
 	}
 
 	@Override
@@ -162,7 +170,7 @@ public class BlurImagePanel extends ImagePanelWithCursor
 	public void mouseDragged(MouseEvent e)
 	{
 		// TODO Auto-generated method stub
-		if (BlurSetting.type == Constants.TYPE_DOUBLE_GUASS_BLUR || BlurSetting.type == Constants.TYPE_ERASE)
+		if (BlurSetting.type == Constants.TYPE_GUASS_BLUR || BlurSetting.type == Constants.TYPE_ERASE)
 		{
 			super.mouseDragged(e);
 

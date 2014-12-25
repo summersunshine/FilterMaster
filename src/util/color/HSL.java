@@ -1,4 +1,6 @@
-package util;
+package util.color;
+
+import util.ImageUtil;
 
 /**
  * HSLÑÕÉ«¿Õ¼ä
@@ -59,8 +61,8 @@ public class HSL
 	
 	public void clamp()
 	{
-		h = ImgUtil.clamp(h,360);
-		s = ImgUtil.clamp(s,100);
-		l = ImgUtil.clamp(l,100);
+		h = ImageUtil.clamp(h,360);
+		s = ImageUtil.clamp(s,100);
+		l = ImageUtil.clamp(l,100);
 	}
 }

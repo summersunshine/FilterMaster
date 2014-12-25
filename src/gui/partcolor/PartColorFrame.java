@@ -14,7 +14,7 @@ public class PartColorFrame extends BaseFrame
 	private static final long		serialVersionUID	= 1L;
 
 	// Ô­Ê¼Í¼Ïñ
-	public BufferedImage			sourceImage;
+	private BufferedImage			sourceImage;
 
 	private PartColorAdjustPanel	adjustPanel;
 

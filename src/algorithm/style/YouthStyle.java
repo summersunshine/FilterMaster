@@ -2,9 +2,9 @@ package algorithm.style;
 
 import java.awt.image.BufferedImage;
 
-import util.ColorUtil;
-import util.HSV;
-import util.RGB;
+import util.color.ColorUtil;
+import util.color.HSV;
+import util.color.RGB;
 
 
 /**

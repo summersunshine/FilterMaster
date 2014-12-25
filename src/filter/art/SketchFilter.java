@@ -2,7 +2,7 @@ package filter.art;
 
 import java.awt.image.BufferedImage;
 
-import util.ImgUtil;
+import util.ImageUtil;
 import algorithm.basic.Gray;
 import algorithm.basic.Inverse;
 import algorithm.blur.GuassBlur;
@@ -28,13 +28,13 @@ public class SketchFilter extends Filter
 		{
 			for (int x = 0; x < width; x++)
 			{
-				int b = ImgUtil.getSplitRGB(guassBlurImage.getRGB(x, y))[0];
-				int a = ImgUtil.getSplitRGB(grayImage.getRGB(x, y))[0];
+				int b = ImageUtil.getSplitRGB(guassBlurImage.getRGB(x, y))[0];
+				int a = ImageUtil.getSplitRGB(grayImage.getRGB(x, y))[0];
 
 				int temp = (int) (a + a * b / (256 - b) / 1.5);
 				a = Math.min(temp, 255);
 
-				outputImage.setRGB(x, y, ImgUtil.getRGB(a, a, a));
+				outputImage.setRGB(x, y, ImageUtil.getRGB(a, a, a));
 
 			}
 		}

@@ -11,7 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import util.ImgUtil;
+import util.ImageUtil;
 
 public class JigsawFrame extends BaseFrame implements ActionListener
 {
@@ -106,7 +106,7 @@ public class JigsawFrame extends BaseFrame implements ActionListener
 	 * */
 	private void loadImage(File currFile)
 	{
-		secondSourceImage = ImgUtil.getImg(currFile.getAbsolutePath());
+		secondSourceImage = ImageUtil.getImage(currFile.getAbsolutePath());
 
 		if (secondSourceImage != null)
 		{

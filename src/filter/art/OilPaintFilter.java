@@ -1,6 +1,6 @@
 package filter.art;
 
-import util.ImgUtil;
+import util.ImageUtil;
 import filter.Filter;
 
 public class OilPaintFilter extends Filter
@@ -18,7 +18,7 @@ public class OilPaintFilter extends Filter
 		// TODO Auto-generated method stub
 		int[] inPixels = new int[width * height];
 		int[] outPixels = new int[width * height];
-		ImgUtil.getRGB(image, inPixels);
+		ImageUtil.getRGB(image, inPixels);
 
 		int index = 0;
 		int subradius = radius / 2;
@@ -96,7 +96,7 @@ public class OilPaintFilter extends Filter
 
 			}
 		}
-		ImgUtil.setRGB(outputImage, outPixels);
+		ImageUtil.setRGB(outputImage, outPixels);
 	}
 
 }

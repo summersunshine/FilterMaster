@@ -3,7 +3,7 @@ package algorithm.basic;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
-import util.Geometry;
+import util.geometry.Geometry;
 
 /**
  * ²Á³ýÐ§¹û

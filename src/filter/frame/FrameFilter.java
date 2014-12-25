@@ -3,7 +3,7 @@ package filter.frame;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 
-import util.ImgUtil;
+import util.ImageUtil;
 import filter.Filter;
 
 public abstract class FrameFilter extends Filter
@@ -22,7 +22,7 @@ public abstract class FrameFilter extends Filter
 		int frameRgb, sourceRgb;
 		Color frameColor, sourceColor;
 
-		BufferedImage outputImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+		outputImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 
 		for (int y = 0; y < height; y++)
 		{
@@ -43,7 +43,7 @@ public abstract class FrameFilter extends Filter
 				int g = (int) (frameColor.getGreen() * alpha + sourceColor.getGreen() * (1 - alpha));
 				int b = (int) (frameColor.getBlue() * alpha + sourceColor.getBlue() * (1 - alpha));
 
-				outputImage.setRGB(x, y, ImgUtil.getRGB(r, g, b));
+				outputImage.setRGB(x, y, ImageUtil.getRGB(r, g, b));
 
 			}
 		}

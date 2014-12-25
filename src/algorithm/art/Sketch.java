@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 import algorithm.basic.Gray;
 import algorithm.basic.Inverse;
 import algorithm.blur.GuassBlur;
-import util.ImgUtil;
+import util.ImageUtil;
 
 /**
  * Àÿ√Ë
@@ -36,13 +36,13 @@ public class Sketch
 		{
 			for (int x = 0; x < width; x++)
 			{
-				int b = ImgUtil.getSplitRGB(guassBlurImage.getRGB(x, y))[0];
-				int a = ImgUtil.getSplitRGB(grayImage.getRGB(x, y))[0];
+				int b = ImageUtil.getSplitRGB(guassBlurImage.getRGB(x, y))[0];
+				int a = ImageUtil.getSplitRGB(grayImage.getRGB(x, y))[0];
 
 				int temp = (int) (a + a * b / (256 - b) / 1.5);
 				a = Math.min(temp, 255);
 
-				reverseImage.setRGB(x, y, ImgUtil.getRGB(a, a, a));
+				reverseImage.setRGB(x, y, ImageUtil.getRGB(a, a, a));
 
 			}
 		}

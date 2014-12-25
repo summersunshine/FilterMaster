@@ -3,7 +3,7 @@ package gui.mousedisplay;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-import util.Geometry;
+import util.geometry.Geometry;
 
 public class CircleMouseDisplayPanel extends MouseDisplayPanel
 {
@@ -12,6 +12,7 @@ public class CircleMouseDisplayPanel extends MouseDisplayPanel
 	 * 
 	 */
 	private static final long	serialVersionUID	= 1L;
+	@SuppressWarnings("unused")
 	private int					radius;
 
 	public CircleMouseDisplayPanel(Rectangle rectangle)

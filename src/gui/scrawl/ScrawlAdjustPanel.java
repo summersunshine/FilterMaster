@@ -134,7 +134,7 @@ public class ScrawlAdjustPanel extends JPanel implements ActionListener, Adjustm
 		{
 			ScrawlSetting.alphaValue = e.getValue();
 
-			parent.updateDrawingALpha();
+			parent.updateDrawingAlpha();
 		}
 	}
 

@@ -1,4 +1,6 @@
-package util;
+package util.color;
+
+import util.ImageUtil;
 
 
 /**
@@ -60,8 +62,8 @@ public class HSV
 	
 	public void clamp()
 	{
-		h = ImgUtil.clamp(h,360);
-		s = ImgUtil.clamp(s,100);
-		v = ImgUtil.clamp(v,100);
+		h = ImageUtil.clamp(h,360);
+		s = ImageUtil.clamp(s,100);
+		v = ImageUtil.clamp(v,100);
 	}
 }

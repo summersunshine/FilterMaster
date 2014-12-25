@@ -2,8 +2,8 @@ package algorithm.blur;
 
 import java.awt.image.BufferedImage;
 
-import util.ImgUtil;
-import util.RGB;
+import util.ImageUtil;
+import util.color.RGB;
 
 /**
  * 加倍高斯模糊
@@ -70,13 +70,13 @@ public class DoubleGuassBlur
 					}
 				}
 				sumR /=sum; 
-				sumR = ImgUtil.clamp(sumR);
+				sumR = ImageUtil.clamp(sumR);
 				sumG /=sum; 
-				sumG = ImgUtil.clamp(sumG);
+				sumG = ImageUtil.clamp(sumG);
 				sumB /=sum; 
-				sumB = ImgUtil.clamp(sumB);
+				sumB = ImageUtil.clamp(sumB);
 				
-				outputImage.setRGB(x, y, ImgUtil.getRGB((int)sumR, (int)sumG, (int)sumB));
+				outputImage.setRGB(x, y, ImageUtil.getRGB((int)sumR, (int)sumG, (int)sumB));
 
 			}
 		}

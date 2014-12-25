@@ -1,6 +1,6 @@
 package filter.Blur;
 
-import util.ImgUtil;
+import util.ImageUtil;
 import algorithm.blur.MotionBlur;
 import filter.Filter;
 
@@ -19,7 +19,7 @@ public class LaserFilter extends Filter
 		int threshold3 = (int) (threshold * 3 * 255);
 		for (int y = 0; y < height; y++)
 		{
-			ImgUtil.getRGB(image, pixels, 0, y, width, 1);
+			ImageUtil.getRGB(image, pixels, 0, y, width, 1);
 			for (int x = 0; x < width; x++)
 			{
 				int rgb = pixels[x];
@@ -36,15 +36,15 @@ public class LaserFilter extends Filter
 					pixels[x] = a | (l << 16) | (l << 8) | l;
 				}
 			}
-			ImgUtil.setRGB(outputImage, pixels, 0, y, width, 1);
+			ImageUtil.setRGB(outputImage, pixels, 0, y, width, 1);
 		}
 
 		outputImage = MotionBlur.getImage(outputImage);
 
 		for (int y = 0; y < height; y++)
 		{
-			ImgUtil.getRGB(outputImage, pixels, 0, y, width, 1);
-			ImgUtil.getRGB(image, srcPixels, 0, y, width, 1);
+			ImageUtil.getRGB(outputImage, pixels, 0, y, width, 1);
+			ImageUtil.getRGB(image, srcPixels, 0, y, width, 1);
 			for (int x = 0; x < width; x++)
 			{
 				int rgb = pixels[x];
@@ -61,9 +61,9 @@ public class LaserFilter extends Filter
 
 				if (r > 0)
 				{
-					r = ImgUtil.clampIn255((int) (r * strength) + r2);
-					g = ImgUtil.clampIn255((int) (g * strength) + g2);
-					b = ImgUtil.clampIn255((int) (b * strength) + b2);
+					r = ImageUtil.clampIn255((int) (r * strength) + r2);
+					g = ImageUtil.clampIn255((int) (g * strength) + g2);
+					b = ImageUtil.clampIn255((int) (b * strength) + b2);
 				}
 				else
 				{
@@ -75,7 +75,7 @@ public class LaserFilter extends Filter
 				rgb = a | (r << 16) | (g << 8) | b;
 				pixels[x] = rgb;
 			}
-			ImgUtil.setRGB(outputImage, pixels, 0, y, width, 1);
+			ImageUtil.setRGB(outputImage, pixels, 0, y, width, 1);
 		}
 	}
 
