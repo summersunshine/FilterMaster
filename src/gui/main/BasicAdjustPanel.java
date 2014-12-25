@@ -6,12 +6,14 @@ import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 
-import app.Constants;
+import util.image.IntensityAndContrast;
+import util.image.SaturationAndHue;
 
 /**
  * 基础调节面板 包括亮度，对比度，饱和度，色相的调节
@@ -193,11 +195,15 @@ public class BasicAdjustPanel extends JPanel implements AdjustmentListener, Mous
 		//
 		if (isAdjustIntensityAndContrast)
 		{
-			MainFrame.getInstance().setImagePanel(Constants.TYPE_INTENSITY_CONTRAST, intensityValue, contrastValue);
+			BufferedImage sourceImage = MainFrame.getInstance().getSourceImage();
+			BufferedImage displayImage = IntensityAndContrast.getImage(sourceImage, intensityValue, contrastValue);
+			MainFrame.getInstance().setImagePanel(displayImage);
 		}
 		else
 		{
-			MainFrame.getInstance().setImagePanel(Constants.TYPE_SATURATION_HUE, saturationValue, hueValue);
+			BufferedImage sourceImage = MainFrame.getInstance().getDisplayImage();
+			BufferedImage displayImage = SaturationAndHue.getImage(sourceImage, intensityValue, contrastValue);
+			MainFrame.getInstance().setImagePanel(displayImage);
 		}
 
 	}

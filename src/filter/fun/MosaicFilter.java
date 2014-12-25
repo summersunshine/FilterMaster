@@ -17,7 +17,7 @@ public class MosaicFilter extends Filter
 
 				int targetX = (x / size) * size;
 				int targetY = (y / size) * size;
-				image.setRGB(x, y, image.getRGB(targetX, targetY));
+				outputImage.setRGB(x, y, image.getRGB(targetX, targetY));
 
 			}
 		}

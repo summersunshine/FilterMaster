@@ -1,16 +1,13 @@
 package gui.main;
 
 import gui.base.BaseImagePanel;
-import gui.blur.BlurFrame;
 import gui.compare.CompareFrame;
-import gui.jigsaw.JigsawFrame;
-import gui.magicmirror.MagicMirrorFrame;
-import gui.partcolor.PartColorFrame;
-import gui.partmosaic.PartMosaicFrame;
 import gui.preview.PreviewTabbedPanel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -28,7 +25,7 @@ import util.image.ImageUtil;
 import util.image.SaturationAndHue;
 import util.image.Scale;
 
-public class MainFrame extends JFrame implements ActionListener
+public class MainFrame extends JFrame implements ActionListener, WindowListener
 {
 	/**
 	 * 
@@ -36,40 +33,25 @@ public class MainFrame extends JFrame implements ActionListener
 	private static final long	serialVersionUID	= 1L;
 
 	// 源图像
-	public BufferedImage		sourceImage;
+	private BufferedImage		sourceImage;
 
 	// 缩小的预览图
-	public BufferedImage		previewImage;
+	private BufferedImage		previewImage;
 
 	// 预览面板
-	PreviewTabbedPanel			previewTabbedPanel;
+	private PreviewTabbedPanel	previewTabbedPanel;
 
 	// 主图像显示面板
-	public BaseImagePanel			imagePanel;
+	private BaseImagePanel		imagePanel;
 
 	// 基础调节面板
-	public BasicAdjustPanel		adjustPanel;
+	private BasicAdjustPanel	adjustPanel;
 
 	// 按钮面板
-	public MainButtonPanel		mainButtonPanel;
+	private MainButtonPanel		mainButtonPanel;
 
 	// 源图像路径
-	public String				sourceImagePath;
-
-	// 背景虚化界面
-	public BlurFrame			blurFrame;
-
-	// 拼图界面
-	public JigsawFrame			jigsawFrame;
-
-	// 魔镜界面
-	public MagicMirrorFrame		magicMirrorFrame;
-
-	// 局部彩色界面
-	public PartColorFrame		partColorFrame;
-
-	// 局部马赛克界面
-	public PartMosaicFrame		partMosaicFrame;
+	private String				sourceImagePath;
 
 	// 打开按钮
 	private JButton				openButton;
@@ -83,8 +65,10 @@ public class MainFrame extends JFrame implements ActionListener
 	// 对比按钮
 	private JButton				compareButton;
 
+	// 实例
 	private static MainFrame	instance;
 
+	// 单实例
 	public static MainFrame getInstance()
 	{
 		if (instance == null)
@@ -114,6 +98,7 @@ public class MainFrame extends JFrame implements ActionListener
 		this.setLayout(null);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.addWindowListener(this);
 
 		initOpenButton();
 		initButtonPanel();
@@ -125,11 +110,6 @@ public class MainFrame extends JFrame implements ActionListener
 		File file = new File("C:\\Users\\Public\\Pictures\\Sample Pictures\\sand.jpg");
 		loadImage(file);
 
-		// partMosaicFrame = new PartMosaicFrame(sourceImage);
-		// partColorFrame = new PartColorFrame(sourceImage);
-		// magicMirrorFrame = new MagicMirrorFrame(sourceImage);
-		// jigsawFrame = new JigsawFrame(sourceImage);
-		// blurFrame = new BlurFrame(sourceImage);
 	}
 
 	/**
@@ -343,6 +323,14 @@ public class MainFrame extends JFrame implements ActionListener
 	}
 
 	/**
+	 * 获取源图像
+	 * */
+	public BufferedImage getSourceImage()
+	{
+		return imagePanel.getSourceImage();
+	}
+
+	/**
 	 * 获取图像面板
 	 * */
 	public BaseImagePanel getImagePanel()
@@ -361,7 +349,11 @@ public class MainFrame extends JFrame implements ActionListener
 		imagePanel.updateImage(type, parameter);
 	}
 
-	/***/
+	/**
+	 * 设置主图像面板
+	 * 
+	 * @param image
+	 * */
 	public void setImagePanel(BufferedImage image)
 	{
 		imagePanel.updateImage(image);
@@ -395,8 +387,10 @@ public class MainFrame extends JFrame implements ActionListener
 			getContentPane().remove(previewTabbedPanel);
 		}
 		previewTabbedPanel = new PreviewTabbedPanel(previewImage);
+
 		Thread thread = new Thread(previewTabbedPanel);
 		thread.start();
+
 		getContentPane().add(previewTabbedPanel);
 		previewTabbedPanel.repaint();
 
@@ -421,8 +415,56 @@ public class MainFrame extends JFrame implements ActionListener
 		}
 		else
 		{
-
+			imagePanel.updateImage(sourceImage);
 		}
+	}
+
+	@Override
+	public void windowOpened(WindowEvent e)
+	{
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void windowClosing(WindowEvent e)
+	{
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void windowClosed(WindowEvent e)
+	{
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void windowIconified(WindowEvent e)
+	{
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void windowDeiconified(WindowEvent e)
+	{
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void windowActivated(WindowEvent e)
+	{
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void windowDeactivated(WindowEvent e)
+	{
+		// TODO Auto-generated method stub
+
 	}
 
 }

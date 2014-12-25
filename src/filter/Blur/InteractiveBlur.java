@@ -7,47 +7,49 @@ public class InteractiveBlur
 {
 
 	// 掩码最小值
-	public static final int MIN_MASK_SIZE = 3;
+	public static final int		MIN_MASK_SIZE		= 3;
 
 	// 掩码最大值
-	public static final int MAX_MASK_SIZE = 15;
-	
-	//掩码最大值的一半
-	public static final int HALF_MAX_MASK_SIZE = 7;
+	public static final int		MAX_MASK_SIZE		= 15;
+
+	// 掩码最大值的一半
+	public static final int		HALF_MAX_MASK_SIZE	= 7;
 
 	// 最小值与最大值的差
-	public static final int DIFF_MASK_SIZE = MAX_MASK_SIZE - MIN_MASK_SIZE;
+	public static final int		DIFF_MASK_SIZE		= MAX_MASK_SIZE - MIN_MASK_SIZE;
 
 	// 点在模糊区域中
-	public static final int AREA_BLUR = 1;
+	public static final int		AREA_BLUR			= 1;
 
 	// 点在清晰区域中
-	public static final int AREA_CLEAR = 2;
+	public static final int		AREA_CLEAR			= 2;
 
 	// 点在过渡区域中
-	public static final int AREA_TRAN = 3;
+	public static final int		AREA_TRAN			= 3;
 
 	// 圆形的清晰区域
-	public static final int TYPE_CIRCLE = 1;
+	public static final int		TYPE_CIRCLE			= 1;
 
 	// 垂直的清晰区域
-	public static final int TYPE_VERTCIAL = 2;
+	public static final int		TYPE_VERTCIAL		= 2;
 
 	// 水平的清晰区域
-	public static final int TYPE_HORIZONTAL = 3;
+	public static final int		TYPE_HORIZONTAL		= 3;
 
-	//外部区域以外的都是模糊的
-	private static int outSize;
-	
-	//内部区域以内的都是清晰的
-	private static int innerSize;
+	public static int			centerX;
 
-	//区域
-	private static int area;
+	public static int			centerY;
 
-	
-	private static Color[][] colorMatrix;
+	// 外部区域以外的都是模糊的
+	private static int			outSize;
 
+	// 内部区域以内的都是清晰的
+	private static int			innerSize;
+
+	// 区域
+	private static int			area;
+
+	private static Color[][]	colorMatrix;
 
 	/**
 	 * 获取图像
@@ -63,31 +65,27 @@ public class InteractiveBlur
 	 * @param type
 	 *            类型
 	 * */
-	public static BufferedImage getImage(BufferedImage image,int type)
+	public static BufferedImage getImage(BufferedImage image, int type)
 	{
-		int x = image.getWidth()/2;
-		int y = image.getHeight()/2;
-		int size = (int) (Math.sqrt(x*x+y*y)/6);
-		
+		int x = image.getWidth() / 2;
+		int y = image.getHeight() / 2;
+		int size = (int) (Math.sqrt(x * x + y * y) / 6);
+
 		InteractiveBlur.innerSize = size;
 		InteractiveBlur.outSize = (int) (size * 1.5);
 		// 获取rgb矩阵
 		colorMatrix = getColorMatrix(image);
-		
-
 
 		switch (type)
 		{
 		case TYPE_VERTCIAL:
-			return getVecticalImage(image, x, size);
+			return getVecticalImage(image, size);
 		case TYPE_HORIZONTAL:
-			return getHozizontalImage(image, y, size);
+			return getHozizontalImage(image, size);
 		default:
-			return getCircleImage(image, x, y, size);
+			return getCircleImage(image, size);
 		}
 	}
-	
-
 
 	/**
 	 * 获取图像
@@ -103,7 +101,7 @@ public class InteractiveBlur
 	 * @param type
 	 *            类型
 	 * */
-	public static BufferedImage getImage(BufferedImage image, int x, int y, int size, int type)
+	public static BufferedImage getImage(BufferedImage image, int size, int type)
 	{
 		InteractiveBlur.innerSize = size;
 		InteractiveBlur.outSize = (int) (size * 1.5);
@@ -113,11 +111,11 @@ public class InteractiveBlur
 		switch (type)
 		{
 		case TYPE_VERTCIAL:
-			return getVecticalImage(image, x, size);
+			return getVecticalImage(image, size);
 		case TYPE_HORIZONTAL:
-			return getHozizontalImage(image, y, size);
+			return getHozizontalImage(image, size);
 		default:
-			return getCircleImage(image, x, y, size);
+			return getCircleImage(image, size);
 		}
 	}
 
@@ -133,7 +131,7 @@ public class InteractiveBlur
 	 * @param size
 	 *            作用范围
 	 * */
-	private static BufferedImage getCircleImage(BufferedImage image, int centerX, int centerY, int size)
+	private static BufferedImage getCircleImage(BufferedImage image, int size)
 	{
 		int width = image.getWidth();
 		int height = image.getHeight();
@@ -146,7 +144,7 @@ public class InteractiveBlur
 			{
 				int distance = getDistance(x, y, centerX, centerY);
 				area = getArea(distance);
-				outputImage.setRGB(x, y, getRGBValue(image, x, y,distance));
+				outputImage.setRGB(x, y, getRGBValue(image, x, y, distance));
 			}
 		}
 		return outputImage;
@@ -164,7 +162,7 @@ public class InteractiveBlur
 	 * @param size
 	 *            作用范围
 	 * */
-	public static BufferedImage getVecticalImage(BufferedImage image, int centerX, int size)
+	public static BufferedImage getVecticalImage(BufferedImage image, int size)
 	{
 		int width = image.getWidth();
 		int height = image.getHeight();
@@ -173,12 +171,12 @@ public class InteractiveBlur
 
 		for (int x = HALF_MAX_MASK_SIZE; x < width - HALF_MAX_MASK_SIZE; x++)
 		{
-			int distance  = Math.abs(x - centerX);
+			int distance = Math.abs(x - centerX);
 			area = getArea(Math.abs(x - centerX));
 
 			for (int y = HALF_MAX_MASK_SIZE; y < height - HALF_MAX_MASK_SIZE; y++)
 			{
-				outputImage.setRGB(x, y, getRGBValue(image, x, y,distance));
+				outputImage.setRGB(x, y, getRGBValue(image, x, y, distance));
 
 			}
 		}
@@ -197,7 +195,7 @@ public class InteractiveBlur
 	 * @param size
 	 *            作用范围
 	 * */
-	public static BufferedImage getHozizontalImage(BufferedImage image, int centerY, int size)
+	public static BufferedImage getHozizontalImage(BufferedImage image, int size)
 	{
 		int width = image.getWidth();
 		int height = image.getHeight();
@@ -207,18 +205,17 @@ public class InteractiveBlur
 		{
 			int distance = Math.abs(y - centerY);
 			area = getArea(distance);
-			
+
 			for (int x = HALF_MAX_MASK_SIZE; x < width - HALF_MAX_MASK_SIZE; x++)
 			{
-				outputImage.setRGB(x, y, getRGBValue(image, x, y,distance));
+				outputImage.setRGB(x, y, getRGBValue(image, x, y, distance));
 
 			}
 		}
 		return outputImage;
 	}
 
-	
-	private static int getRGBValue(BufferedImage image, int x, int y,int distance)
+	private static int getRGBValue(BufferedImage image, int x, int y, int distance)
 	{
 		if (area == AREA_BLUR)
 		{
@@ -269,7 +266,7 @@ public class InteractiveBlur
 		sumR = sumR << 16;
 		sumG = sumG << 8;
 
-		return sumR|sumG|sumB;
+		return sumR | sumG | sumB;
 	}
 
 	// 判断点在那个区域
@@ -309,8 +306,7 @@ public class InteractiveBlur
 		int y = y1 - y2;
 		return (int) Math.sqrt(x * x + y * y);
 	}
-	
-	
+
 	/**
 	 * 获取图像的color矩阵
 	 * 
@@ -325,7 +321,7 @@ public class InteractiveBlur
 		{
 			for (int x = 0; x < width; x++)
 			{
-				matrix[x][y]  = new Color(image.getRGB(x, y));
+				matrix[x][y] = new Color(image.getRGB(x, y));
 			}
 		}
 		return matrix;

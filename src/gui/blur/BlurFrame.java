@@ -13,15 +13,13 @@ public class BlurFrame extends BaseFrame
 	private static final long	serialVersionUID	= 1L;
 
 	// 原始图像
-	public BufferedImage		sourceImage;
+	private BufferedImage		sourceImage;
 
 	// 模糊图像面板
-	public BlurImagePanel		imagePanel;
+	private BlurImagePanel		imagePanel;
 
-	// 调节数据面板
-	// public BlurAdjustPanel adjustPanel;
-
-	public BlurTabbedPanel		tabbedPanel;
+	// 切换面板
+	private BlurTabbedPanel		tabbedPanel;
 
 	public BlurFrame(BufferedImage image)
 	{
@@ -42,7 +40,7 @@ public class BlurFrame extends BaseFrame
 	protected void saveOperation()
 	{
 		// TODO Auto-generated method stub
-		MainFrame.getInstance().setImagePanel(imagePanel.getDisplayImage());
+		MainFrame.getInstance().setImagePanel(getImagePanel().getDisplayImage());
 		super.saveOperation();
 	}
 
@@ -80,9 +78,9 @@ public class BlurFrame extends BaseFrame
 	 * */
 	private void initImagePanel()
 	{
-		imagePanel = new BlurImagePanel(sourceImage);
+		setImagePanel(new BlurImagePanel(sourceImage));
 
-		getContentPane().add(imagePanel);
+		getContentPane().add(getImagePanel());
 	}
 
 	/**
@@ -92,6 +90,16 @@ public class BlurFrame extends BaseFrame
 	{
 		System.out.println("update image" + BlurSetting.levelValue);
 		imagePanel.updateBlurLevel(BlurSetting.levelValue);
+	}
+
+	public BlurImagePanel getImagePanel()
+	{
+		return imagePanel;
+	}
+
+	public void setImagePanel(BlurImagePanel imagePanel)
+	{
+		this.imagePanel = imagePanel;
 	}
 
 }

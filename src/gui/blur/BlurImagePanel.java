@@ -2,7 +2,7 @@ package gui.blur;
 
 import filter.Filter;
 import filter.Blur.GuassBlurFilter;
-import filter.Blur.InteractiveBlur;
+import filter.Blur.InteractiveBlurFilter;
 import filter.factory.FilterFactory;
 import gui.base.ImagePanelWithCursor;
 
@@ -76,6 +76,8 @@ public class BlurImagePanel extends ImagePanelWithCursor
 	{
 		GuassBlurFilter.MASKSIZE = level;
 
+		setFilter(BlurSetting.type);
+
 		guassBlurImage = filter.getImage(sourceImage);
 
 		displayImage = Clone.getImage(guassBlurImage);
@@ -84,14 +86,20 @@ public class BlurImagePanel extends ImagePanelWithCursor
 	}
 
 	/**
-	 * 控制图像
+	 * 更新模糊的范围
 	 * */
 	public void updateClearRange()
 	{
-		int x = BlurSetting.x;
-		int y = BlurSetting.y;
-		int range = BlurSetting.rangeValue;
-		displayImage = InteractiveBlur.getImage(sourceImage, x, y, range, BlurSetting.type);
+		setFilter(BlurSetting.type);
+
+		InteractiveBlurFilter.centerX = BlurSetting.x;
+		InteractiveBlurFilter.centerY = BlurSetting.y;
+		InteractiveBlurFilter.size = BlurSetting.rangeValue;
+
+		System.out.println("range" + InteractiveBlurFilter.size);
+
+		displayImage = filter.getImage(sourceImage);
+
 		repaint();
 	}
 
@@ -106,11 +114,11 @@ public class BlurImagePanel extends ImagePanelWithCursor
 		super.updateImage(x, y);
 
 		System.out.println("update image");
-		if (BlurSetting.type == Constants.TYPE_ERASE)
+		if (BlurSetting.type == Constants.TYPE_GUASS_BLUR)
 		{
 			updateImage(Erase.getImage(displayImage, sourceImage, displayX, displayY, BlurSetting.sizeValue));
 		}
-		else
+		if (BlurSetting.type == Constants.TYPE_ERASE)
 		{
 			updateImage(Erase.getImage(displayImage, guassBlurImage, displayX, displayY, BlurSetting.sizeValue));
 		}
@@ -158,11 +166,14 @@ public class BlurImagePanel extends ImagePanelWithCursor
 	@Override
 	public void mouseReleased(MouseEvent e)
 	{
+
 		int moveX = e.getX() - lastMouseX;
 		int moveY = e.getY() - lastMouseY;
 
-		updateCenter(moveX, moveY);
-
+		if (BlurSetting.model == BlurSetting.CONTORL_MODEL)
+		{
+			updateCenter(moveX, moveY);
+		}
 		lastMouseX = e.getX();
 		lastMouseY = e.getY();
 	}
@@ -178,6 +189,12 @@ public class BlurImagePanel extends ImagePanelWithCursor
 
 	}
 
+	public void setFilter(int type)
+	{
+		filter = FilterFactory.getFilter(type);
+		filter.setImage(sourceImage);
+	}
+
 	/**
 	 * 切换模式
 	 * */
@@ -185,34 +202,32 @@ public class BlurImagePanel extends ImagePanelWithCursor
 	{
 		if (BlurSetting.model == BlurSetting.ADJUST_MODEL)
 		{
-			switchToAdjust();
+			switchToSmear();
 		}
 		else
 		{
-			switchToControl();
+			switchToTemplete();
 		}
 	}
 
 	/**
-	 * 切换到adjust模式
+	 * 切换到涂抹模式
 	 * */
-	private void switchToAdjust()
+	private void switchToSmear()
 	{
+		BlurSetting.type = Constants.TYPE_GUASS_BLUR;
 		updateBlurLevel(3);
 	}
 
 	/**
-	 * 切换到控制模式
+	 * 切换到模板模式
 	 * */
-	private void switchToControl()
+	private void switchToTemplete()
 	{
-		int x = sourceImage.getWidth() / 2;
-		int y = sourceImage.getHeight() / 2;
-		BlurSetting.x = x;
-		BlurSetting.y = y;
+		BlurSetting.x = sourceImage.getWidth() / 2;
+		BlurSetting.y = sourceImage.getHeight() / 2;
 
-		displayImage = InteractiveBlur.getImage(sourceImage, x, y, BlurSetting.rangeValue, BlurSetting.type);
-		repaint();
+		updateClearRange();
 	}
 
 	public void updateCenter(int moveX, int moveY)
@@ -220,8 +235,7 @@ public class BlurImagePanel extends ImagePanelWithCursor
 		BlurSetting.x += moveX;
 		BlurSetting.y += moveY;
 
-		displayImage = InteractiveBlur.getImage(sourceImage, BlurSetting.x, BlurSetting.y, BlurSetting.rangeValue, BlurSetting.type);
-		repaint();
+		updateClearRange();
 	}
 
 }

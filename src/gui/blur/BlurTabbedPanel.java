@@ -4,7 +4,6 @@ import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import filter.Blur.InteractiveBlur;
 import app.Constants;
 
 public class BlurTabbedPanel extends JTabbedPane implements ChangeListener
@@ -15,24 +14,24 @@ public class BlurTabbedPanel extends JTabbedPane implements ChangeListener
 	 */
 	private static final long	serialVersionUID	= 1L;
 
-	BlurAdjustPanel				adjustPanel;
+	BlurSmearPanel				adjustPanel;
 
-	BlurControlPanel			controlPanel;
+	BlurTempletPanel			controlPanel;
 
 	BlurFrame					parent;
 
 	public BlurTabbedPanel(BlurFrame parent)
 	{
-		super(JTabbedPane.BOTTOM);
+		super(JTabbedPane.TOP);
 
 		this.parent = parent;
 
-		adjustPanel = new BlurAdjustPanel(parent);
+		adjustPanel = new BlurSmearPanel(parent);
 
-		controlPanel = new BlurControlPanel(parent);
+		controlPanel = new BlurTempletPanel(parent);
 
-		this.addTab("Art", adjustPanel);
-		this.addTab("Basic", controlPanel);
+		this.addTab("Í¿Ä¨Ê½±³¾°Ä£ºý", adjustPanel);
+		this.addTab("Ä£°åÊ½±³¾°Ä£ºý", controlPanel);
 
 		this.addChangeListener(this);
 		this.setBounds(BlurSetting.TABBED_PANEL_RECTANGLE);
@@ -55,10 +54,10 @@ public class BlurTabbedPanel extends JTabbedPane implements ChangeListener
 		else
 		{
 			BlurSetting.model = BlurSetting.CONTORL_MODEL;
-			BlurSetting.type = InteractiveBlur.TYPE_CIRCLE;
+			BlurSetting.type = Constants.TYPE_CIRCLE_BLUR;
 		}
 
-		parent.imagePanel.switchModel();
+		parent.getImagePanel().switchModel();
 	}
 
 }

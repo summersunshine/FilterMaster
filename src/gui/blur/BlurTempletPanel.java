@@ -12,9 +12,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 
-import filter.Blur.InteractiveBlur;
+import app.Constants;
 
-public class BlurControlPanel extends JPanel implements ActionListener, AdjustmentListener, MouseListener
+public class BlurTempletPanel extends JPanel implements ActionListener, AdjustmentListener, MouseListener
 {
 
 	/**
@@ -34,7 +34,7 @@ public class BlurControlPanel extends JPanel implements ActionListener, Adjustme
 
 	public BlurFrame			parent;
 
-	public BlurControlPanel(BlurFrame parent)
+	public BlurTempletPanel(BlurFrame parent)
 	{
 		this.setLayout(null);
 
@@ -45,6 +45,8 @@ public class BlurControlPanel extends JPanel implements ActionListener, Adjustme
 		this.initRangeBar();
 
 		this.setBounds(BlurSetting.ADJUST_PANEL_RECTANGLE);
+
+		rangeScrollBar.addMouseListener(this);
 	}
 
 	private void initButtons()
@@ -104,18 +106,18 @@ public class BlurControlPanel extends JPanel implements ActionListener, Adjustme
 		// TODO Auto-generated method stub
 		if (event.getSource() == radialButton)
 		{
-			BlurSetting.type = InteractiveBlur.TYPE_CIRCLE;
+			BlurSetting.type = Constants.TYPE_CIRCLE_BLUR;
 		}
 		else if (event.getSource() == verticalButton)
 		{
-			BlurSetting.type = InteractiveBlur.TYPE_VERTCIAL;
+			BlurSetting.type = Constants.TYPE_VERTICAL_BLUR;
 		}
 		else
 		{
-			BlurSetting.type = InteractiveBlur.TYPE_HORIZONTAL;
+			BlurSetting.type = Constants.TYPE_HORIZONTAL_BLUR;
 		}
 
-		parent.imagePanel.switchModel();
+		parent.getImagePanel().switchModel();
 	}
 
 	@Override
@@ -150,7 +152,7 @@ public class BlurControlPanel extends JPanel implements ActionListener, Adjustme
 	public void mouseReleased(MouseEvent e)
 	{
 		// TODO Auto-generated method stub
-		parent.imagePanel.updateClearRange();
+		parent.getImagePanel().updateClearRange();
 	}
 
 }

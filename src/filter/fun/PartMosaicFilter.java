@@ -20,6 +20,7 @@ public class PartMosaicFilter extends MosaicFilter
 		int endX = centerX + radius;
 		int endY = centerY + radius;
 
+		outputImage = image;
 		for (int y = startY; y < endY; y++)
 		{
 			for (int x = startX; x < endX; x++)
@@ -29,7 +30,7 @@ public class PartMosaicFilter extends MosaicFilter
 				{
 					int targetX = (x / size) * size;
 					int targetY = (y / size) * size;
-					image.setRGB(x, y, image.getRGB(targetX, targetY));
+					outputImage.setRGB(x, y, image.getRGB(targetX, targetY));
 				}
 			}
 		}

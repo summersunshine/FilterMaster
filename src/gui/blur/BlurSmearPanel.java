@@ -15,7 +15,7 @@ import javax.swing.JScrollBar;
 
 import app.Constants;
 
-public class BlurAdjustPanel extends JPanel implements AdjustmentListener, ActionListener, MouseListener
+public class BlurSmearPanel extends JPanel implements AdjustmentListener, ActionListener, MouseListener
 {
 	/**
 	 * 
@@ -43,7 +43,7 @@ public class BlurAdjustPanel extends JPanel implements AdjustmentListener, Actio
 	// 父界面
 	private BlurFrame			parent;
 
-	public BlurAdjustPanel(BlurFrame parent) throws HeadlessException
+	public BlurSmearPanel(BlurFrame parent) throws HeadlessException
 	{
 		this.parent = parent;
 		this.setLayout(null);
@@ -155,7 +155,7 @@ public class BlurAdjustPanel extends JPanel implements AdjustmentListener, Actio
 	private void switchToPaint()
 	{
 		// 画笔实际上是在消除被模糊的部分
-		BlurSetting.type = Constants.TYPE_ERASE;
+		BlurSetting.type = Constants.TYPE_GUASS_BLUR;
 
 		levelLabel.setVisible(true);
 		levelScrollBar.setVisible(true);
@@ -169,7 +169,7 @@ public class BlurAdjustPanel extends JPanel implements AdjustmentListener, Actio
 	{
 		// TODO Auto-generated method stub
 		// 橡皮擦实际是在继续做模糊
-		BlurSetting.type = Constants.TYPE_GUASS_BLUR;
+		BlurSetting.type = Constants.TYPE_ERASE;
 
 		levelLabel.setVisible(false);
 		levelScrollBar.setVisible(false);
