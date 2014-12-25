@@ -1,6 +1,6 @@
 package filter.Blur;
 
-import util.ImageUtil;
+import util.image.ImageUtil;
 import filter.Filter;
 
 public class MotionBlurFilter extends Filter

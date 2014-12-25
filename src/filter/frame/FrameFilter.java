@@ -3,7 +3,7 @@ package filter.frame;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 
-import util.ImageUtil;
+import util.image.ImageUtil;
 import filter.Filter;
 
 public abstract class FrameFilter extends Filter

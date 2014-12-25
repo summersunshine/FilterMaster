@@ -1,7 +1,7 @@
 package filter.basic;
 
-import util.ImageUtil;
 import util.color.RGB;
+import util.image.ImageUtil;
 import filter.Filter;
 
 public class SharpenFilter extends Filter

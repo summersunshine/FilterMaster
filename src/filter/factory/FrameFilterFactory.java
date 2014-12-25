@@ -10,6 +10,12 @@ import filter.frame.WoodFrameFilter;
 public class FrameFilterFactory
 {
 
+	/**
+	 * 依据类型参数获取新的滤波器
+	 * 
+	 * @param type
+	 *            类型
+	 * */
 	public static Filter getFilter(int type)
 	{
 		switch (type)

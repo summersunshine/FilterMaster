@@ -1,6 +1,6 @@
 package gui.jigsaw;
 
-import gui.BaseFrame;
+import gui.base.BaseFrame;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,7 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import util.ImageUtil;
+import util.image.ImageUtil;
 
 public class JigsawFrame extends BaseFrame implements ActionListener
 {

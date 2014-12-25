@@ -1,6 +1,6 @@
 package gui.scrawl;
 
-import gui.BaseFrame;
+import gui.base.BaseFrame;
 import gui.main.MainFrame;
 
 import java.awt.image.BufferedImage;

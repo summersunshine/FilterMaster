@@ -1,12 +1,13 @@
 package gui.partmosaic;
 
-import gui.ImagePanelWithCursor;
+import filter.fun.MosaicFilter;
+import filter.fun.PartMosaicFilter;
+import gui.base.ImagePanelWithCursor;
 
 import java.awt.image.BufferedImage;
 
-import util.ImageUtil;
-import algorithm.basic.Erase;
-import algorithm.fun.Mosaic;
+import util.image.Erase;
+import util.image.ImageUtil;
 import app.Constants;
 
 public class PartMosaicImagePanel extends ImagePanelWithCursor
@@ -71,7 +72,13 @@ public class PartMosaicImagePanel extends ImagePanelWithCursor
 		}
 		else
 		{
-			updateImage(Mosaic.getImage(displayImage, PartMosaicSetting.patchValue, displayX, displayY, PartMosaicSetting.sizeValue));
+			PartMosaicFilter partMosaicFilter = new PartMosaicFilter();
+			PartMosaicFilter.size = PartMosaicSetting.patchValue;
+			PartMosaicFilter.radius = PartMosaicSetting.sizeValue;
+			PartMosaicFilter.centerX = displayX;
+			PartMosaicFilter.centerY = displayY;
+			BufferedImage bufferedImage = partMosaicFilter.getImage(displayImage);
+			updateImage(bufferedImage);
 		}
 	}
 
@@ -83,7 +90,9 @@ public class PartMosaicImagePanel extends ImagePanelWithCursor
 	 * */
 	public void updateImage(int patchValue)
 	{
-		displayImage = Mosaic.getImage(sourceImage, patchValue);
+		MosaicFilter mosaicFilter = new MosaicFilter();
+		MosaicFilter.size = patchValue;
+		displayImage = mosaicFilter.getImage(sourceImage);
 
 		repaint();
 	}

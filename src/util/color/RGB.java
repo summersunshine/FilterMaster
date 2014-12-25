@@ -1,6 +1,6 @@
 package util.color;
 
-import util.ImageUtil;
+import util.image.ImageUtil;
 
 /**
  * RGBÑÕÉ«¿Õ¼ä

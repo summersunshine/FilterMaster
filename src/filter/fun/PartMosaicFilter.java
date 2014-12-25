@@ -1,7 +1,7 @@
 package filter.fun;
 
-import util.ImageUtil;
 import util.geometry.Geometry;
+import util.image.ImageUtil;
 
 public class PartMosaicFilter extends MosaicFilter
 {
@@ -9,6 +9,7 @@ public class PartMosaicFilter extends MosaicFilter
 	public static int	centerX;
 	public static int	centerY;
 	public static int	radius;
+	public static int	size;
 
 	@Override
 	public void processor()

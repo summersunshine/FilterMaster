@@ -2,16 +2,16 @@ package gui.partcolor;
 
 import filter.Filter;
 import filter.factory.FilterFactory;
-import gui.ImagePanelWithCursor;
+import gui.base.ImagePanelWithCursor;
 
 import java.awt.Cursor;
 import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 
-import util.ImageUtil;
-import algorithm.basic.Erase;
-import algorithm.basic.Gray;
+import util.image.Clone;
+import util.image.Erase;
+import util.image.ImageUtil;
 import app.Constants;
 
 public class PartColorImagePanel extends ImagePanelWithCursor
@@ -28,12 +28,14 @@ public class PartColorImagePanel extends ImagePanelWithCursor
 	public PartColorImagePanel(BufferedImage image)
 	{
 
-		super(Gray.getImage(image));
+		super(image);
 
 		sourceImage = image;
 
 		filter = FilterFactory.getFilter(Constants.TYPE_GRAY);
 		grayImage = filter.getImage(image);
+
+		displayImage = Clone.getImage(grayImage);
 	}
 
 	/**

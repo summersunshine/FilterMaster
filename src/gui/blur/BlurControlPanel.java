@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 
-import algorithm.blur.InteractiveBlur;
+import filter.Blur.InteractiveBlur;
 
 public class BlurControlPanel extends JPanel implements ActionListener, AdjustmentListener, MouseListener
 {

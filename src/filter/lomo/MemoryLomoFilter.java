@@ -1,6 +1,6 @@
 package filter.lomo;
 
-import algorithm.style.YouthStyle;
+import filter.style.YouthStyleFilter;
 
 public class MemoryLomoFilter extends ClassicalLomoFilter
 {
@@ -10,7 +10,8 @@ public class MemoryLomoFilter extends ClassicalLomoFilter
 	{
 		// TODO Auto-generated method stub
 		super.processor();
-		outputImage = YouthStyle.getImage(outputImage);
-	}
 
+		YouthStyleFilter youthStyleFilter = new YouthStyleFilter();
+		outputImage = youthStyleFilter.getImage(outputImage);
+	}
 }

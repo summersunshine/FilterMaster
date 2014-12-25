@@ -2,11 +2,11 @@ package filter.art;
 
 import java.awt.image.BufferedImage;
 
-import util.ImageUtil;
-import algorithm.basic.Gray;
-import algorithm.basic.Inverse;
-import algorithm.blur.GuassBlur;
+import util.image.ImageUtil;
 import filter.Filter;
+import filter.Blur.GuassBlurFilter;
+import filter.basic.GrayFilter;
+import filter.basic.InverseFilter;
 
 public class SketchFilter extends Filter
 {
@@ -16,13 +16,16 @@ public class SketchFilter extends Filter
 	{
 		// TODO Auto-generated method stub
 		// 转换成灰度图
-		BufferedImage grayImage = Gray.getImage(image);
+		GrayFilter grayFilter = new GrayFilter();
+		BufferedImage grayImage = grayFilter.getImage(image);
 
 		// 反向
-		BufferedImage reverseImage = Inverse.getImage(grayImage);
+		InverseFilter inverseFilter = new InverseFilter();
+		BufferedImage reverseImage = inverseFilter.getImage(grayImage);
 
-		// 高斯模糊
-		BufferedImage guassBlurImage = GuassBlur.getImage(reverseImage);
+		// 高斯模糊滤波器
+		GuassBlurFilter guassBlurFilter = new GuassBlurFilter();
+		BufferedImage guassBlurImage = guassBlurFilter.getImage(reverseImage);
 
 		for (int y = 0; y < height; y++)
 		{

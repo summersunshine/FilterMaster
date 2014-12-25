@@ -1,16 +1,15 @@
 package gui.jigsaw;
 
-import gui.ImagePanel;
+import gui.base.BaseImagePanel;
 
 import java.awt.image.BufferedImage;
 
-import algorithm.factory.FunImageFactory;
-import algorithm.fun.AlphaMerge;
+import util.image.AlphaMerge;
 
 /**
  * Æ´Í¼Í¼ÏñÃæ°å
  * */
-public class JigsawImagePanel extends ImagePanel
+public class JigsawImagePanel extends BaseImagePanel
 {
 
 	/**
@@ -32,7 +31,8 @@ public class JigsawImagePanel extends ImagePanel
 
 	public void updateImage(int type)
 	{
-		displayImage = FunImageFactory.getImage(type, firstImage, secondImage);
+
+		displayImage = AlphaMerge.getImage(firstImage, secondImage, type);
 
 		repaint();
 	}

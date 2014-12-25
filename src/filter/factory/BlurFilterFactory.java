@@ -8,6 +8,12 @@ import filter.Blur.MotionBlurFilter;
 
 public class BlurFilterFactory
 {
+	/**
+	 * 依据类型参数获取新的模糊图像
+	 * 
+	 * @param type
+	 *            类型
+	 * */
 	public static Filter getFilter(int type)
 	{
 		switch (type)

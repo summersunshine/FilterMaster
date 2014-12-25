@@ -1,16 +1,15 @@
 package gui.scrawl;
 
-import gui.ImagePanelWithCursor;
+import gui.base.ImagePanelWithCursor;
 
 import java.awt.BasicStroke;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
-import util.ImageUtil;
-import algorithm.basic.Alpha;
-import algorithm.basic.Erase;
-import algorithm.basic.Merge;
+import util.image.Erase;
+import util.image.ImageUtil;
+import util.image.Merge;
 import app.Constants;
 
 public class ScrawlImagePanel extends ImagePanelWithCursor
@@ -149,7 +148,7 @@ public class ScrawlImagePanel extends ImagePanelWithCursor
 	public void updateAlpha()
 	{
 
-		drawingImage = Alpha.getImage(drawingImage, ScrawlSetting.alphaValue);
+		drawingImage = ImageUtil.setImageAlpha(drawingImage, ScrawlSetting.alphaValue);
 
 		repaint();
 	}

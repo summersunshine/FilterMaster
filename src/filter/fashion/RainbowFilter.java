@@ -2,8 +2,8 @@ package filter.fashion;
 
 import java.awt.image.BufferedImage;
 
-import util.ImageUtil;
-import algorithm.fun.AlphaMerge;
+import util.image.AlphaMerge;
+import util.image.ImageUtil;
 import filter.Filter;
 
 public class RainbowFilter extends Filter

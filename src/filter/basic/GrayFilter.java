@@ -1,6 +1,6 @@
 package filter.basic;
 
-import util.ImageUtil;
+import util.image.ImageUtil;
 import filter.Filter;
 
 public class GrayFilter extends Filter

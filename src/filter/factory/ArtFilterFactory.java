@@ -10,6 +10,12 @@ import filter.art.StrokeAreaFilter;
 
 public class ArtFilterFactory
 {
+	/**
+	 * 依据类型获取新的艺术化图像
+	 * 
+	 * @param type
+	 *            类型
+	 * */
 	public static Filter getFilter(int type)
 	{
 		switch (type)

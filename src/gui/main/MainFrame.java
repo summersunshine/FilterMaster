@@ -1,6 +1,6 @@
 package gui.main;
 
-import gui.ImagePanel;
+import gui.base.BaseImagePanel;
 import gui.blur.BlurFrame;
 import gui.compare.CompareFrame;
 import gui.jigsaw.JigsawFrame;
@@ -23,10 +23,10 @@ import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import util.ImageUtil;
-import algorithm.basic.Clone;
-import algorithm.basic.SaturationAndHue;
-import algorithm.basic.Scale;
+import util.image.Clone;
+import util.image.ImageUtil;
+import util.image.SaturationAndHue;
+import util.image.Scale;
 
 public class MainFrame extends JFrame implements ActionListener
 {
@@ -45,7 +45,7 @@ public class MainFrame extends JFrame implements ActionListener
 	PreviewTabbedPanel			previewTabbedPanel;
 
 	// 主图像显示面板
-	public ImagePanel			imagePanel;
+	public BaseImagePanel			imagePanel;
 
 	// 基础调节面板
 	public BasicAdjustPanel		adjustPanel;
@@ -345,7 +345,7 @@ public class MainFrame extends JFrame implements ActionListener
 	/**
 	 * 获取图像面板
 	 * */
-	public ImagePanel getImagePanel()
+	public BaseImagePanel getImagePanel()
 	{
 		return imagePanel;
 	}
@@ -378,7 +378,7 @@ public class MainFrame extends JFrame implements ActionListener
 			getContentPane().remove(imagePanel);
 		}
 
-		imagePanel = new ImagePanel(sourceImage);
+		imagePanel = new BaseImagePanel(sourceImage);
 		getContentPane().add(imagePanel);
 		imagePanel.repaint();
 

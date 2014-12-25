@@ -2,8 +2,8 @@ package filter.fun;
 
 import java.awt.image.BufferedImage;
 
-import util.ImageUtil;
 import util.geometry.Geometry;
+import util.image.ImageUtil;
 import filter.Filter;
 
 public class ConcaveMirrorFilter extends Filter

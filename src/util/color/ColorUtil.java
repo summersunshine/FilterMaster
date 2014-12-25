@@ -3,7 +3,7 @@ package util.color;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 
-import util.ImageUtil;
+import util.image.ImageUtil;
 
 public class ColorUtil
 {

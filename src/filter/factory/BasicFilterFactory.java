@@ -9,6 +9,12 @@ import filter.basic.SharpenFilter;
 
 public class BasicFilterFactory
 {
+	/**
+	 * 依据类型获取新的基础图像
+	 * 
+	 * @param type
+	 *            类型
+	 * */
 	public static Filter getFilter(int type)
 	{
 		switch (type)

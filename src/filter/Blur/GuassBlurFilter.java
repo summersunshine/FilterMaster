@@ -2,8 +2,8 @@ package filter.Blur;
 
 import java.awt.Color;
 
-import util.ImageUtil;
 import util.color.ColorUtil;
+import util.image.ImageUtil;
 import filter.Filter;
 
 public class GuassBlurFilter extends Filter

@@ -2,8 +2,9 @@ package gui.blur;
 
 import filter.Filter;
 import filter.Blur.GuassBlurFilter;
+import filter.Blur.InteractiveBlur;
 import filter.factory.FilterFactory;
-import gui.ImagePanelWithCursor;
+import gui.base.ImagePanelWithCursor;
 
 import java.awt.Cursor;
 import java.awt.Point;
@@ -11,10 +12,9 @@ import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
-import util.ImageUtil;
-import algorithm.basic.Clone;
-import algorithm.basic.Erase;
-import algorithm.blur.InteractiveBlur;
+import util.image.Clone;
+import util.image.Erase;
+import util.image.ImageUtil;
 import app.Constants;
 
 public class BlurImagePanel extends ImagePanelWithCursor

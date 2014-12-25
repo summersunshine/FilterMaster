@@ -1,7 +1,7 @@
 package filter.lomo;
 
-import util.ImageUtil;
 import util.geometry.Geometry;
+import util.image.ImageUtil;
 import filter.Filter;
 
 public class ClassicalLomoFilter extends Filter

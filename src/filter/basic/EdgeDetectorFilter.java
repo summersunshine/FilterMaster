@@ -1,9 +1,10 @@
 package filter.basic;
 
-import util.ImageUtil;
+import java.awt.image.BufferedImage;
+
 import util.color.ColorUtil;
 import util.color.RGB;
-import algorithm.basic.Gray;
+import util.image.ImageUtil;
 import app.Constants;
 import filter.Filter;
 
@@ -22,7 +23,10 @@ public class EdgeDetectorFilter extends Filter
 		int maskSize = 3;
 		int halfMaskSize = maskSize / 2;
 
-		RGB[][] imageMatrix = ColorUtil.getRGBMatrix(Gray.getImage(image));
+		GrayFilter grayFilter = new GrayFilter();
+		BufferedImage grayImage = grayFilter.getImage(image);
+
+		RGB[][] imageMatrix = ColorUtil.getRGBMatrix(grayImage);
 
 		int[][] mask = getMask(type);
 

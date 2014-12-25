@@ -2,7 +2,7 @@ package filter.frame;
 
 import java.awt.image.BufferedImage;
 
-import util.ImageUtil;
+import util.image.ImageUtil;
 
 public class WoodFrameFilter extends FrameFilter
 {

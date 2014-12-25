@@ -1,6 +1,6 @@
 package filter.art;
 
-import util.ImageUtil;
+import util.image.ImageUtil;
 import filter.Filter;
 
 public class PencilFilter extends Filter

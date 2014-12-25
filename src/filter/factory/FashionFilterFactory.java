@@ -9,6 +9,12 @@ import filter.fashion.RainbowFilter;
 
 public class FashionFilterFactory
 {
+	/**
+	 * 依据类型参数获取新的fashion图像
+	 * 
+	 * @param type
+	 *            类型
+	 * */
 	public static Filter getFilter(int type)
 	{
 		switch (type)

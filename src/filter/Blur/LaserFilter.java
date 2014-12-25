@@ -1,7 +1,8 @@
 package filter.Blur;
 
-import util.ImageUtil;
-import algorithm.blur.MotionBlur;
+import java.awt.Color;
+
+import util.image.ImageUtil;
 import filter.Filter;
 
 public class LaserFilter extends Filter
@@ -22,24 +23,24 @@ public class LaserFilter extends Filter
 			ImageUtil.getRGB(image, pixels, 0, y, width, 1);
 			for (int x = 0; x < width; x++)
 			{
-				int rgb = pixels[x];
-				int a = rgb & 0xff000000;
-				int r = (rgb >> 16) & 0xff;
-				int g = (rgb >> 8) & 0xff;
-				int b = rgb & 0xff;
-				int l = r + g + b;
+				Color color = new Color(pixels[x]);
+				int l = color.getRed() + color.getGreen() + color.getBlue();
 				if (l < threshold3)
+				{
 					pixels[x] = 0xff000000;
+				}
 				else
 				{
 					l /= 3;
-					pixels[x] = a | (l << 16) | (l << 8) | l;
+					pixels[x] = color.getAlpha() | (l << 16) | (l << 8) | l;
 				}
 			}
 			ImageUtil.setRGB(outputImage, pixels, 0, y, width, 1);
 		}
 
-		outputImage = MotionBlur.getImage(outputImage);
+		MotionBlurFilter motionBlurFilter = new MotionBlurFilter();
+
+		outputImage = motionBlurFilter.getImage(outputImage);
 
 		for (int y = 0; y < height; y++)
 		{
@@ -48,32 +49,28 @@ public class LaserFilter extends Filter
 			for (int x = 0; x < width; x++)
 			{
 				int rgb = pixels[x];
-				int a = rgb & 0xff000000;
-				int r = (rgb >> 16) & 0xff;
-				int g = (rgb >> 8) & 0xff;
-				int b = rgb & 0xff;
-
 				int rgb2 = srcPixels[x];
-				// int a2 = rgb2 & 0xff000000;
-				int r2 = (rgb2 >> 16) & 0xff;
-				int g2 = (rgb2 >> 8) & 0xff;
-				int b2 = rgb2 & 0xff;
+				Color color1 = new Color(rgb);
+				Color color2 = new Color(rgb2);
 
-				if (r > 0)
+				if (color1.getRed() > 0)
 				{
-					r = ImageUtil.clampIn255((int) (r * strength) + r2);
-					g = ImageUtil.clampIn255((int) (g * strength) + g2);
-					b = ImageUtil.clampIn255((int) (b * strength) + b2);
+					int r = (int) (color1.getRed() * strength) + color2.getRed();
+					int g = (int) (color1.getGreen() * strength) + color2.getGreen();
+					int b = (int) (color1.getBlue() * strength) + color2.getBlue();
+
+					r = ImageUtil.clampIn255(r);
+					g = ImageUtil.clampIn255(g);
+					b = ImageUtil.clampIn255(b);
+
+					color1 = new Color(r, g, b, color1.getAlpha());
 				}
 				else
 				{
-					r = r2;
-					g = g2;
-					b = b2;
+					color1 = color2;
 				}
 
-				rgb = a | (r << 16) | (g << 8) | b;
-				pixels[x] = rgb;
+				pixels[x] = color1.getRGB();
 			}
 			ImageUtil.setRGB(outputImage, pixels, 0, y, width, 1);
 		}

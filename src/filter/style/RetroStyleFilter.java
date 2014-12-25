@@ -1,6 +1,6 @@
 package filter.style;
 
-import util.ImageUtil;
+import util.image.ImageUtil;
 import filter.Filter;
 
 public class RetroStyleFilter extends Filter

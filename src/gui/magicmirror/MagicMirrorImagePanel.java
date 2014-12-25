@@ -4,13 +4,13 @@ import filter.Filter;
 import filter.factory.FilterFactory;
 import filter.fun.ConcaveMirrorFilter;
 import filter.fun.ConvexMirrorFilter;
-import gui.ImagePanel;
+import gui.base.BaseImagePanel;
 
 import java.awt.image.BufferedImage;
 
 import app.Constants;
 
-public class MagicMirrorImagePanel extends ImagePanel
+public class MagicMirrorImagePanel extends BaseImagePanel
 {
 
 	/**
