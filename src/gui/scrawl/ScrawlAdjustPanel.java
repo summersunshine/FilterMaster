@@ -60,7 +60,7 @@ public class ScrawlAdjustPanel extends JPanel implements ActionListener, Adjustm
 	 * */
 	private void initSizeBarAndLabel()
 	{
-		sizeLabel = new JLabel("¥Û–°");
+		sizeLabel = new JLabel("ª≠± ¥÷œ∏");
 		sizeLabel.setBounds(ScrawlSetting.SIZE_LABEL_RECTANGLE);
 
 		int extent = ScrawlSetting.sizeExtent;

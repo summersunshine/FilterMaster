@@ -64,7 +64,7 @@ public class JigsawButtonGroup extends JPanel implements ActionListener
 	{
 		// TODO Auto-generated method stub
 
-		System.out.println(e.getSource().toString());
+		// System.out.println(e.getSource().toString());
 
 		if (parent.getSecondSourceImage() == null)
 		{

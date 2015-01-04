@@ -101,14 +101,10 @@ public class MainFrame extends JFrame implements ActionListener, WindowListener
 		this.addWindowListener(this);
 
 		initOpenButton();
-		initButtonPanel();
-		initBasicAdjustPanel();
-		initSaveButton();
-		initCancelButton();
-		initCompareButton();
 
-		File file = new File("C:\\Users\\Public\\Pictures\\Sample Pictures\\sand.jpg");
-		loadImage(file);
+		// File file = new
+		// File("C:\\Users\\Public\\Pictures\\Sample Pictures\\sand.jpg");
+		// loadImage(file);
 
 	}
 
@@ -145,8 +141,8 @@ public class MainFrame extends JFrame implements ActionListener, WindowListener
 	private void initOpenButton()
 	{
 		openButton = new JButton();
-		openButton.setSize(100, 30);
-		openButton.setText("打开");
+		openButton.setSize(150, 30);
+		openButton.setText("打开图片");
 		openButton.addActionListener(this);
 		getContentPane().add(openButton);
 	}
@@ -221,6 +217,12 @@ public class MainFrame extends JFrame implements ActionListener, WindowListener
 
 			SaturationAndHue.getImage(sourceImage, 0, 0);
 			previewImage = Scale.getImage(sourceImage, 100, 100);
+
+			initButtonPanel();
+			initBasicAdjustPanel();
+			initSaveButton();
+			initCancelButton();
+			initCompareButton();
 
 			setPreviewImages();
 			setImagePanel();
