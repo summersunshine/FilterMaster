@@ -1,9 +1,9 @@
 package gui.jigsaw;
 
 import gui.base.BaseFrame;
+import gui.main.MainFrame;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
@@ -13,7 +13,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import util.image.ImageUtil;
 
-public class JigsawFrame extends BaseFrame implements ActionListener
+public class JigsawFrame extends BaseFrame
 {
 
 	/**
@@ -40,7 +40,7 @@ public class JigsawFrame extends BaseFrame implements ActionListener
 		super();
 
 		firstSourceImage = image;
-		secondSourceImage = image;
+		// setSecondSourceImage(image);
 
 		initButtonGroup();
 		initOpenButton();
@@ -50,10 +50,25 @@ public class JigsawFrame extends BaseFrame implements ActionListener
 
 	}
 
+	@Override
+	protected void saveOperation()
+	{
+		// TODO Auto-generated method stub
+		MainFrame.getInstance().setImagePanel(imagePanel.getDisplayImage());
+		super.saveOperation();
+	}
+
+	@Override
+	protected void cancelOperation()
+	{
+		// TODO Auto-generated method stub
+		super.cancelOperation();
+	}
+
 	private void initImagePanel()
 	{
 		// TODO Auto-generated method stub
-		imagePanel = new JigsawImagePanel(firstSourceImage, secondSourceImage);
+		imagePanel = new JigsawImagePanel(firstSourceImage, getSecondSourceImage());
 
 		getContentPane().add(imagePanel);
 
@@ -106,9 +121,9 @@ public class JigsawFrame extends BaseFrame implements ActionListener
 	 * */
 	private void loadImage(File currFile)
 	{
-		secondSourceImage = ImageUtil.getImage(currFile.getAbsolutePath());
+		setSecondSourceImage(ImageUtil.getImage(currFile.getAbsolutePath()));
 
-		if (secondSourceImage != null)
+		if (getSecondSourceImage() != null)
 		{
 			afterLoadImage();
 		}
@@ -132,10 +147,28 @@ public class JigsawFrame extends BaseFrame implements ActionListener
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent arg0)
+	public void actionPerformed(ActionEvent e)
 	{
 		// TODO Auto-generated method stub
-		initFileChooser();
+		if (e.getSource() == openButton)
+		{
+			initFileChooser();
+		}
+		else
+		{
+			super.actionPerformed(e);
+		}
+
+	}
+
+	public BufferedImage getSecondSourceImage()
+	{
+		return secondSourceImage;
+	}
+
+	public void setSecondSourceImage(BufferedImage secondSourceImage)
+	{
+		this.secondSourceImage = secondSourceImage;
 	}
 
 }

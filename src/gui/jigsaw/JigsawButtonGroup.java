@@ -5,9 +5,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import app.Constants;
+import util.image.AlphaMerge;
 
 public class JigsawButtonGroup extends JPanel implements ActionListener
 {
@@ -26,7 +27,7 @@ public class JigsawButtonGroup extends JPanel implements ActionListener
 	{
 		this.parent = parent;
 		initButtonGroup();
-		this.setBounds(1040, 0, 240, 720);
+		this.setBounds(1040, 0, 240, 680);
 		this.setVisible(true);
 	}
 
@@ -64,29 +65,36 @@ public class JigsawButtonGroup extends JPanel implements ActionListener
 		// TODO Auto-generated method stub
 
 		System.out.println(e.getSource().toString());
+
+		if (parent.getSecondSourceImage() == null)
+		{
+			JOptionPane.showConfirmDialog(null, "还未选择第二张图片", "提示", JOptionPane.YES_OPTION);
+			return;
+		}
+
 		if (e.getSource() == openButton)
 		{
-			parent.setImagePanel(Constants.TYPE_ALPHA_MERGE);
+			parent.setImagePanel(AlphaMerge.DIR_NO);
 
 		}
 		else if (e.getSource() == openButton1)
 		{
-			parent.setImagePanel(Constants.TYPE_ALPHA_MERGE_1);
+			parent.setImagePanel(AlphaMerge.DIR_LEFT_2_RIGHT);
 
 		}
 		else if (e.getSource() == openButton2)
 		{
-			parent.setImagePanel(Constants.TYPE_ALPHA_MERGE_2);
+			parent.setImagePanel(AlphaMerge.DIR_RIGHT_2_LEFT);
 
 		}
 		else if (e.getSource() == openButton3)
 		{
-			parent.setImagePanel(Constants.TYPE_ALPHA_MERGE_3);
+			parent.setImagePanel(AlphaMerge.DIR_UP_2_DOWN);
 
 		}
 		else if (e.getSource() == openButton4)
 		{
-			parent.setImagePanel(Constants.TYPE_ALPHA_MERGE_4);
+			parent.setImagePanel(AlphaMerge.DIR_DOWN_2_UP);
 		}
 
 	}

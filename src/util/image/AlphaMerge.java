@@ -9,46 +9,46 @@ public class AlphaMerge
 {
 
 	// 无方向
-	public static final int DIR_NO = 0;
+	public static final int	DIR_NO					= 0;
 
 	// 从左到右
-	public static final int DIR_LEFT_2_RIGHT = 1;
+	public static final int	DIR_LEFT_2_RIGHT		= 1;
 
 	// 从右到左
-	public static final int DIR_RIGHT_2_LEFT = 2;
+	public static final int	DIR_RIGHT_2_LEFT		= 2;
 
 	// 从上到下
-	public static final int DIR_UP_2_DOWN = 3;
+	public static final int	DIR_UP_2_DOWN			= 3;
 
 	// 从下到上
-	public static final int DIR_DOWN_2_UP = 4;
+	public static final int	DIR_DOWN_2_UP			= 4;
 
 	// 以最小的长宽进行融合
-	public static int MERGE_TYPE_MIN = 1;
+	public static int		MERGE_TYPE_MIN			= 1;
 
 	// 以最小的长宽进行融合并拉伸
-	public static int MERGE_TYPE_MIN_SCALE = 2;
+	public static int		MERGE_TYPE_MIN_SCALE	= 2;
 
 	// 以最大的长宽进行融合
-	public static int MERGE_TYPE_MAX = 3;
+	public static int		MERGE_TYPE_MAX			= 3;
 
 	// 以最大的长宽进行融合并拉伸
-	public static int MERGE_TYPE_MAX_SCALE = 4;
+	public static int		MERGE_TYPE_MAX_SCALE	= 4;
 
 	// 以第一张图片的长宽进行融合
-	public static int MERGE_TYPE_IMAGE_1 = 5;
+	public static int		MERGE_TYPE_IMAGE_1		= 5;
 
 	// 以第二张图片的长宽进行融合
-	public static int MERGE_TYPE_IMAGE_2 = 6;
+	public static int		MERGE_TYPE_IMAGE_2		= 6;
 
-	public static int targetWidth;
-	public static int targetHeight;
+	public static int		targetWidth;
+	public static int		targetHeight;
 
-	public static float ratioX1;
-	public static float ratioY1;
+	public static float		ratioX1;
+	public static float		ratioY1;
 
-	public static float ratioX2;
-	public static float ratioY2;
+	public static float		ratioX2;
+	public static float		ratioY2;
 
 	public static BufferedImage getImage(BufferedImage image1, BufferedImage image2)
 	{
@@ -77,8 +77,6 @@ public class AlphaMerge
 	 *            需要融合的图像1
 	 * @param image2
 	 *            需要融合的图像2
-	 * @param dir
-	 *            扫描的方向
 	 * @param type
 	 *            拼合的方式
 	 * */
@@ -86,6 +84,19 @@ public class AlphaMerge
 	{
 		setSizeAndRatio(image1, image2, type);
 		return scanForNoDir(image1, image2, 0.5f);
+	}
+
+	/**
+	 * @param image1
+	 *            需要融合的图像1
+	 * @param image2
+	 *            需要融合的图像2
+	 * @param dir
+	 *            扫描的方向
+	 * */
+	public static BufferedImage getImageByDir(BufferedImage image1, BufferedImage image2, int dir)
+	{
+		return getImage(image1, image2, MERGE_TYPE_IMAGE_1, dir);
 	}
 
 	/**
@@ -238,13 +249,13 @@ public class AlphaMerge
 
 	public static void printInfo(int type)
 	{
-//		System.out.println("ratioX1 " + ratioX1);
-//		System.out.println("ratioY1 " + ratioY1);
-//		System.out.println("ratioX2 " + ratioX2);
-//		System.out.println("ratioY2 " + ratioY2);
-//		System.out.println("width " + targetWidth);
-//		System.out.println("height " + targetHeight);
-//		System.out.println("TYPE " + type);
+		// System.out.println("ratioX1 " + ratioX1);
+		// System.out.println("ratioY1 " + ratioY1);
+		// System.out.println("ratioX2 " + ratioX2);
+		// System.out.println("ratioY2 " + ratioY2);
+		// System.out.println("width " + targetWidth);
+		// System.out.println("height " + targetHeight);
+		// System.out.println("TYPE " + type);
 
 	}
 
@@ -265,8 +276,12 @@ public class AlphaMerge
 		{
 			for (int x = 0; x < targetWidth; x++)
 			{
-				int[] rgb1 = ImageUtil.getSplitRGB(image1.getRGB((int) (x * ratioX1), (int) (y * ratioY1)));
-				int[] rgb2 = ImageUtil.getSplitRGB(image2.getRGB((int) (x * ratioX2), (int) (y * ratioY2)));
+				int x1 = (int) (x * ratioX1);
+				int x2 = (int) (x * ratioX2);
+				int y1 = (int) (y * ratioY1);
+				int y2 = (int) (y * ratioY2);
+				int[] rgb1 = ImageUtil.getSplitRGB(image1.getRGB(x1, y1));
+				int[] rgb2 = ImageUtil.getSplitRGB(image2.getRGB(x2, y2));
 				outputImage.setRGB(x, y, getMergeRGB(rgb1, rgb2, alpha));
 			}
 		}
@@ -292,11 +307,15 @@ public class AlphaMerge
 
 		for (int y = 0; y < targetHeight; y++)
 		{
-			alpha = (targetHeight - y) * 1.0f / targetHeight;
+			alpha = (targetHeight - 1 - y) * 1.0f / (targetHeight - 1);
 			for (int x = 0; x < targetWidth; x++)
 			{
-				int[] rgb1 = ImageUtil.getSplitRGB(image1.getRGB((int) (x * ratioX1), (int) (y * ratioY1)));
-				int[] rgb2 = ImageUtil.getSplitRGB(image2.getRGB((int) (x * ratioX2), (int) (y * ratioY2)));
+				int x1 = (int) (x * ratioX1);
+				int x2 = (int) (x * ratioX2);
+				int y1 = (int) (y * ratioY1);
+				int y2 = (int) (y * ratioY2);
+				int[] rgb1 = ImageUtil.getSplitRGB(image1.getRGB(x1, y1));
+				int[] rgb2 = ImageUtil.getSplitRGB(image2.getRGB(x2, y2));
 				outputImage.setRGB(x, y, getMergeRGB(rgb1, rgb2, alpha));
 			}
 		}
@@ -324,11 +343,15 @@ public class AlphaMerge
 		for (int y = 0; y < targetHeight; y++)
 		{
 
-			alpha = y * 1.0f / targetHeight;
+			alpha = y * 1.0f / (targetHeight - 1);
 			for (int x = 0; x < targetWidth; x++)
 			{
-				int[] rgb1 = ImageUtil.getSplitRGB(image1.getRGB((int) (x * ratioX1), (int) (y * ratioY1)));
-				int[] rgb2 = ImageUtil.getSplitRGB(image2.getRGB((int) (x * ratioX2), (int) (y * ratioY2)));
+				int x1 = (int) (x * ratioX1);
+				int x2 = (int) (x * ratioX2);
+				int y1 = (int) (y * ratioY1);
+				int y2 = (int) (y * ratioY2);
+				int[] rgb1 = ImageUtil.getSplitRGB(image1.getRGB(x1, y1));
+				int[] rgb2 = ImageUtil.getSplitRGB(image2.getRGB(x2, y2));
 				outputImage.setRGB(x, y, getMergeRGB(rgb1, rgb2, alpha));
 			}
 		}
@@ -350,16 +373,20 @@ public class AlphaMerge
 	 * */
 	public static BufferedImage scanFromLeftToRight(BufferedImage image1, BufferedImage image2)
 	{
-		BufferedImage outputImage = new BufferedImage(targetHeight, targetHeight, BufferedImage.TYPE_INT_RGB);
+		BufferedImage outputImage = new BufferedImage(targetWidth, targetHeight, BufferedImage.TYPE_INT_RGB);
 
 		float alpha = 1;
 		for (int x = 0; x < targetWidth; x++)
 		{
-			alpha = (targetHeight - x) * 1.0f / targetHeight;
+			alpha = (targetWidth - 1 - x) * 1.0f / (targetWidth - 1);
 			for (int y = 0; y < targetHeight; y++)
 			{
-				int[] rgb1 = ImageUtil.getSplitRGB(image1.getRGB((int) (x * ratioX1), (int) (y * ratioY1)));
-				int[] rgb2 = ImageUtil.getSplitRGB(image2.getRGB((int) (x * ratioX2), (int) (y * ratioY2)));
+				int x1 = (int) (x * ratioX1);
+				int x2 = (int) (x * ratioX2);
+				int y1 = (int) (y * ratioY1);
+				int y2 = (int) (y * ratioY2);
+				int[] rgb1 = ImageUtil.getSplitRGB(image1.getRGB(x1, y1));
+				int[] rgb2 = ImageUtil.getSplitRGB(image2.getRGB(x2, y2));
 				outputImage.setRGB(x, y, getMergeRGB(rgb1, rgb2, alpha));
 			}
 		}
@@ -385,11 +412,15 @@ public class AlphaMerge
 		float alpha = 0;
 		for (int x = 0; x < targetWidth; x++)
 		{
-			alpha = x * 1.0f / targetHeight;
+			alpha = x * 1.0f / (targetWidth - 1);
 			for (int y = 0; y < targetHeight; y++)
 			{
-				int[] rgb1 = ImageUtil.getSplitRGB(image1.getRGB((int) (x * ratioX1), (int) (y * ratioY1)));
-				int[] rgb2 = ImageUtil.getSplitRGB(image2.getRGB((int) (x * ratioX2), (int) (y * ratioY2)));
+				int x1 = (int) (x * ratioX1);
+				int x2 = (int) (x * ratioX2);
+				int y1 = (int) (y * ratioY1);
+				int y2 = (int) (y * ratioY2);
+				int[] rgb1 = ImageUtil.getSplitRGB(image1.getRGB(x1, y1));
+				int[] rgb2 = ImageUtil.getSplitRGB(image2.getRGB(x2, y2));
 				outputImage.setRGB(x, y, getMergeRGB(rgb1, rgb2, alpha));
 			}
 		}

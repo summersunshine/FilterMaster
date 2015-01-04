@@ -6,7 +6,14 @@ import filter.Filter;
 public class PencilFilter extends Filter
 {
 
-	private static int	sensitivity	= 30;
+	private static int	sensitivity	= 20;
+
+	@Override
+	public void preProcessor()
+	{
+		// TODO Auto-generated method stub
+		super.preProcessor();
+	}
 
 	@Override
 	public void processor()

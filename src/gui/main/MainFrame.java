@@ -388,9 +388,6 @@ public class MainFrame extends JFrame implements ActionListener, WindowListener
 		}
 		previewTabbedPanel = new PreviewTabbedPanel(previewImage);
 
-		Thread thread = new Thread(previewTabbedPanel);
-		thread.start();
-
 		getContentPane().add(previewTabbedPanel);
 		previewTabbedPanel.repaint();
 

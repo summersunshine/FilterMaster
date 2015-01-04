@@ -2,7 +2,7 @@ package filter;
 
 import java.awt.image.BufferedImage;
 
-public abstract class Filter implements Runnable
+public abstract class Filter
 {
 
 	protected int			width;
@@ -13,15 +13,6 @@ public abstract class Filter implements Runnable
 	public Filter()
 	{
 
-	}
-
-	@Override
-	public void run()
-	{
-		// TODO Auto-generated method stub
-		preProcessor();
-
-		processor();
 	}
 
 	public BufferedImage getImage(BufferedImage image)

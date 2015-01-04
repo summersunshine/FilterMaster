@@ -29,10 +29,10 @@ public class JigsawImagePanel extends BaseImagePanel
 
 	}
 
-	public void updateImage(int type)
+	public void updateImage(int dir)
 	{
 
-		displayImage = AlphaMerge.getImage(firstImage, secondImage, type);
+		displayImage = AlphaMerge.getImageByDir(firstImage, secondImage, dir);
 
 		repaint();
 	}

@@ -10,7 +10,7 @@ import javax.swing.event.ChangeListener;
 
 import app.Constants;
 
-public class PreviewTabbedPanel extends JTabbedPane implements ChangeListener, Runnable
+public class PreviewTabbedPanel extends JTabbedPane implements ChangeListener
 {
 
 	/**
@@ -50,6 +50,9 @@ public class PreviewTabbedPanel extends JTabbedPane implements ChangeListener, R
 		this.previewImage = previewImage;
 
 		this.addChangeListener(this);
+
+		initPreviewListPanels();
+		repaintPreviewListPanels();
 
 		// this.setSelectedIndex(5);
 		this.setBounds(1040, 0, 240, 720);
@@ -111,11 +114,4 @@ public class PreviewTabbedPanel extends JTabbedPane implements ChangeListener, R
 
 	}
 
-	@Override
-	public void run()
-	{
-		// TODO Auto-generated method stub
-		initPreviewListPanels();
-		repaintPreviewListPanels();
-	}
 }

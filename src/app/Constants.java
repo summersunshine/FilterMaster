@@ -70,7 +70,7 @@ public class Constants
 	public static final int		TYPE_FRAME_FILM			= 803;
 	public static final int		TYPE_FRAME_SIMPLE		= 804;
 
-	public static final int[]	TYPE_ALPA_LIST			= { TYPE_OIL_PAINT, TYPE_PENCIL, TYPE_SCULPTUE, TYPE_SKETCH, TYPE_STOKEAREA };
+	public static final int[]	TYPE_ALPA_LIST			= { TYPE_OIL_PAINT, TYPE_PENCIL, TYPE_SCULPTUE, TYPE_SKETCH };
 
 	public static final int[]	TYPE_BASIC_LIST			= { TYPE_GRAY, TYPE_INVERSE, TYPE_SHARPEN, TYPE_EDGE_SOBEL_X, TYPE_EDGE_SOBEL_Y, TYPE_EDGE_LAPLACE };
 
@@ -87,7 +87,7 @@ public class Constants
 
 	public static final int[]	TYPE_FRAME_LIST			= { TYPE_FRAME_WOOD, TYPE_FRAME_INSTANT, TYPE_FRAME_FILM, TYPE_FRAME_SIMPLE };
 
-	public static String[]		DESCRIBE_ART_LIST		= { "”Õª≠", "«¶± ", "∏°µÒ", "Àÿ√Ë", "± ¥•«¯”Ú" };
+	public static String[]		DESCRIBE_ART_LIST		= { "”Õª≠", "«¶± ", "∏°µÒ", "Àÿ√Ë" };
 
 	public static String[]		DESCRIBE_BASIC_LIST		= { "ª“∂»Õº", "∏∫∆¨", "»ÒªØ", "SLOBEL±ﬂ‘µºÏ≤‚1", "SLOBEL±ﬂ‘µºÏ≤‚2", "¿≠∆’¿≠Àπ±ﬂ‘µºÏ≤‚" };
 
