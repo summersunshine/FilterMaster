@@ -2,6 +2,7 @@ package util.image;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
@@ -62,6 +63,38 @@ public class ImageUtil
 			e.printStackTrace();
 		}
 		return bufferedImage;
+	}
+
+	/**
+	 * image ת buffered image
+	 * 
+	 * @param image
+	 * */
+	public static BufferedImage toBufferedImage(Image image)
+	{
+		if (image instanceof BufferedImage)
+		{
+			return (BufferedImage) image;
+		}
+
+		BufferedImage bimage = null;
+
+		if (bimage == null)
+		{
+			// Create a buffered image using the default color model
+			int type = BufferedImage.TYPE_INT_ARGB;
+
+			bimage = new BufferedImage(image.getWidth(null), image.getHeight(null), type);
+		}
+
+		// Copy image to buffered image
+		Graphics g = bimage.createGraphics();
+
+		// Paint the image onto the buffered image
+		g.drawImage(image, 0, 0, null);
+		g.dispose();
+
+		return bimage;
 	}
 
 	/**

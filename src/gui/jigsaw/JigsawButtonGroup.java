@@ -36,16 +36,16 @@ public class JigsawButtonGroup extends JPanel implements ActionListener
 		openButton = new JButton("正常");
 		openButton.setSize(100, 30);
 		openButton.addActionListener(this);
-		openButton1 = new JButton("从左到右");
+		openButton1 = new JButton("从左到右过渡");
 		openButton1.setSize(100, 30);
 		openButton1.addActionListener(this);
-		openButton2 = new JButton("从右到左");
+		openButton2 = new JButton("从右到左过渡");
 		openButton2.setSize(100, 30);
 		openButton2.addActionListener(this);
-		openButton3 = new JButton("从上到下");
+		openButton3 = new JButton("从上到下过渡");
 		openButton3.setSize(100, 30);
 		openButton3.addActionListener(this);
-		openButton4 = new JButton("从下到上");
+		openButton4 = new JButton("从下到上过渡");
 		openButton4.setSize(100, 30);
 		openButton4.addActionListener(this);
 

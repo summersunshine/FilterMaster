@@ -6,8 +6,6 @@ import gui.preview.PreviewTabbedPanel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -25,7 +23,7 @@ import util.image.ImageUtil;
 import util.image.SaturationAndHue;
 import util.image.Scale;
 
-public class MainFrame extends JFrame implements ActionListener, WindowListener
+public class MainFrame extends JFrame implements ActionListener
 {
 	/**
 	 * 
@@ -98,7 +96,6 @@ public class MainFrame extends JFrame implements ActionListener, WindowListener
 		this.setLayout(null);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.addWindowListener(this);
 
 		initOpenButton();
 
@@ -113,6 +110,10 @@ public class MainFrame extends JFrame implements ActionListener, WindowListener
 	 * */
 	private void initButtonPanel()
 	{
+		if (mainButtonPanel != null)
+		{
+			return;
+		}
 		mainButtonPanel = new MainButtonPanel();
 		getContentPane().add(mainButtonPanel);
 	}
@@ -122,6 +123,10 @@ public class MainFrame extends JFrame implements ActionListener, WindowListener
 	 * */
 	private void initBasicAdjustPanel()
 	{
+		if (adjustPanel != null)
+		{
+			return;
+		}
 		adjustPanel = new BasicAdjustPanel();
 		getContentPane().add(adjustPanel);
 
@@ -140,6 +145,8 @@ public class MainFrame extends JFrame implements ActionListener, WindowListener
 	 * */
 	private void initOpenButton()
 	{
+
+
 		openButton = new JButton();
 		openButton.setSize(150, 30);
 		openButton.setText("打开图片");
@@ -153,6 +160,11 @@ public class MainFrame extends JFrame implements ActionListener, WindowListener
 	private void initSaveButton()
 	{
 		// TODO Auto-generated method stub
+		if (saveButton != null)
+		{
+			return;
+		}
+
 		saveButton = new JButton("保存");
 		saveButton.setBounds(410, 600, 100, 40);
 		saveButton.addActionListener(this);
@@ -166,6 +178,11 @@ public class MainFrame extends JFrame implements ActionListener, WindowListener
 	private void initCancelButton()
 	{
 		// TODO Auto-generated method stub
+		if (cancelButton != null)
+		{
+			return;
+		}
+
 		cancelButton = new JButton("取消");
 		cancelButton.setBounds(750, 600, 100, 40);
 		cancelButton.addActionListener(this);
@@ -178,6 +195,11 @@ public class MainFrame extends JFrame implements ActionListener, WindowListener
 	 * */
 	private void initCompareButton()
 	{
+		if (compareButton != null)
+		{
+			return;
+		}
+
 		compareButton = new JButton();
 		compareButton.setBounds(850, 600, 100, 40);
 		compareButton.setText("对比");
@@ -418,52 +440,6 @@ public class MainFrame extends JFrame implements ActionListener, WindowListener
 		}
 	}
 
-	@Override
-	public void windowOpened(WindowEvent e)
-	{
-		// TODO Auto-generated method stub
 
-	}
-
-	@Override
-	public void windowClosing(WindowEvent e)
-	{
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void windowClosed(WindowEvent e)
-	{
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void windowIconified(WindowEvent e)
-	{
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void windowDeiconified(WindowEvent e)
-	{
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void windowActivated(WindowEvent e)
-	{
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void windowDeactivated(WindowEvent e)
-	{
-		// TODO Auto-generated method stub
-
-	}
 
 }

@@ -1,6 +1,11 @@
 package filter;
 
 import java.awt.image.BufferedImage;
+import java.net.URL;
+
+import javax.swing.ImageIcon;
+
+import util.image.ImageUtil;
 
 public abstract class Filter
 {
@@ -74,4 +79,19 @@ public abstract class Filter
 	{
 		this.height = height;
 	}
+
+	/**
+	 * 通过文件名读取图像
+	 * 
+	 * @param fileName
+	 * */
+	public BufferedImage getInternalImage(String fileName)
+	{
+		URL url = Filter.class.getClassLoader().getResource(fileName);
+		ImageIcon imageIcon = new ImageIcon(url);
+		// BufferedImage bufferedImage = (BufferedImage) imageIcon.getImage();
+		//return imageIcon.getImage();
+		return ImageUtil.toBufferedImage(imageIcon.getImage());
+	}
+
 }

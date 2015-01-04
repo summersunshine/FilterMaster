@@ -2,8 +2,6 @@ package filter.frame;
 
 import java.awt.image.BufferedImage;
 
-import util.image.ImageUtil;
-
 public class FilmFrameFilter extends FrameFilter
 {
 
@@ -13,7 +11,7 @@ public class FilmFrameFilter extends FrameFilter
 		// TODO Auto-generated method stub
 		String fileName = "res/frame_simple.png";
 
-		return ImageUtil.getImage(fileName);
+		return getInternalImage(fileName);
 	}
 
 }

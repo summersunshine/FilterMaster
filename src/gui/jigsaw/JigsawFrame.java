@@ -91,8 +91,8 @@ public class JigsawFrame extends BaseFrame
 	private void initOpenButton()
 	{
 		openButton = new JButton();
-		openButton.setSize(100, 30);
-		openButton.setText("打开");
+		openButton.setSize(200, 30);
+		openButton.setText("打开第二张图片");
 		openButton.addActionListener(this);
 		getContentPane().add(openButton);
 	}
